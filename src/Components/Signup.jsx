@@ -1,6 +1,6 @@
 export default function Signup() {
   return (
-    <form>
+    <form id="signup">
       <section id="signup-inputs">
         <input
           type="text"
@@ -9,6 +9,12 @@ export default function Signup() {
           placeholder="First Name"
         />
         <input type="text" name="surname" id="surname" placeholder="Surname" />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username"
+        />
         <input type="email" name="email" id="email" placeholder="Email" />
         <input
           type="password"
