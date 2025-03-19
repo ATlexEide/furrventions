@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Signup() {
+  const navigate = useNavigate();
   return (
     <form id="signup">
+      <h2>Create an account</h2>
       <section id="signup-inputs">
         <input
           type="text"
@@ -28,6 +32,24 @@ export default function Signup() {
           id="reenter-password"
           placeholder="Reenter password"
         />
+      </section>
+      <section id="signup-buttons">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            alert("SIGNUP LODIC");
+          }}
+        >
+          Sign up
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/login");
+          }}
+        >
+          Already have an account?
+        </button>
       </section>
     </form>
   );
