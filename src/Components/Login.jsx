@@ -16,14 +16,16 @@ export default function Login() {
       </section>
       <section id="login-buttons">
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             alert("LOGIN LODIC");
           }}
         >
           Login
         </button>
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             navigate("/signup");
           }}
         >
