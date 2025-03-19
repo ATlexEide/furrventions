@@ -3,12 +3,18 @@ export default function AskForAccont({ isLoggedIn }) {
   if (!isLoggedIn)
     return (
       <PromptCard
-        prompt="TEST PROMT"
+        prompt="Do you have an account?"
         buttons={[
           {
-            content: "test",
+            content: "Yes",
             onClick: () => {
-              alert("test");
+              alert("go to login");
+            },
+          },
+          {
+            content: "No",
+            onClick: () => {
+              alert("go to signup");
             },
           },
         ]}
