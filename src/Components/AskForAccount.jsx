@@ -1,5 +1,7 @@
 import PromptCard from "./PromptCard";
+import { useNavigate } from "react-router-dom";
 export default function AskForAccont({ isLoggedIn }) {
+  const navigate = useNavigate();
   if (!isLoggedIn)
     return (
       <PromptCard
@@ -8,13 +10,13 @@ export default function AskForAccont({ isLoggedIn }) {
           {
             content: "Yes",
             onClick: () => {
-              alert("go to login");
+              navigate("/login");
             },
           },
           {
             content: "No",
             onClick: () => {
-              alert("go to signup");
+              navigate("/signup");
             },
           },
         ]}
