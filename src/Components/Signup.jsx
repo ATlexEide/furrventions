@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [userInfo, setUserInfo] = useState({
-    isOrganizer: false,
+    isOrganizer: 0,
     country: "norway",
     // username:"",
     //   firstname: "",
