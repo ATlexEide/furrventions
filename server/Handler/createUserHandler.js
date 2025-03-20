@@ -3,26 +3,6 @@ import sqlite3 from "sqlite3";
 // import { hashPW } from "./Hash.js";
 import bcrypt from "bcrypt";
 
-//   const salt = await bcrypt.genSalt(12, (err, salt) => {
-//     if (err) {
-//       console.log("SALTING ERROR", err);
-//       return;
-//     }
-//     return salt;
-//   });
-// async function hashPW(password) {
-//   let hashed;
-//   await bcrypt.hash(password, 12, function (err, hash) {
-//     if (err) console.log(err);
-//     else {
-//       console.log(hash);
-//       values.push(hash);
-//     }
-//   });
-//   console.log(await hashed);
-//   return hashed;
-// }
-
 export async function createUser(req, res) {
   const sqlString = `INSERT INTO users (isOrganizer, username, first_name, last_name, birthday, country_code, phone, email, pw_hash) VALUES (?,?,?,?,?,?,?,?,?)`;
   // eslint-disable-next-line no-undef
