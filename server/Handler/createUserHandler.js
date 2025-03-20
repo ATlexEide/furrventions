@@ -1,6 +1,4 @@
-// import { hash } from "bcrypt";
 import sqlite3 from "sqlite3";
-// import { hashPW } from "./Hash.js";
 import bcrypt from "bcrypt";
 
 export async function createUser(req, res) {
