@@ -1,25 +1,28 @@
 import sqlite3 from "sqlite3";
 
-export function createUser(userObject) {
+export function createUser(req, res) {
   const sqlString = `INSERT INTO users (isOrganizer, username, first_name, last_name, birthday, country_code, phone, email, pw_hash) VALUES (?,?,?,?,?,?,?,?,?)`;
   const values = [
-    userObject.isOrganizer,
-    userObject.username,
-    userObject.firstname,
-    userObject.surname,
-    userObject.dob,
-    userObject.country,
-    userObject.phone,
-    userObject.email,
-    userObject.password,
+    req.body.isOrganizer,
+    req.body.username,
+    req.body.firstname,
+    req.body.surname,
+    req.body.dob,
+    req.body.country,
+    req.body.phone,
+    req.body.email,
+    req.body.password,
   ];
-
   // eslint-disable-next-line no-undef
   const db = new sqlite3.Database(process.env.DB_PATH, sqlite3.OPEN_READWRITE);
-  db.all(sqlString, values, (rows) => {
+  db.all(sqlString, values, (e) => {
     console.log(sqlString);
     console.log(values);
-    console.log(rows);
+    console.log(e);
+    if (e !== null) {
+      res.send({ status: `ERROR OCCURED` });
+    }
+    if (e === null) res.send({ status: 200 });
   });
   db.close();
 }
