@@ -65,7 +65,7 @@ export default function Signup() {
           id="isOrganizer"
           value={userInfo.isOrganizer}
           onChange={(e) => {
-            setUserInfo({ ...userInfo, isOrganizer: e.target.checked });
+            setUserInfo({ ...userInfo, isOrganizer: e.target.checked ? 1 : 0 });
           }}
         />
         <input
