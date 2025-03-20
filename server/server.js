@@ -2,7 +2,6 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import { createUser } from "./Handler/createUserHandler.js";
-// console.log(import.meta.env.DB_PATH);
 
 const app = express();
 const port = 3000;
