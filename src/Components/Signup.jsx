@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [userInfo, setUserInfo] = useState({
-    // isOrganizer:false,
+    isOrganizer: false,
+    country: "norway",
     // username:"",
     //   firstname: "",
     //   surname: "",
@@ -67,7 +68,16 @@ export default function Signup() {
             setUserInfo({ ...userInfo, isOrganizer: e.target.checked });
           }}
         />
-        <input type="email" name="email" id="email" placeholder="Email" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          value={userInfo.email}
+          onChange={(e) => {
+            setUserInfo({ ...userInfo, email: e.target.value });
+          }}
+        />
         <input
           type="password"
           name="password"
@@ -93,11 +103,16 @@ export default function Signup() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            console.log("USEROBJECT: ", userInfo);
-            fetch("http://localhost:3000/test", { mode: "no-cors" })
+            fetch("http://localhost:3000/create/user", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userInfo),
+            })
               .then((res) => res.json())
               .then((res) => console.log(res));
-            alert("SIGNUP LODIC");
+            console.log("USEROBJECT: ", userInfo);
           }}
         >
           Sign up
