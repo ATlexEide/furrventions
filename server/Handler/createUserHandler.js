@@ -1,6 +1,8 @@
 import sqlite3 from "sqlite3";
+import bcrypt from "bcrypt";
 
 export function createUser(req, res) {
+  const saltRounds = 12;
   const sqlString = `INSERT INTO users (isOrganizer, username, first_name, last_name, birthday, country_code, phone, email, pw_hash) VALUES (?,?,?,?,?,?,?,?,?)`;
   const values = [
     req.body.isOrganizer,
