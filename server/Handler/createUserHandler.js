@@ -2,7 +2,18 @@ import sqlite3 from "sqlite3";
 import bcrypt from "bcrypt";
 
 export async function createUser(req, res) {
-  const sqlString = `INSERT INTO users (isOrganizer, username, first_name, last_name, birthday, country_code, phone, email, pw_hash) VALUES (?,?,?,?,?,?,?,?,?)`;
+  const sqlString = `INSERT INTO users (
+                            isOrganizer,
+                            username,
+                            first_name,
+                            last_name,
+                            birthday,
+                            country_code,
+                            phone,
+                            email,
+                            pw_hash
+                            )
+                            VALUES (?,?,?,?,?,?,?,?,?)`;
   // eslint-disable-next-line no-undef
   const db = new sqlite3.Database(process.env.DB_PATH, sqlite3.OPEN_READWRITE);
 
