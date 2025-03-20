@@ -2,7 +2,7 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import { createUser } from "./Handler/createUserHandler.js";
-import { createConvention } from "./Handler/createEventHandler.js";
+import { createConvention } from "./Handler/createConventionHandler.js";
 
 const app = express();
 const port = 3000;
