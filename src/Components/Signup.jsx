@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUser } from "../Handler/createUserHandler";
 
 export default function Signup() {
   const [userInfo, setUserInfo] = useState({
@@ -95,7 +94,9 @@ export default function Signup() {
           onClick={(e) => {
             e.preventDefault();
             console.log("USEROBJECT: ", userInfo);
-            createUser(userInfo);
+            fetch("http://localhost:3000/test", { mode: "no-cors" })
+              .then((res) => res.json())
+              .then((res) => console.log(res));
             alert("SIGNUP LODIC");
           }}
         >
