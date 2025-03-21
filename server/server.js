@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // GET
-app.get("/conventions", (req, res) => {
+app.get("/conventions/all", (req, res) => {
   console.log(req.body);
   res.send({ hello: "test" });
 });
