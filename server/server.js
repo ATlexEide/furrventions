@@ -3,6 +3,7 @@ import "dotenv/config";
 import cors from "cors";
 import { createUser } from "./Handler/createUserHandler.js";
 import { createConvention } from "./Handler/createConventionHandler.js";
+import { attendConvention } from "./Handler/attendConventionHandler.js";
 
 const app = express();
 const port = 3000;
@@ -19,7 +20,7 @@ app.post("/create/convention", (req, res) => {
 });
 
 app.post("/event/:id/attend", (req, res) => {
-  createConvention(req, res);
+  attendConvention(req, res);
 });
 
 app.get("/test", (req, res) => {
