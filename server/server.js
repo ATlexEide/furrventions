@@ -9,9 +9,11 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
+
 app.post("/create/user", (req, res) => {
   createUser(req, res);
 });
+
 app.post("/create/convention", (req, res) => {
   createConvention(req, res);
 });
