@@ -6,6 +6,7 @@ import { createConvention } from "./Handler/createConventionHandler.js";
 
 const app = express();
 const port = 3000;
+
 app.use(cors());
 app.use(express.json());
 app.post("/create/user", (req, res) => {
