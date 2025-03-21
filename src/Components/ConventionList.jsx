@@ -10,7 +10,7 @@ export default function ConventionList() {
   }, []);
 
   return (
-    <ul>
+    <ul id="convention-list">
       {conventions.map((con, i) => (
         <ConventionCard con={con} key={i} />
       ))}
