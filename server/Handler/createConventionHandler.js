@@ -32,7 +32,7 @@ export async function createConvention(req, res) {
       res.send({ status: `ERROR OCCURED`, error: e.errno });
     }
     if (e === null) {
-      db.run(sqlCreateParticipantTableString);
+      // db.run(sqlCreateParticipantTableString);
       res.send({ status: 200 });
     }
   });
