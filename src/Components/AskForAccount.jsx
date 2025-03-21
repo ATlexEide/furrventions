@@ -19,6 +19,12 @@ export default function AskForAccont({ isLoggedIn }) {
               navigate("/signup");
             },
           },
+          {
+            content: "View conventions",
+            onClick: () => {
+              navigate("/conventions");
+            },
+          },
         ]}
       />
     );
