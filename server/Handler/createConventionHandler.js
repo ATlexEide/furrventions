@@ -12,7 +12,7 @@ export async function createConvention(req, res) {
                             end_time,
                             convention_name,
                             convention_description,
-                            organizerID
+                            organizer_id
                             )
                             VALUES (?,?,?,?,?);`;
   // eslint-disable-next-line no-undef
