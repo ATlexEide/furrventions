@@ -4,6 +4,7 @@ import cors from "cors";
 import { createUser } from "./Handler/createUserHandler.js";
 import { createConvention } from "./Handler/createConventionHandler.js";
 import { attendConvention } from "./Handler/attendConventionHandler.js";
+import { getAllConventions } from "./Handler/getConventionsHandler.js";
 
 const app = express();
 const port = 3000;
@@ -14,7 +15,7 @@ app.use(express.json());
 // GET
 app.get("/conventions/all", (req, res) => {
   console.log(req.body);
-  res.send({ hello: "test" });
+  getAllConventions(req, res);
 });
 
 // POST
