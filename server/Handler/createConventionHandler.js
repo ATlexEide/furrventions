@@ -23,7 +23,11 @@ export async function createConvention(req, res) {
     if (e !== null) {
       console.log(e);
       console.log(e.errno);
-      res.send({ status: `ERROR OCCURED`, error: e.errno });
+      res.send({
+        status: `ERROR OCCURED`,
+        error: e,
+        errorMessage: e.message,
+      });
     }
     if (e === null) {
       res.send({ status: 200 });
