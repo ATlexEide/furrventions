@@ -6,12 +6,14 @@ import "./index.css";
 import App from "./App.jsx";
 import Signup from "./Components/Signup.jsx";
 import Login from "./Components/Login.jsx";
+import ConventionList from "./Components/ConventionList.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
       <Routes>
         <Route exact path="/" element={<App />} />
+        <Route exact path="conventions" element={<ConventionList />} />
         <Route exact path="login" element={<Login />} />
         <Route exact path="signup" element={<Signup />} />
       </Routes>
