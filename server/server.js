@@ -15,6 +15,11 @@ app.post("/create/user", (req, res) => {
 app.post("/create/convention", (req, res) => {
   createConvention(req, res);
 });
+
+app.post("/event/:id/attend", (req, res) => {
+  createConvention(req, res);
+});
+
 app.get("/test", (req, res) => {
   console.log(req.body);
   res.send({ hello: "test" });
