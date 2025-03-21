@@ -7,10 +7,12 @@ import App from "./App.jsx";
 import Signup from "./Components/Signup.jsx";
 import Login from "./Components/Login.jsx";
 import ConventionList from "./Components/ConventionList.jsx";
+import Header from "./Components/Header.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
+      <Header />
       <Routes>
         <Route exact path="/" element={<App />} />
         <Route exact path="conventions" element={<ConventionList />} />
