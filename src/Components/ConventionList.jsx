@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
+import ConventionCard from "./ConventionCard";
 
 export default function ConventionList() {
   const [conventions, setConventions] = useState([]);
   useEffect(() => {
-    fetch("localhost:3000/conventions/all")
+    fetch("http://localhost:3000/conventions/all")
       .then((res) => res.json())
-      .then((res) => setConventions([res]));
-  });
+      .then((res) => setConventions(res));
+  }, []);
+
   return (
     <ul>
-      {conventions.map((convention, i) => (
-        <li key={i}>{convention}</li>
+      {conventions.map((con, i) => (
+        <ConventionCard con={con} key={i} />
       ))}
     </ul>
   );
