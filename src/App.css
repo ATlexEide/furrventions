@@ -5,3 +5,8 @@
   box-sizing: border-box;
   height: 100svh;
 }
+#convention-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
