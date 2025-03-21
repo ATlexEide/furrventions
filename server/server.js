@@ -11,6 +11,13 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
+// GET
+app.get("/conventions", (req, res) => {
+  console.log(req.body);
+  res.send({ hello: "test" });
+});
+
+// POST
 app.post("/create/user", (req, res) => {
   createUser(req, res);
 });
@@ -21,11 +28,6 @@ app.post("/create/convention", (req, res) => {
 
 app.post("/event/:id/attend", (req, res) => {
   attendConvention(req, res);
-});
-
-app.get("/test", (req, res) => {
-  console.log(req.body);
-  res.send({ hello: "test" });
 });
 
 app.listen(port, () => {
