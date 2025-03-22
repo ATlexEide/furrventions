@@ -8,6 +8,7 @@ import Signup from "./Components/Signup.jsx";
 import Login from "./Components/Login.jsx";
 import ConventionList from "./Components/ConventionList.jsx";
 import Header from "./Components/Header.jsx";
+import ManageConventions from "./Components/ManageConventions.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -15,6 +16,11 @@ createRoot(document.getElementById("root")).render(
       <Header />
       <Routes>
         <Route exact path="/" element={<App />} />
+        <Route
+          exact
+          path="manage/:id/conventions"
+          element={<ManageConventions />}
+        />
         <Route exact path="conventions" element={<ConventionList />} />
         <Route exact path="login" element={<Login />} />
         <Route exact path="signup" element={<Signup />} />
