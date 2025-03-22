@@ -1,17 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+// Utils
+import { getCountryDataList, getEmojiFlag } from "countries-list";
+console.log(getCountryDataList());
 export default function Signup() {
-  const [userInfo, setUserInfo] = useState({
-    isOrganizer: 0,
-    country: "norway",
-    // username:"",
-    //   firstname: "",
-    //   surname: "",
-    //   password: "",
-    //   reenterPass: "",
-    //
-  });
+  const [userInfo, setUserInfo] = useState({});
+  console.log(userInfo);
   const navigate = useNavigate();
   return (
     <form id="signup">
@@ -36,6 +30,28 @@ export default function Signup() {
           value={userInfo.surname}
           onChange={(e) => {
             setUserInfo({ ...userInfo, surname: e.target.value });
+          }}
+        />
+        <select
+          onChange={(e) => {
+            setUserInfo({ ...userInfo, country: e.target.value });
+          }}
+        >
+          {getCountryDataList().map((country, i) => (
+            <option key={i}>
+              {getEmojiFlag(country)}
+              {country.name}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          name="country"
+          id="country"
+          placeholder="Country"
+          value={userInfo.username}
+          onChange={(e) => {
+            setUserInfo({ ...userInfo, username: e.target.value });
           }}
         />
         <input
@@ -63,7 +79,7 @@ export default function Signup() {
           type="checkbox"
           name="isOrganizer"
           id="isOrganizer"
-          value={userInfo.isOrganizer}
+          value={userInfo.isOrganizer ? userInfo.isOrganizer : 0}
           onChange={(e) => {
             setUserInfo({ ...userInfo, isOrganizer: e.target.checked ? 1 : 0 });
           }}
