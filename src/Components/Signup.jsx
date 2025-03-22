@@ -1,16 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Utils
-import { getCountryDataList, getEmojiFlag } from "countries-list";
-console.log(getCountryDataList());
+import {
+  getCountryCode,
+  getCountryDataList,
+  getCountryData,
+  getEmojiFlag,
+} from "countries-list";
+console.log(getCountryData("NO"));
+
 export default function Signup() {
   const [userInfo, setUserInfo] = useState({});
+
+  console.log(getEmojiFlag(getCountryCode(userInfo.country)));
+
   console.log(userInfo);
   const navigate = useNavigate();
   return (
     <form id="signup">
       <h2>Create an account</h2>
 
+      {/* TODO: Fix input validation */}
       <section id="signup-inputs">
         <input
           type="text"
@@ -48,7 +58,10 @@ export default function Signup() {
 
         <select
           onChange={(e) => {
-            setUserInfo({ ...userInfo, country: e.target.value });
+            setUserInfo({
+              ...userInfo,
+              country: getCountryCode(e.target.value),
+            });
           }}
         >
           {getCountryDataList().map((country, i) => (
@@ -91,6 +104,24 @@ export default function Signup() {
             setUserInfo({ ...userInfo, email: e.target.value });
           }}
         />
+
+        <div>
+          <div>{getEmojiFlag(getCountryCode(userInfo.country))}</div>
+          <label htmlFor="phone">
+            {userInfo.country
+              ? "+" + getCountryData(userInfo.country).phone
+              : null}
+          </label>
+          <input
+            type="phone"
+            name="phone"
+            id="phone"
+            value={userInfo.phone ? userInfo.phone : null}
+            onChange={(e) => {
+              setUserInfo({ ...userInfo, phone: e.target.value });
+            }}
+          />
+        </div>
 
         <input
           type="password"
