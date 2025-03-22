@@ -10,6 +10,7 @@ export default function Signup() {
   return (
     <form id="signup">
       <h2>Create an account</h2>
+
       <section id="signup-inputs">
         <input
           type="text"
@@ -22,6 +23,7 @@ export default function Signup() {
             setUserInfo({ ...userInfo, firstname: e.target.value });
           }}
         />
+
         <input
           type="text"
           name="surname"
@@ -32,6 +34,7 @@ export default function Signup() {
             setUserInfo({ ...userInfo, surname: e.target.value });
           }}
         />
+
         <select
           onChange={(e) => {
             setUserInfo({ ...userInfo, country: e.target.value });
@@ -44,6 +47,7 @@ export default function Signup() {
             </option>
           ))}
         </select>
+
         <input
           type="text"
           name="country"
@@ -54,6 +58,7 @@ export default function Signup() {
             setUserInfo({ ...userInfo, username: e.target.value });
           }}
         />
+
         <input
           type="text"
           name="username"
@@ -64,6 +69,7 @@ export default function Signup() {
             setUserInfo({ ...userInfo, username: e.target.value });
           }}
         />
+
         <input
           type="date"
           name="dob"
@@ -74,6 +80,7 @@ export default function Signup() {
             setUserInfo({ ...userInfo, dob: e.target.value });
           }}
         />
+
         <label htmlFor="isOrganizer">Do you organize events?</label>
         <input
           type="checkbox"
@@ -84,6 +91,7 @@ export default function Signup() {
             setUserInfo({ ...userInfo, isOrganizer: e.target.checked ? 1 : 0 });
           }}
         />
+
         <input
           type="email"
           name="email"
@@ -94,6 +102,7 @@ export default function Signup() {
             setUserInfo({ ...userInfo, email: e.target.value });
           }}
         />
+
         <input
           type="password"
           name="password"
@@ -104,6 +113,7 @@ export default function Signup() {
             setUserInfo({ ...userInfo, password: e.target.value });
           }}
         />
+
         <input
           type="password"
           name="reenter-password"
@@ -115,6 +125,7 @@ export default function Signup() {
           }}
         />
       </section>
+
       <section id="signup-buttons">
         <button
           onClick={(e) => {
