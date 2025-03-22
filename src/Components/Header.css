@@ -1,7 +1,14 @@
 header {
+  top: 0;
+  position: absolute;
+  padding: 12px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+header nav {
+  display: flex;
+  gap: 12px;
 }
