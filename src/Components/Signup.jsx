@@ -35,6 +35,17 @@ export default function Signup() {
           }}
         />
 
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Nickname"
+          value={userInfo.username}
+          onChange={(e) => {
+            setUserInfo({ ...userInfo, username: e.target.value });
+          }}
+        />
+
         <select
           onChange={(e) => {
             setUserInfo({ ...userInfo, country: e.target.value });
@@ -47,17 +58,6 @@ export default function Signup() {
             </option>
           ))}
         </select>
-
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Nickname"
-          value={userInfo.username}
-          onChange={(e) => {
-            setUserInfo({ ...userInfo, username: e.target.value });
-          }}
-        />
 
         <input
           type="date"
