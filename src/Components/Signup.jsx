@@ -50,17 +50,6 @@ export default function Signup() {
 
         <input
           type="text"
-          name="country"
-          id="country"
-          placeholder="Country"
-          value={userInfo.username}
-          onChange={(e) => {
-            setUserInfo({ ...userInfo, username: e.target.value });
-          }}
-        />
-
-        <input
-          type="text"
           name="username"
           id="username"
           placeholder="Nickname"
