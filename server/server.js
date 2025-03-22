@@ -4,7 +4,10 @@ import cors from "cors";
 import { createUser } from "./Handler/createUserHandler.js";
 import { createConvention } from "./Handler/createConventionHandler.js";
 import { attendConvention } from "./Handler/attendConventionHandler.js";
-import { getAllConventions } from "./Handler/getConventionsHandler.js";
+import {
+  getAllConventions,
+  getOrganizerConventions,
+} from "./Handler/getConventionsHandler.js";
 
 const app = express();
 const port = 3000;
@@ -16,6 +19,10 @@ app.use(express.json());
 app.get("/conventions/all", (req, res) => {
   console.log(req.body);
   getAllConventions(req, res);
+});
+app.get("/organizer/:id/conventions", (req, res) => {
+  console.log(req.body);
+  getOrganizerConventions(req, res);
 });
 
 // POST
