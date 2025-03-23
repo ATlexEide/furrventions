@@ -10,11 +10,18 @@ import ConventionList from "./Components/ConventionList.jsx";
 import Header from "./Components/Header.jsx";
 import ManageConventions from "./Components/ManageConventions.jsx";
 
+const user = {
+  id: 0,
+  username: "V",
+  isOrganizer: true,
+};
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
-      <Header />
+      <Header _user={user} />
       <Routes>
+        <Route exact path="login" element={<Login />} />
+        <Route exact path="signup" element={<Signup />} />
         <Route exact path="/" element={<App />} />
         <Route
           exact
@@ -22,8 +29,6 @@ createRoot(document.getElementById("root")).render(
           element={<ManageConventions />}
         />
         <Route exact path="conventions" element={<ConventionList />} />
-        <Route exact path="login" element={<Login />} />
-        <Route exact path="signup" element={<Signup />} />
       </Routes>
     </Router>
   </StrictMode>
