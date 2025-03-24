@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
+import { useSupabase } from "../SupabaseHook.jsx";
 import ConventionCard from "./ConventionCard";
 
 export default function ConventionList() {
-  const [conventions, setConventions] = useState([]);
+  const supabase = useSupabase();
+
+  const [cons, setCons] = useState();
+
+  async function fetchConventions() {
+    console.log("YIPP IN FUNC");
+    const { data, error } = await supabase.from("conventions").select();
+    if (error) console.log(error);
+    console.log(data);
+    setCons(data);
+  }
   useEffect(() => {
-    fetch("http://localhost:3000/conventions/all")
-      .then((res) => res.json())
-      .then((res) => setConventions(res));
+    fetchConventions();
   }, []);
 
   return (
     <ul id="convention-list">
-      {conventions.map((con, i) => (
-        <ConventionCard con={con} key={i} />
-      ))}
+      {cons && cons.map((con, i) => <ConventionCard con={con} key={i} />)}
     </ul>
   );
 }
