@@ -2,14 +2,19 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { shadesOfPurple } from "@clerk/themes";
-import { SignedIn, SignedOut } from "@clerk/clerk-react";
 
 import "./index.css";
 import App from "./App.jsx";
 import ConventionList from "./Components/ConventionList.jsx";
 import Header from "./Components/Header.jsx";
 import ManageConventions from "./Components/ManageConventions.jsx";
-import { ClerkLoading, ClerkLoaded, ClerkProvider } from "@clerk/clerk-react";
+import AddConvention from "./Components/AddConvention.jsx";
+import {
+  RedirectToSignIn,
+  ClerkLoading,
+  ClerkLoaded,
+  ClerkProvider,
+} from "@clerk/clerk-react";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -26,6 +31,7 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ClerkProvider
+      touchSession={false}
       publishableKey={PUBLISHABLE_KEY}
       afterSignOutUrl="/"
       appearance={{ baseTheme: shadesOfPurple }}
@@ -36,23 +42,18 @@ createRoot(document.getElementById("root")).render(
       <ClerkLoaded>
         <Router>
           <Header />
-          <SignedIn>
-            <Routes>
-              <Route exact path="/" element={<App />} />
-              <Route
-                exact
-                path="manage/:id/conventions"
-                element={<ManageConventions />}
-              />
-              <Route exact path="conventions" element={<ConventionList />} />
-            </Routes>
-          </SignedIn>
 
-          <SignedOut>
-            <Routes>
-              <Route exact path="/" element={<ConventionList />} />
-            </Routes>
-          </SignedOut>
+          <Routes>
+            <Route exact path="/" element={<App />} />
+            <Route exact path="signin" element={<RedirectToSignIn />} />
+            <Route
+              exact
+              path="manage/:id/conventions"
+              element={<ManageConventions />}
+            />
+            <Route exact path="conventions" element={<ConventionList />} />
+            <Route exact path="conventions/add" element={<AddConvention />} />
+          </Routes>
         </Router>
       </ClerkLoaded>
     </ClerkProvider>
