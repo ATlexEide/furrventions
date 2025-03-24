@@ -1,6 +1,5 @@
 import "./Header.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   SignedIn,
   SignedOut,
@@ -9,7 +8,6 @@ import {
 } from "@clerk/clerk-react";
 
 export default function Header({ _user }) {
-  const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(_user);
 
