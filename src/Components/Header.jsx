@@ -21,7 +21,7 @@ export default function Header() {
           {user && (
             <Link id="header-home" to="/">
               <h1>
-                Hello,
+                Hello,{" "}
                 {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
                 !
               </h1>
