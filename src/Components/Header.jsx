@@ -49,13 +49,15 @@ export default function Header() {
           </button>
           <UserButton>
             {" "}
-            <UserButton.MenuItems>
-              <UserButton.Link
-                label="Manage my conventions"
-                labelIcon={DotIcon}
-                href={`/user/${user.id}/manage/conventions`}
-              />
-            </UserButton.MenuItems>
+            {user && (
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label="Manage my conventions"
+                  labelIcon={DotIcon}
+                  href={`/user/${user.id}/manage/conventions`}
+                />
+              </UserButton.MenuItems>
+            )}
           </UserButton>
         </header>
       </SignedIn>
