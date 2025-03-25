@@ -6,7 +6,7 @@ import ConventionCard from "./ConventionCard";
 export default function ConventionList() {
   const supabase = useSupabase();
 
-  const [cons, setCons] = useState();
+  const [cons, setCons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
 
@@ -24,21 +24,27 @@ export default function ConventionList() {
     fetchConventions();
   }, [refresh]);
 
+  const hasCons = Boolean(cons.length);
   return (
     <>
-      <button
-        onClick={() => {
-          setRefresh(true);
-        }}
-      >
-        Refresh
-      </button>
       {loading && <h2>Loading . . .</h2>}
-      <ul id="convention-list">
-        {!loading &&
-          cons &&
-          cons.map((con, i) => <ConventionCard con={con} key={i} />)}
-      </ul>
+      {!loading && !hasCons && <h2>No registered conventions</h2>}
+      {!loading && hasCons && (
+        <>
+          <button
+            onClick={() => {
+              setRefresh(true);
+            }}
+          >
+            Refresh
+          </button>
+          <ul id="convention-list">
+            {cons.map((con, i) => (
+              <ConventionCard con={con} key={i} />
+            ))}
+          </ul>
+        </>
+      )}
     </>
   );
 }
