@@ -54,6 +54,11 @@ createRoot(document.getElementById("root")).render(
               />
               <Route exact path="conventions" element={<ConventionList />} />
               <Route exact path="conventions/add" element={<AddConvention />} />
+              <Route
+                exact
+                path="user/:id/manage/conventions"
+                element={<AddConvention />}
+              />
             </Routes>
           </main>
         </Router>
