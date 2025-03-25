@@ -112,7 +112,7 @@ export default function AddConvention() {
             }}
           />
         </section>
-        <p>Convention will be registered to {user.id}</p>
+        <p>Convention will be registered to user id {user.id}</p>
         <section id="buttons">
           <button
             onClick={(e) => {
