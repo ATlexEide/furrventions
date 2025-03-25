@@ -12,10 +12,10 @@ export default function Home() {
       }}
     >
       <SignedIn>
-        <h2>Welcome to {import.meta.env.VITE_APPNAME}</h2>
+        <h2 id="catchphrase">Welcome to {import.meta.env.VITE_APPNAME}</h2>
       </SignedIn>
       <SignedOut>
-        <h1>Please sign in to access site</h1>
+        <h2 id="catchphrase">Please sign in to access site</h2>
         <SignInButton style={{ width: "50%" }} />
       </SignedOut>
     </section>
