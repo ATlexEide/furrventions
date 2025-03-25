@@ -22,6 +22,7 @@ export default function ConventionList() {
   useEffect(() => {
     setLoading(true);
     fetchConventions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
 
   const hasCons = Boolean(cons.length);
