@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { shadesOfPurple } from "@clerk/themes";
 
 import "./index.css";
+import "./App.css";
 import App from "./App.jsx";
 import ConventionList from "./Components/ConventionList.jsx";
 import Header from "./Components/Header.jsx";
+import Footer from "./Components/Footer.jsx";
 import ManageConventions from "./Components/ManageConventions.jsx";
 import AddConvention from "./Components/AddConvention.jsx";
 import {
@@ -41,19 +43,21 @@ createRoot(document.getElementById("root")).render(
       <ClerkLoaded>
         <Router>
           <Header />
-
-          <Routes>
-            <Route exact path="/" element={<App />} />
-            <Route exact path="signin" element={<RedirectToSignIn />} />
-            <Route
-              exact
-              path="manage/:id/conventions"
-              element={<ManageConventions />}
-            />
-            <Route exact path="conventions" element={<ConventionList />} />
-            <Route exact path="conventions/add" element={<AddConvention />} />
-          </Routes>
+          <main>
+            <Routes>
+              <Route exact path="/" element={<App />} />
+              <Route exact path="signin" element={<RedirectToSignIn />} />
+              <Route
+                exact
+                path="manage/:id/conventions"
+                element={<ManageConventions />}
+              />
+              <Route exact path="conventions" element={<ConventionList />} />
+              <Route exact path="conventions/add" element={<AddConvention />} />
+            </Routes>
+          </main>
         </Router>
+        <Footer />
       </ClerkLoaded>
     </ClerkProvider>
   </StrictMode>
