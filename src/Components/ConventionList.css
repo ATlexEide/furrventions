@@ -1,3 +1,15 @@
-#convetion-list {
-  width: 100%;
+#convention-list-cont {
+  display: flex;
+  width: 80%;
+  height: 100%;
+}
+#convention-list {
+  background-color: gray;
+  margin: 0 auto;
+  width: 80%;
+  height: fit-content;
+  display: grid;
+  gap: 48px;
+  grid-template-rows: 300px;
+  grid-auto-rows: auto;
 }
