@@ -3,7 +3,7 @@ footer {
   justify-content: center;
   align-items: center;
   min-height: 50px;
-  background-color: rgba(50, 50, 50, 0.091);
+  background-color: var(--main-accent-color);
   gap: 48px;
 }
 #socials {
