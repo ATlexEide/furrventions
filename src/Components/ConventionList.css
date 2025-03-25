@@ -1,10 +1,12 @@
 #convention-list-cont {
   display: flex;
-  width: 80%;
+  width: 100%;
+  padding: 12px;
   height: 100%;
+  gap: 12px;
 }
 #convention-list {
-  background-color: gray;
+  background-color: rgba(171, 152, 255, 0.753);
   margin: 0 auto;
   width: 80%;
   height: fit-content;
@@ -12,4 +14,11 @@
   gap: 48px;
   grid-template-rows: 300px;
   grid-auto-rows: auto;
+}
+#convention-list-filter {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  background-color: rgba(171, 152, 255, 0.753);
+  width: 500px;
 }
