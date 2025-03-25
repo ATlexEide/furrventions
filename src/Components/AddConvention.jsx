@@ -32,9 +32,9 @@ export default function AddConvention() {
 
   return (
     <>
-      <form id="signup">
+      <form id="add-con">
         <h2>Create an account</h2>
-        <section id="signup-inputs">
+        <section id="add-con-inputs">
           {/* CONVENTION NAME */}
           <input
             type="text"
