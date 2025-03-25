@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 18px;
-  width: 60%;
+  width: 100%;
   background-color: rgb(54, 8, 65);
 }
 .convention-logo {
