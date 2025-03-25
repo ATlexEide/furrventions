@@ -14,8 +14,8 @@ export default function AddConvention() {
       organizerID: user.id,
       name: "",
       description: "",
-      start_time: "",
-      end_time: "",
+      start_time: undefined,
+      end_time: undefined,
       website: "",
     });
   }
