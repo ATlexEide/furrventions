@@ -26,18 +26,23 @@ export default function ConventionList() {
 
   const hasCons = Boolean(cons.length);
   return (
-    <>
+    <section id="convention-list-cont">
       {loading && <h2>Loading . . .</h2>}
       {!loading && !hasCons && <h2>No registered conventions</h2>}
       {!loading && hasCons && (
         <>
-          <button
-            onClick={() => {
-              setRefresh(true);
-            }}
-          >
-            Refresh
-          </button>
+          <section id="convention-list-filter">
+            <button
+              onClick={() => {
+                setRefresh(true);
+              }}
+            >
+              Refresh
+            </button>
+            <p>TEST</p>
+            <p>TEST</p>
+            <p>TEST</p>
+          </section>
           <ul id="convention-list">
             {cons.map((con, i) => (
               <ConventionCard con={con} key={i} />
@@ -45,6 +50,6 @@ export default function ConventionList() {
           </ul>
         </>
       )}
-    </>
+    </section>
   );
 }
