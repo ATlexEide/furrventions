@@ -68,7 +68,7 @@ export default function AddConvention() {
           <div id="date-select">
             {/* START TIME */}
             <div className="input-cont">
-              <label htmlFor="start-time">Convention starts:</label>
+              <label htmlFor="start-time">Convention Starts:</label>
               <input
                 type="date"
                 name="start-time"
