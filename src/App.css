@@ -8,6 +8,7 @@
   text-align: center;
   box-sizing: border-box;
   height: 100svh;
+  overflow-x: hidden;
 }
 main {
   height: 100%;
