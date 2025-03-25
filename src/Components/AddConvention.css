@@ -2,8 +2,10 @@
   background-color: rgb(21, 115, 125);
   padding: 48px;
   border-radius: 12px;
-  height: 70%;
-  width: 50%;
+  height: fit-content;
+  width: 60%;
+  max-width: 600px;
+  min-width: 400px;
 }
 #add-con,
 #add-con-inputs {
