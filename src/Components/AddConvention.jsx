@@ -115,6 +115,7 @@ export default function AddConvention() {
         <p>Convention will be registered to user id {user.id}</p>
         <section id="buttons">
           <button
+            id="clear-con-btn"
             onClick={(e) => {
               e.preventDefault();
               clearConventionInfo();
@@ -123,6 +124,7 @@ export default function AddConvention() {
             Clear
           </button>
           <button
+            id="add-con-btn"
             onClick={(e) => {
               e.preventDefault();
               addConvention(conventionInfo);
