@@ -1,34 +1,46 @@
-import "./Header.css";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Header.css";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+  useUser,
+} from "@clerk/clerk-react";
 
 export default function Header() {
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useState({
-    id: 0,
-    username: "V",
-    isOrganizer: true,
-  });
-
+  const { user } = useUser();
   return (
     <header>
-      <figure>
-        <img src="" alt="" />
-      </figure>
-      <Link to="/">
-        <h1>Hello {user.username}</h1>
-      </Link>
-      <nav>
-        <button>Lorem</button>
-        <button>ipsum</button>
-        <button>My Conventions</button>
-        {user.isOrganizer && (
-          <button onClick={() => navigate(`manage/${user.id}/conventions`)}>
-            Manage events
-          </button>
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
+      <SignedIn>
+        {user && (
+          <Link to="/">
+            <h1>
+              Hello,
+              {user.username.charAt(0).toUpperCase() + user.username.slice(1)}!
+            </h1>
+          </Link>
         )}
-      </nav>
+        <button
+          onClick={() => {
+            navigate("conventions/add");
+          }}
+        >
+          Add convention
+        </button>
+        <button
+          onClick={() => {
+            navigate("conventions");
+          }}
+        >
+          View conventions
+        </button>
+        <UserButton />
+      </SignedIn>
     </header>
   );
 }
