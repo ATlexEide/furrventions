@@ -67,7 +67,7 @@ export default function AddConvention() {
           />
           <div id="date-select">
             {/* START TIME */}
-            <div>
+            <div className="input-cont">
               <label htmlFor="start-time">Convention starts:</label>
               <input
                 type="date"
@@ -84,7 +84,7 @@ export default function AddConvention() {
             </div>
 
             {/* END TIME */}
-            <div>
+            <div className="input-cont">
               <label htmlFor="start-time">Convention starts:</label>
               <input
                 type="date"
@@ -112,6 +112,7 @@ export default function AddConvention() {
             }}
           />
         </section>
+        <p>Convention will be registered to {user.id}</p>
         <section id="buttons">
           <button
             onClick={(e) => {
