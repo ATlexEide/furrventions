@@ -1,6 +1,7 @@
 import { useSupabase } from "../SupabaseHook";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
+import "./AddConvention.css";
 
 export default function AddConvention() {
   const { user } = useUser();
