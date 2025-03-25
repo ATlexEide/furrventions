@@ -11,10 +11,9 @@ export default function ConventionList() {
   const [refresh, setRefresh] = useState(false);
 
   async function fetchConventions() {
-    console.log("YIPP IN FUNC");
     const { data, error } = await supabase.from("conventions").select();
     if (error) console.log(error);
-    console.log(data);
+    console.log("Fetched cons: ", data);
     setCons(data);
     setLoading(false);
     setRefresh(false);
