@@ -32,6 +32,9 @@ export default function ConventionList() {
       {!loading && hasCons && (
         <>
           <section id="convention-list-filter">
+            <p>TEST</p>
+            <p>TEST</p>
+            <p>TEST</p>
             <button
               onClick={() => {
                 setRefresh(true);
@@ -39,9 +42,6 @@ export default function ConventionList() {
             >
               Refresh
             </button>
-            <p>TEST</p>
-            <p>TEST</p>
-            <p>TEST</p>
           </section>
           <ul id="convention-list">
             {cons.map((con, i) => (
