@@ -9,3 +9,7 @@
   box-sizing: border-box;
   height: 100svh;
 }
+main {
+  height: 100%;
+  width: 100%;
+}
