@@ -1,12 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-  useUser,
-} from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/clerk-react";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -14,7 +8,7 @@ export default function Header() {
   return (
     <>
       <SignedOut>
-        <SignInButton />
+        <header></header>
       </SignedOut>
       <SignedIn>
         <header>
