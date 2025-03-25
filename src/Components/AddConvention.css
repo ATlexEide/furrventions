@@ -1,0 +1,58 @@
+#add-con {
+  background-color: rgb(21, 115, 125);
+  padding: 48px;
+  border-radius: 12px;
+  height: 70%;
+  width: 50%;
+}
+#add-con,
+#add-con-inputs {
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+}
+#add-con-inputs input {
+  color: black;
+
+  height: 48px;
+  background-color: whitesmoke;
+  border: solid;
+  border-radius: 10px;
+}
+#add-con-inputs input[type="date"] {
+  padding: 12px;
+  width: 60%;
+  accent-color: black;
+  margin-right: -0.35em;
+  cursor: text;
+}
+#add-con-inputs input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  background-color: black;
+  border-radius: 100%;
+}
+#date-select {
+  text-align: start;
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.7rem;
+}
+.input-cont {
+  padding: 6px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#buttons {
+  height: 100%;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+#buttons button {
+  width: 120px;
+  height: 48px;
+}
