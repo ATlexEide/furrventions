@@ -1,3 +1,4 @@
+import "./ConventionList.css";
 import { useEffect, useState } from "react";
 import { useSupabase } from "../SupabaseHook.jsx";
 import ConventionCard from "./ConventionCard";
