@@ -14,6 +14,7 @@
   flex-direction: column;
 }
 #add-con-inputs input {
+  padding: 12px;
   color: black;
 
   height: 48px;
@@ -22,7 +23,6 @@
   border-radius: 10px;
 }
 #add-con-inputs input[type="date"] {
-  padding: 12px;
   width: 60%;
   accent-color: black;
   margin-right: -0.35em;
@@ -38,7 +38,7 @@
   gap: 6px;
   display: flex;
   flex-direction: column;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 .input-cont {
   padding: 6px;
