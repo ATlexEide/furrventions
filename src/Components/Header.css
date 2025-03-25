@@ -1,4 +1,5 @@
 header {
+  background-color: var(--main-accent-color);
   display: flex;
   padding: 12px;
   width: 100%;
