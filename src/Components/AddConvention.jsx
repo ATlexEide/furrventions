@@ -65,36 +65,41 @@ export default function AddConvention() {
               });
             }}
           />
+          <div id="date-select">
+            {/* START TIME */}
+            <div>
+              <label htmlFor="start-time">Convention starts:</label>
+              <input
+                type="date"
+                name="start-time"
+                id="start-time"
+                value={conventionInfo.start_time}
+                onChange={(e) => {
+                  setConventionInfo({
+                    ...conventionInfo,
+                    start_time: e.target.value,
+                  });
+                }}
+              />
+            </div>
 
-          {/* START TIME */}
-          <label htmlFor="start-time">Convention starts:</label>
-          <input
-            type="date"
-            name="start-time"
-            id="start-time"
-            value={conventionInfo.start_time}
-            onChange={(e) => {
-              setConventionInfo({
-                ...conventionInfo,
-                start_time: e.target.value,
-              });
-            }}
-          />
-
-          {/* END TIME */}
-          <label htmlFor="start-time">Convention starts:</label>
-          <input
-            type="date"
-            name="end-time"
-            id="end-time"
-            value={conventionInfo.end_time}
-            onChange={(e) => {
-              setConventionInfo({
-                ...conventionInfo,
-                end_time: e.target.value,
-              });
-            }}
-          />
+            {/* END TIME */}
+            <div>
+              <label htmlFor="start-time">Convention starts:</label>
+              <input
+                type="date"
+                name="end-time"
+                id="end-time"
+                value={conventionInfo.end_time}
+                onChange={(e) => {
+                  setConventionInfo({
+                    ...conventionInfo,
+                    end_time: e.target.value,
+                  });
+                }}
+              />
+            </div>
+          </div>
 
           <input
             type="text"
