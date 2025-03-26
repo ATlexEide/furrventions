@@ -36,6 +36,10 @@
   background-color: black;
   border-radius: 100%;
 }
+#add-con-inputs input:require::after {
+  content: "*";
+  right: 100px;
+}
 #date-select {
   text-align: start;
   gap: 6px;
