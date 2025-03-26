@@ -1,16 +1,24 @@
 .convention-card {
   display: flex;
-  flex-direction: column;
-  padding: 18px;
   width: 100%;
-  background-color: rgb(54, 8, 65);
+  padding: 24px;
+  background-color: var(--secondary-accent-color);
 }
 
 .convention-logo {
-  align-self: center;
-  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  aspect-ratio: 1;
 }
 
 .convention-logo img {
   width: 100%;
+}
+
+.convention-info {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
 }
