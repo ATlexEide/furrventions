@@ -34,12 +34,12 @@ export default function ConventionCard({ con }) {
         )}
         {con.taken_spots && (
           <p>
-            <span className="info-prefix">Taken spots:</span> {con.taken_spots}
+            <span className="info-prefix">Interested:</span> {con.taken_spots}
           </p>
         )}
         {con.total_spots && con.taken_spots && (
           <p>
-            <span className="info-prefix">Spots left:</span>{" "}
+            <span className="info-prefix">Spots left*:</span>{" "}
             {con.total_spots - con.taken_spots}
           </p>
         )}
