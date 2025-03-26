@@ -108,10 +108,11 @@ export default function AddConvention() {
 
           {/* CONVENTION WEBSITE */}
           <input
+            required
             type="text"
             name="website"
             id="website"
-            placeholder="Convention Website"
+            placeholder="Convention Website*"
             value={conventionInfo.website}
             onChange={(e) => {
               setConventionInfo({ ...conventionInfo, website: e.target.value });
