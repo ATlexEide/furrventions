@@ -17,6 +17,7 @@ import {
   ClerkLoaded,
   ClerkProvider,
 } from "@clerk/clerk-react";
+import Kofi from "./Components/Kofi.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
@@ -59,6 +60,7 @@ createRoot(document.getElementById("root")).render(
                 path="user/:id/manage/conventions"
                 element={<AddConvention />}
               />
+              <Route exact path="support" element={<Kofi />} />
             </Routes>
           </main>
         </Router>
