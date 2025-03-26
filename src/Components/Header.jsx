@@ -47,17 +47,21 @@ export default function Header() {
           >
             View conventions
           </button>
+          <button
+            onClick={() => {
+              navigate("support");
+            }}
+          >
+            Support me
+          </button>
           <UserButton>
-            {" "}
-            {user && (
-              <UserButton.MenuItems>
-                <UserButton.Link
-                  label="Manage my conventions"
-                  labelIcon={DotIcon}
-                  href={`/user/${user.id}/manage/conventions`}
-                />
-              </UserButton.MenuItems>
-            )}
+            <UserButton.MenuItems>
+              <UserButton.Link
+                label="Manage my conventions"
+                labelIcon={DotIcon}
+                href={`/user/${user.id}/manage/conventions`}
+              />
+            </UserButton.MenuItems>
           </UserButton>
         </header>
       </SignedIn>
