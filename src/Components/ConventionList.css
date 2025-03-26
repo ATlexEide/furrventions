@@ -5,6 +5,7 @@
   height: 100%;
   gap: 12px;
 }
+
 #convention-list {
   background-color: rgba(171, 152, 255, 0.753);
   margin: 0 auto;
@@ -15,6 +16,7 @@
   grid-template-rows: 300px;
   grid-auto-rows: auto;
 }
+
 #convention-list-filter {
   display: flex;
   flex-direction: column;
