@@ -32,9 +32,27 @@ export default function ConventionList() {
       {!loading && hasCons && (
         <>
           <section id="convention-list-filter">
-            <p>TEST</p>
-            <p>TEST</p>
-            <p>TEST</p>
+            <h2 id="filter-title">SEARCH</h2>
+
+            <section id="filter-options">
+              <div className="filter-option-input">
+                <label htmlFor="convention-name">Convention name: </label>
+                <input id="convention-name" type="text" />
+              </div>
+
+              <div className="filter-option-input">
+                <label htmlFor="convention-location">Location: </label>
+                <input id="convention-location" type="text" />
+              </div>
+
+              <div className="filter-option-input">
+                <label htmlFor="total-spots-input">Total spots: </label>
+                <input id="total-spots-input" type="range" />
+                <input type="number" />
+                <span>0</span>
+              </div>
+            </section>
+
             <button
               onClick={() => {
                 setRefresh(true);
