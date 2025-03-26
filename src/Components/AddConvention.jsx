@@ -48,7 +48,7 @@ export default function AddConvention() {
   return (
     <>
       <form id="add-con">
-        <h2>Register convention</h2>
+        <h2>Register a convention</h2>
         <section id="add-con-inputs">
           {/* CONVENTION NAME */}
           <input
