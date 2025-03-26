@@ -32,8 +32,8 @@ export default function Header() {
               </h1>
             </Link>
           )}
-          <Link to="conventions/add">Add convention</Link>
-          <Link to="conventions">View conventions</Link>|
+          <Link to="conventions/add">Add convention</Link> |
+          <Link to="conventions">View conventions</Link>||
           <UserButton>
             <UserButton.MenuItems>
               <UserButton.Link
