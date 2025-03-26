@@ -58,7 +58,7 @@ export default function Header() {
             <UserButton.MenuItems>
               <UserButton.Link
                 label="Manage my conventions"
-                labelIcon={DotIcon}
+                labelIcon={<DotIcon />}
                 href={`/user/${user.id}/manage/conventions`}
               />
             </UserButton.MenuItems>
