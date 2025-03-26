@@ -12,3 +12,10 @@ footer {
   list-style: none;
   gap: 12px;
 }
+
+.footer-part {
+  display: flex;
+  justify-content: center;
+  min-width: fit-content;
+  width: 300px;
+}
