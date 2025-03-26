@@ -3,6 +3,12 @@
   width: 100%;
   padding: 24px;
   background-color: var(--secondary-accent-color);
+  transition: 0.2s;
+  /* background-color: gray; */
+}
+.convention-card:hover {
+  background-color: rgb(8, 8, 75);
+  cursor: pointer;
 }
 
 .convention-logo {
@@ -11,6 +17,7 @@
   align-items: center;
   height: 100%;
   aspect-ratio: 1;
+  /* background-color: white; */
 }
 
 .convention-logo img {
@@ -18,7 +25,13 @@
 }
 
 .convention-info {
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
   text-align: start;
+}
+
+.info-prefix {
+  font-style: italic;
+  font-weight: 500;
 }
