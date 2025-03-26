@@ -24,8 +24,22 @@ export default function AddConvention() {
       .from("conventions")
       .insert(obj)
       .select();
-    if (error) console.log(error);
-    else {
+    if (error) {
+      switch (error.code) {
+        case "23502":
+          alert("Please fill out all required fields");
+          break;
+        case "23505":
+          alert(
+            "Please make sure name and website are unique to this convention"
+          );
+          break;
+
+        default:
+          break;
+      }
+      console.log(error);
+    } else {
       clearConventionInfo();
       console.log(data);
     }
