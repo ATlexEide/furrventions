@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 export default function Footer() {
   return (
     <footer>
       <p>Developed by {import.meta.env.VITE_DEVHANDLE}</p>
+      <Link to="support">Support Me</Link> |
       <ul id="socials">
         <p>Socials //</p>
         <li>
