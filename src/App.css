@@ -28,3 +28,12 @@ main {
   color: white;
   filter: drop-shadow(4px 4px 4px #94949442);
 }
+
+#mascot {
+  position: absolute;
+  z-index: -1;
+  scale: 0.6;
+  rotate: 10deg;
+  top: 40%;
+  right: 0%;
+}
