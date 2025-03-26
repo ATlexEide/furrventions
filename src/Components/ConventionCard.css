@@ -5,10 +5,12 @@
   width: 100%;
   background-color: rgb(54, 8, 65);
 }
+
 .convention-logo {
   align-self: center;
   width: 250px;
 }
+
 .convention-logo img {
   width: 100%;
 }
