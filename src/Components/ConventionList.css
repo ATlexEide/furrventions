@@ -1,8 +1,8 @@
 #convention-list-cont {
   display: flex;
   width: 100%;
-  padding: 12px;
   height: 100%;
+  padding: 48px 48px 0 48px;
   gap: 12px;
 }
 
