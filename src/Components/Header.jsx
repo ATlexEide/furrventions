@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/clerk-react";
 
 export default function Header() {
-  const navigate = useNavigate();
   const { user } = useUser();
 
   const DotIcon = () => {
@@ -33,27 +32,8 @@ export default function Header() {
               </h1>
             </Link>
           )}
-          <button
-            onClick={() => {
-              navigate("conventions/add");
-            }}
-          >
-            Add convention
-          </button>
-          <button
-            onClick={() => {
-              navigate("conventions");
-            }}
-          >
-            View conventions
-          </button>
-          <button
-            onClick={() => {
-              navigate("support");
-            }}
-          >
-            Support me
-          </button>
+          <Link to="conventions/add">Add convention</Link>
+          <Link to="conventions">View conventions</Link>|
           <UserButton>
             <UserButton.MenuItems>
               <UserButton.Link
