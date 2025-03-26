@@ -8,11 +8,14 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "48px",
+        gap: "48px"
       }}
     >
       <SignedIn>
-        <h2 id="catchphrase">Welcome to {import.meta.env.VITE_APPNAME}</h2>
+        <div>
+          <h2 id="catchphrase">Welcome to {import.meta.env.VITE_APPNAME}</h2>
+          <h3>Your best friend in finding furry conventions!</h3>
+        </div>
       </SignedIn>
       <SignedOut>
         <h2 id="catchphrase">Please sign in to access site</h2>
