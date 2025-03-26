@@ -6,7 +6,7 @@ export default function ConventionCard({ con }) {
     convention_name: "TEST CON",
     convention_location: "BERGEN",
     convention_description: "TEST DESCRIPTION",
-    logo_path: "https://pawskeparty.com/images/logotype%20textwhite.png",
+    // logo_path: "/public/pawske.png",
     start_time: "01-01-0101",
     end_time: "02-02-0202",
     total_spots: 200,
@@ -35,6 +35,12 @@ export default function ConventionCard({ con }) {
         {con.taken_spots && (
           <p>
             <span className="info-prefix">Taken spots:</span> {con.taken_spots}
+          </p>
+        )}
+        {con.total_spots && con.taken_spots && (
+          <p>
+            <span className="info-prefix">Spots left:</span>{" "}
+            {con.total_spots - con.taken_spots}
           </p>
         )}
         {con.start_time && con.end_time && (
