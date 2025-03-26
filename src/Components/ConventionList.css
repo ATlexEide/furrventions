@@ -27,3 +27,11 @@
   background-color: var(--secondary-bg-color);
   width: 500px;
 }
+#filter-title {
+  letter-spacing: 0.5rem;
+  text-align: center;
+}
+#filter-options {
+  display: flex;
+  flex-direction: column;
+}
