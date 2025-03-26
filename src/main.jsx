@@ -15,7 +15,7 @@ import {
   RedirectToSignIn,
   ClerkLoading,
   ClerkLoaded,
-  ClerkProvider,
+  ClerkProvider
 } from "@clerk/clerk-react";
 import Kofi from "./Components/Kofi.jsx";
 
@@ -63,8 +63,8 @@ createRoot(document.getElementById("root")).render(
               <Route exact path="support" element={<Kofi />} />
             </Routes>
           </main>
+          <Footer />
         </Router>
-        <Footer />
       </ClerkLoaded>
     </ClerkProvider>
   </StrictMode>
