@@ -42,7 +42,7 @@ export default function AddConvention() {
             type="text"
             name="name"
             id="name"
-            placeholder="Convention Name"
+            placeholder="Convention Name*"
             value={conventionInfo.name}
             onChange={(e) => {
               console.log(e.target.value);
@@ -58,7 +58,7 @@ export default function AddConvention() {
             type="text"
             name="description"
             id="description"
-            placeholder="Description"
+            placeholder="Description*"
             value={conventionInfo.description}
             onChange={(e) => {
               setConventionInfo({
@@ -67,6 +67,7 @@ export default function AddConvention() {
               });
             }}
           />
+
           <div id="date-select">
             {/* START TIME */}
             <div className="input-cont">
