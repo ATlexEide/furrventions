@@ -38,6 +38,7 @@ export default function AddConvention() {
         <section id="add-con-inputs">
           {/* CONVENTION NAME */}
           <input
+            required
             type="text"
             name="name"
             id="name"
@@ -53,6 +54,7 @@ export default function AddConvention() {
           />
           {/* CONVENTION DESCRIPTION */}
           <input
+            required
             type="text"
             name="description"
             id="description"
@@ -70,6 +72,7 @@ export default function AddConvention() {
             <div className="input-cont">
               <label htmlFor="start-time">Convention Starts:</label>
               <input
+                required
                 type="date"
                 name="start-time"
                 id="start-time"
@@ -87,6 +90,7 @@ export default function AddConvention() {
             <div className="input-cont">
               <label htmlFor="start-time">Convention Ends:</label>
               <input
+                required
                 type="date"
                 name="end-time"
                 id="end-time"
