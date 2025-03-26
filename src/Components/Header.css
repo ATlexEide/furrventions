@@ -7,9 +7,11 @@ header {
   align-items: center;
   gap: 12px;
 }
+
 #header-home {
   margin-right: auto;
 }
+
 header nav {
   display: flex;
   gap: 12px;
