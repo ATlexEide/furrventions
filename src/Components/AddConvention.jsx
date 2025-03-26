@@ -7,7 +7,7 @@ export default function AddConvention() {
   const { user } = useUser();
   const supabase = useSupabase();
   const [conventionInfo, setConventionInfo] = useState({
-    organizerID: user.id,
+    organizerID: user.id
   });
   function clearConventionInfo() {
     setConventionInfo({
@@ -16,7 +16,7 @@ export default function AddConvention() {
       description: "",
       start_time: undefined,
       end_time: undefined,
-      website: "",
+      website: ""
     });
   }
   async function addConvention(obj) {
@@ -48,7 +48,7 @@ export default function AddConvention() {
               console.log(e.target.value);
               setConventionInfo({
                 ...conventionInfo,
-                name: e.target.value,
+                name: e.target.value
               });
             }}
           />
@@ -63,7 +63,7 @@ export default function AddConvention() {
             onChange={(e) => {
               setConventionInfo({
                 ...conventionInfo,
-                description: e.target.value,
+                description: e.target.value
               });
             }}
           />
@@ -81,7 +81,7 @@ export default function AddConvention() {
                 onChange={(e) => {
                   setConventionInfo({
                     ...conventionInfo,
-                    start_time: e.target.value,
+                    start_time: e.target.value
                   });
                 }}
               />
@@ -99,13 +99,14 @@ export default function AddConvention() {
                 onChange={(e) => {
                   setConventionInfo({
                     ...conventionInfo,
-                    end_time: e.target.value,
+                    end_time: e.target.value
                   });
                 }}
               />
             </div>
           </div>
 
+          {/* CONVENTION WEBSITE */}
           <input
             type="text"
             name="website"
