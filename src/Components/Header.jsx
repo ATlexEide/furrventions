@@ -24,16 +24,15 @@ export default function Header() {
       <SignedIn>
         <header>
           <figure id="logo-container">
-            <img id="logo" src="/pawlogo.png" alt="" />
+            <Link to="/">
+              <img id="logo" src="/pawlogo.png" alt="" />
+            </Link>
           </figure>
           {user && (
-            <Link id="header-home" to="/">
-              <h1>
-                Hello,{" "}
-                {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
-                !
-              </h1>
-            </Link>
+            <h1 id="header-home">
+              Hello,{" "}
+              {user.username.charAt(0).toUpperCase() + user.username.slice(1)}!
+            </h1>
           )}
           <Link to="conventions/add">Add convention</Link> |
           <Link to="conventions">View conventions</Link>||
