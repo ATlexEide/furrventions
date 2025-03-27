@@ -7,7 +7,7 @@ footer {
   gap: 48px;
 }
 
-#socials {
+.socials {
   display: flex;
   list-style: none;
   gap: 12px;
