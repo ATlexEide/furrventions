@@ -110,12 +110,12 @@ export default function ConventionCard({ con }) {
         )}
         {con.start_time && con.end_time && (
           <div className="convention-dates">
-            <p>
+            <div>
               <span className="info-prefix">Starts:</span>{" "}
               <p>{formatDate(con.start_time)}</p>
               <span className="info-prefix">Ends:</span>
               <p>{formatDate(con.end_time)}</p>
-            </p>
+            </div>
           </div>
         )}
       </section>
