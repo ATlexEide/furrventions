@@ -24,14 +24,39 @@
   display: flex;
   flex-direction: column;
   text-align: start;
+  height: 50vh;
   background: rgb(9, 8, 10);
   background: linear-gradient(
     0deg,
-    rgba(9, 8, 10, 1) 50%,
+    rgba(9, 8, 10, 1) 0%,
     rgba(24, 7, 36, 1) 100%
   );
   width: 500px;
 }
+.filter-option-input input {
+  color: black;
+  width: 400px;
+  height: 32px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  gap: 10px;
+}
+
+#spots-filter {
+  width: 400px;
+  display: flex;
+  gap: 12px;
+}
+
+#total-spots-input {
+  padding: 4px;
+  width: 60px;
+}
+
 #filter-title {
   letter-spacing: 0.5rem;
   text-align: center;
