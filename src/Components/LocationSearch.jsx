@@ -5,7 +5,7 @@ import {
 import React from "react";
 import "./LocationSearch.css";
 
-export default function LocationSearch() {
+export default function LocationSearch({ placeholder }) {
   const [formattedAddress, setFormattedAddress] = React.useState("");
   const handlePlaceChange = (e) => {
     console.log(e.target.value);
@@ -22,7 +22,9 @@ export default function LocationSearch() {
       <div className="container">
         <PlacePicker
           country={countries}
-          placeholder="Enter a place to see its address"
+          placeholder={
+            placeholder ? placeholder : "Enter a place to see its address"
+          }
           onPlaceChange={handlePlaceChange}
         />
         <div className="result">{formattedAddress}</div>
