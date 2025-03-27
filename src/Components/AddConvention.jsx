@@ -2,6 +2,7 @@ import { useSupabase } from "../SupabaseHook";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
 import "./AddConvention.css";
+import LocationSearch from "./LocationSearch";
 
 export default function AddConvention() {
   const { user } = useUser();
@@ -130,6 +131,19 @@ export default function AddConvention() {
             value={conventionInfo.website}
             onChange={(e) => {
               setConventionInfo({ ...conventionInfo, website: e.target.value });
+            }}
+          />
+          {/* LOCATION */}
+          <LocationSearch
+            name="location"
+            id="location"
+            placeholder="Convention location*"
+            value={conventionInfo.location}
+            onChange={(e) => {
+              setConventionInfo({
+                ...conventionInfo,
+                location: e.target.value
+              });
             }}
           />
         </section>
