@@ -33,7 +33,9 @@ export default function ConventionList() {
   return (
     <section id="convention-list-cont">
       {loading && <h2>Loading . . .</h2>}
-      {!loading && !hasCons && <h2>No registered conventions</h2>}
+      {!loading && !hasCons && (
+        <h2 id="no-cons-alert">No registered conventions</h2>
+      )}
       {!loading && hasCons && (
         <>
           <section id="convention-list-filter">
