@@ -2,29 +2,30 @@ import { fetchLogo } from "../fetchLogo";
 import "./ConventionCard.css";
 
 export default function ConventionCard({ con }) {
-  con = {
-    convention_name: "TEST CON",
-    convention_location: "BERGEN",
-    convention_description: "TEST DESCRIPTION",
-    // logo_path: "/public/pawske.png",
-    start_time: "01-01-0101",
-    end_time: "02-02-0202",
-    total_spots: 200,
-    taken_spots: 69,
-  };
+  // con = {
+  //   name: "TEST CON",
+  //   lat: 0.00,
+  //   long: 0.00,
+  //   description: "TEST DESCRIPTION",
+  //   // logo_path: "/public/pawske.png",
+  //   start_time: "01-01-0101",
+  //   end_time: "02-02-0202",
+  //   spots_total: 200,
+  //   spots_taken: 69,
+  //   creatorID: "",
+  //   organizerID: ""
+  // };
 
   return (
     <article className="convention-card">
       <figure className="convention-logo">
         <img
           src={con.logo_path ? fetchLogo(con.logo_path) : "/pawske.png"}
-          alt={`${con.convention_name} logo`}
+          alt={`${con.name} logo`}
         />
       </figure>
       <section className="convention-info">
-        {con.convention_name && (
-          <h2 className="convention-name">{con.convention_name}</h2>
-        )}
+        {con.name && <h2 className="convention-name">{con.name}</h2>}
         {con.convention_location && <p>{con.convention_location}</p>}
         {con.location && <p>{con.location}</p>}
         {con.total_spots && (
