@@ -8,8 +8,13 @@ export default function ConventionList() {
   const supabase = useSupabase();
 
   const [cons, setCons] = useState([]);
+
   const [filteredCons, setFilteredCons] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
+  const [nameSearchInput, setNameSearchInput] = useState("");
+  const [locationSearchInput, setLocationSearchInput] = useState("");
+  const [sliderValue, setSliderValue] = useState(500);
+  const [sliderUpdated, setSliderUpdated] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
   async function fetchConventions() {
@@ -21,7 +26,6 @@ export default function ConventionList() {
     setRefresh(false);
   }
 
-  const [sliderValue, setSliderValue] = useState(10);
   console.log(cons);
   useEffect(() => {
     setLoading(true);
@@ -30,19 +34,29 @@ export default function ConventionList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
   useEffect(() => {
+    console.log(cons[0]);
     setFilteredCons(
-      cons.filter((con) => con.name.toLowerCase().includes(searchInput))
+      cons
+        .filter((con) => con.name.toLowerCase().includes(nameSearchInput))
+        .filter((con) =>
+          con.location.toLowerCase().includes(locationSearchInput)
+        )
+        // BUG: FIX FILTERING NOT WORKING CORRECTLY
+        .filter((con) => con.spots_total <= sliderValue)
     );
-    console.log(searchInput);
+    console.log(nameSearchInput);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchInput]);
+  }, [nameSearchInput, locationSearchInput, sliderValue]);
 
   const hasCons = Boolean(cons.length);
   console.log("SLIDER VAL:", sliderValue);
 
   const hasFilteredCons = Boolean(filteredCons.length);
-  const hasSearchInput = Boolean(searchInput.length);
-  console.log(hasSearchInput);
+  const filtersEnabled =
+    Boolean(nameSearchInput.length) ||
+    Boolean(locationSearchInput.length) ||
+    sliderUpdated;
+  console.log("filters", filtersEnabled);
 
   return (
     <section id="convention-list-cont">
@@ -70,20 +84,24 @@ export default function ConventionList() {
                   id="convention-name"
                   type="text"
                   onChange={(e) => {
-                    setSearchInput(e.target.value.toLowerCase());
+                    setNameSearchInput(e.target.value.toLowerCase());
                   }}
                 />
               </div>
 
               <div className="filter-option-input">
                 <label htmlFor="convention-location">Location: </label>
-                <input id="convention-location" type="text" />
+                <input
+                  id="convention-location"
+                  type="text"
+                  onChange={(e) => {
+                    setLocationSearchInput(e.target.value.toLowerCase());
+                  }}
+                />
               </div>
 
               <div className="filter-option-input">
-                <label htmlFor="total-spots-input">
-                  Total spots/attendees:{" "}
-                </label>
+                <label htmlFor="total-spots-input">Max spots/attendees: </label>
                 <div id="spots-filter">
                   <input
                     id="total-spots-slider"
@@ -99,7 +117,10 @@ export default function ConventionList() {
                     id="total-spots-input"
                     type="number"
                     value={sliderValue}
-                    onChange={(e) => setSliderValue(e.target.value)}
+                    onChange={(e) => {
+                      setSliderUpdated(true);
+                      setSliderValue(e.target.value);
+                    }}
                   />
                 </div>
               </div>
@@ -119,9 +140,9 @@ export default function ConventionList() {
                 <ConventionCard con={con} key={i} />
               ))}
             {!hasFilteredCons &&
-              !hasSearchInput &&
+              !filtersEnabled &&
               cons.map((con, i) => <ConventionCard con={con} key={i} />)}
-            {!hasFilteredCons && hasSearchInput && (
+            {!hasFilteredCons && filtersEnabled && (
               <h2>No matching cons or meets</h2>
             )}
           </ul>
