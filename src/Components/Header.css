@@ -2,6 +2,7 @@ header {
   background-color: var(--main-accent-color);
   display: flex;
   padding: 12px;
+  height: 70px;
   width: 100%;
   flex-direction: row;
   align-items: center;
@@ -15,4 +16,17 @@ header {
 header nav {
   display: flex;
   gap: 12px;
+}
+
+#logo-container {
+  padding: 0 2rem;
+}
+
+#logo-container,
+#logo {
+  height: 100%;
+}
+
+#logo {
+  scale: 1.3;
 }
