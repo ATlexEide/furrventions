@@ -14,6 +14,7 @@ export default function ConventionList() {
   const [locationSearchInput, setLocationSearchInput] = useState("");
   const [sliderValue, setSliderValue] = useState(500);
   const [sliderUpdated, setSliderUpdated] = useState(false);
+  const [mapOverviewEnabled, setMapOverviewEnabled] = useState(false);
 
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
@@ -41,7 +42,6 @@ export default function ConventionList() {
         .filter((con) =>
           con.location.toLowerCase().includes(locationSearchInput)
         )
-        // BUG: FIX FILTERING NOT WORKING CORRECTLY
         .filter((con) => con.spots_total <= sliderValue)
     );
     console.log(nameSearchInput);
@@ -107,7 +107,7 @@ export default function ConventionList() {
                     id="total-spots-slider"
                     value={sliderValue}
                     min={1}
-                    max={5000}
+                    max={1000}
                     type="range"
                     onChange={(e) => {
                       setSliderValue(e.target.value);
@@ -134,17 +134,26 @@ export default function ConventionList() {
               Refresh
             </button>
           </section>
+          <button
+            onClick={() => {
+              setMapOverviewEnabled(!mapOverviewEnabled);
+            }}
+          ></button>
           <ul id="convention-list">
             {hasFilteredCons &&
+              !mapOverviewEnabled &&
               filteredCons.map((con, i) => (
                 <ConventionCard con={con} key={i} />
               ))}
+
             {!hasFilteredCons &&
               !filtersEnabled &&
+              !mapOverviewEnabled &&
               cons.map((con, i) => <ConventionCard con={con} key={i} />)}
             {!hasFilteredCons && filtersEnabled && (
               <h2>No matching cons or meets</h2>
             )}
+            {mapOverviewEnabled && <h1>test</h1>}
           </ul>
         </>
       )}
