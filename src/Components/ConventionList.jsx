@@ -115,6 +115,7 @@ export default function ConventionList() {
                 <label htmlFor="convention-name">Convention location: </label>
                 <div>
                   {/* TODO: MOVE INTO SEPERATE COMPONENT */}
+                  {/* BUG: FIX RESETTING SEARCH FIELD */}
                   <APILoader
                     apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
                     solutionChannel="GMP_GCC_placepicker_v1"
