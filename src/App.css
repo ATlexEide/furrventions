@@ -37,3 +37,11 @@ main {
   top: 40%;
   right: 0%;
 }
+
+#loading {
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
