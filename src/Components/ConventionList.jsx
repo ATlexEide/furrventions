@@ -1,21 +1,28 @@
+import {
+  APILoader,
+  PlacePicker
+} from "@googlemaps/extended-component-library/react";
 import "./ConventionList.css";
 import { useEffect, useState } from "react";
 import { useSupabase } from "../SupabaseHook.jsx";
 import ConventionCard from "./ConventionCard";
-import LocationSearch from "./LocationSearch.jsx";
+// import Map from "./Map.jsx";
+
+import { APIProvider, CollisionBehavior, Map } from "@vis.gl/react-google-maps";
 
 export default function ConventionList() {
   const supabase = useSupabase();
+  const countries = [];
 
   const [cons, setCons] = useState([]);
 
   const [filteredCons, setFilteredCons] = useState([]);
   const [nameSearchInput, setNameSearchInput] = useState("");
-  const [locationSearchInput, setLocationSearchInput] = useState("");
   const [sliderValue, setSliderValue] = useState(500);
   const [sliderUpdated, setSliderUpdated] = useState(false);
   const [mapOverviewEnabled, setMapOverviewEnabled] = useState(false);
-
+  const [location, setLocation] = useState("");
+  console.log("location from list", location);
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
   async function fetchConventions() {
@@ -39,14 +46,12 @@ export default function ConventionList() {
     setFilteredCons(
       cons
         .filter((con) => con.name.toLowerCase().includes(nameSearchInput))
-        .filter((con) =>
-          con.location.toLowerCase().includes(locationSearchInput)
-        )
+        .filter((con) => con.location.toLowerCase().includes(location, 0))
         .filter((con) => con.spots_total <= sliderValue)
     );
     console.log(nameSearchInput);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nameSearchInput, locationSearchInput, sliderValue]);
+  }, [nameSearchInput, location, sliderValue]);
 
   const hasCons = Boolean(cons.length);
   console.log("SLIDER VAL:", sliderValue);
@@ -54,7 +59,7 @@ export default function ConventionList() {
   const hasFilteredCons = Boolean(filteredCons.length);
   const filtersEnabled =
     Boolean(nameSearchInput.length) ||
-    Boolean(locationSearchInput.length) ||
+    Boolean(location.length) ||
     sliderUpdated;
   console.log("filters", filtersEnabled);
 
@@ -75,10 +80,6 @@ export default function ConventionList() {
 
             <section id="filter-options">
               <div className="filter-option-input">
-                <label htmlFor="convention-name">Convention location: </label>
-                <LocationSearch />
-              </div>
-              <div className="filter-option-input">
                 <label htmlFor="convention-name">Convention name: </label>
                 <input
                   id="convention-name"
@@ -90,14 +91,21 @@ export default function ConventionList() {
               </div>
 
               <div className="filter-option-input">
-                <label htmlFor="convention-location">Location: </label>
-                <input
-                  id="convention-location"
-                  type="text"
-                  onChange={(e) => {
-                    setLocationSearchInput(e.target.value.toLowerCase());
-                  }}
-                />
+                <label htmlFor="convention-name">Convention location: </label>
+                <div>
+                  {/* TODO: MOVE INTO SEPERATE COMPONENT */}
+                  <APILoader
+                    apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+                    solutionChannel="GMP_GCC_placepicker_v1"
+                  />
+                  <div className="container">
+                    <PlacePicker
+                      country={countries}
+                      placeholder={"Enter a place to see its address"}
+                      onPlaceChange={(e) => setLocation(e.target.value.id)}
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="filter-option-input">
@@ -139,6 +147,19 @@ export default function ConventionList() {
               setMapOverviewEnabled(!mapOverviewEnabled);
             }}
           ></button>
+          {mapOverviewEnabled && (
+            <APIProvider
+              solutionChannel="GMP_devsite_samples_v3_rgmbasicmap"
+              apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+            >
+              <Map
+                defaultZoom={8}
+                defaultCenter={{ lat: -34.397, lng: 150.644 }}
+                gestureHandling={"greedy"}
+                disableDefaultUI={true}
+              />
+            </APIProvider>
+          )}
           <ul id="convention-list">
             {hasFilteredCons &&
               !mapOverviewEnabled &&
@@ -153,7 +174,6 @@ export default function ConventionList() {
             {!hasFilteredCons && filtersEnabled && (
               <h2>No matching cons or meets</h2>
             )}
-            {mapOverviewEnabled && <h1>test</h1>}
           </ul>
         </>
       )}
