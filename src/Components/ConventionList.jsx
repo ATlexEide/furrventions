@@ -168,22 +168,24 @@ export default function ConventionList() {
               setMapOverviewEnabled(!mapOverviewEnabled);
             }}
           ></button>
-          {mapOverviewEnabled && !refresh && (
-            <APIProvider
-              solutionChannel="GMP_devsite_samples_v3_rgmbasicmap"
-              apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
-            >
-              <Map
-                defaultZoom={8}
-                defaultCenter={{ lat: 59.9138688, lng: 10.7522454 }}
-                gestureHandling={"greedy"}
-                disableDefaultUI={true}
-              >
-                {cons.map((con, i) => placeMarker(con, i))}
-              </Map>
-            </APIProvider>
-          )}
+
           <ul id="convention-list">
+            {mapOverviewEnabled && !refresh && (
+              <APIProvider
+                solutionChannel="GMP_devsite_samples_v3_rgmbasicmap"
+                apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+              >
+                <Map
+                  id="map"
+                  defaultZoom={8}
+                  defaultCenter={{ lat: 59.9138688, lng: 10.7522454 }}
+                  gestureHandling={"greedy"}
+                  disableDefaultUI={true}
+                >
+                  {cons.map((con, i) => placeMarker(con, i))}
+                </Map>
+              </APIProvider>
+            )}
             {hasFilteredCons &&
               !mapOverviewEnabled &&
               filteredCons.map((con, i) => (
