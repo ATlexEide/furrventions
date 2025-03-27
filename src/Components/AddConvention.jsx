@@ -1,16 +1,23 @@
+import {
+  APILoader,
+  PlacePicker
+} from "@googlemaps/extended-component-library/react";
 import { useSupabase } from "../SupabaseHook";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
 import "./AddConvention.css";
-import LocationSearch from "./LocationSearch";
 
 export default function AddConvention() {
   const { user } = useUser();
   const supabase = useSupabase();
+  const [location, setLocation] = useState("");
   const [conventionInfo, setConventionInfo] = useState({
-    organizerID: user.id
+    organizerID: user.id,
+    location: location
   });
+
   function clearConventionInfo() {
+    setLocation("");
     setConventionInfo({
       organizerID: user.id,
       name: "",
@@ -20,15 +27,15 @@ export default function AddConvention() {
       website: ""
     });
   }
+
   async function addConvention(obj) {
-    obj.lat = 0;
-    obj.long = 0;
-    obj.spots_total = 0;
+    obj.spots_total = 300;
     obj.creatorID = user.id;
     const { data, error } = await supabase
       .from("conventions")
       .insert(obj)
       .select();
+
     if (error) {
       switch (error.code) {
         case "23502":
@@ -43,6 +50,7 @@ export default function AddConvention() {
         default:
           break;
       }
+
       console.log(error);
     } else {
       clearConventionInfo();
@@ -138,18 +146,25 @@ export default function AddConvention() {
             }}
           />
           {/* LOCATION */}
-          <LocationSearch
-            name="location"
-            id="location"
-            placeholder="Convention location*"
-            value={conventionInfo.location}
-            onChange={(e) => {
-              setConventionInfo({
-                ...conventionInfo,
-                location: e.target.value
-              });
-            }}
-          />
+          <div>
+            {/* TODO: MOVE INTO SEPERATE COMPONENT */}
+            <APILoader
+              apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+              solutionChannel="GMP_GCC_placepicker_v1"
+            />
+            <div className="container">
+              <PlacePicker
+                country={[]}
+                placeholder={"Enter a place to see its address"}
+                onPlaceChange={(e) =>
+                  setConventionInfo({
+                    ...conventionInfo,
+                    location: e.target.value.id
+                  })
+                }
+              />
+            </div>
+          </div>
         </section>
         <p>Convention will be registered to user id {user.id}</p>
         <section id="buttons">
