@@ -2,6 +2,7 @@ import "./ConventionList.css";
 import { useEffect, useState } from "react";
 import { useSupabase } from "../SupabaseHook.jsx";
 import ConventionCard from "./ConventionCard";
+import LocationSearch from "./LocationSearch.jsx";
 
 export default function ConventionList() {
   const supabase = useSupabase();
@@ -35,6 +36,10 @@ export default function ConventionList() {
             <h2 id="filter-title">SEARCH</h2>
 
             <section id="filter-options">
+              <div className="filter-option-input">
+                <label htmlFor="convention-name">Convention location: </label>
+                <LocationSearch />
+              </div>
               <div className="filter-option-input">
                 <label htmlFor="convention-name">Convention name: </label>
                 <input id="convention-name" type="text" />
