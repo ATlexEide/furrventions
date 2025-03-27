@@ -1,4 +1,4 @@
-import { fetchLogo } from "../fetchLogo";
+import { fetchLogo } from "../utils/fetchLogo";
 import "./ConventionCard.css";
 
 export default function ConventionCard({ con }) {
