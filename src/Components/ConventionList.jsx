@@ -8,9 +8,10 @@ export default function ConventionList() {
   const supabase = useSupabase();
 
   const [cons, setCons] = useState([]);
+  const [filteredCons, setFilteredCons] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
-
   async function fetchConventions() {
     const { data, error } = await supabase.from("conventions").select();
     if (error) console.log(error);
@@ -21,15 +22,28 @@ export default function ConventionList() {
   }
 
   const [sliderValue, setSliderValue] = useState(10);
-
+  console.log(cons);
   useEffect(() => {
     setLoading(true);
     fetchConventions();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
+  useEffect(() => {
+    setFilteredCons(
+      cons.filter((con) => con.name.toLowerCase().includes(searchInput))
+    );
+    console.log(searchInput);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchInput]);
 
   const hasCons = Boolean(cons.length);
   console.log("SLIDER VAL:", sliderValue);
+
+  const hasFilteredCons = Boolean(filteredCons.length);
+  const hasSearchInput = Boolean(searchInput.length);
+  console.log(hasSearchInput);
+
   return (
     <section id="convention-list-cont">
       {loading && (
@@ -52,7 +66,13 @@ export default function ConventionList() {
               </div>
               <div className="filter-option-input">
                 <label htmlFor="convention-name">Convention name: </label>
-                <input id="convention-name" type="text" />
+                <input
+                  id="convention-name"
+                  type="text"
+                  onChange={(e) => {
+                    setSearchInput(e.target.value.toLowerCase());
+                  }}
+                />
               </div>
 
               <div className="filter-option-input">
@@ -94,9 +114,16 @@ export default function ConventionList() {
             </button>
           </section>
           <ul id="convention-list">
-            {cons.map((con, i) => (
-              <ConventionCard con={con} key={i} />
-            ))}
+            {hasFilteredCons &&
+              filteredCons.map((con, i) => (
+                <ConventionCard con={con} key={i} />
+              ))}
+            {!hasFilteredCons &&
+              !hasSearchInput &&
+              cons.map((con, i) => <ConventionCard con={con} key={i} />)}
+            {!hasFilteredCons && hasSearchInput && (
+              <h2>No matching cons or meets</h2>
+            )}
           </ul>
         </>
       )}
