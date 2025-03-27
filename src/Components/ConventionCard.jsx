@@ -1,7 +1,22 @@
+import { useEffect, useState } from "react";
 import { fetchLogo } from "../utils/fetchLogo";
 import "./ConventionCard.css";
 
 export default function ConventionCard({ con }) {
+  const [locationData, setLocationData] = useState({});
+  useEffect(() => {
+    const locationData = async () => {
+      return await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?key=${
+          import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+        }&place_id=${con.location}`
+      )
+        .then((res) => res.json())
+        .then((res) => setLocationData(res.results[0]));
+    };
+    locationData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   // con = {
   //   name: "TEST CON",
   //   location
@@ -14,6 +29,7 @@ export default function ConventionCard({ con }) {
   //   creatorID: "",
   //   organizerID: ""
   // };
+  con.location_formatted = locationData.formatted_address;
 
   const days = [
     "Sunday",
@@ -74,7 +90,7 @@ export default function ConventionCard({ con }) {
       </figure>
       <section className="convention-info">
         {con.name && <h2 className="convention-name">{con.name}</h2>}
-        {con.location && <p>{con.location}</p>}
+        {con.location_formatted && <p>{con.location_formatted}</p>}
         {con.spots_total && (
           <p>
             <span className="info-prefix">Total spots:</span> {con.spots_total}
