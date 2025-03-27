@@ -30,3 +30,45 @@ header nav {
 #logo {
   scale: 1.3;
 }
+#logo:hover {
+  animation: pop 0.2s ease;
+  /* animation: wave 1s infinite;
+  animation-timing-function: cubic-bezier(0.65, 0.01, 0.05, 0.39); */
+}
+
+@keyframes pop {
+  start {
+    scale: 1;
+  }
+  50% {
+    scale: 1.5;
+  }
+  end {
+    scale: 1;
+  }
+}
+/* @keyframes wave {
+  0% {
+    rotate: 0deg;
+  }
+  10% {
+    rotate: 15deg;
+  }
+  25% {
+    rotate: 45deg;
+    transform: translate(7px, 2px);
+  }
+  50% {
+    rotate: 0deg;
+  }
+  60% {
+    rotate: -15deg;
+    transform: translate(-7px, -2px);
+  }
+  75% {
+    rotate: -45deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+} */
