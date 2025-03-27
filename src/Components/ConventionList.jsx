@@ -32,7 +32,11 @@ export default function ConventionList() {
   console.log("SLIDER VAL:", sliderValue);
   return (
     <section id="convention-list-cont">
-      {loading && <h2>Loading . . .</h2>}
+      {loading && (
+        <div id="loading">
+          <h2>Loading . . .</h2>
+        </div>
+      )}
       {!loading && !hasCons && (
         <h2 id="no-cons-alert">No registered conventions or meets</h2>
       )}
