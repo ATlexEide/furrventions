@@ -71,7 +71,7 @@ export default function ConventionList() {
     setFilteredCons(
       cons
         .filter((con) => con.name.toLowerCase().includes(nameSearchInput))
-        .filter((con) => con.location.toLowerCase().includes(location, 0))
+        .filter((con) => con.location.includes(location))
         .filter((con) => con.spots_total <= sliderValue)
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
