@@ -4,8 +4,7 @@ import "./ConventionCard.css";
 export default function ConventionCard({ con }) {
   // con = {
   //   name: "TEST CON",
-  //   lat: 0.00,
-  //   long: 0.00,
+  //   location
   //   description: "TEST DESCRIPTION",
   //   // logo_path: "/public/pawske.png",
   //   start_time: "01-01-0101",
@@ -75,43 +74,39 @@ export default function ConventionCard({ con }) {
       </figure>
       <section className="convention-info">
         {con.name && <h2 className="convention-name">{con.name}</h2>}
-        {con.convention_location && <p>{con.convention_location}</p>}
         {con.location && <p>{con.location}</p>}
-        {con.total_spots && (
+        {con.spots_total && (
           <p>
-            <span className="info-prefix">Total spots:</span> {con.total_spots}
+            <span className="info-prefix">Total spots:</span> {con.spots_total}
           </p>
         )}
-        {con.taken_spots && (
-          <p>
-            <span className="info-prefix">Interested:</span> {con.taken_spots}
-          </p>
+        {con.spots_total && (
+          <>
+            <p>
+              <span className="info-prefix">Interested:</span>{" "}
+              {con.spots_taken ? con.spots_taken : 0}
+            </p>
+            <p>
+              <span className="info-prefix">Spots left*:</span>{" "}
+              {con.spots_total - con.spots_taken}
+            </p>
+          </>
         )}
-        {con.total_spots && con.taken_spots && (
-          <p>
-            <span className="info-prefix">Spots left*:</span>{" "}
-            {con.total_spots - con.taken_spots}
-          </p>
-        )}
-
         {con.start_time && con.end_time && (
           <div className="convention-dates">
-            <span>
+            <p>
               <span className="info-prefix">Starts:</span>{" "}
               <p>{formatDate(con.start_time)}</p>
-            </span>
-            <br />
-            <span>
               <span className="info-prefix">Ends:</span>
               <p>{formatDate(con.end_time)}</p>
-            </span>
+            </p>
           </div>
         )}
-
-        {con.convention_description && (
+      </section>
+      <section>
+        {con.description && (
           <div>
-            <h3 className="convention-desc-title">About convention:</h3>
-            <p className="convention-desc">{con.convention_description}</p>
+            <p className="convention-desc">{con.description}</p>
           </div>
         )}
       </section>
