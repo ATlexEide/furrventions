@@ -16,6 +16,31 @@ export default function ConventionCard({ con }) {
   //   organizerID: ""
   // };
 
+  const startDate = new Date(con.start_time);
+  const endDate = new Date(con.end_time);
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
   return (
     <article className="convention-card">
       <figure className="convention-logo">
@@ -44,17 +69,25 @@ export default function ConventionCard({ con }) {
             {con.total_spots - con.taken_spots}
           </p>
         )}
+
         {con.start_time && con.end_time && (
           <div className="convention-dates">
             <span>
-              <span className="info-prefix">Starts:</span> {con.start_time}
+              <span className="info-prefix">Starts:</span>{" "}
+              <p>{`${days[startDate.getUTCDay()]} ${startDate.getUTCDate()}. ${
+                months[startDate.getUTCMonth()]
+              } ${startDate.getUTCFullYear()}`}</p>
             </span>
             <br />
             <span>
-              <span className="info-prefix">Ends:</span> {con.end_time}
+              <span className="info-prefix">Ends:</span>
+              <p>{`${days[endDate.getUTCDay()]} ${endDate.getUTCDate()}. ${
+                months[endDate.getUTCMonth()]
+              } ${endDate.getUTCFullYear()}`}</p>
             </span>
           </div>
         )}
+
         {con.convention_description && (
           <div>
             <h3 className="convention-desc-title">About convention:</h3>
