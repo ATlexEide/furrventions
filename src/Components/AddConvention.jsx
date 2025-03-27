@@ -21,6 +21,10 @@ export default function AddConvention() {
     });
   }
   async function addConvention(obj) {
+    obj.lat = 0;
+    obj.long = 0;
+    obj.spots_total = 0;
+    obj.creatorID = user.id;
     const { data, error } = await supabase
       .from("conventions")
       .insert(obj)
