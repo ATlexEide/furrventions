@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useSupabase } from "../SupabaseHook.jsx";
 import ConventionCard from "./ConventionCard";
 import LocationSearch from "./LocationSearch.jsx";
-import e from "cors";
 
 export default function ConventionList() {
   const supabase = useSupabase();
@@ -16,7 +15,7 @@ export default function ConventionList() {
     const { data, error } = await supabase.from("conventions").select();
     if (error) console.log(error);
     console.log("Fetched cons: ", data);
-    setCons(data);
+    setCons(data.sort((a, b) => a.start_time - b.start_time));
     setLoading(false);
     setRefresh(false);
   }
