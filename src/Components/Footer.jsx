@@ -10,7 +10,7 @@ export default function Footer() {
       |
       <div className="footer-part">
         <ul id="socials">
-          <p>Socials //</p>
+          <li>Socials //</li>
           <li>
             <a href="https://www.linkedin.com/in/alexander-eide/">LinkedIn</a>
           </li>

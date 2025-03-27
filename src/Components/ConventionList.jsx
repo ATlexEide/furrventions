@@ -2,6 +2,7 @@ import "./ConventionList.css";
 import { useEffect, useState } from "react";
 import { useSupabase } from "../SupabaseHook.jsx";
 import ConventionCard from "./ConventionCard";
+import LocationSearch from "./LocationSearch.jsx";
 
 export default function ConventionList() {
   const supabase = useSupabase();
@@ -14,10 +15,13 @@ export default function ConventionList() {
     const { data, error } = await supabase.from("conventions").select();
     if (error) console.log(error);
     console.log("Fetched cons: ", data);
-    setCons(data);
+    setCons(data.sort((a, b) => a.start_time - b.start_time));
     setLoading(false);
     setRefresh(false);
   }
+
+  const [sliderValue, setSliderValue] = useState(10);
+
   useEffect(() => {
     setLoading(true);
     fetchConventions();
@@ -25,6 +29,7 @@ export default function ConventionList() {
   }, [refresh]);
 
   const hasCons = Boolean(cons.length);
+  console.log("SLIDER VAL:", sliderValue);
   return (
     <section id="convention-list-cont">
       {loading && <h2>Loading . . .</h2>}
@@ -36,6 +41,10 @@ export default function ConventionList() {
 
             <section id="filter-options">
               <div className="filter-option-input">
+                <label htmlFor="convention-name">Convention location: </label>
+                <LocationSearch />
+              </div>
+              <div className="filter-option-input">
                 <label htmlFor="convention-name">Convention name: </label>
                 <input id="convention-name" type="text" />
               </div>
@@ -46,10 +55,27 @@ export default function ConventionList() {
               </div>
 
               <div className="filter-option-input">
-                <label htmlFor="total-spots-input">Total spots: </label>
-                <input id="total-spots-input" type="range" />
-                <input type="number" />
-                <span>0</span>
+                <label htmlFor="total-spots-input">
+                  Total spots/attendees:{" "}
+                </label>
+                <div id="spots-filter">
+                  <input
+                    id="total-spots-slider"
+                    value={sliderValue}
+                    min={1}
+                    max={5000}
+                    type="range"
+                    onChange={(e) => {
+                      setSliderValue(e.target.value);
+                    }}
+                  />
+                  <input
+                    id="total-spots-input"
+                    type="number"
+                    value={sliderValue}
+                    onChange={(e) => setSliderValue(e.target.value)}
+                  />
+                </div>
               </div>
             </section>
 

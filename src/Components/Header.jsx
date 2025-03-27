@@ -23,14 +23,16 @@ export default function Header() {
       </SignedOut>
       <SignedIn>
         <header>
-          {user && (
-            <Link id="header-home" to="/">
-              <h1>
-                Hello,{" "}
-                {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
-                !
-              </h1>
+          <figure id="logo-container">
+            <Link to="/">
+              <img id="logo" src="/pawlogo.png" alt="" />
             </Link>
+          </figure>
+          {user && (
+            <h1 id="header-home">
+              Hello,{" "}
+              {user.username.charAt(0).toUpperCase() + user.username.slice(1)}!
+            </h1>
           )}
           <Link to="conventions/add">Add convention</Link> |
           <Link to="conventions">View conventions</Link>||
