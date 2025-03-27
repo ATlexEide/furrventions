@@ -23,6 +23,9 @@ export default function Header() {
       </SignedOut>
       <SignedIn>
         <header>
+          <figure id="logo-container">
+            <img id="logo" src="/pawlogo.png" alt="" />
+          </figure>
           {user && (
             <Link id="header-home" to="/">
               <h1>
