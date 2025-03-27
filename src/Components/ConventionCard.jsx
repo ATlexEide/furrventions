@@ -16,8 +16,6 @@ export default function ConventionCard({ con }) {
   //   organizerID: ""
   // };
 
-  const startDate = new Date(con.start_time);
-  const endDate = new Date(con.end_time);
   const days = [
     "Sunday",
     "Monday",
@@ -27,6 +25,7 @@ export default function ConventionCard({ con }) {
     "Friday",
     "Saturday"
   ];
+
   const months = [
     "January",
     "February",
@@ -41,6 +40,31 @@ export default function ConventionCard({ con }) {
     "November",
     "December"
   ];
+
+  function formatDate(when) {
+    const date = new Date(when);
+
+    const dateObj = {
+      minutes: () => {
+        return date.getUTCMinutes() < 10
+          ? "0" + date.getUTCMinutes()
+          : date.getUTCMinutes();
+      },
+      hours: () => {
+        return date.getUTCHours() < 10
+          ? "0" + date.getUTCHours()
+          : date.getUTCHours();
+      },
+      day: days[date.getUTCDay()],
+      date: date.getUTCDate(),
+      month: months[date.getUTCMonth()],
+      year: date.getUTCFullYear()
+    };
+    return `${dateObj.day} ${dateObj.date}. ${dateObj.month} ${
+      dateObj.year
+    } ${dateObj.minutes()}:${dateObj.hours()}`;
+  }
+
   return (
     <article className="convention-card">
       <figure className="convention-logo">
@@ -74,16 +98,12 @@ export default function ConventionCard({ con }) {
           <div className="convention-dates">
             <span>
               <span className="info-prefix">Starts:</span>{" "}
-              <p>{`${days[startDate.getUTCDay()]} ${startDate.getUTCDate()}. ${
-                months[startDate.getUTCMonth()]
-              } ${startDate.getUTCFullYear()}`}</p>
+              <p>{formatDate(con.start_time)}</p>
             </span>
             <br />
             <span>
               <span className="info-prefix">Ends:</span>
-              <p>{`${days[endDate.getUTCDay()]} ${endDate.getUTCDate()}. ${
-                months[endDate.getUTCMonth()]
-              } ${endDate.getUTCFullYear()}`}</p>
+              <p>{formatDate(con.end_time)}</p>
             </span>
           </div>
         )}
