@@ -84,3 +84,7 @@ button:focus-visible {
   height: 100%;
   width: 100%;
 }
+
+.alert {
+  align-self: center;
+}
