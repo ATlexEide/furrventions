@@ -15,7 +15,6 @@ export default function ViewCons() {
     const { data, error } = await supabase.from("conventions").select();
     if (error) console.log(error);
     console.log("Fetched cons: ", data);
-
     setCons(data);
     setLoading(false);
     setRefresh(false);
@@ -35,13 +34,7 @@ export default function ViewCons() {
       {loading && <Loading />}
       {!loading && !hasCons && <NoConsAlert />}
       {!loading && hasCons && (
-        <>
-          <ConventionList
-            setRefresh={setRefresh}
-            cons={cons}
-            refresh={refresh}
-          />
-        </>
+        <ConventionList setRefresh={setRefresh} cons={cons} refresh={refresh} />
       )}
     </section>
   );
