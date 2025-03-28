@@ -6,7 +6,6 @@ export default function Footer() {
     <footer>
       <div className="footer-part">
         <p>Developed by {import.meta.env.VITE_DEVHANDLE}</p>
-        <Link to="/support">Support Me on Ko-fi</Link>
       </div>{" "}
       |
       <div className="footer-part">
