@@ -18,6 +18,7 @@ import {
   ClerkProvider
 } from "@clerk/clerk-react";
 import Kofi from "./Components/Kofi.jsx";
+import "./Components/ConventionList.css";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
