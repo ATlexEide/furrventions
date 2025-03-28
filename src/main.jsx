@@ -3,10 +3,10 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { shadesOfPurple } from "@clerk/themes";
 
+import ViewCons from "./Components/ViewCons.jsx";
 import "./index.css";
 import "./App.css";
 import App from "./App.jsx";
-import ConventionList from "./Components/ConventionList.jsx";
 import Header from "./Components/Header.jsx";
 import Footer from "./Components/Footer.jsx";
 import ManageConventions from "./Components/ManageConventions.jsx";
@@ -18,7 +18,7 @@ import {
   ClerkProvider
 } from "@clerk/clerk-react";
 import Kofi from "./Components/Kofi.jsx";
-import "./Components/ConventionList.css";
+import "./Components/ViewCons.css";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
@@ -54,7 +54,7 @@ createRoot(document.getElementById("root")).render(
                 path="manage/:id/conventions"
                 element={<ManageConventions />}
               />
-              <Route exact path="conventions" element={<ConventionList />} />
+              <Route exact path="conventions" element={<ViewCons />} />
               <Route exact path="conventions/add" element={<AddConvention />} />
               <Route
                 exact
