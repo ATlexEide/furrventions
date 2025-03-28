@@ -1,4 +1,5 @@
 #add-con {
+  margin: auto;
   background-color: var(--secondary-bg-color);
   padding: 48px;
   border-radius: 12px;
