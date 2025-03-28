@@ -15,7 +15,6 @@ export default function ConventionList({ cons, refresh, setRefresh }) {
   const [location, setLocation] = useState("");
   const [nameSearchInput, setNameSearchInput] = useState("");
   const [sliderUpdated, setSliderUpdated] = useState(false);
-
   const [sliderValue, setSliderValue] = useState(500);
 
   const hasFilteredCons = Boolean(filteredCons.length);
@@ -81,6 +80,7 @@ export default function ConventionList({ cons, refresh, setRefresh }) {
           </APIProvider>
         </div>
       )}
+
       {hasFilteredCons &&
         !mapOverviewEnabled &&
         filteredCons.map((con, i) => <ConventionCard con={con} key={i} />)}
@@ -89,6 +89,7 @@ export default function ConventionList({ cons, refresh, setRefresh }) {
         !filtersEnabled &&
         !mapOverviewEnabled &&
         cons.map((con, i) => <ConventionCard con={con} key={i} />)}
+
       {!hasFilteredCons && filtersEnabled && <NoMatchAlert />}
     </ul>
   );
