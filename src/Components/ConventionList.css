@@ -11,7 +11,7 @@
   background-color: var(--secondary-bg-color);
   width: 80%;
   min-height: 100%;
-  height: fit-content;
+  height: 100vh;
   display: grid;
   padding: 32px 0;
   gap: 48px;
@@ -70,4 +70,8 @@
 
 #no-cons-alert {
   align-self: center;
+}
+#map {
+  width: 100%;
+  height: 215%;
 }
