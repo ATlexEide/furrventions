@@ -26,6 +26,7 @@ export default function ViewCons() {
       filtered = filtered.filter((con) =>
         con.name.toLowerCase().includes(filter.name.toLowerCase())
       );
+    // FIXME: compare location formatted adress instead of id to be more flexible
     if (filter.location)
       filtered = filtered.filter((con) => con.location === filter.location);
     if (filter.spots_total)
@@ -43,8 +44,8 @@ export default function ViewCons() {
     setFilteredCons(filterCons());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
-  console.log(cons);
-  console.log("filterd", filteredCons);
+  console.log(cons[0]);
+  console.log("filtered", filteredCons);
   if (loading) return <Loading />;
   if (cons)
     return (
