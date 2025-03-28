@@ -2,21 +2,8 @@ import {
   APILoader,
   PlacePicker
 } from "@googlemaps/extended-component-library/react";
-import { useEffect } from "react";
 
-export default function FilterList({
-  setRefresh,
-  sliderValue,
-  setSliderValue,
-  setSliderUpdated,
-  setNameSearchInput,
-  nameSearchInput,
-  setLocation,
-  filterCons
-}) {
-  useEffect(() => {
-    filterCons();
-  }, [sliderValue, location, nameSearchInput]);
+export default function Filter() {
   return (
     <section id="convention-list-filter">
       <h2 id="filter-title">SEARCH</h2>
@@ -27,8 +14,8 @@ export default function FilterList({
           <input
             id="convention-name"
             type="text"
-            onChange={(e) => {
-              setNameSearchInput(e.target.value.toLowerCase());
+            onChange={() => {
+              // setNameSearchInput(e.target.value.toLowerCase());
             }}
           />
         </div>
@@ -47,7 +34,7 @@ export default function FilterList({
               <PlacePicker
                 country={[]}
                 placeholder={"Enter a place to see its address"}
-                onPlaceChange={(e) => setLocation(e.target.value.id)}
+                // onPlaceChange={(e) => setLocation(e.target.value.id)}
               />
             </div>
           </div>
@@ -59,22 +46,22 @@ export default function FilterList({
           <div id="spots-filter">
             <input
               id="total-spots-slider"
-              value={sliderValue}
+              value={1}
               min={1}
               max={1000}
               type="range"
-              onChange={(e) => {
-                setSliderValue(e.target.value);
+              onChange={() => {
+                // setSliderValue(e.target.value);
               }}
             />
 
             <input
               id="total-spots-input"
               type="number"
-              value={sliderValue}
-              onChange={(e) => {
-                setSliderUpdated(true);
-                setSliderValue(e.target.value);
+              value={1}
+              onChange={() => {
+                // setSliderUpdated(true);
+                // setSliderValue(e.target.value);
               }}
             />
           </div>
@@ -83,7 +70,7 @@ export default function FilterList({
 
       <button
         onClick={() => {
-          setRefresh(true);
+          // setRefresh(true);
         }}
       >
         Refresh
