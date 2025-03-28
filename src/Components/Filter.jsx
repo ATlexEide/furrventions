@@ -3,7 +3,7 @@ import {
   PlacePicker
 } from "@googlemaps/extended-component-library/react";
 
-export default function Filter() {
+export default function Filter({ filter, setFilter, filterCons }) {
   return (
     <section id="convention-list-filter">
       <h2 id="filter-title">SEARCH</h2>
@@ -14,8 +14,8 @@ export default function Filter() {
           <input
             id="convention-name"
             type="text"
-            onChange={() => {
-              // setNameSearchInput(e.target.value.toLowerCase());
+            onChange={(e) => {
+              setFilter({ ...filter, name: e.target.value });
             }}
           />
         </div>
@@ -34,7 +34,9 @@ export default function Filter() {
               <PlacePicker
                 country={[]}
                 placeholder={"Enter a place to see its address"}
-                // onPlaceChange={(e) => setLocation(e.target.value.id)}
+                onPlaceChange={(e) =>
+                  setFilter({ ...filter, location: e.target.value.id })
+                }
               />
             </div>
           </div>
@@ -50,8 +52,8 @@ export default function Filter() {
               min={1}
               max={1000}
               type="range"
-              onChange={() => {
-                // setSliderValue(e.target.value);
+              onChange={(e) => {
+                setFilter({ ...filter, spots_total: e.target.value });
               }}
             />
 
@@ -59,9 +61,8 @@ export default function Filter() {
               id="total-spots-input"
               type="number"
               value={1}
-              onChange={() => {
-                // setSliderUpdated(true);
-                // setSliderValue(e.target.value);
+              onChange={(e) => {
+                setFilter({ ...filter, spots_total: e.target.value });
               }}
             />
           </div>
@@ -70,7 +71,7 @@ export default function Filter() {
 
       <button
         onClick={() => {
-          // setRefresh(true);
+          filterCons();
         }}
       >
         Refresh
