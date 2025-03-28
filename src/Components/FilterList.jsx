@@ -2,6 +2,7 @@ import {
   APILoader,
   PlacePicker
 } from "@googlemaps/extended-component-library/react";
+import { useEffect } from "react";
 
 export default function FilterList({
   setRefresh,
@@ -9,8 +10,13 @@ export default function FilterList({
   setSliderValue,
   setSliderUpdated,
   setNameSearchInput,
-  setLocation
+  nameSearchInput,
+  setLocation,
+  filterCons
 }) {
+  useEffect(() => {
+    filterCons();
+  }, [sliderValue, location, nameSearchInput]);
   return (
     <section id="convention-list-filter">
       <h2 id="filter-title">SEARCH</h2>
