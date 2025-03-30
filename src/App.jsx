@@ -2,6 +2,7 @@
 import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 
 export default function Home() {
+  console.log("yipp");
   return (
     <section id="catchphrase-cont">
       <SignedIn>
