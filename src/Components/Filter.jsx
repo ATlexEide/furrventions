@@ -21,11 +21,11 @@ export default function Filter({ filter, setFilter, filterCons }) {
         </div>
 
         <div className="filter-option-input">
-          <label htmlFor="convention-name">Convention location: </label>
+          {/* <label htmlFor="convention-name">Convention location: </label> */}
           <div>
             {/* TODO: MOVE INTO SEPERATE COMPONENT */}
             {/* BUG: FIX RESETTING SEARCH FIELD */}
-            <APILoader
+            {/* <APILoader
               apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
               solutionChannel="GMP_GCC_placepicker_v1"
             />
@@ -38,7 +38,18 @@ export default function Filter({ filter, setFilter, filterCons }) {
                   setFilter({ ...filter, location: e.target.value.id })
                 }
               />
-            </div>
+            </div> */}
+            <label htmlFor="convention-name">Convention location: </label>
+            <input
+              id="convention-location"
+              type="text"
+              onChange={(e) => {
+                setFilter({
+                  ...filter,
+                  location: e.target.value
+                });
+              }}
+            />
           </div>
         </div>
 
