@@ -47,10 +47,6 @@ export default function ViewCons() {
   }
 
   console.log(cons);
-  // useEffect(() => {
-  //   filterCons();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   console.log("filtered", filteredCons);
   console.log("filter", filter);
