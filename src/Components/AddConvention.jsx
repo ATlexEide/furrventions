@@ -2,7 +2,7 @@ import {
   APILoader,
   PlacePicker
 } from "@googlemaps/extended-component-library/react";
-import { useSupabase } from "../SupabaseHook";
+import { useSupabase } from "../utils/useSupabase";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
 import "./AddConvention.css";
@@ -152,10 +152,10 @@ export default function AddConvention() {
               apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
               solutionChannel="GMP_GCC_placepicker_v1"
             />
-            <div className="container">
+            <div className="maps">
               <PlacePicker
                 country={[]}
-                placeholder={"Enter a place to see its address"}
+                placeholder={"Convention location"}
                 onPlaceChange={(e) =>
                   setConventionInfo({
                     ...conventionInfo,
