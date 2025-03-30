@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchLogo } from "../utils/fetchLogo";
+import { useNavigate } from "react-router-dom";
 import "./ConventionCard.css";
+import { Navigate } from "react-router-dom";
 
 export default function ConventionCard({ con }) {
+  const navigate = useNavigate();
   const [locationData, setLocationData] = useState({});
   useEffect(() => {
     const locationData = async () => {
@@ -81,7 +84,7 @@ export default function ConventionCard({ con }) {
   }
 
   return (
-    <article className="convention-card">
+    <article className="convention-card" onClick={navigate(`/${con.id}`)}>
       <figure className="convention-logo">
         <img
           src={con.logo_path ? fetchLogo(con.logo_path) : "/pawske.png"}
