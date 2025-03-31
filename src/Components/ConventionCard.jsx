@@ -29,7 +29,8 @@ export default function ConventionCard({ con, type }) {
   //   creatorID: "",
   //   organizerID: ""
   // };
-  con.location_formatted = locationData.formatted_address;
+  if (!con.location_formatted)
+    con.location_formatted = locationData.formatted_address;
 
   const days = [
     "Sunday",
