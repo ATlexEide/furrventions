@@ -3,7 +3,12 @@ import {
   PlacePicker
 } from "@googlemaps/extended-component-library/react";
 
-export default function Filter({ filter, setFilter, filterCons }) {
+export default function Filter({
+  setHasFilter,
+  filter,
+  setFilter,
+  filterCons
+}) {
   return (
     <section id="convention-list-filter">
       <h2 id="filter-title">SEARCH</h2>
@@ -15,6 +20,7 @@ export default function Filter({ filter, setFilter, filterCons }) {
             id="convention-name"
             type="text"
             onChange={(e) => {
+              console.log("yipp");
               setFilter({ ...filter, name: e.target.value });
             }}
           />
@@ -86,6 +92,13 @@ export default function Filter({ filter, setFilter, filterCons }) {
         }}
       >
         Refresh
+      </button>
+      <button
+        onClick={() => {
+          setHasFilter(false);
+        }}
+      >
+        Clear filter
       </button>
     </section>
   );
