@@ -29,16 +29,14 @@ export default function ViewCons() {
   }
 
   async function filterCons() {
-    console.log(cons[1].location_formatted.toLowerCase());
-    console.log(filter.location.toLowerCase());
+    console.log(cons[1].name.toLowerCase());
+    console.log(filter.name.toLowerCase());
     let filtered = cons.slice();
     setHasFilter(true);
     if (filter.name)
-      filter.name === ""
-        ? setFilteredCons(cons)
-        : (filtered = filtered.filter((con) =>
-            con.name.toLowerCase().includes(filter.name.toLowerCase())
-          ));
+      filtered = filtered.filter((con) =>
+        con.name.toLowerCase().includes(filter.name.toLowerCase())
+      );
     // FIXME: location search not working
     if (filter.location) {
       const regex = new RegExp(`.*${filter.location.toLowerCase()}.*`);
@@ -80,9 +78,9 @@ export default function ViewCons() {
           setFilter={setFilter}
           filterCons={filterCons}
         />
-        {filteredCons.length &&
+        {Boolean(filteredCons.length) &&
           filteredCons.map((con, i) => <ConventionCard con={con} key={i} />)}
-        <h1>test</h1>
+        {!filteredCons.length && hasFilter && <h3>No results</h3>}
       </>
     );
   return (
