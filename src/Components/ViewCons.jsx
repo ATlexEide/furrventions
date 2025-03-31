@@ -11,22 +11,22 @@ export default function ViewCons() {
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
 
-  async function formatFilteredLocation() {
-    console.log("YAY");
-    await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?key=${
-        import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-      }&place_id=${filter.location}`
-    )
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .then((res) =>
-        setFilter({
-          ...filter,
-          location_formatted: res.results[0].formatted_address
-        })
-      );
-  }
+  // async function formatFilteredLocation() {
+  //   console.log("YAY");
+  //   await fetch(
+  //     `https://maps.googleapis.com/maps/api/geocode/json?key=${
+  //       import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+  //     }&place_id=${filter.location}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) => console.log(res))
+  //     .then((res) =>
+  //       setFilter({
+  //         ...filter,
+  //         location_formatted: res.results[0].formatted_address
+  //       })
+  //     );
+  // }
 
   async function filterCons() {
     console.log(cons[1].name.toLowerCase());
