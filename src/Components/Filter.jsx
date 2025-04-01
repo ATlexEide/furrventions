@@ -70,7 +70,7 @@ export default function Filter({
               max={1000}
               type="range"
               onChange={(e) => {
-                setFilter({ ...filter, spots_total: e.target.value });
+                setFilter({ ...filter, spots_total: Number(e.target.value) });
               }}
             />
 
@@ -79,7 +79,7 @@ export default function Filter({
               type="number"
               value={filter && filter.spots_total ? filter.spots_total : 0}
               onChange={(e) => {
-                setFilter({ ...filter, spots_total: e.target.value });
+                setFilter({ ...filter, spots_total: Number(e.target.value) });
               }}
             />
           </div>
