@@ -29,8 +29,11 @@ export default function ViewCons() {
   // }
 
   async function filterCons() {
-    console.log(cons[1].spots_total);
-    console.log(filter.spots_total);
+    // DEBUGGIN
+    console.log(cons[1].spots_total, typeof cons[1].spots_total);
+    console.log(filter.spots_total, typeof filter.spots_total);
+    // DEBUGGIN
+
     let filtered = cons.slice();
     setHasFilter(true);
     if (filter.name)
@@ -46,11 +49,13 @@ export default function ViewCons() {
       );
     }
 
-    if (filter.spots_total)
-      filtered = filtered.filter(
-        (con) => con.spots_total <= Number(filter.spots_total)
-      );
+    if (filtered && filter.spots_total)
+      filtered = cons.filter((con) => con.spots_total <= filter.spots_total);
 
+    // if (!filtered && filter.spots_total)
+    //   filtered = filtered.filter(
+    //     (con) => con.spots_total <= filter.spots_total
+    //   );
     return setFilteredCons(filtered);
   }
 
