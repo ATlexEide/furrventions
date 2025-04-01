@@ -21,3 +21,12 @@ main {
 header {
   padding: 24px;
 }
+
+#header-tag {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3rem;
+}

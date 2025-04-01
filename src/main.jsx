@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import "./App.css";
+import "./index.css";
 import App from "./App.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -17,7 +17,7 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
 createRoot(document.getElementById("root")).render(
   <>
     <header>
-      <h1 id="header-home">Hello, welcome to Furrventions!</h1>
+      <p id="header-tag">Hello, welcome to Furrventions!</p>
     </header>
     <App />
   </>
