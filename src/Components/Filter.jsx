@@ -65,8 +65,8 @@ export default function Filter({
           <div id="spots-filter">
             <input
               id="total-spots-slider"
-              value={1}
-              min={1}
+              value={filter && filter.spots_total ? filter.spots_total : 0}
+              min={0}
               max={1000}
               type="range"
               onChange={(e) => {
@@ -77,7 +77,7 @@ export default function Filter({
             <input
               id="total-spots-input"
               type="number"
-              value={1}
+              value={filter && filter.spots_total ? filter.spots_total : 0}
               onChange={(e) => {
                 setFilter({ ...filter, spots_total: e.target.value });
               }}
