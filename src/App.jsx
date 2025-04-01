@@ -18,7 +18,7 @@ export default function Home() {
         <h2>Coming soon!</h2>
         <h4>Join us on discord for updates on development</h4>
         <p>
-          <a href="https://discord.gg/BGhRuR2C5d">
+          <a href={import.meta.env.VITE_DISCORD_INVITE_LINK}>
             Click here for the invite link
           </a>
         </p>
