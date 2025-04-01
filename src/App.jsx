@@ -1,6 +1,15 @@
 "use client";
 
 export default function Home() {
+  console.log(`
+
+
+
+    What are you looking for? UwU
+
+
+    
+    `);
   return (
     <main>
       <div>
