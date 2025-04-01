@@ -1,14 +1,6 @@
 "use client";
-import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 
 export default function Home() {
-  // Taglines for display under landing page greeting
-  const taglines = [
-    "Your best friend in finding furry conventions!",
-    "Yippieee",
-    "Finding meets and conventions made simple!"
-  ];
-
   return (
     <section id="catchphrase-cont">
       <div>
