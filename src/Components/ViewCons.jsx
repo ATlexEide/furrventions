@@ -29,8 +29,8 @@ export default function ViewCons() {
   // }
 
   async function filterCons() {
-    console.log(cons[1].name.toLowerCase());
-    console.log(filter.name.toLowerCase());
+    console.log(cons[1].spots_total);
+    console.log(filter.spots_total);
     let filtered = cons.slice();
     setHasFilter(true);
     if (filter.name)
@@ -48,7 +48,7 @@ export default function ViewCons() {
     // FIXME END
     if (filter.spots_total)
       filtered = filtered.filter(
-        (con) => con.spots_total === filter.spots_total
+        (con) => con.spots_total <= Number(filter.spots_total)
       );
     return await setFilteredCons(filtered);
   }
