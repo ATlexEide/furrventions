@@ -37,7 +37,7 @@ export default function ViewCons() {
       filtered = filtered.filter((con) =>
         con.name.toLowerCase().includes(filter.name.toLowerCase())
       );
-    // FIXME: location search not working
+
     if (filter.location) {
       const regex = new RegExp(`.*${filter.location.toLowerCase()}.*`);
       console.log(regex);
@@ -45,7 +45,7 @@ export default function ViewCons() {
         regex.test(con.location_formatted.toLowerCase())
       );
     }
-    // FIXME END
+
     if (filter.spots_total)
       filtered = filtered.filter(
         (con) => con.spots_total <= Number(filter.spots_total)
