@@ -11,17 +11,16 @@ export default function Home() {
 
   return (
     <section id="catchphrase-cont">
-      <SignedIn>
-        <div>
-          <h2 id="catchphrase">Welcome to {import.meta.env.VITE_APPNAME}</h2>
-          <h3>{taglines[Math.floor(Math.random() * taglines.length)]}</h3>
-        </div>
-        <img id="mascot" src="mascot.png" alt="" />
-      </SignedIn>
-      <SignedOut>
-        <h2 id="catchphrase">Please sign in to access site</h2>
-        <SignInButton style={{ width: "50%" }} />
-      </SignedOut>
+      <div>
+        <img width="120px" src="/pawlogo.png" alt="Furrventions logo" />
+        <h2>Coming soon!</h2>
+        <h3>Join us on discord for updates on development</h3>
+        <p>
+          <a href="https://discord.gg/BGhRuR2C5d">
+            Click here for the invite link
+          </a>
+        </p>
+      </div>
     </section>
   );
 }
