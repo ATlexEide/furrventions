@@ -87,3 +87,9 @@ button:focus-visible {
 .alert {
   align-self: center;
 }
+
+@media screen and (max-width: 900px) {
+  header {
+    display: none;
+  }
+}
