@@ -50,7 +50,8 @@ export default function ViewCons() {
       filtered = filtered.filter(
         (con) => con.spots_total <= Number(filter.spots_total)
       );
-    return await setFilteredCons(filtered);
+
+    return setFilteredCons(filtered);
   }
 
   console.log(cons);
