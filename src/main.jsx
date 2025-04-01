@@ -17,9 +17,6 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
 createRoot(document.getElementById("root")).render(
   <>
     <header>
-      <figure id="logo-container">
-        <img id="logo" src="/pawlogo.png" alt="" />
-      </figure>
       <h1 id="header-home">Hello, welcome to Furrventions!</h1>
     </header>
     <App />

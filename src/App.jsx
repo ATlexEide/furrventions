@@ -2,7 +2,7 @@
 
 export default function Home() {
   return (
-    <section id="catchphrase-cont">
+    <main>
       <div>
         <img width="120px" src="/pawlogo.png" alt="Furrventions logo" />
         <h2>Coming soon!</h2>
@@ -13,6 +13,6 @@ export default function Home() {
           </a>
         </p>
       </div>
-    </section>
+    </main>
   );
 }
