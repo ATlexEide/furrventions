@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import "./App.css";
 import "./index.css";
 import App from "./App.jsx";
+import { Analytics } from "@vercel/analytics/react";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
@@ -20,5 +21,6 @@ createRoot(document.getElementById("root")).render(
       <p id="header-tag">Hello, welcome to Furrventions!</p>
     </header>
     <App />
+    <Analytics />
   </>
 );
