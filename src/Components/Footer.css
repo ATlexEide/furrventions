@@ -1,6 +1,7 @@
 footer {
   display: flex;
   justify-content: center;
+  margin-top: auto;
   align-items: center;
   min-height: 50px;
   background-color: var(--main-accent-color);
