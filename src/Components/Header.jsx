@@ -19,7 +19,16 @@ export default function Header() {
   return (
     <>
       <SignedOut>
-        <header></header>
+        <header>
+          <figure id="logo-container">
+            <Link to="/">
+              <img id="logo" src="/pawlogo.png" alt="" />
+            </Link>
+          </figure>
+          <h1 id="header-home">Hello, Guest!</h1>
+          <Link to="conventions">View conventions</Link>||
+          <Link to="signin">Login</Link> / <Link to="signup">Signup</Link>
+        </header>
       </SignedOut>
       <SignedIn>
         <header>
