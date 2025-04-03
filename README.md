@@ -26,13 +26,16 @@
  Of course, but that's why it's fun to work with!
  
  Some things I'm already weary of is:
-  ***User management***
+ 
+  ***User management:***
+  
  Currently I'm using Clerk for auth and user management. If the project suddenly were to grow and I need more user control I dont think it'd be a *huge* problem migrating from clerk to something else, but it is something I am aware of.
  
  *Edit: After reading some docs and thinking. I'm gonna move over to supabase auth asap so I don't have to worry about it later.
  I also think that if needed in the future, this will simplify moving away from supabase as all the data, including users is gonna be in the Postgres db already, still not sure how auth would work if i moved away, but we'll learn.*
  
- ***Event validity***
+ ***Event validity:***
+ 
  How can you trust that the event is real and the information is correct?
  
  Well that's easy to solve! Right?
