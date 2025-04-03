@@ -17,9 +17,6 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
 
 createRoot(document.getElementById("root")).render(
   <>
-    <header>
-      <p id="header-tag">Hello, welcome to Furrventions!</p>
-    </header>
     <App />
     <Analytics />
   </>
