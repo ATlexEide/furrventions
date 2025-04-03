@@ -4,7 +4,8 @@ export default function Home() {
   const taglines = [
     "Your best friend in finding furry conventions!",
     "Yippieee",
-    "Finding meets and conventions made simple!"
+    "Finding meets and conventions made simple!",
+    "Do you know about any cons in the area?"
   ];
 
   return (
