@@ -3,20 +3,8 @@ import { fetchLogo } from "../utils/fetchLogo";
 import "./ConventionCard.css";
 
 export default function ConventionCard({ con, type }) {
-  const [locationData, setLocationData] = useState({});
-  useEffect(() => {
-    const locationData = async () => {
-      return await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?key=${
-          import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-        }&place_id=${con.location}`
-      )
-        .then((res) => res.json())
-        .then((res) => setLocationData(res.results[0]));
-    };
-    locationData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const [locationData, setLocationData] = useState({});
+
   // con = {
   //   name: "TEST CON",
   //   location
@@ -29,8 +17,7 @@ export default function ConventionCard({ con, type }) {
   //   creatorID: "",
   //   organizerID: ""
   // };
-  if (!con.location_formatted)
-    con.location_formatted = locationData.formatted_address;
+  if (!con.location_formatted) con.location_formatted = "REPLACE LATER"; //locationData.formatted_address;
 
   const days = [
     "Sunday",

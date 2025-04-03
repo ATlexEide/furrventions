@@ -1,7 +1,7 @@
-import {
-  APILoader,
-  PlacePicker
-} from "@googlemaps/extended-component-library/react";
+// import {
+//   APILoader,
+//   PlacePicker
+// } from "@googlemaps/extended-component-library/react";
 import { useSupabase } from "../utils/useSupabase";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
@@ -148,11 +148,11 @@ export default function AddConvention() {
           {/* LOCATION */}
           <div>
             {/* TODO: MOVE INTO SEPERATE COMPONENT */}
-            <APILoader
+            {/* <APILoader
               apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
               solutionChannel="GMP_GCC_placepicker_v1"
-            />
-            <div className="maps">
+            /> */}
+            {/* <div className="maps">
               <PlacePicker
                 country={[]}
                 placeholder={"Convention location"}
@@ -163,7 +163,7 @@ export default function AddConvention() {
                   })
                 }
               />
-            </div>
+            </div> */}
           </div>
         </section>
         <p>Convention will be registered to user id {user.id}</p>
