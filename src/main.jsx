@@ -15,7 +15,8 @@ import {
   RedirectToSignIn,
   ClerkLoading,
   ClerkLoaded,
-  ClerkProvider
+  ClerkProvider,
+  RedirectToSignUp
 } from "@clerk/clerk-react";
 import Kofi from "./Components/Kofi.jsx";
 import "./Components/ViewCons.css";
@@ -50,6 +51,8 @@ createRoot(document.getElementById("root")).render(
           <Routes>
             <Route exact path="/" element={<App />} />
             <Route exact path="signin" element={<RedirectToSignIn />} />
+            <Route exact path="signup" element={<RedirectToSignUp />} />
+
             <Route
               exact
               path="manage/:id/conventions"
