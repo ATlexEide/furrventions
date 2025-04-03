@@ -84,8 +84,16 @@ export default function ViewCons() {
           setFilter={setFilter}
           filterCons={filterCons}
         />
-        {Boolean(filteredCons.length) &&
-          filteredCons.map((con, i) => <ConventionCard con={con} key={i} />)}
+        <section id="convention-list-cont">
+          <ul id="convention-list">
+            {Boolean(filteredCons.length) &&
+              filteredCons.map((con, i) => (
+                <li className="convention" key={i}>
+                  <ConventionCard con={con} />
+                </li>
+              ))}
+          </ul>
+        </section>
         {!filteredCons.length && hasFilter && <h3>No results</h3>}
       </>
     );
@@ -98,9 +106,13 @@ export default function ViewCons() {
         filterCons={filterCons}
       />
       <section id="convention-list-cont">
-        {filteredCons.length
-          ? filteredCons.map((con, i) => <ConventionCard con={con} key={i} />)
-          : cons.map((con, i) => <ConventionCard con={con} key={i} />)}
+        <ul id="convention-list">
+          {cons.map((con, i) => (
+            <li className="convention" key={i}>
+              <ConventionCard con={con} />
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );
