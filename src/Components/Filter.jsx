@@ -1,8 +1,3 @@
-import {
-  APILoader,
-  PlacePicker
-} from "@googlemaps/extended-component-library/react";
-
 export default function Filter({
   setHasFilter,
   filter,
@@ -29,22 +24,6 @@ export default function Filter({
         <div className="filter-option-input">
           {/* <label htmlFor="convention-name">Convention location: </label> */}
           <div>
-            {/* TODO: MOVE INTO SEPERATE COMPONENT */}
-            {/* BUG: FIX RESETTING SEARCH FIELD */}
-            {/* <APILoader
-              apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
-              solutionChannel="GMP_GCC_placepicker_v1"
-            />
-
-            <div className="container">
-              <PlacePicker
-                country={[]}
-                placeholder={"Enter a place to see its address"}
-                onPlaceChange={(e) =>
-                  setFilter({ ...filter, location: e.target.value.id })
-                }
-              />
-            </div> */}
             <label htmlFor="convention-name">Convention location: </label>
             <input
               id="convention-location"

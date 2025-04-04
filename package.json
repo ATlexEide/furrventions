@@ -12,10 +12,8 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.25.2",
     "@clerk/themes": "^2.2.23",
-    "@googlemaps/extended-component-library": "^0.6.13",
     "@supabase/supabase-js": "^2.49.2",
     "@vercel/analytics": "^1.5.0",
-    "@vis.gl/react-google-maps": "^1.5.2",
     "dotenv": "^16.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

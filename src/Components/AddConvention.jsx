@@ -1,7 +1,3 @@
-// import {
-//   APILoader,
-//   PlacePicker
-// } from "@googlemaps/extended-component-library/react";
 import { useSupabase } from "../utils/useSupabase";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
