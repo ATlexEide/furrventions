@@ -35,43 +35,33 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
 
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
-  <ClerkProvider
-    touchSession={false}
-    publishableKey={PUBLISHABLE_KEY}
-    afterSignOutUrl="/"
-    appearance={{ baseTheme: shadesOfPurple }}
-  >
-    <ClerkLoading>
-      <div>Clerk is loading</div>
-    </ClerkLoading>
-    <ClerkLoaded>
-      <Router>
-        <Header />
-        <main>
-          <Routes>
-            <Route exact path="/" element={<App />} />
-            <Route exact path="signin" element={<RedirectToSignIn />} />
-            <Route exact path="signup" element={<RedirectToSignUp />} />
 
-            <Route
-              exact
-              path="manage/:id/conventions"
-              element={<ManageConventions />}
-            />
-            <Route exact path="conventions" element={<ViewCons />} />
-            <Route exact path="conventions/add" element={<AddConvention />} />
-            <Route exact path="conventions/:id" element={<ViewConInfo />} />
-            <Route
-              exact
-              path="user/:id/manage/conventions"
-              element={<AddConvention />}
-            />
-            <Route exact path="support" element={<Kofi />} />
-          </Routes>
-        </main>
-        <Footer />
-      </Router>
-    </ClerkLoaded>
-  </ClerkProvider>
+  <Router>
+    <Header />
+    <main>
+      <Routes>
+        <Route exact path="/" element={<App />} />
+        <Route exact path="signin" element={<RedirectToSignIn />} />
+        <Route exact path="signup" element={<RedirectToSignUp />} />
+
+        <Route
+          exact
+          path="manage/:id/conventions"
+          element={<ManageConventions />}
+        />
+        <Route exact path="conventions" element={<ViewCons />} />
+        <Route exact path="conventions/add" element={<AddConvention />} />
+        <Route exact path="conventions/:id" element={<ViewConInfo />} />
+        <Route
+          exact
+          path="user/:id/manage/conventions"
+          element={<AddConvention />}
+        />
+        <Route exact path="support" element={<Kofi />} />
+      </Routes>
+    </main>
+    <Footer />
+  </Router>
+
   // </StrictMode>
 );
