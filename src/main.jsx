@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { shadesOfPurple } from "@clerk/themes";
 
 import ViewCons from "./Components/ViewCons.jsx";
 import "./index.css";
@@ -11,16 +10,11 @@ import Header from "./Components/Header.jsx";
 import Footer from "./Components/Footer.jsx";
 import ManageConventions from "./Components/ManageConventions.jsx";
 import AddConvention from "./Components/AddConvention.jsx";
-import {
-  RedirectToSignIn,
-  ClerkLoading,
-  ClerkLoaded,
-  ClerkProvider,
-  RedirectToSignUp
-} from "@clerk/clerk-react";
+
 import Kofi from "./Components/Kofi.jsx";
 import "./styles/ViewCons.css";
 import ViewConInfo from "./Components/ViewConInfo.jsx";
+import SignUp from "./Components/Signup.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
@@ -41,8 +35,8 @@ createRoot(document.getElementById("root")).render(
     <main>
       <Routes>
         <Route exact path="/" element={<App />} />
-        <Route exact path="signin" element={<RedirectToSignIn />} />
-        <Route exact path="signup" element={<RedirectToSignUp />} />
+        <Route exact path="signin" element={} />
+        <Route exact path="signup" element={<SignUp />} />
 
         <Route
           exact
