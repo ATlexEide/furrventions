@@ -1,102 +1,29 @@
 #add-con {
-  margin: auto;
-  background-color: var(--secondary-bg-color);
-  padding: 48px;
-  border-radius: 12px;
-  height: fit-content;
-  width: 60%;
-  max-width: 600px;
-  min-width: 400px;
-}
-
-#add-con h2 {
-  color: white;
-}
-#add-con,
-#add-con-inputs {
-  gap: 12px;
+  background-color: #0c0c0c;
+  border-radius: 6px;
+  width: 490px;
+  height: 600px;
   display: flex;
   flex-direction: column;
-}
-
-#add-con-inputs input {
-  padding: 12px;
-  color: black;
-
-  height: 48px;
-  background-color: whitesmoke;
-  border: solid 1px;
-  border-radius: 10px;
-}
-
-#add-con-inputs input[type="date"] {
-  width: 60%;
-  accent-color: black;
-  margin-right: -0.35em;
-  cursor: text;
-}
-
-#add-con-inputs input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  background-color: black;
-  border-radius: 100%;
-}
-
-#add-con-inputs input {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-#add-con-inputs input:required::before {
-  color: red;
-  content: "*";
-}
-
-#date-select {
-  text-align: start;
-  gap: 6px;
-  display: flex;
-  flex-direction: column;
-  font-size: 1.5rem;
-}
-
-#date-select label {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-
-.input-cont {
-  padding: 6px;
-  display: flex;
   justify-content: space-between;
-  width: 100%;
+  border: solid 1px #ff005e;
 }
 
-#buttons {
-  height: 100%;
+#add-con section {
   display: flex;
-  gap: 24px;
   justify-content: center;
-  align-items: center;
+  gap: 30px;
 }
 
-#buttons button {
-  background-color: var(--secondary-accent-color);
-  width: 120px;
-  height: 48px;
-  border: solid 1px;
-  transition: 0.2s;
+#add-con section button {
+  width: 134px;
+  background-color: #171120;
+  border: solid 1px #e8a4ff;
 }
 
-#buttons button:hover {
-  transform: translate(1px, -1px) rotate(-1deg) scale(1.1);
-}
-
-#add-con-btn:hover {
-  background-color: green;
-}
-
-#clear-con-btn:hover {
+.red-btn {
   background-color: red;
+}
+.green-btn {
+  background-color: green;
 }
