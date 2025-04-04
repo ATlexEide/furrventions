@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Header.css";
+import "../styles/Header.css";
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/clerk-react";
 
 export default function Header() {
