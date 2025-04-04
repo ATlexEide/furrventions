@@ -1,10 +1,9 @@
 import { useSupabase } from "../utils/useSupabase";
-import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
-import "../styles/AddConvention.css";
+import "../styles/Forms.css";
 
 export default function AddConvention() {
-  const { user } = useUser();
+  const user = { id: "test" };
   const supabase = useSupabase();
   const [location, setLocation] = useState("");
   const [page, setPage] = useState("type");
