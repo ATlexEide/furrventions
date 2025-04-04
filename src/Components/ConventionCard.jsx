@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchLogo } from "../utils/fetchLogo";
-import "./ConventionCard.css";
+import "../styles/ConventionCard.css";
 
 export default function ConventionCard({ con, type }) {
   // const [locationData, setLocationData] = useState({});
