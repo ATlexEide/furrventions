@@ -79,7 +79,6 @@ export default function AddConvention() {
           {page === "type" && (
             <>
               <button
-                className="red-btn"
                 onClick={() => {
                   setPage("askForOrganizer");
                 }}
