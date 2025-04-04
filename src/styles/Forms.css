@@ -1,4 +1,4 @@
-#add-con {
+form {
   background-color: #0c0c0c;
   border-radius: 6px;
   width: 490px;
@@ -13,4 +13,15 @@
   display: flex;
   justify-content: center;
   gap: 30px;
+}
+
+#add-names,
+#add-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#add-names input,
+#add-login input {
+  width: 50%;
 }
