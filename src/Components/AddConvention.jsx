@@ -5,12 +5,13 @@
 import { useSupabase } from "../utils/useSupabase";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
-import "./AddConvention.css";
+import "../styles/AddConvention.css";
 
 export default function AddConvention() {
   const { user } = useUser();
   const supabase = useSupabase();
   const [location, setLocation] = useState("");
+  const [page, setPage] = useState("type");
   const [conventionInfo, setConventionInfo] = useState({
     organizerID: user.id,
     location: location
@@ -58,134 +59,62 @@ export default function AddConvention() {
     }
   }
 
+  const titles = {
+    type: "What kind of event are you adding?",
+    askForOrganizer: "Are you the organizer?",
+    organizerInfo: "Please enter {convention/meet} name",
+    location: "Please enter {convention/meet} location",
+    tags: "Please tick the boxes that apply",
+    tickets: "Ticket pricing",
+    info: "Aaaand some additional info"
+  };
+  const keys = Object.keys(titles);
   return (
     <>
       <form id="add-con">
-        <h2>Register a convention</h2>
-        <section id="add-con-inputs">
-          {/* CONVENTION NAME */}
-          <input
-            required
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Convention Name*"
-            value={conventionInfo.name}
-            onChange={(e) => {
-              console.log(e.target.value);
-              setConventionInfo({
-                ...conventionInfo,
-                name: e.target.value
-              });
-            }}
-          />
-          {/* CONVENTION DESCRIPTION */}
-          <input
-            required
-            type="text"
-            name="description"
-            id="description"
-            placeholder="Description*"
-            value={conventionInfo.description}
-            onChange={(e) => {
-              setConventionInfo({
-                ...conventionInfo,
-                description: e.target.value
-              });
-            }}
-          />
-
-          <div id="date-select">
-            {/* START TIME */}
-            <div className="input-cont">
-              <label htmlFor="start-time">Convention Starts:</label>
-              <input
-                required
-                type="date"
-                name="start-time"
-                id="start-time"
-                value={conventionInfo.start_time}
-                onChange={(e) => {
-                  setConventionInfo({
-                    ...conventionInfo,
-                    start_time: e.target.value
-                  });
-                }}
-              />
-            </div>
-
-            {/* END TIME */}
-            <div className="input-cont">
-              <label htmlFor="start-time">Convention Ends:</label>
-              <input
-                required
-                type="date"
-                name="end-time"
-                id="end-time"
-                value={conventionInfo.end_time}
-                onChange={(e) => {
-                  setConventionInfo({
-                    ...conventionInfo,
-                    end_time: e.target.value
-                  });
-                }}
-              />
-            </div>
-          </div>
-
-          {/* CONVENTION WEBSITE */}
-          <input
-            required
-            type="text"
-            name="website"
-            id="website"
-            placeholder="Convention Website*"
-            value={conventionInfo.website}
-            onChange={(e) => {
-              setConventionInfo({ ...conventionInfo, website: e.target.value });
-            }}
-          />
-          {/* LOCATION */}
-          <div>
-            {/* TODO: MOVE INTO SEPERATE COMPONENT */}
-            {/* <APILoader
-              apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
-              solutionChannel="GMP_GCC_placepicker_v1"
-            /> */}
-            {/* <div className="maps">
-              <PlacePicker
-                country={[]}
-                placeholder={"Convention location"}
-                onPlaceChange={(e) =>
-                  setConventionInfo({
-                    ...conventionInfo,
-                    location: e.target.value.id
-                  })
-                }
-              />
-            </div> */}
-          </div>
+        <section>
+          <h2>{titles[page]}</h2>
         </section>
-        <p>Convention will be registered to user id {user.id}</p>
-        <section id="buttons">
-          <button
-            id="clear-con-btn"
-            onClick={(e) => {
-              e.preventDefault();
-              clearConventionInfo();
-            }}
-          >
-            Clear
-          </button>
-          <button
-            id="add-con-btn"
-            onClick={(e) => {
-              e.preventDefault();
-              addConvention(conventionInfo);
-            }}
-          >
-            Add
-          </button>
+        <section>
+          {page === "type" && (
+            <>
+              <button
+                className="red-btn"
+                onClick={() => {
+                  setPage("askForOrganizer");
+                }}
+              >
+                Convention
+              </button>
+              <button
+                onClick={() => {
+                  setPage("askForOrganizer");
+                }}
+              >
+                Meet
+              </button>
+            </>
+          )}
+        </section>
+        <section>
+          {page !== "type" && (
+            <>
+              <button
+                onClick={() => {
+                  setPage(keys.at(keys.indexOf(page) - 1));
+                }}
+              >
+                Back
+              </button>
+              <button
+                onClick={() => {
+                  setPage(keys.at(keys.indexOf(page) + 1));
+                }}
+              >
+                Next
+              </button>
+            </>
+          )}
         </section>
       </form>
     </>
