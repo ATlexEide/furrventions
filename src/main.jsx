@@ -19,7 +19,7 @@ import {
   RedirectToSignUp
 } from "@clerk/clerk-react";
 import Kofi from "./Components/Kofi.jsx";
-import "./Components/ViewCons.css";
+import "./styles/ViewCons.css";
 import ViewConInfo from "./Components/ViewConInfo.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
