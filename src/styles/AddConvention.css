@@ -14,16 +14,3 @@
   justify-content: center;
   gap: 30px;
 }
-
-#add-con section button {
-  width: 134px;
-  background-color: #171120;
-  border: solid 1px #e8a4ff;
-}
-
-.red-btn {
-  background-color: red;
-}
-.green-btn {
-  background-color: green;
-}
