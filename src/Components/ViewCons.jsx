@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import ConventionCard from "./ConventionCard.jsx";
 import Filter from "./Filter.jsx";
-import "./ViewCons.css";
 import { useConsArray } from "../utils/useCons.js";
 import Loading from "./Loading.jsx";
+import "../styles/ViewCons.css";
 
 export default function ViewCons() {
   const [cons, loading] = useConsArray();
