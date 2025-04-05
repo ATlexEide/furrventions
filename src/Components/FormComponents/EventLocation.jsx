@@ -1,4 +1,4 @@
-export default function EventLocation() {
+export default function EventLocation({ eventInfo, setEventInfo }) {
   return (
     <>
       <label htmlFor="location">Event location:</label>
