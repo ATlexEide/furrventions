@@ -2,27 +2,22 @@
 import { useState } from "react";
 import "../styles/Forms.css";
 
+import OrganizerDetails from "./FormComponents/OrganizerDetails";
+import EventType from "./FormComponents/EventType";
+import EventName from "./FormComponents/EventName";
+import EventLocation from "./FormComponents/EventLocation";
+import EventTicketInfo from "./FormComponents/EventTicketInfo";
+import EventTags from "./FormComponents/EventTags";
+import EventAdditionalInfo from "./FormComponents/EventAdditionalInfo";
+
 export default function AddConvention() {
-  const user = { id: "test" };
   // const supabase = useSupabase();
   const [location, setLocation] = useState("");
   const [page, setPage] = useState(0);
   const [conventionInfo, setConventionInfo] = useState({
-    organizerID: user.id,
+    organizerID: "user.id",
     location: location
   });
-
-  function clearConventionInfo() {
-    setLocation("");
-    setConventionInfo({
-      organizerID: user.id,
-      name: "",
-      description: "",
-      start_time: undefined,
-      end_time: undefined,
-      website: ""
-    });
-  }
 
   // async function addConvention(obj) {
   //   obj.spots_total = 300;
@@ -55,48 +50,34 @@ export default function AddConvention() {
   // }
 
   const pages = [
-    "What kind of event are you adding?",
-    "Are you the organizer?",
-    "Please enter {convention/meet} name",
-    "Please enter {convention/meet} location",
-    "Please tick the boxes that apply",
-    "Ticket pricing",
-    "Aaaand some additional info"
+    {
+      title: "What kind of event are you adding?",
+      component: <EventType setPage={setPage} page={page} />
+    },
+    { title: "Are you the organizer?", component: <OrganizerDetails /> },
+    { title: "Please enter {convention/meet} name", component: <EventName /> },
+    {
+      title: "Please enter {convention/meet} location",
+      component: <EventLocation />
+    },
+    { title: "Ticket pricing", component: <EventTicketInfo /> },
+    { title: "Please tick the boxes that apply", component: <EventTags /> },
+    { title: "Aaaand some additional info", component: <EventAdditionalInfo /> }
   ];
   return (
     <>
       <form id="add-con">
         <section>
-          <h2>{pages[page]}</h2>
+          <h2>{pages[page].title}</h2>
         </section>
-        <section>
-          {!page && (
-            <>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                Convention
-              </button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 2);
-                }}
-              >
-                Meet
-              </button>
-            </>
-          )}
-        </section>
+        <section>{pages[page].component}</section>
         <section>
           {page > 0 && (
             <>
               <button
                 onClick={(e) => {
                   e.preventDefault();
+
                   setPage(page - 1);
                 }}
               >
