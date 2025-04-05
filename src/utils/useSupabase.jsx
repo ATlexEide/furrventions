@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 export function useSupabase() {
@@ -8,6 +8,5 @@ export function useSupabase() {
       import.meta.env.VITE_SUPABASE_KEY
     );
   });
-  useEffect(() => {}, []);
   return supabase;
 }
