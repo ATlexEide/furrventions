@@ -15,7 +15,13 @@ export default function AddConvention() {
   const [page, setPage] = useState(0);
   const [eventInfo, setEventInfo] = useState({
     type: null,
+
     organizerID: null,
+    organizerName: null,
+    organizerEmail: null,
+    organizerPhone: null,
+    organizerGroupChat: null,
+
     creatorID: null,
     location: null
   });
@@ -64,7 +70,12 @@ export default function AddConvention() {
     {
       title: "Are you the organizer?",
       component: (
-        <OrganizerDetails eventInfo={eventInfo} setEventInfo={setEventInfo} />
+        <OrganizerDetails
+          setPage={setPage}
+          page={page}
+          eventInfo={eventInfo}
+          setEventInfo={setEventInfo}
+        />
       )
     },
     {
@@ -105,7 +116,7 @@ export default function AddConvention() {
         <section>
           <h2>{pages[page].title}</h2>
         </section>
-        <section>{pages[page].component}</section>
+        <section id="form-main">{pages[page].component}</section>
         <section>
           {page > 0 && (
             <>
@@ -121,10 +132,10 @@ export default function AddConvention() {
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  setPage(page + 1);
+                  if (page !== pages.length - 1) setPage(page + 1);
                 }}
               >
-                Next
+                {page === pages.length - 1 ? "Add event" : "Next"}
               </button>
             </>
           )}
