@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "../styles/Forms.css";
 
+// Form components
 import OrganizerDetails from "./FormComponents/OrganizerDetails";
 import EventType from "./FormComponents/EventType";
 import EventName from "./FormComponents/EventName";
