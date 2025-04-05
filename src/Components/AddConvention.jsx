@@ -82,11 +82,11 @@ export default function AddConvention() {
       )
     },
     {
-      title: "Please enter {convention/meet} name",
+      title: `Please enter ${eventInfo.type} name`,
       component: <EventName eventInfo={eventInfo} setEventInfo={setEventInfo} />
     },
     {
-      title: "Please enter {convention/meet} location",
+      title: `Please enter ${eventInfo.type} location`,
       component: (
         <EventLocation eventInfo={eventInfo} setEventInfo={setEventInfo} />
       )
