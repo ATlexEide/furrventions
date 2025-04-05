@@ -12,12 +12,12 @@ import EventTags from "./FormComponents/EventTags";
 import EventAdditionalInfo from "./FormComponents/EventAdditionalInfo";
 
 export default function AddConvention() {
-  // const supabase = useSupabase();
-  const [location, setLocation] = useState("");
   const [page, setPage] = useState(0);
-  const [conventionInfo, setConventionInfo] = useState({
-    organizerID: "user.id",
-    location: location
+  const [eventInfo, setEventInfo] = useState({
+    type: null,
+    organizerID: null,
+    creatorID: null,
+    location: null
   });
 
   // async function addConvention(obj) {
@@ -49,22 +49,56 @@ export default function AddConvention() {
   //     console.log(data);
   //   }
   // }
-
   const pages = [
     {
       title: "What kind of event are you adding?",
-      component: <EventType setPage={setPage} page={page} />
+      component: (
+        <EventType
+          eventInfo={eventInfo}
+          setEventInfo={setEventInfo}
+          setPage={setPage}
+          page={page}
+        />
+      )
     },
-    { title: "Are you the organizer?", component: <OrganizerDetails /> },
-    { title: "Please enter {convention/meet} name", component: <EventName /> },
+    {
+      title: "Are you the organizer?",
+      component: (
+        <OrganizerDetails eventInfo={eventInfo} setEventInfo={setEventInfo} />
+      )
+    },
+    {
+      title: "Please enter {convention/meet} name",
+      component: <EventName eventInfo={eventInfo} setEventInfo={setEventInfo} />
+    },
     {
       title: "Please enter {convention/meet} location",
-      component: <EventLocation />
+      component: (
+        <EventLocation eventInfo={eventInfo} setEventInfo={setEventInfo} />
+      )
     },
-    { title: "Ticket pricing", component: <EventTicketInfo /> },
-    { title: "Please tick the boxes that apply", component: <EventTags /> },
-    { title: "Aaaand some additional info", component: <EventAdditionalInfo /> }
+    {
+      title: "Ticket pricing",
+      component: (
+        <EventTicketInfo eventInfo={eventInfo} setEventInfo={setEventInfo} />
+      )
+    },
+    {
+      title: "Please tick the boxes that apply",
+      component: <EventTags eventInfo={eventInfo} setEventInfo={setEventInfo} />
+    },
+    {
+      title: "Aaaand some additional info",
+      component: (
+        <EventAdditionalInfo
+          eventInfo={eventInfo}
+          setEventInfo={setEventInfo}
+        />
+      )
+    }
   ];
+
+  console.log(eventInfo);
   return (
     <>
       <form id="add-con">
