@@ -1,4 +1,4 @@
-export default function EventName() {
+export default function EventName({ eventInfo, setEventInfo }) {
   return (
     <>
       <label htmlFor="name">Event name:</label>
