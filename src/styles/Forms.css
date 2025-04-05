@@ -23,7 +23,20 @@ form {
   flex-direction: column;
   align-items: center;
 }
+
 #add-names input,
 #add-login input {
   width: 50%;
+}
+
+#organizer-details {
+  display: flex;
+  text-align: start;
+  align-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#organizer-details button {
+  width: 200px;
 }
