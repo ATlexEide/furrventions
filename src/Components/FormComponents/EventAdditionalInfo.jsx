@@ -1,4 +1,4 @@
-export default function EventAdditionalInfo() {
+export default function EventAdditionalInfo({ eventInfo, setEventInfo }) {
   return (
     <>
       <label htmlFor="name">Additional Info:</label>
