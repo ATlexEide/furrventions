@@ -117,7 +117,7 @@ export default function AddConvention() {
     alert("Some logic to add event");
     navigate("/");
   }
-  console.log(eventInfo);
+
   return (
     <>
       <form id="add-con">
