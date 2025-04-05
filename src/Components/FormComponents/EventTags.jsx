@@ -1,4 +1,4 @@
-export default function EventTags() {
+export default function EventTags({ eventInfo, setEventInfo }) {
   return (
     <>
       <label htmlFor="name">Event name:</label>
