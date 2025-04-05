@@ -1,4 +1,4 @@
-export default function EventTicketInfo() {
+export default function EventTicketInfo({ eventInfo, setEventInfo }) {
   return (
     <>
       <label htmlFor="price">Ticket price:</label>
