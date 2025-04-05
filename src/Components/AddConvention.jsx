@@ -10,6 +10,7 @@ import EventLocation from "./FormComponents/EventLocation";
 import EventTicketInfo from "./FormComponents/EventTicketInfo";
 import EventTags from "./FormComponents/EventTags";
 import EventAdditionalInfo from "./FormComponents/EventAdditionalInfo";
+import { useNavigate } from "react-router-dom";
 
 export default function AddConvention() {
   const [page, setPage] = useState(0);
@@ -109,6 +110,11 @@ export default function AddConvention() {
     }
   ];
 
+  const navigate = useNavigate();
+  function addEvent() {
+    alert("Some logic to add event");
+    navigate("/");
+  }
   console.log(eventInfo);
   return (
     <>
@@ -132,7 +138,7 @@ export default function AddConvention() {
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  if (page !== pages.length - 1) setPage(page + 1);
+                  page === pages.length - 1 ? addEvent() : setPage(page + 1);
                 }}
               >
                 {page === pages.length - 1 ? "Add event" : "Next"}
