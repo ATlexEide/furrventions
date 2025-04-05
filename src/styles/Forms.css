@@ -1,4 +1,5 @@
 form {
+  padding: 32px;
   background-color: #0c0c0c;
   border-radius: 6px;
   width: 490px;
@@ -12,6 +13,7 @@ form {
 #add-con section {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 30px;
 }
 

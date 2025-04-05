@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import "../styles/Forms.css";
 
 export default function SignUp() {
+  const [page, setPage] = useState(0);
   const [supabase] = useState(() => {
     return createClient(
       import.meta.env.VITE_SUPABASE_URL,
@@ -39,6 +40,17 @@ export default function SignUp() {
     }
     console.log("userData:", data);
   }
+
+  const titles = {
+    type: "Create an account",
+    askForOrganizer: "Contact info",
+    organizerInfo: "Please enter {convention/meet} name",
+    location: "Please enter {convention/meet} location",
+    tags: "Please tick the boxes that apply",
+    tickets: "Ticket pricing",
+    info: "Aaaand some additional info"
+  };
+  const keys = Object.keys(titles);
 
   return (
     <form id="register-account">
@@ -89,22 +101,27 @@ export default function SignUp() {
           onChange={(e) => setTempUser({ ...tempUser, pw: e.target.value })}
         />
       </section>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          console.log(tempUser);
-        }}
-      >
-        LOG USER
-      </button>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          signUpNewUser();
-        }}
-      >
-        Test
-      </button>
+      <section>
+        {Boolean(page) && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(tempUser);
+              setPage(keys.at(keys.indexOf(page) - 1));
+            }}
+          >
+            LOG USER
+          </button>
+        )}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setPage(keys.at(keys.indexOf(page) + 1));
+          }}
+        >
+          Next
+        </button>
+      </section>
     </form>
   );
 }
