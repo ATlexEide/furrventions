@@ -1,12 +1,12 @@
-import { useSupabase } from "../utils/useSupabase";
+// import { useSupabase } from "../utils/useSupabase";
 import { useState } from "react";
 import "../styles/Forms.css";
 
 export default function AddConvention() {
   const user = { id: "test" };
-  const supabase = useSupabase();
+  // const supabase = useSupabase();
   const [location, setLocation] = useState("");
-  const [page, setPage] = useState("type");
+  const [page, setPage] = useState(0);
   const [conventionInfo, setConventionInfo] = useState({
     organizerID: user.id,
     location: location
@@ -24,65 +24,66 @@ export default function AddConvention() {
     });
   }
 
-  async function addConvention(obj) {
-    obj.spots_total = 300;
-    obj.creatorID = user.id;
-    const { data, error } = await supabase
-      .from("conventions")
-      .insert(obj)
-      .select();
+  // async function addConvention(obj) {
+  //   obj.spots_total = 300;
+  //   obj.creatorID = user.id;
+  //   const { data, error } = await supabase
+  //     .from("conventions")
+  //     .insert(obj)
+  //     .select();
 
-    if (error) {
-      switch (error.code) {
-        case "23502":
-          alert("Please fill out all required fields");
-          break;
-        case "23505":
-          alert(
-            "Please make sure name and website are unique to this convention"
-          );
-          break;
+  //   if (error) {
+  //     switch (error.code) {
+  //       case "23502":
+  //         alert("Please fill out all required fields");
+  //         break;
+  //       case "23505":
+  //         alert(
+  //           "Please make sure name and website are unique to this convention"
+  //         );
+  //         break;
 
-        default:
-          break;
-      }
+  //       default:
+  //         break;
+  //     }
 
-      console.log(error);
-    } else {
-      clearConventionInfo();
-      console.log(data);
-    }
-  }
+  //     console.log(error);
+  //   } else {
+  //     clearConventionInfo();
+  //     console.log(data);
+  //   }
+  // }
 
-  const titles = {
-    type: "What kind of event are you adding?",
-    askForOrganizer: "Are you the organizer?",
-    organizerInfo: "Please enter {convention/meet} name",
-    location: "Please enter {convention/meet} location",
-    tags: "Please tick the boxes that apply",
-    tickets: "Ticket pricing",
-    info: "Aaaand some additional info"
-  };
-  const keys = Object.keys(titles);
+  const pages = [
+    "What kind of event are you adding?",
+    "Are you the organizer?",
+    "Please enter {convention/meet} name",
+    "Please enter {convention/meet} location",
+    "Please tick the boxes that apply",
+    "Ticket pricing",
+    "Aaaand some additional info"
+  ];
   return (
     <>
       <form id="add-con">
         <section>
-          <h2>{titles[page]}</h2>
+          <h2>{pages[page]}</h2>
         </section>
         <section>
-          {page === "type" && (
+          {!page && (
             <>
               <button
-                onClick={() => {
-                  setPage("askForOrganizer");
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
                 }}
               >
                 Convention
               </button>
               <button
-                onClick={() => {
-                  setPage("askForOrganizer");
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 2);
                 }}
               >
                 Meet
@@ -91,18 +92,20 @@ export default function AddConvention() {
           )}
         </section>
         <section>
-          {page !== "type" && (
+          {page > 0 && (
             <>
               <button
-                onClick={() => {
-                  setPage(keys.at(keys.indexOf(page) - 1));
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page - 1);
                 }}
               >
                 Back
               </button>
               <button
-                onClick={() => {
-                  setPage(keys.at(keys.indexOf(page) + 1));
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
                 }}
               >
                 Next
