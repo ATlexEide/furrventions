@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSession } from "@clerk/clerk-react";
 
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(

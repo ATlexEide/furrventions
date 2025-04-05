@@ -16,10 +16,6 @@ import "./styles/ViewCons.css";
 import ViewConInfo from "./Components/ViewConInfo.jsx";
 import SignUp from "./Components/Signup.jsx";
 
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key");
-}
 if (!import.meta.env.VITE_SUPABASE_URL) {
   throw new Error("Missing Supabase Url");
 }

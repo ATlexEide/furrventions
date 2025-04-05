@@ -8,14 +8,6 @@ export function useSupabase() {
       import.meta.env.VITE_SUPABASE_KEY
     );
   });
-  useEffect(() => {
-    const updateAuthToken = async () => {
-      const clerkToken = await session?.getToken({ template: "supabase" });
-
-      if (clerkToken) {
-        // supabase.auth.setAuth(clerkToken);
-      }
-    };
-  }, []);
+  useEffect(() => {}, []);
   return supabase;
 }
