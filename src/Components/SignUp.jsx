@@ -3,6 +3,8 @@ import { createClient } from "@supabase/supabase-js";
 import "../styles/Forms.css";
 
 import UserNames from "./FormComponents/UserNames";
+import LoginDetails from "./FormComponents/LoginDetails";
+import UserLoading from "./FormComponents/UserLoading";
 
 export default function SignUp() {
   const [page, setPage] = useState(0);
@@ -48,8 +50,8 @@ export default function SignUp() {
       title: "Name and username",
       component: <UserNames tempUser={tempUser} setTempUser={setTempUser} />
     },
-    { title: "Contact info" },
-    { title: "" }
+    { title: "Login details", component: <LoginDetails /> },
+    { title: "", component: <UserLoading /> }
   ];
 
   return (
@@ -59,20 +61,6 @@ export default function SignUp() {
         <h3>{pages[page].title}</h3>
       </section>
 
-      <section id="add-login">
-        <label htmlFor="firstname">Email:</label>
-        <input
-          id="email"
-          type="email"
-          onChange={(e) => setTempUser({ ...tempUser, email: e.target.value })}
-        />{" "}
-        <label htmlFor="firstname">Password:</label>
-        <input
-          id="password"
-          type="password"
-          onChange={(e) => setTempUser({ ...tempUser, pw: e.target.value })}
-        />
-      </section>
       <section>
         {Boolean(page) && (
           <button
