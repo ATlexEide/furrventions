@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+
+// CSS
 import "../styles/Forms.css";
 
+// Form components
 import UserNames from "./FormComponents/UserNames";
 import LoginDetails from "./FormComponents/LoginDetails";
 import UserLoading from "./FormComponents/UserLoading";
