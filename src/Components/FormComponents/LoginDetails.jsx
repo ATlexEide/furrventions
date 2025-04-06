@@ -1,4 +1,4 @@
-export default function LoginDetails() {
+export default function LoginDetails({ tempUser, setTempUser }) {
   return (
     <section id="add-login">
       <label htmlFor="firstname">Email:</label>
