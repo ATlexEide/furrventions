@@ -2,6 +2,8 @@ import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import "../styles/Forms.css";
 
+import UserNames from "./FormComponents/UserNames";
+
 export default function SignUp() {
   const [page, setPage] = useState(0);
   const [supabase] = useState(() => {
@@ -41,52 +43,22 @@ export default function SignUp() {
     console.log("userData:", data);
   }
 
-  const titles = {
-    type: "Create an account",
-    askForOrganizer: "Contact info",
-    organizerInfo: "Please enter {convention/meet} name",
-    location: "Please enter {convention/meet} location",
-    tags: "Please tick the boxes that apply",
-    tickets: "Ticket pricing",
-    info: "Aaaand some additional info"
-  };
-  const keys = Object.keys(titles);
+  const pages = [
+    {
+      title: "Name and username",
+      component: <UserNames tempUser={tempUser} setTempUser={setTempUser} />
+    },
+    { title: "Contact info" },
+    { title: "" }
+  ];
 
   return (
     <form id="register-account">
       <section>
         <h2>Create an account</h2>
+        <h3>{pages[page].title}</h3>
       </section>
-      <section id="add-names">
-        <label htmlFor="firstname">First name:</label>
-        <input
-          id="firstname"
-          type="text"
-          onChange={(e) =>
-            setTempUser({ ...tempUser, firstname: e.target.value })
-          }
-        />
-        <label htmlFor="firstname">Last name:</label>
-        <input
-          id="lastname"
-          type="text"
-          onChange={(e) =>
-            setTempUser({ ...tempUser, lastname: e.target.value })
-          }
-        />
-        <label htmlFor="firstname">Furname (Username):</label>
-        <input
-          id="furname"
-          type="text"
-          onChange={(e) =>
-            setTempUser({
-              ...tempUser,
-              display_name: e.target.value,
-              furname: e.target.value
-            })
-          }
-        />
-      </section>
+
       <section id="add-login">
         <label htmlFor="firstname">Email:</label>
         <input
@@ -107,7 +79,7 @@ export default function SignUp() {
             onClick={(e) => {
               e.preventDefault();
               console.log(tempUser);
-              setPage(keys.at(keys.indexOf(page) - 1));
+              setPage(page - 1);
             }}
           >
             LOG USER
@@ -116,7 +88,7 @@ export default function SignUp() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            setPage(keys.at(keys.indexOf(page) + 1));
+            setPage(page + 1);
           }}
         >
           Next
