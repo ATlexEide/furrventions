@@ -8,6 +8,7 @@ import "../styles/Forms.css";
 import UserNames from "./FormComponents/UserNames";
 import LoginDetails from "./FormComponents/LoginDetails";
 import UserLoading from "./FormComponents/UserLoading";
+import AccountCreated from "./FormComponents/AccountCreated";
 
 export default function SignUp() {
   const [page, setPage] = useState(0);
@@ -45,16 +46,20 @@ export default function SignUp() {
     while (!data) {
       console.log("Loading...");
     }
-    console.log("userData:", data);
   }
+  console.log("userData:", tempUser);
 
   const pages = [
     {
       title: "Name and username",
       component: <UserNames tempUser={tempUser} setTempUser={setTempUser} />
     },
-    { title: "Login details", component: <LoginDetails /> },
-    { title: "", component: <UserLoading /> }
+    {
+      title: "Login details",
+      component: <LoginDetails tempUser={tempUser} setTempUser={setTempUser} />
+    },
+    { title: "", component: <UserLoading /> },
+    { title: "", component: <AccountCreated /> }
   ];
 
   return (
@@ -63,7 +68,7 @@ export default function SignUp() {
         <h2>Create an account</h2>
         <h3>{pages[page].title}</h3>
       </section>
-
+      {pages[page].component}
       <section>
         {Boolean(page) && (
           <button
