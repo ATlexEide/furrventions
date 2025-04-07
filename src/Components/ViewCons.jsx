@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import ConventionCard from "./ConventionCard.jsx";
 import Filter from "./Filter.jsx";
-import { useConsArray } from "../utils/useCons.js";
+import { useConsArray } from "../utils/useCons.jsx";
 import Loading from "./Loading.jsx";
 import "../styles/ViewCons.css";
 
 export default function ViewCons() {
-  const [cons, loading] = useConsArray();
+  const [cons] = useConsArray();
   const [filter, setFilter] = useState(null);
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
 
   async function filterCons() {
     // DEBUGGIN
-    console.log(cons[1].spots_total, typeof cons[1].spots_total);
-    console.log(filter.spots_total, typeof filter.spots_total);
+    // console.log(cons[1].spots_total, typeof cons[1].spots_total);
+    // console.log(filter.spots_total, typeof filter.spots_total);
     // DEBUGGIN
 
     let filtered = cons.slice();
@@ -55,8 +55,6 @@ export default function ViewCons() {
     filterCons();
   }, [filter]);
 
-  console.log("filtered", filteredCons);
-  console.log("filter", filter);
   if (!cons) return <Loading />;
   if (hasFilter)
     return (
