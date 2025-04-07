@@ -3,7 +3,7 @@ import { useState } from "react";
 // CSS
 import "../styles/UserButton.css";
 
-export default function UserButton({ supabase }) {
+export default function UserButton({ user, supabase }) {
   const [isOpen, setIsOpen] = useState();
 
   async function logout() {
@@ -11,7 +11,7 @@ export default function UserButton({ supabase }) {
     if (error) console.log(error);
     window.location.reload();
   }
-
+  console.log(user);
   return (
     <>
       <button
@@ -29,7 +29,6 @@ export default function UserButton({ supabase }) {
       {isOpen && (
         <section id="user-menu">
           <>
-            {" "}
             <button
               id="close-menu"
               onClick={() => {
@@ -38,6 +37,7 @@ export default function UserButton({ supabase }) {
             >
               Close
             </button>
+            <h3>Logged in as {user.user_metadata.furname}</h3>
             <ul id="menu">
               <li>some option</li>
               <li>UwU</li>
