@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import ConventionCard from "./ConventionCard";
-import { useConsObject } from "../utils/useCons.js";
+import { useConsObject } from "../utils/useCons.jsx";
 import Loading from "./Loading.jsx";
 
 export default function ViewConInfo() {
