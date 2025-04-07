@@ -1,4 +1,8 @@
 #userbutton {
   display: flex;
   flex-direction: column;
+  align-content: start;
+}
+#userbutton-content {
+  position: relative;
 }
