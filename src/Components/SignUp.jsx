@@ -74,11 +74,10 @@ export default function SignUp() {
           <button
             onClick={(e) => {
               e.preventDefault();
-              console.log(tempUser);
               setPage(page - 1);
             }}
           >
-            LOG USER
+            Back
           </button>
         )}
         <button
