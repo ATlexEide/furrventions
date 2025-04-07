@@ -3,7 +3,7 @@ import "../styles/Header.css";
 import UserButton from "./UserButton";
 
 export default function Header() {
-  const user = null; // { username: "velvet" };
+  const user = { username: "velvet" };
 
   return (
     <>
