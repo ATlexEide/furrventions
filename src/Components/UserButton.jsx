@@ -7,7 +7,7 @@ export default function UserButton() {
   const [isOpen, setIsOpen] = useState();
   const _width = 200;
   return (
-    <section id="userbutton">
+    <>
       <button
         style={{ width: `${_width}px` }}
         onClick={() => {
@@ -18,14 +18,24 @@ export default function UserButton() {
       </button>
 
       {isOpen && (
-        <section id="userbutton-content">
-          <ul>
-            <li>some option</li>
-            <li>UwU</li>
-            <li>Some other option</li>
-          </ul>
+        <section id="user-menu">
+          <>
+            {" "}
+            <button
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            >
+              Close
+            </button>
+            <ul>
+              <li>some option</li>
+              <li>UwU</li>
+              <li>Some other option</li>
+            </ul>
+          </>
         </section>
       )}
-    </section>
+    </>
   );
 }
