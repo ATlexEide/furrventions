@@ -5,13 +5,12 @@ import "../styles/UserButton.css";
 
 export default function UserButton() {
   const [isOpen, setIsOpen] = useState();
-  const _width = 200;
   return (
     <>
       <button
+        id="manage-profile"
         style={{
-          opacity: `${isOpen ? "0" : "1"}`,
-          width: `${_width}px`
+          opacity: `${isOpen ? "0" : "1"}`
         }}
         onClick={() => {
           setIsOpen(!isOpen);
@@ -37,6 +36,9 @@ export default function UserButton() {
               <li>UwU</li>
               <li>Some other option</li>
             </ul>
+            <button id="logout" className="red-btn">
+              Log out
+            </button>
           </>
         </section>
       )}

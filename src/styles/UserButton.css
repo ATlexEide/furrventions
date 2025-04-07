@@ -1,3 +1,7 @@
+#manage-profile {
+  width: 200px;
+}
+
 #userbutton {
   border: solid 1px yellow;
   display: flex;
@@ -18,6 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 24px;
 }
 
 #close-menu {
@@ -26,4 +31,9 @@
 
 #menu {
   padding: 24px 0;
+}
+
+#logout {
+  margin-top: auto;
+  justify-self: end;
 }
