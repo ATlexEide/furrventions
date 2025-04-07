@@ -13,6 +13,7 @@ export default function SignIn({ supabase }) {
     if (error) console.log(error);
     if (data) navigate("/");
     console.log(data);
+    window.location.reload();
   }
   return (
     <form id="signin-account">
