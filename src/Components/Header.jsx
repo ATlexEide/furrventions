@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../styles/Header.css";
 import UserButton from "./UserButton";
 
-export default function Header() {
+export default function Header({ supabase }) {
   const user = { username: "velvet" };
 
   return (
@@ -22,7 +22,7 @@ export default function Header() {
         <Link to="conventions/add">Add convention</Link> |
         <Link to="conventions">View conventions</Link>||
         <Link to="login">Login</Link> /<Link to="signup">Signup</Link>
-        {user && <UserButton />}
+        {user && <UserButton supabase={supabase} />}
       </header>
     </>
   );
