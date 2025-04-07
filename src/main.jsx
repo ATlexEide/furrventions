@@ -36,7 +36,7 @@ createRoot(document.getElementById("root")).render(
       <Header supabase={supabase} />
       <main>
         <Routes>
-          <Route exact path="/" element={<App supabase={supabase} />} />
+          <Route exact path="/" element={<App />} />
           <Route exact path="signin" element={<SignIn supabase={supabase} />} />
           <Route exact path="signup" element={<SignUp supabase={supabase} />} />
 
