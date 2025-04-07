@@ -38,7 +38,7 @@ export default function Header({ supabase }) {
             <Link to="signin">Login</Link> / <Link to="signup">Signup</Link>
           </>
         )}
-        {user && <UserButton supabase={supabase} />}
+        {user && <UserButton user={user} supabase={supabase} />}
       </header>
     </>
   );
