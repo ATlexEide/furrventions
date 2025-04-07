@@ -120,7 +120,7 @@ export default function ViewCons({ supabase }) {
         <ul id="convention-list">
           {cons.map((con, i) => (
             <li className="convention" key={i}>
-              <ConventionCard con={con} />
+              <ConventionCard consObj={consObj} con={con} />
             </li>
           ))}
         </ul>
