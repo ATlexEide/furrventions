@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { createClient } from "@supabase/supabase-js";
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_KEY
-);
+import useSupabase from "./useSupabase";
 
 function useFetchCons() {
+  const supabase = useSupabase();
   console.log("Fetching cons");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(
