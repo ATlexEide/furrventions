@@ -3,7 +3,6 @@
 }
 
 #userbutton {
-  border: solid 1px yellow;
   display: flex;
   flex-direction: column;
   align-content: start;
@@ -27,6 +26,7 @@
 
 #close-menu {
   align-self: flex-end;
+  margin-bottom: 12px;
 }
 
 #menu {
