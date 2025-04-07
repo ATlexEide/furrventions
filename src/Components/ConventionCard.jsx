@@ -2,21 +2,7 @@ import { fetchLogo } from "../utils/fetchLogo";
 import "../styles/ConventionCard.css";
 
 export default function ConventionCard({ consObj, con, type }) {
-  // const [locationData, setLocationData] = useState({});
-
-  // con = {
-  //   name: "TEST CON",
-  //   location
-  //   description: "TEST DESCRIPTION",
-  //   // logo_path: "/public/pawske.png",
-  //   start_time: "01-01-0101",
-  //   end_time: "02-02-0202",
-  //   spots_total: 200,
-  //   spots_taken: 69,
-  //   creatorID: "",
-  //   organizerID: ""
-  // };
-  if (!con.location_formatted) con.location_formatted = "REPLACE LATER"; //locationData.formatted_address;
+  if (!con.location_formatted) con.location_formatted = "REPLACE LATER";
 
   const days = [
     "Sunday",
