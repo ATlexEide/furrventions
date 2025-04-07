@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { fetchLogo } from "../utils/fetchLogo";
 import "../styles/ConventionCard.css";
 
