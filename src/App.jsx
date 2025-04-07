@@ -1,10 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import useSupabase from "./utils/useSupabase";
 
-export default function Home() {
-  const supabase = useSupabase();
-
+export default function Home({ supabase }) {
   // Taglines for display under landing page greeting
   const taglines = [
     "Your best friend in finding furry conventions!",
@@ -21,7 +18,7 @@ export default function Home() {
     if (data) setUser(data);
     console.log(data);
   }, []);
-
+  console.log("user", user);
   return (
     <section id="catchphrase-cont">
       <div>
