@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // CSS
 import "../styles/UserButton.css";
 
 export default function UserButton({ supabase }) {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState();
 
   async function logout() {
     const { error } = await supabase.auth.signOut();
     if (error) console.log(error);
+    navigate("/");
   }
 
   return (
