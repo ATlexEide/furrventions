@@ -11,14 +11,6 @@ export default function Home({ supabase }) {
     "I'm not a furry but"
   ];
 
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    const { data, error } = supabase.auth.getSession();
-    if (error) console.log(error);
-    if (data) setUser(data);
-    console.log(data);
-  }, []);
-  console.log("user", user);
   return (
     <section id="catchphrase-cont">
       <div>
