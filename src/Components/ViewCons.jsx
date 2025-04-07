@@ -23,6 +23,10 @@ export default function ViewCons({ supabase }) {
     setLoading(false);
   }
 
+  useEffect(() => {
+    if (!cons.length) fetch();
+  }, []);
+
   async function filterCons() {
     // DEBUGGIN
     // console.log(cons[1].spots_total, typeof cons[1].spots_total);
