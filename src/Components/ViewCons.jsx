@@ -6,6 +6,8 @@ import Loading from "./Loading.jsx";
 import "../styles/ViewCons.css";
 
 export default function ViewCons({ supabase }) {
+  const [consObj, setConsObj] = useState({});
+  const [loading, setLoading] = useState(true);
   const [cons, setCons] = useState(
     localStorage.getItem("conventions")
       ? JSON.parse(localStorage.getItem("conventions"))
@@ -25,7 +27,19 @@ export default function ViewCons({ supabase }) {
 
   useEffect(() => {
     if (!cons.length) fetch();
-  }, []);
+    createConventionObject();
+  }, [cons]);
+
+  function createConventionObject() {
+    if (!cons) return;
+    let _consObject = {};
+    cons.map((con) => {
+      _consObject[con.id] = con;
+    });
+    console.clear();
+    console.log("consOBJ", _consObject);
+    setConsObj(_consObject);
+  }
 
   async function filterCons() {
     // DEBUGGIN
