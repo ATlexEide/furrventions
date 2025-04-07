@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
 import ConventionCard from "./ConventionCard.jsx";
 import Filter from "./Filter.jsx";
-import { useConsArray } from "../utils/useCons.jsx";
+// import { useConsArray } from "../utils/useCons.jsx";
 import Loading from "./Loading.jsx";
 import "../styles/ViewCons.css";
 
-export default function ViewCons() {
-  const [cons] = useConsArray();
+export default function ViewCons({ supabase }) {
+  const [cons, setCons] = useState(
+    localStorage.getItem("conventions")
+      ? JSON.parse(localStorage.getItem("conventions"))
+      : []
+  );
   const [filter, setFilter] = useState(null);
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
+
+  async function fetch() {
+    const { data, err } = await supabase.from("conventions").select();
+    if (err) throw new Error(err);
+    localStorage.setItem("conventions", JSON.stringify(data));
+    setCons(data);
+    setLoading(false);
+  }
 
   async function filterCons() {
     // DEBUGGIN
