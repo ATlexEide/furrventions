@@ -4,6 +4,7 @@ import useSupabase from "./utils/useSupabase";
 
 export default function Home() {
   const supabase = useSupabase();
+
   // Taglines for display under landing page greeting
   const taglines = [
     "Your best friend in finding furry conventions!",
