@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
 
-export default function Home({ supabase }) {
+export default function Home() {
   // Taglines for display under landing page greeting
   const taglines = [
     "Your best friend in finding furry conventions!",
