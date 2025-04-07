@@ -21,7 +21,7 @@ export default function Header({ supabase }) {
         </h1>
         <Link to="conventions/add">Add convention</Link> |
         <Link to="conventions">View conventions</Link>||
-        <Link to="login">Login</Link> /<Link to="signup">Signup</Link>
+        <Link to="signin">Login</Link> /<Link to="signup">Signup</Link>
         {user && <UserButton supabase={supabase} />}
       </header>
     </>
