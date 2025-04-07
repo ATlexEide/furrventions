@@ -5,19 +5,21 @@ import UserButton from "./UserButton";
 
 export default function Header({ supabase }) {
   const [user, setUser] = useState(null);
+  const [session, setSession] = useState(null);
 
   async function getSession() {
     if (user) return;
     const { data, error } = await supabase.auth.getSession();
-    if (error) console.log(error);
-    console.log("session data", data.session.user);
-    setUser(data.session.user);
+    if (!error) setSession(data.session);
   }
   useEffect(() => {
-    if (user) return;
     getSession();
-  }, []);
-  useEffect(() => {}, [user]);
+    if (!session) return;
+    setUser(session.user);
+  }, [session]);
+
+  console.log("HEADER SESSION", session);
+  console.log("HEADER USER", user);
   return (
     <>
       <header>
@@ -31,7 +33,11 @@ export default function Header({ supabase }) {
         </h1>
         <Link to="conventions/add">Add convention</Link> |
         <Link to="conventions">View conventions</Link>||
-        <Link to="signin">Login</Link> /<Link to="signup">Signup</Link>
+        {!session && (
+          <>
+            <Link to="signin">Login</Link> / <Link to="signup">Signup</Link>
+          </>
+        )}
         {user && <UserButton supabase={supabase} />}
       </header>
     </>
