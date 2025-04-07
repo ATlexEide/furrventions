@@ -28,6 +28,7 @@ export default function ViewCons({ supabase }) {
   useEffect(() => {
     if (!cons.length) fetch();
     createConventionObject();
+    setLoading(false);
   }, [cons]);
 
   function createConventionObject() {
@@ -85,7 +86,7 @@ export default function ViewCons({ supabase }) {
     filterCons();
   }, [filter]);
 
-  if (!cons) return <Loading />;
+  if (!cons || loading) return <Loading />;
   if (hasFilter)
     return (
       <>
