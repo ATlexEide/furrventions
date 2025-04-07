@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
+import useSupabase from "../utils/useSupabase";
 // CSS
 import "../styles/Forms.css";
 
@@ -11,13 +10,8 @@ import UserLoading from "./FormComponents/UserLoading";
 import AccountCreated from "./FormComponents/AccountCreated";
 
 export default function SignUp() {
+  const supabase = useSupabase();
   const [page, setPage] = useState(0);
-  const [supabase] = useState(() => {
-    return createClient(
-      import.meta.env.VITE_SUPABASE_URL,
-      import.meta.env.VITE_SUPABASE_KEY
-    );
-  });
   const [tempUser, setTempUser] = useState({
     pw: "",
     email: "",
@@ -30,14 +24,14 @@ export default function SignUp() {
 
   async function signUpNewUser() {
     const { data, error } = await supabase.auth.signUp({
-      email: tempUser.email,
-      password: tempUser.pw,
+      email: "contact@alexandereide.com", //tempUser.email,
+      password: "passord123", // tempUser.pw,
       options: {
         emailRedirectTo: "https://furrventions.com/",
         data: {
-          first_name: tempUser.firstname,
-          last_name: tempUser.lastname,
-          furname: tempUser.furname
+          first_name: "Alex", //tempUser.firstname,
+          last_name: "E", //tempUser.lastname,
+          furname: "Test" // tempUser.furname
         }
       }
     });
@@ -46,6 +40,7 @@ export default function SignUp() {
     while (!data) {
       console.log("Loading...");
     }
+    console.log(data);
   }
   console.log("userData:", tempUser);
 
@@ -64,6 +59,14 @@ export default function SignUp() {
 
   return (
     <form id="register-account">
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          signUpNewUser();
+        }}
+      >
+        Test
+      </button>
       <section>
         <h2>Create an account</h2>
         <h3>{pages[page].title}</h3>
@@ -83,6 +86,10 @@ export default function SignUp() {
         <button
           onClick={(e) => {
             e.preventDefault();
+            if (pages[page].title === "Login details") {
+              signUpNewUser();
+              return;
+            }
             setPage(page + 1);
           }}
         >
