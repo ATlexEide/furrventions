@@ -9,7 +9,10 @@ export default function UserButton() {
   return (
     <>
       <button
-        style={{ width: `${_width}px` }}
+        style={{
+          opacity: `${isOpen ? "0" : "1"}`,
+          width: `${_width}px`
+        }}
         onClick={() => {
           setIsOpen(!isOpen);
         }}
@@ -22,13 +25,14 @@ export default function UserButton() {
           <>
             {" "}
             <button
+              id="close-menu"
               onClick={() => {
                 setIsOpen(!isOpen);
               }}
             >
               Close
             </button>
-            <ul>
+            <ul id="menu">
               <li>some option</li>
               <li>UwU</li>
               <li>Some other option</li>
