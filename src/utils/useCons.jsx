@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import useSupabase from "./useSupabase";
-
 function useFetchCons() {
   const supabase = useSupabase();
   console.log("Fetching cons");
