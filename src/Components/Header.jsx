@@ -3,7 +3,7 @@ import "../styles/Header.css";
 import UserButton from "./UserButton";
 
 export default function Header() {
-  const user = { username: "velvet" };
+  const user = null; // { username: "velvet" };
 
   return (
     <>
@@ -13,16 +13,16 @@ export default function Header() {
             <img id="logo" src="/pawlogo.png" alt="" />
           </Link>
         </figure>
-        {user && (
-          <h1 id="header-home">
-            Hello,{" "}
-            {user.username.charAt(0).toUpperCase() + user.username.slice(1)}!
-          </h1>
-        )}
+        <h1 id="header-home">
+          {user &&
+            `Hello, ${user.username
+              .charAt(0)
+              .toUpperCase()}${user.username.slice(1)}!`}
+        </h1>
         <Link to="conventions/add">Add convention</Link> |
         <Link to="conventions">View conventions</Link>||
         <Link to="login">Login</Link> /<Link to="signup">Signup</Link>
-        <UserButton />
+        {user && <UserButton />}
       </header>
     </>
   );
