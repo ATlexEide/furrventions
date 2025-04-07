@@ -1,5 +1,9 @@
 "use client";
+import { useEffect, useState } from "react";
+import useSupabase from "./utils/useSupabase";
+
 export default function Home() {
+  const supabase = useSupabase();
   // Taglines for display under landing page greeting
   const taglines = [
     "Your best friend in finding furry conventions!",
@@ -8,6 +12,14 @@ export default function Home() {
     "Do you know about any cons in the area?",
     "I'm not a furry but"
   ];
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const { data, error } = supabase.auth.getSession();
+    if (error) console.log(error);
+    if (data) setUser(data);
+    console.log(data);
+  }, []);
 
   return (
     <section id="catchphrase-cont">
