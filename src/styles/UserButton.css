@@ -1,9 +1,15 @@
 #userbutton {
+  border: solid 1px yellow;
   display: flex;
   flex-direction: column;
   align-content: start;
 }
-#userbutton-content {
-  position: relative;
-  top: 350px;
+#user-menu {
+  width: 300px;
+  height: 400px;
+  background-color: rgb(187, 43, 43);
+
+  position: absolute;
+  right: 12px;
+  top: 12px;
 }
