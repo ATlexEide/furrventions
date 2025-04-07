@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
+import UserButton from "./UserButton";
 
 export default function Header() {
   const user = { username: "velvet" };
@@ -21,6 +22,7 @@ export default function Header() {
         <Link to="conventions/add">Add convention</Link> |
         <Link to="conventions">View conventions</Link>||
         <Link to="login">Login</Link> /<Link to="signup">Signup</Link>
+        <UserButton />
       </header>
     </>
   );
