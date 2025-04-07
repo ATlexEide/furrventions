@@ -3,8 +3,14 @@ import { useState } from "react";
 // CSS
 import "../styles/UserButton.css";
 
-export default function UserButton() {
+export default function UserButton({ supabase }) {
   const [isOpen, setIsOpen] = useState();
+
+  async function logout() {
+    const { error } = await supabase.auth.signOut();
+    if (error) console.log(error);
+  }
+
   return (
     <>
       <button
@@ -36,7 +42,7 @@ export default function UserButton() {
               <li>UwU</li>
               <li>Some other option</li>
             </ul>
-            <button id="logout" className="red-btn">
+            <button id="logout" className="red-btn" onClick={logout}>
               Log out
             </button>
           </>
