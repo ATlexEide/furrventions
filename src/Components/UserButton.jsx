@@ -16,6 +16,7 @@ export default function UserButton() {
       >
         Manage profile
       </button>
+
       {isOpen && (
         <section id="userbutton-content">
           <ul>
