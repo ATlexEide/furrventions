@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useSupabase from "../utils/useSupabase";
 // CSS
 import "../styles/Forms.css";
 
@@ -9,8 +8,7 @@ import LoginDetails from "./FormComponents/LoginDetails";
 import UserLoading from "./FormComponents/UserLoading";
 import AccountCreated from "./FormComponents/AccountCreated";
 
-export default function SignUp() {
-  const supabase = useSupabase();
+export default function SignUp({ supabase }) {
   const [page, setPage] = useState(0);
   const [tempUser, setTempUser] = useState({
     pw: "",
