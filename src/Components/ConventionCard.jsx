@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchLogo } from "../utils/fetchLogo";
 import "../styles/ConventionCard.css";
 
-export default function ConventionCard({ con, type }) {
+export default function ConventionCard({ consObj, con, type }) {
   // const [locationData, setLocationData] = useState({});
 
   // con = {
@@ -70,6 +70,9 @@ export default function ConventionCard({ con, type }) {
 
   return (
     <article
+      onClick={() => {
+        console.log(consObj[con.id]);
+      }}
       className={
         type ? "convention-card" : "convention-card convention-info-card"
       }
