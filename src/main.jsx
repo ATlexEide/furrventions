@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
 
 import ViewCons from "./Components/ViewCons.jsx";
 import "./index.css";
@@ -23,13 +24,18 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
   throw new Error("Missing Supabase Key");
 }
 
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_KEY
+);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
       <Header />
       <main>
         <Routes>
-          <Route exact path="/" element={<App />} />
+          <Route exact path="/" element={<App supabase={supabase} />} />
           <Route exact path="signin" />
           <Route exact path="signup" element={<SignUp />} />
 
