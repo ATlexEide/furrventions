@@ -6,6 +6,7 @@ export default function ManageConventions({ supabase }) {
   const { id } = useParams();
   console.log("params id", id);
 
+  // TODO: FIX being able to see other users events by changing url
   async function fetchUserConIds() {
     // .eq("userID", "5d735e16-8b63-46e1-8c39-0993d96b78b6");
     const { data, error } = await supabase
