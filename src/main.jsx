@@ -43,7 +43,7 @@ createRoot(document.getElementById("root")).render(
           <Route
             exact
             path="manage/:id/conventions"
-            element={<ManageConventions />}
+            element={<ManageConventions supabase={supabase} />}
           />
           <Route
             exact
