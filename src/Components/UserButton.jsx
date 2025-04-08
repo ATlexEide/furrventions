@@ -12,6 +12,8 @@ export default function UserButton({ user, supabase }) {
     window.location.reload();
   }
   console.log(user);
+
+  const furname = user.user_metadata.furname ?? "User";
   return (
     <>
       <button
@@ -30,7 +32,7 @@ export default function UserButton({ user, supabase }) {
         <section id="user-menu">
           <>
             <div id="user-menu-header">
-              <h3>Logged in as {user.user_metadata.furname}</h3>
+              <h3>Logged in as {furname}</h3>
               <button
                 id="close-menu"
                 onClick={() => {
