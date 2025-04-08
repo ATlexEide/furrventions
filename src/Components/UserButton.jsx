@@ -11,7 +11,7 @@ export default function UserButton({ user, supabase }) {
 
   const pages = {
     main: <MainPage setCurrentPage={setCurrentPage} />,
-    account_settings: <AccountSettings />
+    account_settings: <AccountSettings user={user} />
   };
   async function logout() {
     const { error } = await supabase.auth.signOut();
