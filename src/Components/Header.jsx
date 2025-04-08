@@ -18,8 +18,6 @@ export default function Header({ supabase }) {
     setUser(session.user);
   }, [session]);
 
-  console.log("HEADER SESSION", session);
-  console.log("HEADER USER", user);
   return (
     <>
       <header>
