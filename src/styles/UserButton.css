@@ -21,19 +21,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 24px;
+  padding: 12px 24px 24px 24px;
+}
+
+#user-menu-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #close-menu {
   align-self: flex-end;
-  margin-bottom: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  width: fit-content;
+  font-size: 2rem;
 }
 
 #menu {
-  padding: 24px 0;
+  padding: 12px 0;
+  width: 100%;
 }
 
 #logout {
+  width: 100%;
   margin-top: auto;
   justify-self: end;
 }
