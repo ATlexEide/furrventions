@@ -30,6 +30,9 @@
   align-items: center;
 }
 
+#close-menu:active#close-menu:focus {
+  display: none;
+}
 #close-menu {
   align-self: flex-end;
   background: none;
@@ -42,6 +45,12 @@
 #menu {
   padding: 12px 0;
   width: 100%;
+}
+
+#menu li:hover {
+  cursor: pointer;
+  color: rgb(194, 194, 255);
+  font-weight: 500;
 }
 
 #logout {
