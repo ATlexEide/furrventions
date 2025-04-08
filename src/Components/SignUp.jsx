@@ -22,14 +22,14 @@ export default function SignUp({ supabase }) {
 
   async function signUpNewUser() {
     const { data, error } = await supabase.auth.signUp({
-      email: "contact@alexandereide.com", //tempUser.email,
-      password: "passord123", // tempUser.pw,
+      email: tempUser.email,
+      password: tempUser.pw,
       options: {
         emailRedirectTo: "https://furrventions.com/",
         data: {
-          first_name: "Alex", //tempUser.firstname,
-          last_name: "E", //tempUser.lastname,
-          furname: "Test" // tempUser.furname
+          first_name: tempUser.firstname,
+          last_name: tempUser.lastname,
+          furname: tempUser.furname
         }
       }
     });
