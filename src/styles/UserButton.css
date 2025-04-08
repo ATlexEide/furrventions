@@ -49,3 +49,26 @@
   margin-top: auto;
   justify-self: end;
 }
+
+#account-details {
+  display: grid;
+  gap: 12px;
+}
+
+#account-details li {
+  display: flex;
+  flex-direction: column;
+}
+
+#account-details li p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.edit-info-btn {
+  width: calc(fit-content / 2);
+  display: inline;
+  width: fit-content;
+}
