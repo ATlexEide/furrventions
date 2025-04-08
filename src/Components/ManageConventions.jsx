@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 export default function ManageConventions({ supabase }) {
-  const [test, setTest] = useState();
-  const { id } = useParams();
-  console.log("params id", id);
+  const [test, setTest] = useState(null);
+  const [session, setSession] = useState(null);
 
-  // TODO: FIX being able to see other users events by changing url
-  async function fetchUserConIds() {
-    // .eq("userID", "5d735e16-8b63-46e1-8c39-0993d96b78b6");
+  async function getUserSession() {
+    const { data, error } = await supabase.auth.getSession();
+    if (error) console.log(error);
+    if (data) setSession(data.session);
+  }
+
+  async function fetchUserCons() {
+    if (!session) getUserSession();
     const { data, error } = await supabase
       .from("participants")
       .select(
@@ -18,16 +21,18 @@ export default function ManageConventions({ supabase }) {
       )
     `
       )
-      .eq("userID", id);
+      .eq("userID", session.user.id);
     if (error) console.log(error);
     if (data) setTest(data);
   }
-  useEffect(() => {
-    if (!id) return;
-    fetchUserConIds();
-  }, [id]);
 
-  console.log(test);
+  useEffect(() => {
+    if (!session) getUserSession();
+    if (session) fetchUserCons();
+  }, [session]);
+
+  if (session) console.log(session.user.id);
+  if (test) console.log(test);
 
   return (
     <ul>
