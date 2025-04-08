@@ -1,4 +1,7 @@
-export default function MainPage({ setCurrentPage }) {
+import { useNavigate } from "react-router-dom";
+
+export default function MainPage({ user, setCurrentPage }) {
+  const navigate = useNavigate();
   return (
     <ul id="menu">
       <li
@@ -8,7 +11,14 @@ export default function MainPage({ setCurrentPage }) {
       >
         Account Settings
       </li>
-      <li>My Events</li>
+      <li
+        onClick={() => {
+          setCurrentPage("main");
+          navigate(`manage/${user.id}/conventions`);
+        }}
+      >
+        My Events
+      </li>
       <li>Some other option</li>
     </ul>
   );
