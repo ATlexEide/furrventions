@@ -10,7 +10,7 @@ export default function UserButton({ user, supabase }) {
   const [currentPage, setCurrentPage] = useState("main");
 
   const pages = {
-    main: <MainPage setCurrentPage={setCurrentPage} />,
+    main: <MainPage user={user} setCurrentPage={setCurrentPage} />,
     account_settings: <AccountSettings user={user} />
   };
   async function logout() {
@@ -18,7 +18,6 @@ export default function UserButton({ user, supabase }) {
     if (error) console.log(error);
     window.location.reload();
   }
-  console.log(user);
 
   const furname = user.user_metadata.furname ?? "User";
   return (
