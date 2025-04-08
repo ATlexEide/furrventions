@@ -29,15 +29,17 @@ export default function UserButton({ user, supabase }) {
       {isOpen && (
         <section id="user-menu">
           <>
-            <button
-              id="close-menu"
-              onClick={() => {
-                setIsOpen(!isOpen);
-              }}
-            >
-              Close
-            </button>
-            <h3>Logged in as {user.user_metadata.furname}</h3>
+            <div id="user-menu-header">
+              <h3>Logged in as {user.user_metadata.furname}</h3>
+              <button
+                id="close-menu"
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              >
+                ✕
+              </button>
+            </div>
             <ul id="menu">
               <li>some option</li>
               <li>UwU</li>
