@@ -29,7 +29,7 @@ export default function Header({ supabase }) {
         <h1 id="header-home">
           {user && `Hello, ${user.user_metadata.furname}!`}
         </h1>
-        <Link to="conventions/add">Add convention</Link> |
+        {session && <Link to="conventions/add">Add convention</Link> + " |"}
         <Link to="conventions">View conventions</Link>||
         {!session && (
           <>
