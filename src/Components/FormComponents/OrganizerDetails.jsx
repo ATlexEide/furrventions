@@ -6,41 +6,49 @@ export default function OrganizerDetails({
 }) {
   return (
     <div id="organizer-details">
-      <label htmlFor="name">Organizer name</label>
-      <input
-        id="name"
-        type="text"
-        onChange={(e) => {
-          setEventInfo({ ...eventInfo, organizerName: e.target.value });
-        }}
-      />
+      <div className="input-container">
+        <label htmlFor="name">Organizer name</label>
+        <input
+          id="name"
+          type="text"
+          onChange={(e) => {
+            setEventInfo({ ...eventInfo, organizerName: e.target.value });
+          }}
+        />
+      </div>
 
-      <label htmlFor="email">Support Email</label>
-      <input
-        id="email"
-        type="email"
-        onChange={(e) => {
-          setEventInfo({ ...eventInfo, organizerEmail: e.target.value });
-        }}
-      />
+      <div className="input-container">
+        <label htmlFor="email">Support Email</label>
+        <input
+          id="email"
+          type="email"
+          onChange={(e) => {
+            setEventInfo({ ...eventInfo, organizerEmail: e.target.value });
+          }}
+        />
+      </div>
 
-      <label htmlFor="phone">Phone</label>
-      <input
-        id="phone"
-        type="tel"
-        onChange={(e) => {
-          setEventInfo({ ...eventInfo, organizerPhone: e.target.value });
-        }}
-      />
+      <div className="input-container">
+        <label htmlFor="phone">Phone</label>
+        <input
+          id="phone"
+          type="tel"
+          onChange={(e) => {
+            setEventInfo({ ...eventInfo, organizerPhone: e.target.value });
+          }}
+        />
+      </div>
 
-      <label htmlFor="groupchat">Telegram/Discord</label>
-      <input
-        id="groupchat"
-        type="text"
-        onChange={(e) => {
-          setEventInfo({ ...eventInfo, organizerGroupChat: e.target.value });
-        }}
-      />
+      <div className="input-container">
+        <label htmlFor="groupchat">Telegram/Discord</label>
+        <input
+          id="groupchat"
+          type="text"
+          onChange={(e) => {
+            setEventInfo({ ...eventInfo, organizerGroupChat: e.target.value });
+          }}
+        />
+      </div>
       <button
         className="red-btn"
         onClick={(e) => {
