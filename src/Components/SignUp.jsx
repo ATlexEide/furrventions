@@ -35,32 +35,29 @@ export default function SignUp({ supabase }) {
     });
   }
 
-  const firstnameInput = document.getElementById("firstname");
-  const lastnameInput = document.getElementById("lastname");
-  const furnameInput = document.getElementById("furname");
-
   function validate() {
+    let isValid = true;
     switch (pages[page].title) {
       case "Login details":
         signUpNewUser();
         break;
 
       case "Name and username":
+        console.log("YIPP");
         // firstnameInput.className = "error"
-        !tempUser.firstname
-          ? firstnameInput.setCustomValidity("Name required")
-          : firstnameInput.setCustomValidity("");
-        !tempUser.firstname
-          ? lastnameInput.setCustomValidity("Name required")
-          : lastnameInput.setCustomValidity("");
-        !tempUser.firstname
-          ? furnameInput.setCustomValidity("Name required")
-          : furnameInput.setCustomValidity("");
+        if (!tempUser.firstname || !tempUser.lastname) {
+          alert("First and Last names required");
+          isValid = false;
+        }
+        if (!tempUser.furname) {
+          alert("Furname/Username required");
+          isValid = false;
+        }
         break;
       default:
-        setPage(page + 1);
         break;
     }
+    if (isValid) setPage(page + 1);
   }
 
   console.log("userData:", tempUser);
