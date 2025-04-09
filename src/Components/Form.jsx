@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// Take in a form id and pages object with a "title" and optional "component" and callback function
+// Take in a form id and pagesarray containing object(s) with a "title" and optional "component" and callback function
 export default function Form({ id, pages, callback }) {
   const [page, setPage] = useState(0);
   return (
