@@ -17,6 +17,16 @@ export default function LoginDetails({ tempUser, setTempUser }) {
           onChange={(e) => setTempUser({ ...tempUser, pw: e.target.value })}
         />
       </div>
+      <div className="input-container">
+        <label htmlFor="firstname">Repeat Password:</label>
+        <input
+          id="repeat-password"
+          type="password"
+          onChange={(e) =>
+            setTempUser({ ...tempUser, repeat_pw: e.target.value })
+          }
+        />
+      </div>
     </section>
   );
 }
