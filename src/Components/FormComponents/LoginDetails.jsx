@@ -1,6 +1,6 @@
 export default function LoginDetails({ tempUser, setTempUser }) {
   return (
-    <section id="add-login">
+    <section id="inputs">
       <div className="input-container">
         <label htmlFor="firstname">Email:</label>
         <input
