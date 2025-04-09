@@ -16,6 +16,20 @@ form {
   align-items: center;
 }
 
+#ticket-price {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+#ticket-price label {
+  width: fit-content;
+}
+
+#ticket-price input {
+  width: 100px;
+}
+
 #add-con section {
   display: flex;
   justify-content: center;
