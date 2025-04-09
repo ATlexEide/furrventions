@@ -1,5 +1,7 @@
 // import { useSupabase } from "../utils/useSupabase";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Form from "./Form";
 
 // CSS
 import "../styles/Forms.css";
@@ -12,7 +14,6 @@ import EventLocation from "./FormComponents/EventLocation";
 import EventTicketInfo from "./FormComponents/EventTicketInfo";
 import EventTags from "./FormComponents/EventTags";
 import EventAdditionalInfo from "./FormComponents/EventAdditionalInfo";
-import { useNavigate } from "react-router-dom";
 
 export default function AddConvention() {
   const [page, setPage] = useState(0);
@@ -120,7 +121,15 @@ export default function AddConvention() {
 
   return (
     <>
-      <form id="add-con">
+      <Form
+        id={"add-con"}
+        callback={addEvent}
+        currentPage={page}
+        setCurrentPage={setPage}
+        pages={pages}
+        nextBtnTxt={"Next,Add Event"}
+      />
+      {/* <form id="add-con">
         <section>
           <h2>{pages[page].title}</h2>
         </section>
@@ -148,7 +157,7 @@ export default function AddConvention() {
             </>
           )}
         </section>
-      </form>
+      </form> */}
     </>
   );
 }
