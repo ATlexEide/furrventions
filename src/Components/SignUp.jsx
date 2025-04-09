@@ -57,14 +57,6 @@ export default function SignUp({ supabase }) {
 
   return (
     <form id="register-account">
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          signUpNewUser();
-        }}
-      >
-        Test
-      </button>
       <section>
         <h2>Create an account</h2>
         <h3>{pages[page].title}</h3>
