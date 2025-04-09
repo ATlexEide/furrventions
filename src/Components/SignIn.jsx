@@ -20,23 +20,27 @@ export default function SignIn({ supabase }) {
       <section>
         <h2>Log in</h2>
       </section>
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        required
-        onChange={(e) => {
-          setLoginDetails({ ...loginDetails, email: e.target.value });
-        }}
-      />
+      <div className="input-container">
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          required
+          onChange={(e) => {
+            setLoginDetails({ ...loginDetails, email: e.target.value });
+          }}
+        />
+      </div>
 
-      <label htmlFor="password">Password:</label>
-      <input
-        type="password"
-        required
-        onChange={(e) => {
-          setLoginDetails({ ...loginDetails, password: e.target.value });
-        }}
-      />
+      <div className="input-container">
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          required
+          onChange={(e) => {
+            setLoginDetails({ ...loginDetails, password: e.target.value });
+          }}
+        />
+      </div>
       <section>
         <button
           onClick={(e) => {
