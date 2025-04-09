@@ -10,6 +10,11 @@ form {
   border: solid 1px #ff005e;
 }
 
+#form-main {
+  display: flex;
+  flex-direction: column;
+}
+
 #inputs {
   display: flex;
   flex-direction: column;
