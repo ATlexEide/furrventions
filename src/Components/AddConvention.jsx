@@ -19,6 +19,11 @@ export default function AddConvention() {
   const [page, setPage] = useState(0);
   const [eventInfo, setEventInfo] = useState({
     type: null,
+    name: null,
+    location: null,
+    price: [],
+    tags: [],
+    additionalInfo: null,
 
     organizerID: null,
     organizerName: null,
@@ -26,8 +31,7 @@ export default function AddConvention() {
     organizerPhone: null,
     organizerGroupChat: null,
 
-    creatorID: null,
-    location: null
+    creatorID: null
   });
 
   // async function addConvention(obj) {
