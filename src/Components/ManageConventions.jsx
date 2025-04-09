@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function ManageConventions({ supabase }) {
-  const [test, setTest] = useState(null);
+  const [conventions, setConventions] = useState(null);
   const [session, setSession] = useState(null);
 
   async function getUserSession() {
@@ -23,7 +23,7 @@ export default function ManageConventions({ supabase }) {
       )
       .eq("userID", session.user.id);
     if (error) console.log(error);
-    if (data) setTest(data);
+    if (data) setConventions(data);
   }
 
   useEffect(() => {
@@ -32,11 +32,12 @@ export default function ManageConventions({ supabase }) {
   }, [session]);
 
   if (session) console.log(session.user.id);
-  if (test) console.log(test);
+  if (conventions) console.log(conventions);
 
   return (
     <ul>
-      {test && test.map((data, i) => <li key={i}>{data.conventions.name}</li>)}
+      {conventions &&
+        conventions.map((data, i) => <li key={i}>{data.conventions.name}</li>)}
     </ul>
   );
 }
