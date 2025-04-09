@@ -10,6 +10,11 @@ form {
   border: solid 1px #ff005e;
 }
 
+#inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #add-con section {
   display: flex;
   justify-content: center;
