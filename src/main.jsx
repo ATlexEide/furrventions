@@ -6,6 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 import ViewCons from "./Components/ViewCons.jsx";
 import "./index.css";
 import "./App.css";
+import "./styles/Forms.css";
 import App from "./App.jsx";
 import Header from "./Components/Header.jsx";
 import Footer from "./Components/Footer.jsx";
