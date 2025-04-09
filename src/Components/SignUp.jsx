@@ -33,13 +33,36 @@ export default function SignUp({ supabase }) {
         }
       }
     });
-
-    if (error) console.log("Error:", error);
-    while (!data) {
-      console.log("Loading...");
-    }
-    console.log(data);
   }
+
+  const firstnameInput = document.getElementById("firstname");
+  const lastnameInput = document.getElementById("lastname");
+  const furnameInput = document.getElementById("furname");
+
+  function validate() {
+    switch (pages[page].title) {
+      case "Login details":
+        signUpNewUser();
+        break;
+
+      case "Name and username":
+        // firstnameInput.className = "error"
+        !tempUser.firstname
+          ? firstnameInput.setCustomValidity("Name required")
+          : firstnameInput.setCustomValidity("");
+        !tempUser.firstname
+          ? lastnameInput.setCustomValidity("Name required")
+          : lastnameInput.setCustomValidity("");
+        !tempUser.firstname
+          ? furnameInput.setCustomValidity("Name required")
+          : furnameInput.setCustomValidity("");
+        break;
+      default:
+        setPage(page + 1);
+        break;
+    }
+  }
+
   console.log("userData:", tempUser);
 
   const pages = [
@@ -76,11 +99,7 @@ export default function SignUp({ supabase }) {
         <button
           onClick={(e) => {
             e.preventDefault();
-            if (pages[page].title === "Login details") {
-              signUpNewUser();
-              return;
-            }
-            setPage(page + 1);
+            validate();
           }}
         >
           Next
