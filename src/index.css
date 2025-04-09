@@ -59,14 +59,24 @@ button {
   background-color: green;
 }
 
+label {
+  width: 200px;
+  text-align: start;
+}
 input {
-  width: 100%;
+  width: 200px;
   height: 24px;
   background-color: white;
   border: solid white;
   border-radius: 12px;
   color: black;
   padding: 0 12px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
 }
 
 body {
