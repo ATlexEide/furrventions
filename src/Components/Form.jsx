@@ -1,22 +1,37 @@
 import { useState } from "react";
 
-// Take in a form id and pagesarray containing object(s) with a "title" and optional "component" and callback function
-export default function Form({ id, pages, callback }) {
-  const [page, setPage] = useState(0);
+// Take in a
+// form id: string
+// nextBtnTxt: string // comma separated string "next,final text"
+//
+// pages array[object{title:string, component?: component}]:
+//
+// currentPage
+// setCurrentPage
+export default function Form({
+  id,
+  pages,
+  currentPage,
+  setCurrentPage,
+  callback,
+  nextBtnTxt
+}) {
+  const nextText = nextBtnTxt.split(",")[0];
+  const finalText = nextBtnTxt.split(",")[1];
   return (
     <form id={id}>
       <section>
-        <h2>{pages[page].title}</h2>
+        <h2>{pages[currentPage].title}</h2>
       </section>
-      <section id="form-main">{pages[page].component}</section>
+      <section id="form-main">{pages[currentPage].component}</section>
       <section>
-        {page > 0 && (
+        {currentPage > 0 && (
           <>
             <button
               onClick={(e) => {
                 e.preventDefault();
 
-                setPage(page - 1);
+                setCurrentPage(currentPage - 1);
               }}
             >
               Back
@@ -24,10 +39,12 @@ export default function Form({ id, pages, callback }) {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                page === pages.length - 1 ? callback() : setPage(page + 1);
+                currentPage === pages.length - 1
+                  ? callback()
+                  : setCurrentPage(currentPage + 1);
               }}
             >
-              {page === pages.length - 1 ? "Add event" : "Next"}
+              {currentPage === pages.length - 1 ? finalText : nextText}
             </button>
           </>
         )}
