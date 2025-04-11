@@ -1,4 +1,10 @@
-export default function EventType({ eventInfo, setEventInfo, setPage, page }) {
+export default function EventType({
+  eventInfo,
+  setEventInfo,
+  setPage,
+  page,
+  user
+}) {
   return (
     <>
       <button
@@ -14,6 +20,7 @@ export default function EventType({ eventInfo, setEventInfo, setPage, page }) {
         onClick={(e) => {
           e.preventDefault();
           setEventInfo({ ...eventInfo, type: "meet" });
+          setEventInfo({ ...eventInfo, organizerID: user.id });
           setPage(page + 2);
         }}
       >

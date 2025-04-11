@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 // Take in a
 // form id: string
 // nextBtnTxt: string // comma separated string "next,final text"
@@ -14,7 +12,10 @@ export default function Form({
   currentPage,
   setCurrentPage,
   callback,
-  nextBtnTxt
+  nextBtnTxt,
+  eventInfo = null,
+  setEventInfo = null,
+  user = null
 }) {
   const nextText = nextBtnTxt.split(",")[0];
   const finalText = nextBtnTxt.split(",")[1];
@@ -30,8 +31,11 @@ export default function Form({
             <button
               onClick={(e) => {
                 e.preventDefault();
-
-                setCurrentPage(currentPage - 1);
+                if (currentPage === 2 && !eventInfo.organizerID) {
+                  console.log("yip");
+                }
+                console.log(currentPage);
+                console.log(pages[currentPage].title);
               }}
             >
               Back
@@ -39,6 +43,9 @@ export default function Form({
             <button
               onClick={(e) => {
                 e.preventDefault();
+                console.log(currentPage);
+                if (currentPage === 1 && eventInfo.type === "convention")
+                  setEventInfo({ ...eventInfo, organizerID: user.id });
                 currentPage === pages.length - 1
                   ? callback()
                   : setCurrentPage(currentPage + 1);
