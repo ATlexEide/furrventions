@@ -129,35 +129,6 @@ export default function AddConvention() {
         pages={pages}
         nextBtnTxt={"Next,Add Event"}
       />
-      {/* <form id="add-con">
-        <section>
-          <h2>{pages[page].title}</h2>
-        </section>
-        <section id="form-main">{pages[page].component}</section>
-        <section>
-          {page > 0 && (
-            <>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-
-                  setPage(page - 1);
-                }}
-              >
-                Back
-              </button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  page === pages.length - 1 ? addEvent() : setPage(page + 1);
-                }}
-              >
-                {page === pages.length - 1 ? "Add event" : "Next"}
-              </button>
-            </>
-          )}
-        </section>
-      </form> */}
     </>
   );
 }
