@@ -1,6 +1,6 @@
 // import { useSupabase } from "../utils/useSupabase";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "./Form";
 
 // CSS
@@ -15,7 +15,7 @@ import EventTicketInfo from "./FormComponents/EventTicketInfo";
 import EventTags from "./FormComponents/EventTags";
 import EventAdditionalInfo from "./FormComponents/EventAdditionalInfo";
 
-export default function AddConvention() {
+export default function AddConvention({ supabase }) {
   const [page, setPage] = useState(0);
   const [eventInfo, setEventInfo] = useState({
     type: null,
@@ -29,6 +29,19 @@ export default function AddConvention() {
     creatorID: null,
     location: null
   });
+
+  const [user, setUser] = useState(null);
+  const [session, setSession] = useState(null);
+  async function getSession() {
+    if (user) return;
+    const { data, error } = await supabase.auth.getSession();
+    if (!error) setSession(data.session);
+  }
+  useEffect(() => {
+    getSession();
+    if (!session) return;
+    setUser(session.user);
+  }, [session]);
 
   // async function addConvention(obj) {
   //   obj.spots_total = 300;
@@ -64,6 +77,7 @@ export default function AddConvention() {
       title: "What kind of event are you adding?",
       component: (
         <EventType
+          user={user}
           eventInfo={eventInfo}
           setEventInfo={setEventInfo}
           setPage={setPage}
@@ -128,6 +142,9 @@ export default function AddConvention() {
         setCurrentPage={setPage}
         pages={pages}
         nextBtnTxt={"Next,Add Event"}
+        eventInfo={eventInfo}
+        setEventInfo={setEventInfo}
+        user={user}
       />
     </>
   );
