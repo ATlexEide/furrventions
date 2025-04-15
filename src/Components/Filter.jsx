@@ -74,6 +74,7 @@ export default function Filter({
       </button>
       <button
         onClick={() => {
+          setFilter({});
           setHasFilter(false);
         }}
       >
