@@ -1,8 +1,11 @@
 import { fetchLogo } from "../utils/fetchLogo";
 import "../styles/ConventionCard.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ConventionCard({ consObj, con, type }) {
-  if (!con.location_formatted) con.location_formatted = "REPLACE LATER";
+  const navigate = useNavigate();
+
+  con.location_formatted = "REPLACE LATER";
 
   const days = [
     "Sunday",
@@ -56,7 +59,7 @@ export default function ConventionCard({ consObj, con, type }) {
   return (
     <article
       onClick={() => {
-        console.log(consObj[con.id]);
+        navigate(`/conventions/${con.id}`);
       }}
       className={
         type ? "convention-card" : "convention-card convention-info-card"
