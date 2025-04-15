@@ -56,7 +56,11 @@ createRoot(document.getElementById("root")).render(
             path="conventions/add"
             element={<AddConvention supabase={supabase} />}
           />
-          <Route exact path="conventions/:id" element={<ViewConInfo />} />
+          <Route
+            exact
+            path="conventions/:id"
+            element={<ViewConInfo supabase={supabase} />}
+          />
           <Route
             exact
             path="user/:id/manage/conventions"
