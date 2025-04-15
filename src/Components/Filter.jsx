@@ -39,14 +39,14 @@ export default function Filter({
         </div>
 
         <div className="filter-option-input">
-          <label htmlFor="total-spots-input">Max spots/attendees: </label>
+          <label htmlFor="total-spots-input">Previous year attendees: </label>
 
           <div id="spots-filter">
             <input
               id="total-spots-slider"
-              value={filter && filter.spots_total ? filter.spots_total : 0}
+              value={filter && filter.spots_total ? filter.spots_total : 1000}
               min={0}
-              max={1000}
+              max={2000}
               type="range"
               onChange={(e) => {
                 setFilter({ ...filter, spots_total: Number(e.target.value) });
