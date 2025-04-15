@@ -10,11 +10,31 @@ form {
   border: solid 1px #ff005e;
 }
 
+#form-main {
+  display: flex;
+  flex-direction: column;
+}
+
 #inputs {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+#ticket-price {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+#ticket-price label {
+  width: fit-content;
+}
+
+#ticket-price input {
+  width: 100px;
+}
+
 #add-con section {
   display: flex;
   justify-content: center;
@@ -28,9 +48,7 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
-
-  border: solid yellow 1px;
+  gap: 24px;
 }
 
 #organizer-details {
@@ -43,4 +61,8 @@ form {
 
 #organizer-details button {
   width: 200px;
+}
+
+.error {
+  border: solid 2px yellow;
 }

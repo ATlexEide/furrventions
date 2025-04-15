@@ -11,6 +11,7 @@ import AccountCreated from "./FormComponents/AccountCreated";
 export default function SignUp({ supabase }) {
   const [page, setPage] = useState(0);
   const [tempUser, setTempUser] = useState({
+    repeat_pw: "",
     pw: "",
     email: "",
 
@@ -33,13 +34,47 @@ export default function SignUp({ supabase }) {
         }
       }
     });
-
-    if (error) console.log("Error:", error);
-    while (!data) {
-      console.log("Loading...");
-    }
-    console.log(data);
   }
+
+  function validate() {
+    let isValid = true;
+    switch (pages[page].title) {
+      case "Login details":
+        if (!tempUser.email) {
+          alert("Email required");
+          isValid = false;
+          return;
+        }
+        if (
+          (!tempUser.password && !tempUser.repeat_pw) ||
+          tempUser.pw !== tempUser.repeat_pw
+        ) {
+          alert("Make sure youve entered the same password twice");
+          isValid = false;
+        }
+        if (isValid) signUpNewUser();
+        break;
+
+      case "Name and username":
+        console.log("YIPP");
+        // firstnameInput.className = "error"
+        if (!tempUser.firstname || !tempUser.lastname) {
+          alert("First and Last names required");
+          isValid = false;
+          return;
+        }
+        if (!tempUser.furname) {
+          alert("Furname/Username required");
+          isValid = false;
+        }
+        break;
+
+      default:
+        break;
+    }
+    if (isValid) setPage(page + 1);
+  }
+
   console.log("userData:", tempUser);
 
   const pages = [
@@ -76,11 +111,7 @@ export default function SignUp({ supabase }) {
         <button
           onClick={(e) => {
             e.preventDefault();
-            if (pages[page].title === "Login details") {
-              signUpNewUser();
-              return;
-            }
-            setPage(page + 1);
+            validate();
           }}
         >
           Next
