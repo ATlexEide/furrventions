@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 export default function ViewConInfo({ supabase }) {
   const navigate = useNavigate();
   const params = useParams();
-  const id = params.id;
+  const con_id = params.id;
+  const [submitter, setSubmitter] = useState();
   console.log(id);
   const [con, setCon] = useState({});
 
@@ -14,6 +15,15 @@ export default function ViewConInfo({ supabase }) {
       .select()
       .eq("id", id);
     if (error) throw new Error("Fetching convention failed");
+    console.log(data);
+    setCon(data[0]);
+  }
+  async function fetchConSubmitter(id) {
+    const { data, error } = await supabase
+      .from("users")
+      .select("furname")
+      .eq("id", id);
+    if (error) throw new Error("Fetching submitter failed");
     console.log(data);
     setCon(data[0]);
   }
@@ -38,6 +48,7 @@ export default function ViewConInfo({ supabase }) {
       </button>
       <h1>{con.name}</h1>
       <p>{con.description}</p>
+      <p></p>
     </article>
   );
 }
