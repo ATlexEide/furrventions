@@ -3,21 +3,21 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 
-import ViewCons from "./Components/ViewCons.jsx";
+import App from "./App.jsx";
+import ViewCons from "./Components/ConventionList/ViewCons.jsx";
+import Header from "./Components/Main/Header.jsx";
+import Footer from "./Components/Main/Footer.jsx";
+import ManageConventions from "./Components/User/ManageConventions.jsx";
+import AddConvention from "./Components/AddConvention/AddConvention.jsx";
+import Kofi from "./Components/Utilities/Kofi.jsx";
+import ViewConInfo from "./Components/Convention/ViewConInfo.jsx";
+import SignUp from "./Components/User/Signup.jsx";
+import SignIn from "./Components/User/SignIn.jsx";
+
 import "./index.css";
 import "./App.css";
 import "./styles/Forms.css";
-import App from "./App.jsx";
-import Header from "./Components/Header.jsx";
-import Footer from "./Components/Footer.jsx";
-import ManageConventions from "./Components/ManageConventions.jsx";
-import AddConvention from "./Components/AddConvention.jsx";
-
-import Kofi from "./Components/Kofi.jsx";
 import "./styles/ViewCons.css";
-import ViewConInfo from "./Components/ViewConInfo.jsx";
-import SignUp from "./Components/Signup.jsx";
-import SignIn from "./Components/SignIn.jsx";
 
 if (!import.meta.env.VITE_SUPABASE_URL) {
   throw new Error("Missing Supabase Url");
