@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ConventionCard from "./ConventionCard.jsx";
 import Filter from "./Filter.jsx";
 // import { useConsArray } from "../utils/useCons.jsx";
-import Loading from "./Loading.jsx";
+import Loading from "../Utilities/Loading.jsx";
 import "../styles/ViewCons.css";
 
 export default function ViewCons({ supabase }) {

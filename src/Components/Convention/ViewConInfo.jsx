@@ -5,8 +5,8 @@ export default function ViewConInfo({ supabase }) {
   const navigate = useNavigate();
   const params = useParams();
   const con_id = params.id;
-  const [submitter, setSubmitter] = useState();
-  console.log(id);
+  const [submitter, setSubmitter] = useState("");
+  console.log(con_id);
   const [con, setCon] = useState({});
 
   async function fetchCon(id) {
@@ -18,22 +18,24 @@ export default function ViewConInfo({ supabase }) {
     console.log(data);
     setCon(data[0]);
   }
-  async function fetchConSubmitter(id) {
+  async function fetchConSubmitter(user_id) {
     const { data, error } = await supabase
       .from("users")
       .select("furname")
-      .eq("id", id);
+      .eq("id", user_id);
     if (error) throw new Error("Fetching submitter failed");
     console.log(data);
-    setCon(data[0]);
+    setSubmitter(data[0]);
   }
 
   if (con) console.log(con);
+  if (submitter) console.log(submitter);
 
   useEffect(() => {
-    if (!id) return;
-    fetchCon(id);
-  }, []);
+    if (!con_id) return;
+    if (!con) fetchCon(con_id);
+    if (con) fetchConSubmitter(con.creatorID);
+  }, [con]);
   // const [cons, loading] = useConsObject();
 
   return (

@@ -1,19 +1,19 @@
 // import { useSupabase } from "../utils/useSupabase";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Form from "./Form";
+import Form from "../Utilities/Form";
 
 // CSS
 import "../styles/Forms.css";
 
 // Form components
-import OrganizerDetails from "./FormComponents/OrganizerDetails";
-import EventType from "./FormComponents/EventType";
-import EventName from "./FormComponents/EventName";
-import EventLocation from "./FormComponents/EventLocation";
-import EventTicketInfo from "./FormComponents/EventTicketInfo";
-import EventTags from "./FormComponents/EventTags";
-import EventAdditionalInfo from "./FormComponents/EventAdditionalInfo";
+import OrganizerDetails from "./OrganizerDetails";
+import EventType from "./EventType";
+import EventName from "./EventName";
+import EventLocation from "./EventLocation";
+import EventTicketInfo from "./EventTicketInfo";
+import EventTags from "./EventTags";
+import EventAdditionalInfo from "./EventAdditionalInfo";
 
 export default function AddConvention({ supabase }) {
   const [page, setPage] = useState(0);

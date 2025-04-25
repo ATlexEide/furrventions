@@ -3,10 +3,10 @@ import { useState } from "react";
 import "../styles/Forms.css";
 
 // Form components
-import UserNames from "./FormComponents/UserNames";
-import LoginDetails from "./FormComponents/LoginDetails";
-import UserLoading from "./FormComponents/UserLoading";
-import AccountCreated from "./FormComponents/AccountCreated";
+import UserNames from "../SignupFormComponents/UserNames";
+import LoginDetails from "../SignupFormComponents/LoginDetails";
+import UserLoading from "../SignupFormComponents/UserLoading";
+import AccountCreated from "../SignupFormComponents/AccountCreated";
 
 export default function SignUp({ supabase }) {
   const [page, setPage] = useState(0);

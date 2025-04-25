@@ -2,8 +2,8 @@ import { useState } from "react";
 
 // CSS
 import "../styles/UserButton.css";
-import MainPage from "./UserButtonComponents/MainPage";
-import AccountSettings from "./UserButtonComponents/AccountSettings";
+import MainPage from "../User/MainPage";
+import AccountSettings from "../User/AccountSettings";
 
 export default function UserButton({ user, supabase }) {
   const [isOpen, setIsOpen] = useState();

@@ -1,4 +1,4 @@
-import { fetchLogo } from "../utils/fetchLogo";
+import { fetchLogo } from "../../utils/fetchLogo";
 import "../styles/ConventionCard.css";
 import { useNavigate } from "react-router-dom";
 
