@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Form from "../Utilities/Form";
 
 // CSS
-import "../styles/Forms.css";
+import "../../styles/Forms.css";
 
 // Form components
 import OrganizerDetails from "./OrganizerDetails";

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // CSS
-import "../styles/UserButton.css";
+import "../../styles/UserButton.css";
 import MainPage from "../User/MainPage";
 import AccountSettings from "../User/AccountSettings";
 

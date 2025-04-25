@@ -1,6 +1,6 @@
 import { useState } from "react";
 // CSS
-import "../styles/Forms.css";
+import "../../styles/Forms.css";
 
 // Form components
 import UserNames from "../SignupFormComponents/UserNames";
