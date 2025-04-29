@@ -21,7 +21,7 @@ export default function AddConvention({ supabase }) {
     type: null,
     name: null,
     location: null,
-    price: [],
+    price: null,
     tags: [],
     additionalInfo: null,
 
