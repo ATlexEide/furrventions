@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../Utilities/Loading";
 
+import "../../styles/ViewConInfo.css";
+
 export default function ViewConInfo({ supabase }) {
   const navigate = useNavigate();
   const params = useParams();
