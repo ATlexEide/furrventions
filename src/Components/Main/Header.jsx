@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../../styles/Header.css";
-import UserButton from "./UserButton";
+import UserButton from "../User/UserButton";
 
 export default function Header({ supabase }) {
   const [user, setUser] = useState(null);
