@@ -81,7 +81,7 @@ export default function ViewConInfo({ supabase }) {
   if (!con.id) return <Loading />;
   if (con.id)
     return (
-      <section>
+      <section id="convention-info">
         <button
           className="nav-button"
           onClick={() => {
