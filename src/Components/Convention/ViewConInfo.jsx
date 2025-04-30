@@ -51,7 +51,7 @@ export default function ViewConInfo({ supabase }) {
           navigate("/conventions");
         }}
       >
-        🢀
+        ←
       </button>
       <h1>{con.name}</h1>
       <p>{con.description}</p>
