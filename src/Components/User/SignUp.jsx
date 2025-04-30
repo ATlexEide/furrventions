@@ -34,6 +34,20 @@ export default function SignUp({ supabase }) {
         }
       }
     });
+    if (error) console.log(error);
+    if (data.user) createPublicProfile(data.user);
+  }
+
+  async function createPublicProfile(user) {
+    console.log(user);
+    const { error } = await supabase.from("users").insert({
+      username: user.user_metadata.furname,
+      user_id: user.id
+    });
+    if (error)
+      throw new Error(`Creating public user profile failed | Code: ${error.code}
+    Message: ${error.message}
+    Hint: ${error.hint}`);
   }
 
   function validate() {
