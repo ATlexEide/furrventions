@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Loading from "../Utilities/Loading";
 
 export default function ViewConInfo({ supabase }) {
   const navigate = useNavigate();
@@ -77,6 +78,7 @@ export default function ViewConInfo({ supabase }) {
     "November",
     "December"
   ];
+  if (!con.id) return <Loading />;
   if (con.id)
     return (
       <article>
@@ -89,7 +91,9 @@ export default function ViewConInfo({ supabase }) {
           ←
         </button>
         {con.name && <h1>{con.name}</h1>}
+        {!con.description && <p>Could not find description</p>}
         {con.description && <p>{con.description}</p>}
+        {!con.start_time && <p>Could not find end time</p>}
         {con.start_time && (
           <p>{`Starts | ${
             startDate.getHours().length > 2
@@ -103,6 +107,7 @@ export default function ViewConInfo({ supabase }) {
             months[startDate.getMonth()]
           } ${startDate.getFullYear()}`}</p>
         )}
+        {!con.end_time && <p>Could not find end time</p>}
         {con.end_time && (
           <p>{`Ends | ${
             endDate.getHours().length > 2
