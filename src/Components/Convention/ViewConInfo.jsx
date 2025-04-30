@@ -8,6 +8,8 @@ export default function ViewConInfo({ supabase }) {
   const [submitter, setSubmitter] = useState("");
   console.log(con_id);
   const [con, setCon] = useState({});
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   async function fetchCon(id) {
     const { data, error } = await supabase
@@ -45,22 +47,85 @@ export default function ViewConInfo({ supabase }) {
     if (!con.id) fetchCon(con_id);
     console.log(con);
     if (con) fetchConSubmitter(con.creatorID);
+    setStartDate(new Date(con.start_time));
+    setEndDate(new Date(con.end_time));
   }, [con]);
+  console.log(startDate);
   // const [cons, loading] = useConsObject();
 
-  return (
-    <article>
-      <button
-        className="nav-button"
-        onClick={() => {
-          navigate("/conventions");
-        }}
-      >
-        ←
-      </button>
-      <h1>{con.name}</h1>
-      <p>{con.description}</p>
-      {submitter && <p>{submitter}</p>}
-    </article>
-  );
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  if (con.id)
+    return (
+      <article>
+        <button
+          className="nav-button"
+          onClick={() => {
+            navigate("/conventions");
+          }}
+        >
+          ←
+        </button>
+        {con.name && <h1>{con.name}</h1>}
+        {con.description && <p>{con.description}</p>}
+        {con.start_time && (
+          <p>{`Starts | ${
+            startDate.getHours().length > 2
+              ? startDate.getHours()
+              : "0" + startDate.getHours()
+          }:${
+            startDate.getMinutes().length > 2
+              ? startDate.getMinutes()
+              : "0" + startDate.getMinutes()
+          } ${days[startDate.getDay()]} ${startDate.getDate()}. ${
+            months[startDate.getMonth()]
+          } ${startDate.getFullYear()}`}</p>
+        )}
+        {con.end_time && (
+          <p>{`Ends | ${
+            endDate.getHours().length > 2
+              ? endDate.getHours()
+              : "0" + endDate.getHours()
+          }:${
+            endDate.getMinutes().length > 2
+              ? endDate.getMinutes()
+              : "0" + endDate.getMinutes()
+          } ${days[endDate.getDay()]} ${endDate.getDate()}. ${
+            months[endDate.getMonth()]
+          } ${endDate.getFullYear()}`}</p>
+        )}
+        {submitter && <p>Submitted by {submitter}</p>}
+
+        <button
+          onClick={
+            // TODO: ADD LOGIC
+            console.log("click")
+          }
+        >
+          Add to my cons
+        </button>
+      </article>
+    );
 }
