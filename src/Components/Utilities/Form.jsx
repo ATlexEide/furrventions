@@ -32,8 +32,10 @@ export default function Form({
               onClick={(e) => {
                 e.preventDefault();
                 if (currentPage === 2 && !eventInfo.organizerID) {
-                  console.log("yip");
+                  setCurrentPage(0);
+                  return;
                 }
+                setCurrentPage(currentPage - 1);
                 console.log(currentPage);
                 console.log(pages[currentPage].title);
               }}

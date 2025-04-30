@@ -5,6 +5,7 @@ export default function EventTicketInfo({ eventInfo, setEventInfo }) {
   return (
     <>
       <div id="ticket-price">
+        <p>(Lowest cost for a ticket in euro)</p>
         <input
           id="price"
           type="number"
