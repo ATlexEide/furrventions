@@ -31,3 +31,8 @@
 #convention-options {
   align-items: start;
 }
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
