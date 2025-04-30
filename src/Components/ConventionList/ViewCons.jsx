@@ -59,7 +59,7 @@ export default function ViewCons({ supabase }) {
       const regex = new RegExp(`.*${filter.location.toLowerCase()}.*`);
       console.log(regex);
       filtered = filtered.filter((con) =>
-        regex.test(con.location_formatted.toLowerCase())
+        regex.test(con.location.toLowerCase())
       );
     }
 

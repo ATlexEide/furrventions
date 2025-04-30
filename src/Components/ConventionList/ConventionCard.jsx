@@ -73,7 +73,7 @@ export default function ConventionCard({ consObj, con, type }) {
       </figure>
       <section className="convention-info">
         {con.name && <h2 className="convention-name">{con.name}</h2>}
-        {con.location_formatted && <p>{con.location_formatted}</p>}
+        {con.location && <p>{con.location}</p>}
         {con.spots_total && (
           <p>
             <span className="info-prefix">Total spots:</span> {con.spots_total}
