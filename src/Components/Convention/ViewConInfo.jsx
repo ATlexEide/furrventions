@@ -84,60 +84,67 @@ export default function ViewConInfo({ supabase }) {
   if (con.id)
     return (
       <section id="convention-info">
-        <button
-          className="nav-button"
-          onClick={() => {
-            navigate("/conventions");
-          }}
-        >
-          ←
-        </button>
-        <article>
-          {con.name && <h1>{con.name}</h1>}
-          {!con.description && <p>Could not find description</p>}
-          {con.description && <p>{con.description}</p>}
-          {!con.start_time && <p>Could not find end time</p>}
-          {con.start_time && (
-            <p>{`Starts | ${
-              startDate.getHours().length > 2
-                ? startDate.getHours()
-                : "0" + startDate.getHours()
-            }:${
-              startDate.getMinutes().length > 2
-                ? startDate.getMinutes()
-                : "0" + startDate.getMinutes()
-            } ${days[startDate.getDay()]} ${startDate.getDate()}. ${
-              months[startDate.getMonth()]
-            } ${startDate.getFullYear()}`}</p>
-          )}
-          {!con.end_time && <p>Could not find end time</p>}
-          {con.end_time && (
-            <p>{`Ends | ${
-              endDate.getHours().length > 2
-                ? endDate.getHours()
-                : "0" + endDate.getHours()
-            }:${
-              endDate.getMinutes().length > 2
-                ? endDate.getMinutes()
-                : "0" + endDate.getMinutes()
-            } ${days[endDate.getDay()]} ${endDate.getDate()}. ${
-              months[endDate.getMonth()]
-            } ${endDate.getFullYear()}`}</p>
-          )}
-          {submitter && <p>Submitted by {submitter}</p>}
-        </article>
-        <section id="map">
-          <p>insert map here</p>
-        </section>
-
-        <button
-          onClick={
-            // TODO: ADD LOGIC
-            console.log("click")
-          }
-        >
-          Add to my cons
-        </button>
+        <div id="convention-info-heading">
+          <button
+            className="nav-button"
+            onClick={() => {
+              navigate("/conventions");
+            }}
+          >
+            ←
+          </button>
+        </div>
+        <div id="convention-info-main">
+          <section id="convention-container">
+            <section id="convention-details">
+              {con.name && <h1>{con.name}</h1>}
+              {!con.description && <p>Could not find description</p>}
+              {con.description && <p>{con.description}</p>}
+              {!con.start_time && <p>Could not find end time</p>}
+              {con.start_time && (
+                <p>{`Starts | ${
+                  startDate.getHours().length > 2
+                    ? startDate.getHours()
+                    : "0" + startDate.getHours()
+                }:${
+                  startDate.getMinutes().length > 2
+                    ? startDate.getMinutes()
+                    : "0" + startDate.getMinutes()
+                } ${days[startDate.getDay()]} ${startDate.getDate()}. ${
+                  months[startDate.getMonth()]
+                } ${startDate.getFullYear()}`}</p>
+              )}
+              {!con.end_time && <p>Could not find end time</p>}
+              {con.end_time && (
+                <p>{`Ends | ${
+                  endDate.getHours().length > 2
+                    ? endDate.getHours()
+                    : "0" + endDate.getHours()
+                }:${
+                  endDate.getMinutes().length > 2
+                    ? endDate.getMinutes()
+                    : "0" + endDate.getMinutes()
+                } ${days[endDate.getDay()]} ${endDate.getDate()}. ${
+                  months[endDate.getMonth()]
+                } ${endDate.getFullYear()}`}</p>
+              )}
+              {submitter && <p>Submitted by {submitter}</p>}
+            </section>
+            <section id="convention-options">
+              <button
+                onClick={
+                  // TODO: ADD LOGIC
+                  console.log("click")
+                }
+              >
+                Add to my cons
+              </button>
+            </section>
+          </section>
+          <section id="map">
+            <p>insert map here</p>
+          </section>
+        </div>
       </section>
     );
 }
