@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 // CSS
-import "../../styles/UserButton.css";
 import MainPage from "./MainPage";
 import AccountSettings from "./AccountSettings";
+import "../../styles/UserButton.css";
 
 export default function UserButton({ user, supabase }) {
   const [isOpen, setIsOpen] = useState();
@@ -30,9 +30,7 @@ export default function UserButton({ user, supabase }) {
         onClick={() => {
           setIsOpen(!isOpen);
         }}
-      >
-        Manage profile
-      </button>
+      ></button>
 
       {isOpen && (
         <section id="user-menu">
