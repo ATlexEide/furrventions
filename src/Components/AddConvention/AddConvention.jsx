@@ -21,9 +21,12 @@ export default function AddConvention({ supabase }) {
     type: null,
     name: null,
     location: null,
+    long: null,
+    lat: null,
     price: null,
     tags: [],
     additionalInfo: null,
+    website: null,
 
     organizerID: null,
     organizerName: null,
@@ -33,6 +36,7 @@ export default function AddConvention({ supabase }) {
 
     creatorID: null
   });
+  console.log(eventInfo);
 
   const [user, setUser] = useState(null);
   const [session, setSession] = useState(null);
@@ -132,9 +136,13 @@ export default function AddConvention({ supabase }) {
   ];
 
   const navigate = useNavigate();
-  function addEvent() {
-    alert("Some logic to add event");
-    navigate("/");
+  async function addEvent() {
+    const { error } = await supabase.from("conventions").insert(eventInfo);
+
+    console.log(error);
+    if (error) throw new Error(error);
+
+    navigate("/conventions/");
   }
 
   return (
