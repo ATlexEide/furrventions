@@ -1,5 +1,7 @@
 #manage-profile {
-  width: 200px;
+  aspect-ratio: 1;
+  width: 30px;
+  border-radius: 50%;
 }
 
 #userbutton {
