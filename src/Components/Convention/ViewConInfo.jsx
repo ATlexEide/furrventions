@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import MapWithPlaceholder from "../Utilities/Map";
 import Loading from "../Utilities/Loading";
 
 import "../../styles/ViewConInfo.css";
@@ -141,8 +142,8 @@ export default function ViewConInfo({ supabase }) {
               </button>
             </section>
           </section>
-          <section id="map">
-            <p>insert map here</p>
+          <section id="map-container">
+            <MapWithPlaceholder />
           </section>
         </div>
       </section>
