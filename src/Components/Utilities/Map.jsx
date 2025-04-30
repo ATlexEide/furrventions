@@ -16,7 +16,7 @@ export default function MapWithPlaceholder({
     <MapContainer
       center={cords}
       zoom={14}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
       placeholder={<MapPlaceholder />}
     >
       <Marker draggable={false} position={cords} ref={null}>
