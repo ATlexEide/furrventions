@@ -10,6 +10,7 @@ function MapPlaceholder() {
 }
 
 export default function MapWithPlaceholder({
+  conName = "Convention",
   cords = [60.39118002058307, 5.331024627773373]
 }) {
   return (
@@ -20,7 +21,7 @@ export default function MapWithPlaceholder({
       placeholder={<MapPlaceholder />}
     >
       <Marker draggable={false} position={cords} ref={null}>
-        <Popup minWidth={90}>Convention</Popup>
+        <Popup minWidth={90}>{conName}</Popup>
       </Marker>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
