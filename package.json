@@ -13,8 +13,10 @@
     "@supabase/supabase-js": "^2.49.2",
     "@vercel/analytics": "^1.5.0",
     "dotenv": "^16.4.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "leaflet": "^1.9.4",
+    "react": "^19.0.0-rc.1",
+    "react-dom": "^19.0.0-rc.1",
+    "react-leaflet": "^5.0.0-rc.2",
     "react-router-dom": "^7.3.0",
     "sqlite3": "^5.1.7"
   },
