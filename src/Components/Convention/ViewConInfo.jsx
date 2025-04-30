@@ -143,7 +143,13 @@ export default function ViewConInfo({ supabase }) {
             </section>
           </section>
           <section id="map-container">
-            <MapWithPlaceholder />
+            {con.long && con.lat && (
+              <MapWithPlaceholder
+                conName={con.name}
+                cords={[con.lat, con.long]}
+              />
+            )}
+            {!con.long && !con.lat && <p>No location data</p>}
           </section>
         </div>
       </section>
