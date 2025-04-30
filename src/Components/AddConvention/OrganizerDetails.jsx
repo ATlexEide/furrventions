@@ -6,6 +6,15 @@ export default function OrganizerDetails({
 }) {
   return (
     <div id="organizer-details">
+      <button
+        className="red-btn"
+        onClick={(e) => {
+          e.preventDefault();
+          setPage(page + 1);
+        }}
+      >
+        I&apos;m not the organizer
+      </button>
       <div className="input-container">
         <label htmlFor="name">Organizer name</label>
         <input
@@ -49,15 +58,6 @@ export default function OrganizerDetails({
           }}
         />
       </div>
-      <button
-        className="red-btn"
-        onClick={(e) => {
-          e.preventDefault();
-          setPage(page + 1);
-        }}
-      >
-        I&apos;m not the organizer
-      </button>
     </div>
   );
 }
