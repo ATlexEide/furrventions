@@ -7,7 +7,8 @@ export default function Home() {
     "Yippieee",
     "Finding meets and conventions made simple!",
     "Do you know about any cons in the area?",
-    "I'm not a furry but"
+    "I'm not a furry but",
+    "Rawrrrrr"
   ];
 
   return (
