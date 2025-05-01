@@ -33,22 +33,16 @@ export default function ViewConInfo({ supabase }) {
     const { data, error } = await supabase.auth.getSession();
     if (error) throw new error(error);
     if (data) {
-      console.clear();
-      console.log("DATAAAAAAAAAAAAAAAAAA", data);
       setSession(data.session);
     }
   }
 
   async function fetchConSubmitter(id) {
-    console.clear();
     const currId = session ? session.user.id : null;
     if (currId === id) {
       setSubmitter("You");
       return;
     }
-    console.log(con);
-    console.log("user id", id);
-
     const { data, error } = await supabase
       .from("users")
       .select("username")
@@ -59,22 +53,16 @@ export default function ViewConInfo({ supabase }) {
     Message: ${error.message}
     Hint: ${error.hint}`);
     // if (data) setSubmitter(data[0]);
-    console.log("data", data);
     if (data) setSubmitter(data[0].username);
   }
 
   if (con.id) console.log(con);
-  if (submitter) console.log("submitter", submitter);
 
   useEffect(() => {
     if (!con_id) return;
     if (!con.id) fetchCon(con_id);
     if (con.id) {
-      console.clear();
-      console.log(con.tags);
-      console.log(tags);
       fetchConSubmitter(con.creatorID);
-      console.log(con.tags);
       setTags(con.tags.replace(/("|\[|\])/g, "").split(","));
       setStartDate(new Date(con.start_time));
       setEndDate(new Date(con.end_time));
@@ -106,9 +94,6 @@ export default function ViewConInfo({ supabase }) {
     "November",
     "December"
   ];
-  if (tags.length) {
-    console.log(typeof tags, tags);
-  }
 
   function getTag(tag, i) {
     switch (tag) {
@@ -126,13 +111,7 @@ export default function ViewConInfo({ supabase }) {
         break;
     }
   }
-  if (con.id) {
-    console.log("TYPEE", typeof con.start_time);
 
-    console.log("TIMEE", con.start_time);
-    console.log("PARSED", Date.parse(con.start_time));
-    console.log("DATEEEE", startDate && startDate.getUTCHours());
-  }
   if (!con.id) return <Loading />;
   if (con.id)
     return (
