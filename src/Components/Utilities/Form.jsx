@@ -5,6 +5,7 @@
 // pages array[object{title:string, component?: component}]:
 //
 // currentPage
+
 // setCurrentPage
 export default function Form({
   id,
@@ -15,7 +16,8 @@ export default function Form({
   nextBtnTxt,
   eventInfo = null,
   setEventInfo = null,
-  user = null
+  user = null,
+  isNotValid = true
 }) {
   const nextText = nextBtnTxt.split(",")[0];
   const finalText = nextBtnTxt.split(",")[1];
@@ -42,7 +44,9 @@ export default function Form({
             >
               Back
             </button>
+
             <button
+              disabled={isNotValid}
               onClick={(e) => {
                 e.preventDefault();
                 console.log(currentPage);
