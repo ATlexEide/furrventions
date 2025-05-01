@@ -17,7 +17,8 @@ export default function Form({
   eventInfo = null,
   setEventInfo = null,
   user = null,
-  isNotValid = true
+  isNotValid = true,
+  setIsNotValid
 }) {
   const nextText = nextBtnTxt.split(",")[0];
   const finalText = nextBtnTxt.split(",")[1];
@@ -55,6 +56,7 @@ export default function Form({
                 currentPage === pages.length - 1
                   ? callback()
                   : setCurrentPage(currentPage + 1);
+                setIsNotValid(true);
               }}
             >
               {currentPage === pages.length - 1 ? finalText : nextText}
