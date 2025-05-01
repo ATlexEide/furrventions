@@ -77,28 +77,49 @@ export default function AddConvention({ supabase }) {
     },
     {
       title: `Please enter ${eventInfo.type} name`,
-      component: <EventName eventInfo={eventInfo} setEventInfo={setEventInfo} />
+      component: (
+        <EventName
+          setIsNotValid={setIsNotValid}
+          eventInfo={eventInfo}
+          setEventInfo={setEventInfo}
+        />
+      )
     },
     {
       title: `Please enter ${eventInfo.type} location`,
       component: (
-        <EventLocation eventInfo={eventInfo} setEventInfo={setEventInfo} />
+        <EventLocation
+          setIsNotValid={setIsNotValid}
+          eventInfo={eventInfo}
+          setEventInfo={setEventInfo}
+        />
       )
     },
     {
       title: "Ticket pricing",
       component: (
-        <EventTicketInfo eventInfo={eventInfo} setEventInfo={setEventInfo} />
+        <EventTicketInfo
+          setIsNotValid={setIsNotValid}
+          eventInfo={eventInfo}
+          setEventInfo={setEventInfo}
+        />
       )
     },
     {
       title: "Please tick the boxes that apply",
-      component: <EventTags eventInfo={eventInfo} setEventInfo={setEventInfo} />
+      component: (
+        <EventTags
+          setIsNotValid={setIsNotValid}
+          eventInfo={eventInfo}
+          setEventInfo={setEventInfo}
+        />
+      )
     },
     {
       title: "Aaaand some additional info",
       component: (
         <EventAdditionalInfo
+          setIsNotValid={setIsNotValid}
           eventInfo={eventInfo}
           setEventInfo={setEventInfo}
         />
