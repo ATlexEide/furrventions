@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect } from "react";
 
-export default function EventTicketInfo({ eventInfo, setEventInfo }) {
-  const [price, setPrice] = useState();
+export default function EventTicketInfo({
+  setIsNotValid,
+  eventInfo,
+  setEventInfo
+}) {
+  useEffect(() => {
+    if (eventInfo.price) setIsNotValid(false);
+  }, [eventInfo]);
+
   return (
     <>
       <div id="ticket-price">
@@ -9,13 +16,14 @@ export default function EventTicketInfo({ eventInfo, setEventInfo }) {
         <input
           id="price"
           type="number"
+          value={eventInfo.price}
           onChange={(e) => {
-            setPrice(e.target.value);
+            setEventInfo({ ...eventInfo, price: e.target.value });
           }}
         />
       </div>
       <div>
-        <p>Ticket price: {price ? price : "__"} eur</p>
+        <p>Ticket price: {eventInfo.price ? eventInfo.price : "__"} eur</p>
       </div>
     </>
   );
