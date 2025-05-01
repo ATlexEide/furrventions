@@ -1,0 +1,23 @@
+.input {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.input label,
+.input div {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  height: 40px;
+  width: 200px;
+  text-align: end;
+}
+.input div {
+  justify-content: end;
+}
+.input input {
+  width: 30px;
+}
