@@ -10,8 +10,8 @@ export default function ViewConInfo({ supabase }) {
   const params = useParams();
   const con_id = params.id;
   const [submitter, setSubmitter] = useState("");
-  console.log(con_id);
   const [con, setCon] = useState({});
+  const [tags, setTags] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
@@ -21,7 +21,6 @@ export default function ViewConInfo({ supabase }) {
       .select()
       .eq("id", id);
     if (error) throw new Error("Fetching convention failed");
-    console.log(data);
     setCon(data[0]);
   }
 
@@ -43,18 +42,23 @@ export default function ViewConInfo({ supabase }) {
     if (data) setSubmitter(data[0].username);
   }
 
-  if (con) console.log(con);
+  if (con.id) console.log(con);
   if (submitter) console.log("submitter", submitter);
 
   useEffect(() => {
     if (!con_id) return;
     if (!con.id) fetchCon(con_id);
-    console.log(con);
-    if (con) fetchConSubmitter(con.creatorID);
-    setStartDate(new Date(con.start_time));
-    setEndDate(new Date(con.end_time));
+    if (con.id) {
+      console.clear();
+      console.log(con.tags);
+      console.log(tags);
+      fetchConSubmitter(con.creatorID);
+      console.log(con.tags);
+      setTags(con.tags.replace(/("|\[|\])/g, "").split(","));
+      setStartDate(new Date(con.start_time));
+      setEndDate(new Date(con.end_time));
+    }
   }, [con]);
-  console.log(startDate);
   // const [cons, loading] = useConsObject();
 
   const days = [
@@ -81,6 +85,27 @@ export default function ViewConInfo({ supabase }) {
     "November",
     "December"
   ];
+  if (tags.length) {
+    console.log(typeof tags, tags);
+  }
+
+  function getTag(tag, i) {
+    switch (tag) {
+      case "adult":
+        return <li key={i}>18+</li>;
+      case "virtual":
+        return <li key={i}>Virtual Event</li>;
+      case "eu":
+        return <li key={i}>Europe</li>;
+      case "na":
+        return <li key={i}>North America</li>;
+      case "other":
+        return <li key={i}>Other location</li>;
+      default:
+        break;
+    }
+  }
+
   if (!con.id) return <Loading />;
   if (con.id)
     return (
@@ -129,13 +154,19 @@ export default function ViewConInfo({ supabase }) {
                   months[endDate.getMonth()]
                 } ${endDate.getFullYear()}`}</p>
               )}
+              {Boolean(tags.length) && (
+                <>
+                  <h3>Tags</h3>
+                  <ul>{tags.map((tag, i) => getTag(tag, i))}</ul>
+                </>
+              )}
               {submitter && <p>Submitted by {submitter}</p>}
             </section>
             <section id="convention-options">
               <button
                 onClick={
+                  () => console.log("click")
                   // TODO: ADD LOGIC
-                  console.log("click")
                 }
               >
                 Add to my cons
