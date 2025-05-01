@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function EventLocation({ eventInfo, setEventInfo }) {
+export default function EventLocation({
+  setIsNotValid,
+  eventInfo,
+  setEventInfo
+}) {
   const [query, setQuery] = useState("");
   const [result, setResult] = useState([]);
+
+  useEffect(() => {
+    if (eventInfo.location) setIsNotValid(false);
+  });
 
   async function fetchLocation() {
     fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json`)
@@ -16,7 +24,7 @@ export default function EventLocation({ eventInfo, setEventInfo }) {
         <input
           id="location"
           type="text"
-          value={query}
+          value={query ? query : eventInfo.location}
           onChange={(e) => {
             setQuery(e.target.value);
           }}
@@ -44,7 +52,7 @@ export default function EventLocation({ eventInfo, setEventInfo }) {
                     lat: res.lat,
                     location: res.display_name
                   });
-                  setQuery(res.display_name);
+                  setQuery(null);
                   setResult(null);
                 }}
               >
