@@ -24,7 +24,7 @@ export default function EventAdditionalInfo({
         <label htmlFor="name">Start time*</label>
         <input
           id="start-time"
-          type="datetime-local"
+          type="date"
           value={eventInfo.start_time}
           onChange={(e) => {
             setEventInfo({ ...eventInfo, start_time: e.target.value });
@@ -34,7 +34,7 @@ export default function EventAdditionalInfo({
         <label htmlFor="name">End time*</label>
         <input
           id="end-time"
-          type="datetime-local"
+          type="date"
           value={eventInfo.end_time}
           onChange={(e) => {
             setEventInfo({ ...eventInfo, end_time: e.target.value });
