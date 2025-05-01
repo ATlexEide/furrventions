@@ -11,9 +11,8 @@ export default function EventName({ eventInfo, setEventInfo }) {
           }}
         />
         <label htmlFor="description">Event description*</label>
-        <input
+        <textarea
           id="description"
-          type="text"
           onChange={(e) => {
             setEventInfo({ ...eventInfo, description: e.target.value });
           }}
