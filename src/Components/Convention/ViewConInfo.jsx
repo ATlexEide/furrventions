@@ -24,8 +24,19 @@ export default function ViewConInfo({ supabase }) {
     setCon(data[0]);
   }
 
+  async function getUserId() {
+    const { data, error } = await supabase.auth.getSession();
+    if (error) throw new error(error);
+    if (data) return data.session.user.id;
+  }
+
   async function fetchConSubmitter(id) {
     console.clear();
+    const currId = await getUserId();
+    if (currId === id) {
+      setSubmitter("You");
+      return;
+    }
     console.log(con);
     console.log("user id", id);
     const { data, error } = await supabase
