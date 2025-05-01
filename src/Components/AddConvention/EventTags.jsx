@@ -3,7 +3,8 @@ import { useEffect } from "react";
 
 import "../../styles/EventTags.css";
 
-export default function EventTags({ eventInfo, setEventInfo }) {
+export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
+  setIsNotValid(false);
   // General tags
   const [isAdult, setIsAdult] = useState(
     eventInfo.tags.includes("adult") ? true : false
