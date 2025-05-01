@@ -1,4 +1,9 @@
-export default function EventName({ eventInfo, setEventInfo }) {
+import { useEffect } from "react";
+
+export default function EventName({ setIsNotValid, eventInfo, setEventInfo }) {
+  useEffect(() => {
+    if (eventInfo.name) setIsNotValid(false);
+  }, [eventInfo]);
   return (
     <>
       <div className="input-container">
@@ -6,6 +11,7 @@ export default function EventName({ eventInfo, setEventInfo }) {
         <input
           id="name"
           type="text"
+          value={eventInfo.name}
           onChange={(e) => {
             setEventInfo({ ...eventInfo, name: e.target.value });
           }}
@@ -13,6 +19,7 @@ export default function EventName({ eventInfo, setEventInfo }) {
         <label htmlFor="description">Event description*</label>
         <textarea
           id="description"
+          value={eventInfo.description}
           onChange={(e) => {
             setEventInfo({ ...eventInfo, description: e.target.value });
           }}
