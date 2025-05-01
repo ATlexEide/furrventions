@@ -14,6 +14,7 @@ export default function ViewConInfo({ supabase }) {
   const [tags, setTags] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [sessionExists, setSessionExists] = useState(false);
 
   async function fetchCon(id) {
     const { data, error } = await supabase
@@ -27,18 +28,22 @@ export default function ViewConInfo({ supabase }) {
   async function getUserId() {
     const { data, error } = await supabase.auth.getSession();
     if (error) throw new error(error);
-    if (data) return data.session.user.id;
+    if (data.session) {
+      setSessionExists(true);
+      return data.session.user.id;
+    }
   }
 
   async function fetchConSubmitter(id) {
     console.clear();
-    const currId = await getUserId();
+    const currId = sessionExists ? await getUserId() : null;
     if (currId === id) {
       setSubmitter("You");
       return;
     }
     console.log(con);
     console.log("user id", id);
+
     const { data, error } = await supabase
       .from("users")
       .select("username")
@@ -175,13 +180,15 @@ export default function ViewConInfo({ supabase }) {
             </section>
             <section id="convention-options">
               <button
+                disabled={sessionExists ? false : true}
                 onClick={
                   () => console.log("click")
                   // TODO: ADD LOGIC
                 }
               >
-                Add to my cons
+                Save to my cons
               </button>
+              {!sessionExists && <p>Log in to save event</p>}
             </section>
           </section>
           <section id="map-container">
