@@ -1,9 +1,97 @@
+import { useState } from "react";
+import { useEffect } from "react";
+
+import "../../styles/EventTags.css";
+
 export default function EventTags({ eventInfo, setEventInfo }) {
+  // General tags
+  const [isAdult, setIsAdult] = useState(false);
+  const [isVirtual, setIsVirtual] = useState(false);
+
+  // Location
+  const [isEU, setIsEU] = useState(false);
+  const [isNA, setIsNA] = useState(false);
+  const [isOther, setIsOther] = useState(false);
+
+  useEffect(() => {
+    const tags = [
+      isAdult ? "18+" : null,
+      isVirtual ? "Virtual Event" : null,
+      isEU ? "Europe" : null,
+      isNA ? "North America" : null,
+      isOther ? "Other location" : null
+    ];
+
+    setEventInfo({
+      ...eventInfo,
+      tags: tags.filter((tag) => tag)
+    });
+  }, [isAdult, isVirtual, isEU, isNA, isOther]);
+
   return (
     <>
       <div className="input-container">
-        <label htmlFor="name">Event name:</label>
-        <input id="name" type="checkbox" value={"some val"} />
+        <div className="input">
+          <label htmlFor="adult">18+</label>
+          <div>
+            <input
+              id="adult"
+              type="checkbox"
+              onChange={() => setIsAdult(!isAdult)}
+              checked={isAdult}
+            />
+          </div>
+        </div>
+
+        <div className="input">
+          <label htmlFor="virtual">Virtual Con</label>
+          <div>
+            <input
+              id="virtual"
+              type="checkbox"
+              onChange={() => setIsVirtual(!isVirtual)}
+              checked={isVirtual}
+            />
+          </div>
+        </div>
+
+        <hr />
+
+        <div className="input">
+          <label htmlFor="eu">Location: EU</label>
+          <div>
+            <input
+              id="eu"
+              type="checkbox"
+              onChange={() => setIsEU(!isEU)}
+              checked={isEU}
+            />
+          </div>
+        </div>
+
+        <div className="input">
+          <label htmlFor="na">Location: NA</label>
+          <div>
+            <input
+              id="na"
+              type="checkbox"
+              onChange={() => setIsNA(!isNA)}
+              checked={isNA}
+            />
+          </div>
+        </div>
+
+        <div className="input">
+          <label htmlFor="other">Location: Other</label>
+          <div>
+            <input
+              id="other"
+              type="checkbox"
+              onChange={() => setIsOther(!isOther)}
+              checked={isOther}
+            />
+          </div>
+        </div>
       </div>
     </>
   );
