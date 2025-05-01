@@ -1,4 +1,13 @@
-export default function EventAdditionalInfo({ eventInfo, setEventInfo }) {
+import { useEffect } from "react";
+
+export default function EventAdditionalInfo({
+  setIsNotValid,
+  eventInfo,
+  setEventInfo
+}) {
+  useEffect(() => {
+    if (eventInfo.start_time && eventInfo.end_time) setIsNotValid(false);
+  });
   return (
     <>
       <div className="input-container">
@@ -6,6 +15,7 @@ export default function EventAdditionalInfo({ eventInfo, setEventInfo }) {
         <input
           id="website"
           type="text"
+          value={eventInfo.website}
           onChange={(e) => {
             setEventInfo({ ...eventInfo, website: e.target.value });
           }}
@@ -15,6 +25,7 @@ export default function EventAdditionalInfo({ eventInfo, setEventInfo }) {
         <input
           id="start-time"
           type="datetime-local"
+          value={eventInfo.start_time}
           onChange={(e) => {
             setEventInfo({ ...eventInfo, start_time: e.target.value });
           }}
@@ -24,6 +35,7 @@ export default function EventAdditionalInfo({ eventInfo, setEventInfo }) {
         <input
           id="end-time"
           type="datetime-local"
+          value={eventInfo.end_time}
           onChange={(e) => {
             setEventInfo({ ...eventInfo, end_time: e.target.value });
           }}
