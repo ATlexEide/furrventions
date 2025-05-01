@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 export default function ConventionCard({ con, type }) {
   const navigate = useNavigate();
 
-  con.location_formatted = "REPLACE LATER";
-
   const days = [
     "Sunday",
     "Monday",
