@@ -18,6 +18,7 @@ import EventAdditionalInfo from "./EventAdditionalInfo";
 export default function AddConvention({ supabase }) {
   const [page, setPage] = useState(0);
   const [session, setSession] = useState(null);
+  const [isNotValid, setIsNotValid] = useState(true);
 
   const [eventInfo, setEventInfo] = useState({
     type: null,
@@ -50,35 +51,6 @@ export default function AddConvention({ supabase }) {
     if (session) setEventInfo({ ...eventInfo, creatorID: session.user.id });
   }, [session]);
 
-  // async function addConvention(obj) {
-  //   obj.spots_total = 300;
-  //   obj.creatorID = user.id;
-  //   const { data, error } = await supabase
-  //     .from("conventions")
-  //     .insert(obj)
-  //     .select();
-
-  //   if (error) {
-  //     switch (error.code) {
-  //       case "23502":
-  //         alert("Please fill out all required fields");
-  //         break;
-  //       case "23505":
-  //         alert(
-  //           "Please make sure name and website are unique to this convention"
-  //         );
-  //         break;
-
-  //       default:
-  //         break;
-  //     }
-
-  //     console.log(error);
-  //   } else {
-  //     clearConventionInfo();
-  //     console.log(data);
-  //   }
-  // }
   const pages = [
     {
       title: "What kind of event are you adding?",
@@ -156,6 +128,8 @@ export default function AddConvention({ supabase }) {
         eventInfo={eventInfo}
         setEventInfo={setEventInfo}
         user={session ? session.user : null}
+        isNotValid={isNotValid}
+        setIsNotValid={setIsNotValid}
       />
     </>
   );
