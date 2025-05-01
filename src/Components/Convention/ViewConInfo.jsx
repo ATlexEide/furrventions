@@ -121,7 +121,13 @@ export default function ViewConInfo({ supabase }) {
         break;
     }
   }
+  if (con.id) {
+    console.log("TYPEE", typeof con.start_time);
 
+    console.log("TIMEE", con.start_time);
+    console.log("PARSED", Date.parse(con.start_time));
+    console.log("DATEEEE", startDate && startDate.getUTCHours());
+  }
   if (!con.id) return <Loading />;
   if (con.id)
     return (
@@ -143,32 +149,18 @@ export default function ViewConInfo({ supabase }) {
               {!con.description && <p>Could not find description</p>}
               {con.description && <p>{con.description}</p>}
               {!con.start_time && <p>Could not find end time</p>}
-              {con.start_time && (
+              {startDate && (
                 <p>{`Starts | ${
-                  startDate.getHours().length > 2
-                    ? startDate.getHours()
-                    : "0" + startDate.getHours()
-                }:${
-                  startDate.getMinutes().length > 2
-                    ? startDate.getMinutes()
-                    : "0" + startDate.getMinutes()
-                } ${days[startDate.getDay()]} ${startDate.getDate()}. ${
+                  days[startDate.getDay()]
+                } ${startDate.getDate()}. ${
                   months[startDate.getMonth()]
-                } ${startDate.getFullYear()}`}</p>
+                } ${startDate.getUTCFullYear()}`}</p>
               )}
               {!con.end_time && <p>Could not find end time</p>}
-              {con.end_time && (
-                <p>{`Ends | ${
-                  endDate.getHours().length > 2
-                    ? endDate.getHours()
-                    : "0" + endDate.getHours()
-                }:${
-                  endDate.getMinutes().length > 2
-                    ? endDate.getMinutes()
-                    : "0" + endDate.getMinutes()
-                } ${days[endDate.getDay()]} ${endDate.getDate()}. ${
+              {endDate && (
+                <p>{`Ends |  ${days[endDate.getDay()]} ${endDate.getDate()}. ${
                   months[endDate.getMonth()]
-                } ${endDate.getFullYear()}`}</p>
+                } ${endDate.getUTCFullYear()}`}</p>
               )}
               {Boolean(tags.length) && (
                 <>
@@ -176,6 +168,7 @@ export default function ViewConInfo({ supabase }) {
                   <ul>{tags.map((tag, i) => getTag(tag, i))}</ul>
                 </>
               )}
+              <hr />
               {submitter && <p>Submitted by {submitter}</p>}
             </section>
             <section id="convention-options">
