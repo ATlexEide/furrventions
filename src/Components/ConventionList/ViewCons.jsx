@@ -86,7 +86,7 @@ export default function ViewCons({ supabase }) {
     filterCons();
   }, [filter]);
 
-  if (!cons || loading) return <Loading />;
+  if (hasFilter && !filteredCons) return <Loading />;
   if (hasFilter)
     return (
       <>
@@ -97,6 +97,7 @@ export default function ViewCons({ supabase }) {
           filterCons={filterCons}
         />
         <section id="convention-list-cont">
+          {!filteredCons.length && <p>No results</p>}
           <ul id="convention-list">
             {Boolean(filteredCons.length) &&
               filteredCons.map((con, i) => (
@@ -106,7 +107,6 @@ export default function ViewCons({ supabase }) {
               ))}
           </ul>
         </section>
-        {!filteredCons.length && hasFilter && <h3>No results</h3>}
       </>
     );
   return (
@@ -119,6 +119,7 @@ export default function ViewCons({ supabase }) {
       />
       <section id="convention-list-cont">
         <ul id="convention-list">
+          {(loading || !cons.length) && <Loading />}
           {cons.map((con, i) => (
             <li className="convention" key={i}>
               <ConventionCard consObj={consObj} con={con} />
