@@ -63,7 +63,9 @@ label {
   width: 200px;
   text-align: start;
 }
-input {
+
+input,
+textarea {
   width: 200px;
   height: 24px;
   background-color: white;
@@ -71,6 +73,11 @@ input {
   border-radius: 12px;
   color: black;
   padding: 0 12px;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
 }
 
 .input-container {
