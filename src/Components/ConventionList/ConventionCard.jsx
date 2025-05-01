@@ -67,7 +67,7 @@ export default function ConventionCard({ consObj, con, type }) {
     >
       <figure className="convention-logo">
         <img
-          src={con.logo_path ? fetchLogo(con.logo_path) : "/pawske.png"}
+          src={con.logo_path ? fetchLogo(con.logo_path) : "/pawlogo.png"}
           alt={`${con.name} logo`}
         />
       </figure>
