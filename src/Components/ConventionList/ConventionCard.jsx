@@ -49,9 +49,7 @@ export default function ConventionCard({ con, type }) {
       month: months[date.getUTCMonth()],
       year: date.getUTCFullYear()
     };
-    return `${dateObj.day} ${dateObj.date}. ${dateObj.month} ${
-      dateObj.year
-    } ${dateObj.minutes()}:${dateObj.hours()}`;
+    return `${dateObj.day} ${dateObj.date}. ${dateObj.month} ${dateObj.year} `;
   }
 
   return (
