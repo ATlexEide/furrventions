@@ -17,6 +17,8 @@ import EventAdditionalInfo from "./EventAdditionalInfo";
 
 export default function AddConvention({ supabase }) {
   const [page, setPage] = useState(0);
+  const [session, setSession] = useState(null);
+
   const [eventInfo, setEventInfo] = useState({
     type: null,
     name: null,
@@ -38,17 +40,14 @@ export default function AddConvention({ supabase }) {
   });
   console.log(eventInfo);
 
-  const [user, setUser] = useState(null);
-  const [session, setSession] = useState(null);
   async function getSession() {
-    if (user) return;
+    if (session) return;
     const { data, error } = await supabase.auth.getSession();
     if (!error) setSession(data.session);
   }
   useEffect(() => {
-    getSession();
-    if (!session) return;
-    setUser(session.user);
+    if (!session) getSession();
+    if (session) setEventInfo({ ...eventInfo, creatorID: session.user.id });
   }, [session]);
 
   // async function addConvention(obj) {
@@ -85,7 +84,7 @@ export default function AddConvention({ supabase }) {
       title: "What kind of event are you adding?",
       component: (
         <EventType
-          user={user}
+          user={session ? session.user : null}
           eventInfo={eventInfo}
           setEventInfo={setEventInfo}
           setPage={setPage}
@@ -156,7 +155,7 @@ export default function AddConvention({ supabase }) {
         nextBtnTxt={"Next,Add Event"}
         eventInfo={eventInfo}
         setEventInfo={setEventInfo}
-        user={user}
+        user={session ? session.user : null}
       />
     </>
   );
