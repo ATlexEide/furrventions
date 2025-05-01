@@ -5,21 +5,31 @@ import "../../styles/EventTags.css";
 
 export default function EventTags({ eventInfo, setEventInfo }) {
   // General tags
-  const [isAdult, setIsAdult] = useState(false);
-  const [isVirtual, setIsVirtual] = useState(false);
+  const [isAdult, setIsAdult] = useState(
+    eventInfo.tags.includes("adult") ? true : false
+  );
+  const [isVirtual, setIsVirtual] = useState(
+    eventInfo.tags.includes("virtual") ? true : false
+  );
 
   // Location
-  const [isEU, setIsEU] = useState(false);
-  const [isNA, setIsNA] = useState(false);
-  const [isOther, setIsOther] = useState(false);
+  const [isEU, setIsEU] = useState(
+    eventInfo.tags.includes("eu") ? true : false
+  );
+  const [isNA, setIsNA] = useState(
+    eventInfo.tags.includes("na") ? true : false
+  );
+  const [isOther, setIsOther] = useState(
+    eventInfo.tags.includes("other") ? true : false
+  );
 
   useEffect(() => {
     const tags = [
-      isAdult ? "18+" : null,
-      isVirtual ? "Virtual Event" : null,
-      isEU ? "Europe" : null,
-      isNA ? "North America" : null,
-      isOther ? "Other location" : null
+      isAdult ? "adult" : null,
+      isVirtual ? "virtual" : null,
+      isEU ? "eu" : null,
+      isNA ? "na" : null,
+      isOther ? "other" : null
     ];
 
     setEventInfo({
