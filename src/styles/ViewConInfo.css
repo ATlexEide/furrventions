@@ -9,7 +9,7 @@
 #convention-info hr {
   place-self: center;
   margin: 12px 0;
-  width: 50%;
+  width: 90%;
 }
 
 #convention-info-heading {
@@ -36,9 +36,18 @@
 #convention-container section {
   height: 100%;
 }
-#convention-options {
+
+#convention-info-main #convention-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
   padding: 48px;
-  align-items: start;
+}
+
+#convention-options button {
+  width: 150px;
+  height: 70px;
 }
 
 .leaflet-container {
@@ -58,10 +67,26 @@
   text-align: start;
 }
 
+#convention-details ul {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  padding: 12px;
+  place-self: center;
+}
 #convention-details ul li {
-  text-align: center;
+  text-align: start;
 }
 
 #convention-details #submitter {
   text-align: center;
+}
+
+.info-section {
+  padding: 12px 0;
+}
+
+.label {
+  display: inline-block;
+  width: 100px;
 }
