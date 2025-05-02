@@ -16,7 +16,7 @@ export default function EventName({ setIsNotValid, eventInfo, setEventInfo }) {
             setEventInfo({ ...eventInfo, name: e.target.value });
           }}
         />
-        <label htmlFor="description">Event description*</label>
+        <label htmlFor="description">Event description</label>
         <textarea
           id="description"
           value={eventInfo.description}
