@@ -16,7 +16,7 @@ export default function MapWithPlaceholder({
   return (
     <MapContainer
       center={cords}
-      zoom={14}
+      zoom={16}
       scrollWheelZoom={true}
       placeholder={<MapPlaceholder />}
     >
