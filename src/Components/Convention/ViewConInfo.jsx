@@ -15,6 +15,7 @@ export default function ViewConInfo({ supabase }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [session, setSession] = useState(null);
+  const [userIsCreator, setUserIsCreator] = useState(false);
 
   useEffect(() => {
     getSession();
@@ -40,6 +41,7 @@ export default function ViewConInfo({ supabase }) {
   async function fetchConSubmitter(id) {
     const currId = session ? session.user.id : null;
     if (currId === id) {
+      setUserIsCreator(true);
       setSubmitter("You");
       return;
     }
@@ -130,30 +132,80 @@ export default function ViewConInfo({ supabase }) {
           <section id="convention-container">
             <section id="convention-details">
               {con.name && <h1>{con.name}</h1>}
-              {!con.description && <p>Could not find description</p>}
-              {con.description && <p>{con.description}</p>}
-              {!con.start_time && <p>Could not find end time</p>}
-              {startDate && (
-                <p>{`Starts | ${
-                  days[startDate.getDay()]
-                } ${startDate.getDate()}. ${
-                  months[startDate.getMonth()]
-                } ${startDate.getUTCFullYear()}`}</p>
-              )}
-              {!con.end_time && <p>Could not find end time</p>}
-              {endDate && (
-                <p>{`Ends |  ${days[endDate.getDay()]} ${endDate.getDate()}. ${
-                  months[endDate.getMonth()]
-                } ${endDate.getUTCFullYear()}`}</p>
-              )}
+              <section id="convention-general">
+                <section>
+                  {!con.price && <p>Could not find a price</p>}
+                  {con.price && (
+                    <p>
+                      <span className="label">
+                        <strong>Ticket price</strong>
+                      </span>{" "}
+                      {con.price}eur
+                    </p>
+                  )}
+                </section>
+                <section id="dates" className="info-section">
+                  {!startDate && <p>Could not find end time</p>}
+                  {startDate && (
+                    <p>
+                      <span className="label">
+                        <strong>Starts</strong>
+                      </span>
+                      {`${days[startDate.getDay()]} ${startDate.getDate()}. ${
+                        months[startDate.getMonth()]
+                      } ${startDate.getUTCFullYear()}`}
+                    </p>
+                  )}
+                  {!endDate && <p>Could not find end time</p>}
+                  {endDate && (
+                    <p>
+                      <span className="label">
+                        <strong>Ends</strong>
+                      </span>
+                      {`${days[endDate.getDay()]} ${endDate.getDate()}. ${
+                        months[endDate.getMonth()]
+                      } ${endDate.getUTCFullYear()}`}
+                    </p>
+                  )}
+                </section>
+                <section className="info-section">
+                  <p>
+                    <strong>Location</strong>
+                  </p>
+                  {!con.location && <p>Unable to find location</p>}
+                  {con.location && <p>{con.location}</p>}
+                </section>
+                {!con.description && <p>No description</p>}
+                {con.description && (
+                  <p>
+                    <strong>Description</strong> <br />
+                    {con.description}
+                  </p>
+                )}
+                {!con.website && <p>No website submitted</p>}
+                {con.website && (
+                  <p id="website" className="info-section">
+                    <a
+                      target="_blank"
+                      href={
+                        con.website.includes("://")
+                          ? con.website
+                          : `https://${con.website}`
+                      }
+                    >
+                      {con.website}
+                    </a>
+                  </p>
+                )}
+              </section>
               {Boolean(tags.length) && (
                 <>
-                  <h3>Tags</h3>
+                  <h2>Tags</h2>
                   <ul>{tags.map((tag, i) => getTag(tag, i))}</ul>
                 </>
               )}
               <hr />
-              {submitter && <p>Submitted by {submitter}</p>}
+              {submitter && <p id="submitter">Submitted by {submitter}</p>}
             </section>
             <section id="convention-options">
               <button
@@ -166,6 +218,12 @@ export default function ViewConInfo({ supabase }) {
                 Save to my cons
               </button>
               {!session && <p>Log in to save event</p>}
+              {userIsCreator && (
+                <>
+                  <button className="orange-btn">Edit Con</button>
+                  <button className="red-btn">Delete Con</button>
+                </>
+              )}
             </section>
           </section>
           <section id="map-container">
