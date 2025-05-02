@@ -19,8 +19,7 @@ export default function EventType({
       <button
         onClick={(e) => {
           e.preventDefault();
-          setEventInfo({ ...eventInfo, type: "meet" });
-          setEventInfo({ ...eventInfo, organizerID: user.id });
+          setEventInfo({ ...eventInfo, type: "meet", organizerID: user.id });
           setPage(page + 2);
         }}
       >
