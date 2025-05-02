@@ -2,7 +2,9 @@ export default function Filter({
   setHasFilter,
   filter,
   setFilter,
-  filterCons
+  filterCons,
+  setShowMap,
+  showMap
 }) {
   return (
     <section id="convention-list-filter">
@@ -81,7 +83,13 @@ export default function Filter({
         >
           Clear filter
         </button>
-        <button>Toggle map view</button>
+        <button
+          onClick={() => {
+            setShowMap(!showMap);
+          }}
+        >
+          Toggle map view
+        </button>
       </section>
     </section>
   );
