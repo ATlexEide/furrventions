@@ -48,9 +48,11 @@ export default function UserButton({ user, supabase }) {
             </button>
           </section>
           <section id="content">{pages[currentPage]}</section>
-          <button id="logout" className="red-btn" onClick={logout}>
-            Log out
-          </button>
+          {currentPage === "main" && (
+            <button id="logout" className="red-btn" onClick={logout}>
+              Log out
+            </button>
+          )}
         </section>
       )}
     </>
