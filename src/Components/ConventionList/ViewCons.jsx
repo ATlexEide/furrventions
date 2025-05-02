@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import MapWithPlaceholder from "../Utilities/Map.jsx";
 import ConventionCard from "./ConventionCard.jsx";
 import Filter from "./Filter.jsx";
 // import { useConsArray } from "../utils/useCons.jsx";
@@ -97,30 +98,41 @@ export default function ViewCons({ supabase }) {
         setFilter={setFilter}
         filterCons={filterCons}
         setShowMap={setShowMap}
+        showMap={showMap}
       />
       {hasFilter && (
         <section id="convention-list-cont">
           {!filteredCons.length && <p>No results</p>}
-          <ul id="convention-list">
-            {Boolean(filteredCons.length) &&
-              filteredCons.map((con, i) => (
-                <li className="convention" key={i}>
-                  <ConventionCard con={con} />
-                </li>
-              ))}
-          </ul>
+          {!showMap && (
+            <ul id="convention-list">
+              {Boolean(filteredCons.length) &&
+                filteredCons.map((con, i) => (
+                  <li className="convention" key={i}>
+                    <ConventionCard con={con} />
+                  </li>
+                ))}
+            </ul>
+          )}
         </section>
       )}
       {!hasFilter && (
         <section id="convention-list-cont">
-          <ul id="convention-list">
-            {(loading || !cons.length) && <Loading />}
-            {cons.map((con, i) => (
-              <li className="convention" key={i}>
-                <ConventionCard consObj={consObj} con={con} />
-              </li>
-            ))}
-          </ul>
+          {!showMap && (
+            <ul id="convention-list">
+              {(loading || !cons.length) && <Loading />}
+              {cons.map((con, i) => (
+                <li className="convention" key={i}>
+                  <ConventionCard consObj={consObj} con={con} />
+                </li>
+              ))}
+            </ul>
+          )}
+          {showMap && (
+            <MapWithPlaceholder
+            // conName={con.name}
+            // cords={[con.lat, con.long]}
+            />
+          )}
         </section>
       )}
     </>
