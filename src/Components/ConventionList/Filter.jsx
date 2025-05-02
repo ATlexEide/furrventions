@@ -10,7 +10,7 @@ export default function Filter({
 
       <section id="filter-options">
         <div className="filter-option-input">
-          <label htmlFor="convention-name">Convention name: </label>
+          <label htmlFor="convention-name">Event name: </label>
           <input
             id="convention-name"
             type="text"
@@ -24,7 +24,7 @@ export default function Filter({
         <div className="filter-option-input">
           {/* <label htmlFor="convention-name">Convention location: </label> */}
           <div>
-            <label htmlFor="convention-name">Convention location: </label>
+            <label htmlFor="convention-name">Event location: </label>
             <input
               id="convention-location"
               type="text"
@@ -37,8 +37,8 @@ export default function Filter({
             />
           </div>
         </div>
-
-        <div className="filter-option-input">
+        {/* TODO: Update attendee logic */}
+        {/* <div className="filter-option-input">
           <label htmlFor="total-spots-input">Previous year attendees: </label>
 
           <div id="spots-filter">
@@ -62,7 +62,8 @@ export default function Filter({
               }}
             />
           </div>
-        </div>
+        </div> */}
+        {/* TODO END */}
       </section>
 
       <button
