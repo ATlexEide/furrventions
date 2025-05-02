@@ -53,6 +53,11 @@ export default function UserButton({ user, supabase }) {
               Log out
             </button>
           )}
+          {currentPage === "account_settings" && (
+            <button id="delete-account" className="red-btn">
+              Delete account
+            </button>
+          )}
         </section>
       )}
     </>
