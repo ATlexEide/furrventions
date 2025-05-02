@@ -129,8 +129,9 @@ export default function ViewCons({ supabase }) {
           )}
           {showMap && (
             <MapWithPlaceholder
-            // conName={con.name}
-            // cords={[con.lat, con.long]}
+              cons={cons}
+              // conName={con.name}
+              // cords={[con.lat, con.long]}
             />
           )}
         </section>
