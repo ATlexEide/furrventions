@@ -65,22 +65,24 @@ export default function Filter({
         </div> */}
         {/* TODO END */}
       </section>
-
-      <button
-        onClick={() => {
-          filterCons();
-        }}
-      >
-        Refresh
-      </button>
-      <button
-        onClick={() => {
-          setFilter({});
-          setHasFilter(false);
-        }}
-      >
-        Clear filter
-      </button>
+      <section id="filter-buttons">
+        <button
+          onClick={() => {
+            filterCons();
+          }}
+        >
+          Refresh
+        </button>
+        <button
+          onClick={() => {
+            setFilter({});
+            setHasFilter(false);
+          }}
+        >
+          Clear filter
+        </button>
+        <button>Toggle map view</button>
+      </section>
     </section>
   );
 }
