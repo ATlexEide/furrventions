@@ -16,6 +16,7 @@ export default function ViewCons({ supabase }) {
   const [filter, setFilter] = useState(null);
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
+  const [showMap, setShowMap] = useState(false);
 
   async function fetch() {
     const { data, err } = await supabase.from("conventions").select();
@@ -87,15 +88,17 @@ export default function ViewCons({ supabase }) {
   }, [filter]);
 
   if (hasFilter && !filteredCons) return <Loading />;
-  if (hasFilter)
-    return (
-      <>
-        <Filter
-          setHasFilter={setHasFilter}
-          filter={filter}
-          setFilter={setFilter}
-          filterCons={filterCons}
-        />
+
+  return (
+    <>
+      <Filter
+        setHasFilter={setHasFilter}
+        filter={filter}
+        setFilter={setFilter}
+        filterCons={filterCons}
+        setShowMap={setShowMap}
+      />
+      {hasFilter && (
         <section id="convention-list-cont">
           {!filteredCons.length && <p>No results</p>}
           <ul id="convention-list">
@@ -107,26 +110,19 @@ export default function ViewCons({ supabase }) {
               ))}
           </ul>
         </section>
-      </>
-    );
-  return (
-    <>
-      <Filter
-        setHasFilter={setHasFilter}
-        filter={filter}
-        setFilter={setFilter}
-        filterCons={filterCons}
-      />
-      <section id="convention-list-cont">
-        <ul id="convention-list">
-          {(loading || !cons.length) && <Loading />}
-          {cons.map((con, i) => (
-            <li className="convention" key={i}>
-              <ConventionCard consObj={consObj} con={con} />
-            </li>
-          ))}
-        </ul>
-      </section>
+      )}
+      {!hasFilter && (
+        <section id="convention-list-cont">
+          <ul id="convention-list">
+            {(loading || !cons.length) && <Loading />}
+            {cons.map((con, i) => (
+              <li className="convention" key={i}>
+                <ConventionCard consObj={consObj} con={con} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 }
