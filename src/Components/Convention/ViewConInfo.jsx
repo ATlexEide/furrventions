@@ -215,13 +215,13 @@ export default function ViewConInfo({ supabase }) {
                   // TODO: ADD LOGIC
                 }
               >
-                Save to my cons
+                Save to my events
               </button>
               {!session && <p>Log in to save event</p>}
               {userIsCreator && (
                 <>
-                  <button className="orange-btn">Edit Con</button>
-                  <button className="red-btn">Delete Con</button>
+                  <button className="orange-btn">{`Edit ${con.type}`}</button>
+                  <button className="red-btn">{`Delete ${con.type}`}</button>
                 </>
               )}
             </section>
