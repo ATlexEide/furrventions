@@ -1,4 +1,4 @@
-export default function LoginDetails({ tempUser, setTempUser }) {
+export default function LoginDetails({ errors, tempUser, setTempUser }) {
   return (
     <section id="inputs">
       <div className="input-container">
@@ -9,6 +9,7 @@ export default function LoginDetails({ tempUser, setTempUser }) {
           value={tempUser.email}
           onChange={(e) => setTempUser({ ...tempUser, email: e.target.value })}
         />
+        {errors.invalidEmail && <p>Invalid email</p>}
       </div>
       <div className="input-container">
         <label htmlFor="password">Password:</label>
@@ -30,6 +31,12 @@ export default function LoginDetails({ tempUser, setTempUser }) {
           }
         />
       </div>
+      {console.log("mismatch ", errors.pWMismatchWarning)}
+      {console.log("lengthErr ", errors.pWLengthWarning)}
+      {errors.pWMismatchWarning && <p>Passwords does not match</p>}
+      {errors.pWLengthWarning && (
+        <p>Password must be atleast 8 characters long</p>
+      )}
     </section>
   );
 }
