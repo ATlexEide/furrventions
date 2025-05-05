@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // CSS
 import "../../styles/Forms.css";
 
@@ -9,18 +9,42 @@ import UserLoading from "../SignupFormComponents/UserLoading";
 import AccountCreated from "../SignupFormComponents/AccountCreated";
 
 export default function SignUp({ supabase }) {
+  const [isNotValid, setIsNotValid] = useState(true);
   const [page, setPage] = useState(0);
-  const [tempUser, setTempUser] = useState({
-    repeat_pw: "",
-    pw: "",
-    email: "",
-
-    furname: "",
-    firstname: "",
-    lastname: "",
-    display_name: ""
+  const [errors, setErrors] = useState({
+    pWLengthWarning: false,
+    pWMismatchWarning: false,
+    invalidEmail: false
   });
 
+  const [tempUser, setTempUser] = useState({
+    repeat_pw: null,
+    pw: null,
+    email: null,
+
+    furname: null,
+    firstname: null,
+    lastname: null,
+    display_name: null
+  });
+
+  // useEffect(() => {
+  //   checkUsername();
+  // }, [tempUser.furname]);
+  useEffect(() => {
+    validate();
+  }, [tempUser]);
+  useEffect(() => {
+    if (
+      errors.pWMismatchWarning ||
+      errors.pWLengthWarning ||
+      errors.invalidEmail
+    )
+      setIsNotValid(false);
+    else setIsNotValid(true);
+  }, [errors]);
+
+  console.log(errors);
   async function signUpNewUser() {
     const { data, error } = await supabase.auth.signUp({
       email: tempUser.email,
@@ -50,43 +74,61 @@ export default function SignUp({ supabase }) {
     Hint: ${error.hint}`);
   }
 
-  function validate() {
-    let isValid = true;
-    switch (pages[page].title) {
-      case "Login details":
-        if (!tempUser.email) {
-          alert("Email required");
-          isValid = false;
-          return;
-        }
-        if (
-          (!tempUser.password && !tempUser.repeat_pw) ||
-          tempUser.pw !== tempUser.repeat_pw
-        ) {
-          alert("Make sure youve entered the same password twice");
-          isValid = false;
-        }
-        if (isValid) signUpNewUser();
-        break;
+  async function checkUsername(name) {
+    const { data, error } = await supabase
+      .from("users")
+      .select("username")
+      .eq("username", name);
+    if (error) console.log(error);
+    if (data[0]?.username === name) {
+      console.log(`${name} is taken`);
+    } else {
+      console.log(data, "good to go");
+    }
+  }
 
+  function validate() {
+    console.clear();
+    switch (pages[page].title) {
       case "Name and username":
         console.log("YIPP");
-        // firstnameInput.className = "error"
-        if (!tempUser.firstname || !tempUser.lastname) {
-          alert("First and Last names required");
-          isValid = false;
-          return;
+
+        if (tempUser.firstname && tempUser.furname) setIsNotValid(false);
+
+        break;
+
+      case "Login details":
+        if (
+          String(tempUser.email)
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            )
+        ) {
+          setErrors({ ...errors, invalidEmail: false });
+        } else {
+          setErrors({ ...errors, invalidEmail: true });
         }
-        if (!tempUser.furname) {
-          alert("Furname/Username required");
-          isValid = false;
+
+        if (!tempUser.pw || !tempUser.repeat_pw) return;
+
+        if (tempUser.repeat_pw === tempUser.pw) {
+          {
+            setErrors({ ...errors, pWMismatchWarning: false });
+          }
+        } else {
+          setErrors({ ...errors, pWMismatchWarning: true });
         }
+
+        if (tempUser.pw.length < 8) {
+          setErrors({ ...errors, pWLengthWarning: true });
+        } else setErrors({ ...errors, pWLengthWarning: false });
+
         break;
 
       default:
         break;
     }
-    if (isValid) setPage(page + 1);
   }
 
   console.log("userData:", tempUser);
@@ -94,11 +136,24 @@ export default function SignUp({ supabase }) {
   const pages = [
     {
       title: "Name and username",
-      component: <UserNames tempUser={tempUser} setTempUser={setTempUser} />
+      component: (
+        <UserNames
+          checkUsername={checkUsername}
+          validate={validate}
+          tempUser={tempUser}
+          setTempUser={setTempUser}
+        />
+      )
     },
     {
       title: "Login details",
-      component: <LoginDetails tempUser={tempUser} setTempUser={setTempUser} />
+      component: (
+        <LoginDetails
+          errors={errors}
+          tempUser={tempUser}
+          setTempUser={setTempUser}
+        />
+      )
     },
     { title: "", component: <UserLoading /> },
     { title: "", component: <AccountCreated /> }
@@ -106,6 +161,7 @@ export default function SignUp({ supabase }) {
 
   return (
     <form id="register-account">
+      <p>is valid = {String(!isNotValid)}</p>
       <section>
         <h2>Create an account</h2>
         <h3>{pages[page].title}</h3>
@@ -123,9 +179,11 @@ export default function SignUp({ supabase }) {
           </button>
         )}
         <button
+          disabled={isNotValid}
           onClick={(e) => {
             e.preventDefault();
-            validate();
+            setIsNotValid(true);
+            setPage(page + 1);
           }}
         >
           Next
