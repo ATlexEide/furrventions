@@ -6,26 +6,29 @@ export default function UserNames({ tempUser, setTempUser }) {
         <input
           id="firstname"
           type="text"
+          value={tempUser.firstname}
           onChange={(e) =>
             setTempUser({ ...tempUser, firstname: e.target.value })
           }
         />
       </div>
       <div className="input-container">
-        <label htmlFor="firstname">Last name</label>
+        <label htmlFor="lastname">Last name</label>
         <input
           id="lastname"
           type="text"
+          value={tempUser.lastname}
           onChange={(e) =>
             setTempUser({ ...tempUser, lastname: e.target.value })
           }
         />
       </div>
       <div className="input-container">
-        <label htmlFor="firstname">Furname (Username)*</label>
+        <label htmlFor="furname">Furname (Username)*</label>
         <input
           id="furname"
           type="text"
+          value={tempUser.furname}
           onChange={(e) =>
             setTempUser({
               ...tempUser,
