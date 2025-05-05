@@ -1,4 +1,4 @@
-export default function UserNames({ tempUser, setTempUser }) {
+export default function UserNames({ checkUsername, tempUser, setTempUser }) {
   return (
     <section id="add-names">
       <div className="input-container">
@@ -29,13 +29,15 @@ export default function UserNames({ tempUser, setTempUser }) {
           id="furname"
           type="text"
           value={tempUser.furname}
-          onChange={(e) =>
+          onChange={(e) => {
             setTempUser({
               ...tempUser,
               display_name: e.target.value,
               furname: e.target.value
-            })
-          }
+            });
+            checkUsername(e.target.value);
+          }}
+          // onBlur={checkUsername}
         />
       </div>
     </section>
