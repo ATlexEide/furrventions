@@ -2,26 +2,29 @@ export default function LoginDetails({ tempUser, setTempUser }) {
   return (
     <section id="inputs">
       <div className="input-container">
-        <label htmlFor="firstname">Email:</label>
+        <label htmlFor="email">Email:</label>
         <input
           id="email"
           type="email"
+          value={tempUser.email}
           onChange={(e) => setTempUser({ ...tempUser, email: e.target.value })}
         />
       </div>
       <div className="input-container">
-        <label htmlFor="firstname">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           id="password"
           type="password"
+          value={tempUser.pw}
           onChange={(e) => setTempUser({ ...tempUser, pw: e.target.value })}
         />
       </div>
       <div className="input-container">
-        <label htmlFor="firstname">Repeat Password:</label>
+        <label htmlFor="repeat-password">Repeat Password:</label>
         <input
           id="repeat-password"
           type="password"
+          value={tempUser.repeat_pw}
           onChange={(e) =>
             setTempUser({ ...tempUser, repeat_pw: e.target.value })
           }
