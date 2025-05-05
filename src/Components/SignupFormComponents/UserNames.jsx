@@ -2,7 +2,7 @@ export default function UserNames({ tempUser, setTempUser }) {
   return (
     <section id="add-names">
       <div className="input-container">
-        <label htmlFor="firstname">First name:</label>
+        <label htmlFor="firstname">First name*</label>
         <input
           id="firstname"
           type="text"
@@ -12,7 +12,7 @@ export default function UserNames({ tempUser, setTempUser }) {
         />
       </div>
       <div className="input-container">
-        <label htmlFor="firstname">Last name:</label>
+        <label htmlFor="firstname">Last name</label>
         <input
           id="lastname"
           type="text"
@@ -22,7 +22,7 @@ export default function UserNames({ tempUser, setTempUser }) {
         />
       </div>
       <div className="input-container">
-        <label htmlFor="firstname">Furname (Username):</label>
+        <label htmlFor="firstname">Furname (Username)*</label>
         <input
           id="furname"
           type="text"
