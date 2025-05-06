@@ -1,50 +1,59 @@
 import { useEffect, useState } from "react";
 // CSS
 import "../../styles/Forms.css";
-
-// Form components
-import UserNames from "../SignupFormComponents/UserNames";
-import LoginDetails from "../SignupFormComponents/LoginDetails";
+import { redirect } from "react-router-dom";
 import UserLoading from "../SignupFormComponents/UserLoading";
-import AccountCreated from "../SignupFormComponents/AccountCreated";
 
 export default function SignUp({ supabase }) {
-  const [isNotValid, setIsNotValid] = useState(true);
-  const [page, setPage] = useState(0);
-  const [errors, setErrors] = useState({
-    pWLengthWarning: false,
-    pWMismatchWarning: false,
-    invalidEmail: false
-  });
+  const [isValid, setIsValid] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+  const [invalidPasswordLength, setInvalidPasswordLength] = useState(false);
+  const [invalidUsername, setInvalidUsername] = useState(false);
+
+  const [userCreated, setUserCreated] = useState(false);
 
   const [tempUser, setTempUser] = useState({
-    repeat_pw: null,
-    pw: null,
-    email: null,
+    repeat_pw: "",
+    pw: "",
+    email: "",
 
-    furname: null,
-    firstname: null,
-    lastname: null,
-    display_name: null
+    furname: "",
+    firstname: "",
+    lastname: "",
+    display_name: ""
   });
 
-  // useEffect(() => {
-  //   checkUsername();
-  // }, [tempUser.furname]);
   useEffect(() => {
-    validate();
-  }, [tempUser]);
-  useEffect(() => {
-    if (
-      errors.pWMismatchWarning ||
-      errors.pWLengthWarning ||
-      errors.invalidEmail
-    )
-      setIsNotValid(false);
-    else setIsNotValid(true);
-  }, [errors]);
+    function setTimer() {
+      let checkUsernameTimeout = setTimeout(() => {
+        checkUsername(tempUser.furname);
+        console.log("YIPPIE");
+      }, 650);
+      console.log(checkUsernameTimeout);
+      checkUsernameTimeout--;
+      return checkUsernameTimeout;
+    }
+    clearTimeout(setTimer());
+  }, [tempUser.furname]);
 
-  console.log(errors);
+  useEffect(() => {
+    setIsValid(true);
+    if (
+      tempUser.furname &&
+      tempUser.firstname &&
+      tempUser.email &&
+      tempUser.pw &&
+      tempUser.repeat_pw &&
+      !invalidEmail &&
+      !passwordMismatch &&
+      !invalidPasswordLength &&
+      !invalidUsername
+    )
+      setIsValid(true);
+    else setIsValid(false);
+  }, [tempUser]);
+
   async function signUpNewUser() {
     const { data, error } = await supabase.auth.signUp({
       email: tempUser.email,
@@ -58,7 +67,12 @@ export default function SignUp({ supabase }) {
         }
       }
     });
-    if (error) console.log(error);
+
+    if (error)
+      throw new Error(`Creating public user profile failed | Code: ${error.code}
+    Message: ${error.message}
+    Hint: ${error.hint}`);
+
     if (data.user) createPublicProfile(data.user);
   }
 
@@ -72,6 +86,7 @@ export default function SignUp({ supabase }) {
       throw new Error(`Creating public user profile failed | Code: ${error.code}
     Message: ${error.message}
     Hint: ${error.hint}`);
+    redirect("/conventions");
   }
 
   async function checkUsername(name) {
@@ -79,116 +94,138 @@ export default function SignUp({ supabase }) {
       .from("users")
       .select("username")
       .eq("username", name);
+
     if (error) console.log(error);
+
     if (data[0]?.username === name) {
-      console.log(`${name} is taken`);
+      setInvalidUsername(true);
     } else {
-      console.log(data, "good to go");
+      setInvalidUsername(false);
     }
   }
-
-  function validate() {
-    console.clear();
-    switch (pages[page].title) {
-      case "Name and username":
-        console.log("YIPP");
-
-        if (tempUser.firstname && tempUser.furname) setIsNotValid(false);
-
-        break;
-
-      case "Login details":
-        if (
-          String(tempUser.email)
-            .toLowerCase()
-            .match(
-              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            )
-        ) {
-          setErrors({ ...errors, invalidEmail: false });
-        } else {
-          setErrors({ ...errors, invalidEmail: true });
-        }
-
-        if (!tempUser.pw || !tempUser.repeat_pw) return;
-
-        if (tempUser.repeat_pw === tempUser.pw) {
-          {
-            setErrors({ ...errors, pWMismatchWarning: false });
-          }
-        } else {
-          setErrors({ ...errors, pWMismatchWarning: true });
-        }
-
-        if (tempUser.pw.length < 8) {
-          setErrors({ ...errors, pWLengthWarning: true });
-        } else setErrors({ ...errors, pWLengthWarning: false });
-
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  console.log("userData:", tempUser);
-
-  const pages = [
-    {
-      title: "Name and username",
-      component: (
-        <UserNames
-          checkUsername={checkUsername}
-          validate={validate}
-          tempUser={tempUser}
-          setTempUser={setTempUser}
-        />
-      )
-    },
-    {
-      title: "Login details",
-      component: (
-        <LoginDetails
-          errors={errors}
-          tempUser={tempUser}
-          setTempUser={setTempUser}
-        />
-      )
-    },
-    { title: "", component: <UserLoading /> },
-    { title: "", component: <AccountCreated /> }
-  ];
 
   return (
     <form id="register-account">
-      <p>is valid = {String(!isNotValid)}</p>
-      <section>
-        <h2>Create an account</h2>
-        <h3>{pages[page].title}</h3>
-      </section>
-      {pages[page].component}
-      <section>
-        {Boolean(page) && (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              setPage(page - 1);
-            }}
-          >
-            Back
-          </button>
-        )}
-        <button
-          disabled={isNotValid}
-          onClick={(e) => {
-            e.preventDefault();
-            setIsNotValid(true);
-            setPage(page + 1);
-          }}
-        >
-          Next
-        </button>
-      </section>
+      {!userCreated && (
+        <>
+          <section>
+            <h2>Create an account</h2>
+          </section>
+          <section id="add-names">
+            <div className="input-container">
+              <label htmlFor="firstname">First name*</label>
+              <input
+                id="firstname"
+                type="text"
+                value={tempUser.firstname}
+                onChange={(e) => {
+                  setTempUser({ ...tempUser, firstname: e.target.value });
+                }}
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="lastname">Last name</label>
+              <input
+                id="lastname"
+                type="text"
+                value={tempUser.lastname}
+                onChange={(e) =>
+                  setTempUser({ ...tempUser, lastname: e.target.value })
+                }
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="furname">Furname (Username)*</label>
+              <input
+                id="furname"
+                type="text"
+                value={tempUser.furname}
+                onChange={(e) => {
+                  setTempUser({ ...tempUser, furname: e.target.value });
+                }}
+              />
+              {invalidUsername && <p>Username taken</p>}
+            </div>
+          </section>
+          <section id="inputs">
+            <div className="input-container">
+              <label htmlFor="email">Email:</label>
+              <input
+                id="email"
+                type="email"
+                value={tempUser.email}
+                onChange={(e) => {
+                  setTempUser({ ...tempUser, email: e.target.value });
+                  if (
+                    String(e.target.value)
+                      .toLowerCase()
+                      .match(
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                      )
+                  )
+                    setInvalidEmail(false);
+                  else setInvalidEmail(true);
+                }}
+              />
+              {invalidEmail && <p>Invalid email</p>}
+            </div>
+            <div className="input-container">
+              <label htmlFor="password">Password:</label>
+              <input
+                id="password"
+                type="password"
+                value={tempUser.pw}
+                onChange={(e) => {
+                  setTempUser({ ...tempUser, pw: e.target.value });
+                  if (e.target.value.length < 8) setInvalidPasswordLength(true);
+                  else setInvalidPasswordLength(false);
+                  if (e.target.value === tempUser.repeat_pw)
+                    setPasswordMismatch(false);
+                  else setPasswordMismatch(true);
+                }}
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="repeat-password">Repeat Password:</label>
+              <input
+                id="repeat-password"
+                type="password"
+                value={tempUser.repeat_pw}
+                onChange={(e) => {
+                  setTempUser({ ...tempUser, repeat_pw: e.target.value });
+                  if (e.target.value === tempUser.pw)
+                    setPasswordMismatch(false);
+                  else setPasswordMismatch(true);
+                }}
+              />
+            </div>
+            {passwordMismatch && <p>Passwords does not match</p>}
+            {invalidPasswordLength && (
+              <p>Password must be atleast 8 characters long</p>
+            )}
+          </section>
+          <section>
+            <button
+              disabled={!isValid}
+              onClick={(e) => {
+                e.preventDefault();
+                signUpNewUser();
+              }}
+            >
+              Sign up
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setUserCreated(true);
+              }}
+            >
+              Sign up
+            </button>
+          </section>
+        </>
+      )}
+      {userCreated && <UserLoading />}
     </form>
   );
 }
