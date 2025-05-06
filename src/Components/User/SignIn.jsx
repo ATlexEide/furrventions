@@ -10,9 +10,8 @@ export default function SignIn({ supabase }) {
       email: loginDetails.email,
       password: loginDetails.password
     });
-    if (error) console.log(error);
+    if (error) throw new Error(error);
     if (data) navigate("/");
-    console.log(data);
     window.location.reload();
   }
   return (
