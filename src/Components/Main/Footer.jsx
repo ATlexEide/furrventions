@@ -9,11 +9,10 @@ export default function Footer() {
       </div>{" "}
       |
       <div className="footer-part">
-        <Link to="/support">Support Me on Ko-fi</Link>
-      </div>{" "}
-      |
-      <div className="footer-part">
         <ul className="socials">
+          <li>
+            <Link to="/support">Support Me on Ko-fi</Link>
+          </li>
           <li>Socials //</li>
           <li>
             <a
