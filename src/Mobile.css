@@ -4,7 +4,8 @@
 @media only screen and (max-width: 900px) {
   header,
   footer,
-  #catchphrase-cont {
+  #catchphrase-cont,
+  #wipAlert {
     display: none;
   }
 
