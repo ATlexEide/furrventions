@@ -1,12 +1,3 @@
-// Take in a
-// form id: string
-// nextBtnTxt: string // comma separated string "next,final text"
-//
-// pages array[object{title:string, component?: component}]:
-//
-// currentPage
-
-// setCurrentPage
 export default function Form({
   id,
   pages,
