@@ -17,6 +17,7 @@ export default function EventType({
         Convention
       </button>
       <button
+        disabled={true}
         onClick={(e) => {
           e.preventDefault();
           setEventInfo({ ...eventInfo, type: "meet", organizerID: user.id });
