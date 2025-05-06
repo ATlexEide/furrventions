@@ -73,7 +73,10 @@ export default function SignUp({ supabase }) {
     Message: ${error.message}
     Hint: ${error.hint}`);
 
-    if (data.user) createPublicProfile(data.user);
+    if (data.user) {
+      createPublicProfile(data.user);
+      setUserCreated(true);
+    }
   }
 
   async function createPublicProfile(user) {
@@ -210,14 +213,6 @@ export default function SignUp({ supabase }) {
               onClick={(e) => {
                 e.preventDefault();
                 signUpNewUser();
-              }}
-            >
-              Sign up
-            </button>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setUserCreated(true);
               }}
             >
               Sign up
