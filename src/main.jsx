@@ -11,7 +11,7 @@ import ManageConventions from "./Components/User/ManageConventions.jsx";
 import AddConvention from "./Components/AddConvention/AddConvention.jsx";
 import Kofi from "./Components/Utilities/Kofi.jsx";
 import ViewConInfo from "./Components/Convention/ViewConInfo.jsx";
-import SignUp from "./Components/User/Signup.jsx";
+import SignUp from "./Components/User/SignUp.jsx";
 import SignIn from "./Components/User/SignIn.jsx";
 
 import "./index.css";
