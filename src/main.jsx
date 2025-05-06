@@ -18,6 +18,7 @@ import "./index.css";
 import "./App.css";
 import "./styles/Forms.css";
 import "./styles/ViewCons.css";
+import "./Mobile.css";
 
 if (!import.meta.env.VITE_SUPABASE_URL) {
   throw new Error("Missing Supabase Url");
