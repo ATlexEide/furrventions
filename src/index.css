@@ -143,3 +143,10 @@ button:focus-visible {
 .alert {
   align-self: center;
 }
+
+#wipAlert {
+  text-align: start;
+}
+#wipAlert button {
+  margin: 24px 0;
+}
