@@ -20,6 +20,15 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
   const [isNA, setIsNA] = useState(
     eventInfo.tags.includes("na") ? true : false
   );
+  const [isSA, setIsSA] = useState(
+    eventInfo.tags.includes("sa") ? true : false
+  );
+  const [isOceania, setIsOceania] = useState(
+    eventInfo.tags.includes("oceania") ? true : false
+  );
+  const [isAsia, setIsAsia] = useState(
+    eventInfo.tags.includes("asia") ? true : false
+  );
   const [isOther, setIsOther] = useState(
     eventInfo.tags.includes("other") ? true : false
   );
@@ -30,14 +39,17 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
       isVirtual ? "virtual" : null,
       isEU ? "eu" : null,
       isNA ? "na" : null,
-      isOther ? "other" : null
+      isSA ? "sa" : null,
+      isOther ? "other" : null,
+      isOceania ? "Oceania" : null,
+      isAsia ? "Asia" : null
     ];
 
     setEventInfo({
       ...eventInfo,
       tags: tags.filter((tag) => tag)
     });
-  }, [isAdult, isVirtual, isEU, isNA, isOther]);
+  }, [isAdult, isVirtual, isEU, isNA, isSA, isOceania, isAsia, isOther]);
 
   return (
     <>
@@ -69,7 +81,7 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
         <hr />
 
         <div className="input">
-          <label htmlFor="eu">Location: EU</label>
+          <label htmlFor="eu">Location: Europe</label>
           <div>
             <input
               id="eu"
@@ -81,13 +93,49 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
         </div>
 
         <div className="input">
-          <label htmlFor="na">Location: NA</label>
+          <label htmlFor="na">Location: North America</label>
           <div>
             <input
               id="na"
               type="checkbox"
               onChange={() => setIsNA(!isNA)}
               checked={isNA}
+            />
+          </div>
+        </div>
+
+        <div className="input">
+          <label htmlFor="sa">Location: South America</label>
+          <div>
+            <input
+              id="sa"
+              type="checkbox"
+              onChange={() => setIsSA(!isSA)}
+              checked={isSA}
+            />
+          </div>
+        </div>
+
+        <div className="input">
+          <label htmlFor="asia">Location: Asia</label>
+          <div>
+            <input
+              id="asia"
+              type="checkbox"
+              onChange={() => setIsAsia(!isAsia)}
+              checked={isAsia}
+            />
+          </div>
+        </div>
+
+        <div className="input">
+          <label htmlFor="oceania">Location: Oceania</label>
+          <div>
+            <input
+              id="oceania"
+              type="checkbox"
+              onChange={() => setIsOceania(!isOceania)}
+              checked={isOceania}
             />
           </div>
         </div>
