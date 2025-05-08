@@ -6,6 +6,15 @@ export default function Filter({
   setShowMap,
   showMap
 }) {
+  const tags = [
+    { tagName: "isAdult", tagDisplay: "18+" },
+    { tagName: "isVirtual", tagDisplay: "Virtual" },
+    { tagName: "eu", tagDisplay: "Europe" },
+    { tagName: "na", tagDisplay: "North America" },
+    { tagName: "sa", tagDisplay: "South America" },
+    { tagName: "asia", tagDisplay: "Asia" },
+    { tagName: "oceania", tagDisplay: "Oceania" }
+  ];
   return (
     <section id="convention-list-filter">
       <h2 id="filter-title">SEARCH</h2>
@@ -39,34 +48,28 @@ export default function Filter({
             />
           </div>
         </div>
-        {/* TODO: Update attendee logic */}
-        {/* <div className="filter-option-input">
-          <label htmlFor="total-spots-input">Previous year attendees: </label>
 
-          <div id="spots-filter">
-            <input
-              id="total-spots-slider"
-              value={filter && filter.spots_total ? filter.spots_total : 1000}
-              min={0}
-              max={2000}
-              type="range"
-              onChange={(e) => {
-                setFilter({ ...filter, spots_total: Number(e.target.value) });
-              }}
-            />
+        <div className="tag-container">
+          {tags.map((tag, i) => (
+            <div key={i} className="input">
+              <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
+              <div>
+                <input
+                  id={tag.tagName}
+                  type="checkbox"
+                  onChange={(e) => {
+                    setFilter({ ...filter, [tag.tagName]: e.target.checked });
+                  }}
+                  checked={filter?.[tag.tagName]}
+                />
+              </div>
+            </div>
+          ))}
 
-            <input
-              id="total-spots-input"
-              type="number"
-              value={filter && filter.spots_total ? filter.spots_total : 0}
-              onChange={(e) => {
-                setFilter({ ...filter, spots_total: Number(e.target.value) });
-              }}
-            />
-          </div>
-        </div> */}
-        {/* TODO END */}
+          <hr />
+        </div>
       </section>
+
       <section id="filter-buttons">
         <button
           onClick={() => {
