@@ -1,4 +1,6 @@
 export default function Filter({
+  activeTags,
+  setActiveTags,
   setHasFilter,
   filter,
   setFilter,
@@ -58,9 +60,12 @@ export default function Filter({
                   id={tag.tagName}
                   type="checkbox"
                   onChange={(e) => {
-                    setFilter({ ...filter, [tag.tagName]: e.target.checked });
+                    setActiveTags({
+                      ...activeTags,
+                      [tag.tagName]: e.target.checked
+                    });
                   }}
-                  checked={filter?.[tag.tagName]}
+                  checked={activeTags?.[tag.tagName]}
                 />
               </div>
             </div>
