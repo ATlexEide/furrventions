@@ -9,8 +9,8 @@ export default function Filter({
   showMap
 }) {
   const tags = [
-    { tagName: "isAdult", tagDisplay: "18+" },
-    { tagName: "isVirtual", tagDisplay: "Virtual" },
+    { tagName: "adult", tagDisplay: "18+" },
+    { tagName: "virtual", tagDisplay: "Virtual" },
     { tagName: "eu", tagDisplay: "Europe" },
     { tagName: "na", tagDisplay: "North America" },
     { tagName: "sa", tagDisplay: "South America" },
