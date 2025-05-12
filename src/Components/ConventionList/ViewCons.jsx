@@ -15,9 +15,11 @@ export default function ViewCons({ supabase }) {
       : []
   );
   const [filter, setFilter] = useState(null);
+  const [activeTags, setActiveTags] = useState({});
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
   const [showMap, setShowMap] = useState(false);
+  console.log(cons);
 
   async function fetch() {
     const { data, err } = await supabase.from("conventions").select();
@@ -39,19 +41,26 @@ export default function ViewCons({ supabase }) {
     cons.map((con) => {
       _consObject[con.id] = con;
     });
-    console.clear();
-    console.log("consOBJ", _consObject);
     setConsObj(_consObject);
   }
 
   async function filterCons() {
-    // DEBUGGIN
-    // console.log(cons[1].spots_total, typeof cons[1].spots_total);
-    // console.log(filter.spots_total, typeof filter.spots_total);
-    // DEBUGGIN
-
     let filtered = cons.slice();
+    const hasActiveTags = Object.values(activeTags).includes(true);
     setHasFilter(true);
+
+    if (hasActiveTags) {
+      console.log("ACTIVE TAGS");
+      let tagArray = Object.keys(activeTags);
+
+      filtered.filter((con) =>
+        JSON.parse(con.tags).includes(tagArray.map((tag) => tag))
+      );
+
+      console.log(JSON.parse(cons[0].tags));
+      console.log("TAGS", tagArray);
+    }
+
     if (filter.name)
       filtered = filtered.filter((con) =>
         con.name.toLowerCase().includes(filter.name.toLowerCase())
@@ -59,7 +68,6 @@ export default function ViewCons({ supabase }) {
 
     if (filter.location) {
       const regex = new RegExp(`.*${filter.location.toLowerCase()}.*`);
-      console.log(regex);
       filtered = filtered.filter((con) =>
         regex.test(con.location.toLowerCase())
       );
@@ -68,31 +76,33 @@ export default function ViewCons({ supabase }) {
     if (filtered && filter.spots_total)
       filtered = cons.filter((con) => con.spots_total <= filter.spots_total);
 
-    // if (!filtered && filter.spots_total)
-    //   filtered = filtered.filter(
-    //     (con) => con.spots_total <= filter.spots_total
-    //   );
     return setFilteredCons(filtered);
   }
 
-  console.log(cons);
-
   useEffect(() => {
-    if (!filter) return;
-    if (!filter.name && !filter.location && !filter.spots_total) {
+    if (!filter && !Object.values(activeTags).includes(true)) return;
+    if (
+      !filter?.name &&
+      !filter?.location &&
+      !filter?.spots_total &&
+      !Object.values(activeTags).includes(true)
+    ) {
       setHasFilter(false);
       setFilter(null);
       setFilteredCons([]);
+      setActiveTags({});
       return;
     }
     filterCons();
-  }, [filter]);
+  }, [filter, activeTags]);
 
   if (hasFilter && !filteredCons) return <Loading />;
 
   return (
     <>
       <Filter
+        setActiveTags={setActiveTags}
+        activeTags={activeTags}
         setHasFilter={setHasFilter}
         filter={filter}
         setFilter={setFilter}
