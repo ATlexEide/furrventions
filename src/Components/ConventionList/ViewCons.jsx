@@ -50,10 +50,6 @@ export default function ViewCons({ supabase }) {
     const hasActiveTags = Object.values(activeTags).includes(true);
     setHasFilter(true);
 
-    // if (!hasActiveTags) setHasActiveTags(false);
-    // if (!hasActiveTags || !filter?.location || !filter?.name)
-    //   setHasFilter(false);
-
     if (hasActiveTags) {
       console.log("ACTIVE TAGS");
       let tagArray = Object.keys(activeTags).filter((key) => activeTags[key]);
@@ -161,13 +157,7 @@ export default function ViewCons({ supabase }) {
               ))}
             </ul>
           )}
-          {showMap && (
-            <MapWithPlaceholder
-              cons={cons}
-              // conName={con.name}
-              // cords={[con.lat, con.long]}
-            />
-          )}
+          {showMap && <MapWithPlaceholder cons={cons} />}
         </section>
       )}
     </>
