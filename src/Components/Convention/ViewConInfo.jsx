@@ -107,6 +107,12 @@ export default function ViewConInfo({ supabase }) {
         return <li key={i}>Europe</li>;
       case "na":
         return <li key={i}>North America</li>;
+      case "sa":
+        return <li key={i}>South America</li>;
+      case "asia":
+        return <li key={i}>Asia</li>;
+      case "oceania":
+        return <li key={i}>Oceania</li>;
       case "other":
         return <li key={i}>Other location</li>;
       default:
