@@ -20,7 +20,6 @@ export default function ViewCons({ supabase }) {
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
   const [showMap, setShowMap] = useState(false);
-  console.log(cons);
 
   async function fetch() {
     const { data, err } = await supabase.from("conventions").select();
@@ -51,26 +50,19 @@ export default function ViewCons({ supabase }) {
     setHasFilter(true);
 
     if (hasActiveTags) {
-      console.log("ACTIVE TAGS");
       let tagArray = Object.keys(activeTags).filter((key) => activeTags[key]);
 
       const tagChecker = (con) => {
         let tagCount = tagArray.length;
-        console.log(tagArray);
         tagArray.forEach((tag) => {
           if (tag && JSON.parse(con.tags).includes(tag)) {
             tagCount--;
           }
-          console.log(tagCount);
         });
         return tagCount === 0 ? true : false;
       };
 
       filtered = filtered.filter((con) => tagChecker(con));
-
-      console.log(JSON.parse(cons[0].tags));
-      console.log("TAGS", tagArray);
-      console.log("FILTERED", filtered);
       setFilteredCons(filtered);
     }
 
@@ -95,9 +87,6 @@ export default function ViewCons({ supabase }) {
     setFilteredCons(filtered);
   }
 
-  console.clear();
-  console.log("HASACTIVETAGS", hasActiveTags);
-  console.log("HASFILTER", hasFilter);
   useEffect(() => {
     setHasActiveTags(Object.values(activeTags).includes(true));
 
