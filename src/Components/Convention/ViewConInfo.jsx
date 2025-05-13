@@ -188,7 +188,17 @@ export default function ViewConInfo({ supabase }) {
                         <strong>Starts</strong>
                       </span>
                       {isEditing ? (
-                        <input type="date" value={startDate} />
+                        <input
+                          className="picker"
+                          type="date"
+                          value={startDate}
+                          onChange={(e) =>
+                            setUpdateObject({
+                              ...updateObject,
+                              start_time: e.target.value
+                            })
+                          }
+                        />
                       ) : (
                         `${days[startDate.getDay()]} ${startDate.getDate()}. ${
                           months[startDate.getMonth()]
@@ -203,7 +213,17 @@ export default function ViewConInfo({ supabase }) {
                         <strong>Ends</strong>
                       </span>
                       {isEditing ? (
-                        <input type="date" value={endDate} />
+                        <input
+                          className="picker"
+                          type="date"
+                          value={new Date(endDate)}
+                          onChange={(e) =>
+                            setUpdateObject({
+                              ...updateObject,
+                              end_time: e.target.value
+                            })
+                          }
+                        />
                       ) : (
                         `${days[endDate.getDay()]} ${endDate.getDate()}. ${
                           months[endDate.getMonth()]
