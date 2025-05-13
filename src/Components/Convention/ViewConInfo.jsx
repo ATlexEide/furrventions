@@ -16,6 +16,12 @@ export default function ViewConInfo({ supabase }) {
   const [endDate, setEndDate] = useState(null);
   const [session, setSession] = useState(null);
   const [userIsCreator, setUserIsCreator] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
+  const [updateObject, setUpdateObject] = useState({});
+
+  function submitUpdate() {
+    alert("test");
+  }
 
   useEffect(() => {
     getSession();
@@ -146,7 +152,20 @@ export default function ViewConInfo({ supabase }) {
                       <span className="label">
                         <strong>Ticket price</strong>
                       </span>{" "}
-                      {con.price}eur
+                      {isEditing ? (
+                        <input
+                          type="number"
+                          value={con.price}
+                          onChange={(e) => {
+                            setUpdateObject({
+                              ...updateObject,
+                              price: e.target.value
+                            });
+                          }}
+                        />
+                      ) : (
+                        con.price + "eur"
+                      )}
                     </p>
                   )}
                 </section>
@@ -157,9 +176,13 @@ export default function ViewConInfo({ supabase }) {
                       <span className="label">
                         <strong>Starts</strong>
                       </span>
-                      {`${days[startDate.getDay()]} ${startDate.getDate()}. ${
-                        months[startDate.getMonth()]
-                      } ${startDate.getUTCFullYear()}`}
+                      {isEditing ? (
+                        <input type="date" value={startDate} />
+                      ) : (
+                        `${days[startDate.getDay()]} ${startDate.getDate()}. ${
+                          months[startDate.getMonth()]
+                        } ${startDate.getUTCFullYear()}`
+                      )}
                     </p>
                   )}
                   {!endDate && <p>Could not find end time</p>}
@@ -168,25 +191,55 @@ export default function ViewConInfo({ supabase }) {
                       <span className="label">
                         <strong>Ends</strong>
                       </span>
-                      {`${days[endDate.getDay()]} ${endDate.getDate()}. ${
-                        months[endDate.getMonth()]
-                      } ${endDate.getUTCFullYear()}`}
+                      {isEditing ? (
+                        <input type="date" value={endDate} />
+                      ) : (
+                        `${days[endDate.getDay()]} ${endDate.getDate()}. ${
+                          months[endDate.getMonth()]
+                        } ${endDate.getUTCFullYear()}`
+                      )}
                     </p>
                   )}
                 </section>
                 <section className="info-section">
                   <p>
-                    <strong>Location</strong>
+                    {isEditing ? (
+                      <label htmlFor="update-location">Location</label>
+                    ) : (
+                      <strong>Location</strong>
+                    )}
                   </p>
-                  {!con.location && <p>Unable to find location</p>}
-                  {con.location && <p>{con.location}</p>}
+                  {!isEditing && !con.location && (
+                    <p>Unable to find location</p>
+                  )}
+                  {!isEditing && con.location && <p>{con.location}</p>}
+                  {isEditing && (
+                    <>
+                      <input
+                        id="update-location"
+                        name="update-location"
+                        type="text"
+                        value={con.location}
+                      />
+                    </>
+                  )}
                 </section>
-                {!con.description && <p>No description</p>}
-                {con.description && (
+                {!isEditing && !con.description && <p>No description</p>}
+                {!isEditing && con.description && (
                   <p>
                     <strong>Description</strong> <br />
-                    {con.description}
+                    con.description
                   </p>
+                )}
+                {isEditing && (
+                  <>
+                    <label htmlFor="edit-desc">Description</label>
+                    <input
+                      name="edit-desc"
+                      id="edit-desc"
+                      value={con.description}
+                    />
+                  </>
                 )}
                 {!con.website && <p>No website submitted</p>}
                 {con.website && (
@@ -199,7 +252,26 @@ export default function ViewConInfo({ supabase }) {
                           : `https://${con.website}`
                       }
                     >
-                      {con.website}
+                      {isEditing ? (
+                        <>
+                          <label htmlFor="update-website">Website</label>
+                          <br />
+                          <input
+                            id="update-website"
+                            name="update-website"
+                            type="text"
+                            value={con.website}
+                            onChange={(e) => {
+                              setUpdateObject({
+                                ...updateObject,
+                                website: e.target.value
+                              });
+                            }}
+                          />
+                        </>
+                      ) : (
+                        con.website
+                      )}
                     </a>
                   </p>
                 )}
@@ -209,6 +281,16 @@ export default function ViewConInfo({ supabase }) {
                   <h2>Tags</h2>
                   <ul>{tags.map((tag, i) => getTag(tag, i))}</ul>
                 </>
+              )}
+              {isEditing && (
+                <button
+                  onClick={() => {
+                    submitUpdate();
+                    setIsEditing(false);
+                  }}
+                >
+                  Save Changes
+                </button>
               )}
               <hr />
               {submitter && <p id="submitter">Submitted by {submitter}</p>}
@@ -226,7 +308,10 @@ export default function ViewConInfo({ supabase }) {
               {!session && <p>Log in to save event</p>}
               {userIsCreator && (
                 <>
-                  <button className="orange-btn">{`Edit ${con.type}`}</button>
+                  <button
+                    className="orange-btn"
+                    onClick={() => setIsEditing(!isEditing)}
+                  >{`Edit ${con.type}`}</button>
                   <button className="red-btn">{`Delete ${con.type}`}</button>
                 </>
               )}
