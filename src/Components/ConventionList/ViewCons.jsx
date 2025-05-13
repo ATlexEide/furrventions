@@ -53,30 +53,45 @@ export default function ViewCons({ supabase }) {
       console.log("ACTIVE TAGS");
       let tagArray = Object.keys(activeTags);
 
-      filtered.filter((con) =>
-        JSON.parse(con.tags).includes(tagArray.map((tag) => tag))
-      );
+      const tagChecker = (con) => {
+        let tagCount = tagArray.length;
+        tagArray.forEach((tag) => {
+          if (JSON.parse(con.tags).includes(tag)) {
+            tagCount--;
+            setHasFilter(true);
+          }
+          console.log(tagCount);
+        });
+        return tagCount === 0 ? true : false;
+      };
+
+      filtered = filtered.filter((con) => tagChecker(con));
 
       console.log(JSON.parse(cons[0].tags));
       console.log("TAGS", tagArray);
+      console.log("FILTERED", filtered);
+      setFilteredCons(filtered);
     }
 
-    if (filter.name)
+    if (filter.name) {
       filtered = filtered.filter((con) =>
         con.name.toLowerCase().includes(filter.name.toLowerCase())
       );
+      setFilteredCons(filtered);
+    }
 
     if (filter.location) {
       const regex = new RegExp(`.*${filter.location.toLowerCase()}.*`);
       filtered = filtered.filter((con) =>
         regex.test(con.location.toLowerCase())
       );
+      setFilteredCons(filtered);
     }
 
     if (filtered && filter.spots_total)
       filtered = cons.filter((con) => con.spots_total <= filter.spots_total);
 
-    return setFilteredCons(filtered);
+    setFilteredCons(filtered);
   }
 
   useEffect(() => {
