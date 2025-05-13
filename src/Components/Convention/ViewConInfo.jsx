@@ -143,7 +143,18 @@ export default function ViewConInfo({ supabase }) {
         <div id="convention-info-main">
           <section id="convention-container">
             <section id="convention-details">
-              {con.name && <h1>{con.name}</h1>}
+              {!isEditing && con.name && <h1>{con.name}</h1>}
+              {isEditing && (
+                <div>
+                  <label htmlFor="update-name">Name </label>
+                  <input
+                    type="text"
+                    id="update-name"
+                    name="update-name"
+                    value={con.name}
+                  />
+                </div>
+              )}
               <section id="convention-general">
                 <section>
                   {!con.price && <p>Could not find a price</p>}
