@@ -16,6 +16,7 @@ export default function ViewCons({ supabase }) {
   );
   const [filter, setFilter] = useState(null);
   const [activeTags, setActiveTags] = useState({});
+  const [hasActiveTags, setHasActiveTags] = useState(false);
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
   const [showMap, setShowMap] = useState(false);
@@ -49,16 +50,20 @@ export default function ViewCons({ supabase }) {
     const hasActiveTags = Object.values(activeTags).includes(true);
     setHasFilter(true);
 
+    // if (!hasActiveTags) setHasActiveTags(false);
+    // if (!hasActiveTags || !filter?.location || !filter?.name)
+    //   setHasFilter(false);
+
     if (hasActiveTags) {
       console.log("ACTIVE TAGS");
-      let tagArray = Object.keys(activeTags);
+      let tagArray = Object.keys(activeTags).filter((key) => activeTags[key]);
 
       const tagChecker = (con) => {
         let tagCount = tagArray.length;
+        console.log(tagArray);
         tagArray.forEach((tag) => {
-          if (JSON.parse(con.tags).includes(tag)) {
+          if (tag && JSON.parse(con.tags).includes(tag)) {
             tagCount--;
-            setHasFilter(true);
           }
           console.log(tagCount);
         });
@@ -73,14 +78,14 @@ export default function ViewCons({ supabase }) {
       setFilteredCons(filtered);
     }
 
-    if (filter.name) {
+    if (filter?.name) {
       filtered = filtered.filter((con) =>
         con.name.toLowerCase().includes(filter.name.toLowerCase())
       );
       setFilteredCons(filtered);
     }
 
-    if (filter.location) {
+    if (filter?.location) {
       const regex = new RegExp(`.*${filter.location.toLowerCase()}.*`);
       filtered = filtered.filter((con) =>
         regex.test(con.location.toLowerCase())
@@ -88,14 +93,18 @@ export default function ViewCons({ supabase }) {
       setFilteredCons(filtered);
     }
 
-    if (filtered && filter.spots_total)
+    if (filtered && filter?.spots_total)
       filtered = cons.filter((con) => con.spots_total <= filter.spots_total);
 
     setFilteredCons(filtered);
   }
 
+  console.clear();
+  console.log("HASACTIVETAGS", hasActiveTags);
+  console.log("HASFILTER", hasFilter);
   useEffect(() => {
-    if (!filter && !Object.values(activeTags).includes(true)) return;
+    setHasActiveTags(Object.values(activeTags).includes(true));
+
     if (
       !filter?.name &&
       !filter?.location &&
@@ -105,7 +114,7 @@ export default function ViewCons({ supabase }) {
       setHasFilter(false);
       setFilter(null);
       setFilteredCons([]);
-      setActiveTags({});
+
       return;
     }
     filterCons();
