@@ -166,7 +166,11 @@ export default function ViewConInfo({ supabase }) {
                       {isEditing ? (
                         <input
                           type="number"
-                          value={updateObject.price || con.price}
+                          value={
+                            "price" in updateObject
+                              ? updateObject.price
+                              : con.price
+                          }
                           onChange={(e) => {
                             setUpdateObject({
                               ...updateObject,
