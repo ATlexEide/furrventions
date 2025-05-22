@@ -203,7 +203,13 @@ export default function ViewConInfo({ supabase }) {
                         <input
                           className="picker"
                           type="date"
-                          value={startDate}
+                          value={
+                            "start_time" in updateObject
+                              ? new Date(updateObject.start_time)
+                                  .toISOString()
+                                  .split("T")[0]
+                              : startDate.toISOString().split("T")[0]
+                          }
                           onChange={(e) =>
                             setUpdateObject({
                               ...updateObject,
@@ -228,7 +234,13 @@ export default function ViewConInfo({ supabase }) {
                         <input
                           className="picker"
                           type="date"
-                          value={new Date(endDate)}
+                          value={
+                            "end_time" in updateObject
+                              ? new Date(updateObject.end_time)
+                                  .toISOString()
+                                  .split("T")[0]
+                              : endDate.toISOString().split("T")[0]
+                          }
                           onChange={(e) =>
                             setUpdateObject({
                               ...updateObject,
@@ -377,7 +389,11 @@ export default function ViewConInfo({ supabase }) {
                 <>
                   <button
                     className="orange-btn"
-                    onClick={() => setIsEditing(!isEditing)}
+                    onClick={() => {
+                      setIsEditing(!isEditing);
+                      console.clear();
+                      console.log(con);
+                    }}
                   >{`Edit ${con.type}`}</button>
                   <button className="red-btn">{`Delete ${con.type}`}</button>
                 </>
