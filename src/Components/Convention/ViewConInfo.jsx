@@ -151,7 +151,9 @@ export default function ViewConInfo({ supabase }) {
                     type="text"
                     id="update-name"
                     name="update-name"
-                    value={con.name}
+                    value={
+                      "name" in updateObject ? updateObject.name : con.name
+                    }
                   />
                 </div>
               )}
