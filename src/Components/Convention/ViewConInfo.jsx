@@ -166,7 +166,7 @@ export default function ViewConInfo({ supabase }) {
                       {isEditing ? (
                         <input
                           type="number"
-                          value={con.price}
+                          value={updateObject.price || con.price}
                           onChange={(e) => {
                             setUpdateObject({
                               ...updateObject,
@@ -250,7 +250,17 @@ export default function ViewConInfo({ supabase }) {
                         id="update-location"
                         name="update-location"
                         type="text"
-                        value={con.location}
+                        value={
+                          "location" in updateObject
+                            ? updateObject.location
+                            : con.location
+                        }
+                        onChange={(e) => {
+                          setUpdateObject({
+                            ...updateObject,
+                            location: e.target.value
+                          });
+                        }}
                       />
                     </>
                   )}
