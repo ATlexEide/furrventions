@@ -154,6 +154,12 @@ export default function ViewConInfo({ supabase }) {
                     value={
                       "name" in updateObject ? updateObject.name : con.name
                     }
+                    onChange={(e) => {
+                      setUpdateObject({
+                        ...updateObject,
+                        name: e.target.value
+                      });
+                    }}
                   />
                 </div>
               )}
