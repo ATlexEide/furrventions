@@ -15,7 +15,6 @@ export default function MapWithPlaceholder({
   conName = "Convention",
   cords = [60.39118002058307, 5.331024627773373]
 }) {
-  console.clear();
   console.table(cons);
   return (
     <MapContainer
