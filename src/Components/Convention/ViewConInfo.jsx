@@ -290,7 +290,11 @@ export default function ViewConInfo({ supabase }) {
                     <input
                       name="edit-desc"
                       id="edit-desc"
-                      value={con.description}
+                      value={
+                        "description" in updateObject
+                          ? updateObject.description
+                          : con.description
+                      }
                     />
                   </>
                 )}
