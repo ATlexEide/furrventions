@@ -323,7 +323,11 @@ export default function ViewConInfo({ supabase }) {
                             id="update-website"
                             name="update-website"
                             type="text"
-                            value={con.website}
+                            value={
+                              "website" in updateObject
+                                ? updateObject.website
+                                : con.website
+                            }
                             onChange={(e) => {
                               setUpdateObject({
                                 ...updateObject,
