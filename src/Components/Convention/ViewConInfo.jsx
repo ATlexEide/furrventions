@@ -295,6 +295,12 @@ export default function ViewConInfo({ supabase }) {
                           ? updateObject.description
                           : con.description
                       }
+                      onChange={(e) => {
+                        setUpdateObject({
+                          ...updateObject,
+                          description: e.target.value
+                        });
+                      }}
                     />
                   </>
                 )}
