@@ -29,10 +29,6 @@ main {
   right: 0%;
 }
 
-#loading {
-  margin: auto;
-}
-
 #catchphrase {
   align-items: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
