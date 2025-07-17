@@ -105,7 +105,7 @@ export default function ViewCons({ supabase }) {
     filterCons();
   }, [filter, activeTags]);
 
-  if (hasFilter && !filteredCons) return <Loading />;
+  if (hasFilter && !filteredCons) return <Loading text="Looking for events" />;
 
   return (
     <>
@@ -138,7 +138,9 @@ export default function ViewCons({ supabase }) {
         <section id="convention-list-cont">
           {!showMap && (
             <ul id="convention-list">
-              {(loading || !cons.length) && <Loading />}
+              {(loading || !cons.length) && (
+                <Loading text="Looking for events" />
+              )}
               {cons.map((con, i) => (
                 <li className="convention" key={i}>
                   <ConventionCard consObj={consObj} con={con} />
