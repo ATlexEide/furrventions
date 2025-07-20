@@ -137,7 +137,11 @@ export default function ViewCons({ supabase }) {
             {(loading || !cons.length) && <Loading text="Looking for events" />}
             {cons.map((con, i) => (
               <li className="convention" key={i}>
-                <ConventionCard consObj={consObj} con={con} />
+                <ConventionCard
+                  supabase={supabase}
+                  consObj={consObj}
+                  con={con}
+                />
               </li>
             ))}
           </ul>
