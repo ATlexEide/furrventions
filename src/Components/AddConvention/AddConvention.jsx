@@ -14,6 +14,7 @@ import EventLocation from "./EventLocation";
 import EventTicketInfo from "./EventTicketInfo";
 import EventTags from "./EventTags";
 import EventAdditionalInfo from "./EventAdditionalInfo";
+import { uploadLogo } from "../../utils/uploadLogo";
 
 export default function AddConvention({ supabase }) {
   const [page, setPage] = useState(0);
@@ -23,6 +24,7 @@ export default function AddConvention({ supabase }) {
   const [eventInfo, setEventInfo] = useState({
     type: null,
     name: null,
+    logoFileType: null,
     location: null,
     long: null,
     lat: null,
@@ -39,6 +41,7 @@ export default function AddConvention({ supabase }) {
 
     creatorID: null
   });
+  const [logo, setLogo] = useState({});
   console.log(eventInfo);
 
   async function getSession() {
@@ -81,6 +84,7 @@ export default function AddConvention({ supabase }) {
         <EventName
           setIsNotValid={setIsNotValid}
           eventInfo={eventInfo}
+          setLogo={setLogo}
           setEventInfo={setEventInfo}
         />
       )
@@ -128,11 +132,15 @@ export default function AddConvention({ supabase }) {
   ];
 
   const navigate = useNavigate();
+
   async function addEvent() {
     const { error } = await supabase.from("conventions").insert(eventInfo);
 
     console.log(error);
     if (error) throw new Error(error);
+    else {
+      await uploadLogo(supabase, eventInfo.name, logo);
+    }
 
     navigate("/conventions/");
   }
