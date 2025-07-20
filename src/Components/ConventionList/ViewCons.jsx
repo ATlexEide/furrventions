@@ -124,7 +124,7 @@ export default function ViewCons({ supabase }) {
             {Boolean(filteredCons.length) &&
               filteredCons.map((con, i) => (
                 <li className="convention" key={i}>
-                  <ConventionCard con={con} />
+                  <ConventionCard supabase={supabase} con={con} />
                 </li>
               ))}
           </ul>
