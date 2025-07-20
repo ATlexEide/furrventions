@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import MapWithPlaceholder from "../Utilities/Map";
 import Loading from "../Utilities/Loading";
+import { fetchLogo } from "../../utils/fetchLogo";
 
 import "../../styles/ViewConInfo.css";
 
@@ -229,7 +230,16 @@ export default function ViewConInfo({ supabase }) {
           <section id="map-container">
             {con.long && con.lat && (
               <MapWithPlaceholder
+                conventions={false}
                 conName={con.name}
+                icon={{
+                  iconUrl: con.logoFileType
+                    ? fetchLogo(supabase, con.name)
+                    : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-logos//pawlogo.png",
+                  iconAnchor: [0, 30],
+                  popupAnchor: [15, -30],
+                  iconSize: [50] // size of the icon
+                }}
                 cords={[con.lat, con.long]}
               />
             )}
