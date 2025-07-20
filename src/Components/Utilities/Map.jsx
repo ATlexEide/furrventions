@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Link } from "react-router-dom";
 
@@ -11,21 +12,27 @@ function MapPlaceholder() {
 }
 
 export default function MapWithPlaceholder({
-  cons,
+  conventions,
   conName = "Convention",
   cords = [60.39118002058307, 5.331024627773373]
 }) {
-  console.clear();
-  console.table(cons);
+  useEffect(() => {
+    console.clear();
+    console.log(conventions);
+    console.log("refresh");
+  }, conventions);
+
+  console.log("filteredCons", conventions);
+
   return (
     <MapContainer
-      center={cons ? [34.69039805875912, -35.210042531073285] : cords}
-      zoom={cons ? 3 : 16}
+      center={conventions ? [34.69039805875912, -35.210042531073285] : cords}
+      zoom={conventions ? 3 : 16}
       scrollWheelZoom={true}
       placeholder={<MapPlaceholder />}
     >
-      {cons &&
-        cons.map((con, i) => (
+      {conventions &&
+        conventions.map((con, i) => (
           <Marker
             key={i}
             draggable={false}
@@ -38,7 +45,7 @@ export default function MapWithPlaceholder({
           </Marker>
         ))}
 
-      {!cons && (
+      {!conventions && (
         <Marker draggable={false} position={cords} ref={null}>
           <Popup minWidth={90}>{conName}</Popup>
         </Marker>
