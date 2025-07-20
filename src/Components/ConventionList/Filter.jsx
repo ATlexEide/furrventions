@@ -27,6 +27,7 @@ export default function Filter({
           <input
             id="convention-name"
             type="text"
+            value={filter ? filter.name : ""}
             onChange={(e) => {
               console.log("yipp");
               setFilter({ ...filter, name: e.target.value });
@@ -41,6 +42,7 @@ export default function Filter({
             <input
               id="convention-location"
               type="text"
+              value={filter ? filter.location : ""}
               onChange={(e) => {
                 setFilter({
                   ...filter,
@@ -70,7 +72,7 @@ export default function Filter({
                             [tag.tagName]: e.target.checked
                           });
                         }}
-                        checked={activeTags?.[tag.tagName]}
+                        checked={activeTags?.[tag.tagName] ? true : false}
                       />
                     </div>
                   </div>
@@ -95,7 +97,7 @@ export default function Filter({
                             [tag.tagName]: e.target.checked
                           });
                         }}
-                        checked={activeTags?.[tag.tagName]}
+                        checked={activeTags?.[tag.tagName] ? true : false}
                       />
                     </div>
                   </div>
@@ -108,6 +110,8 @@ export default function Filter({
       <section id="filter-buttons">
         <button
           onClick={() => {
+            console.log("filter:", filter);
+            console.log("tags:", activeTags);
             filterCons();
           }}
         >
@@ -117,6 +121,8 @@ export default function Filter({
           onClick={() => {
             setFilter({});
             setHasFilter(false);
+            setActiveTags({});
+            console.log("tags", activeTags);
           }}
         >
           Clear filter
