@@ -16,7 +16,6 @@ export default function ViewCons({ supabase }) {
   );
   const [filter, setFilter] = useState(null);
   const [activeTags, setActiveTags] = useState({});
-  const [hasActiveTags, setHasActiveTags] = useState(false);
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
   const [showMap, setShowMap] = useState(false);
@@ -59,7 +58,7 @@ export default function ViewCons({ supabase }) {
             tagCount--;
           }
         });
-        return tagCount === 0 ? true : false;
+        return !tagCount;
       };
 
       filtered = filtered.filter((con) => tagChecker(con));
@@ -88,8 +87,6 @@ export default function ViewCons({ supabase }) {
   }
 
   useEffect(() => {
-    setHasActiveTags(Object.values(activeTags).includes(true));
-
     if (
       !filter?.name &&
       !filter?.location &&
