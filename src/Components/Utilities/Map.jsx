@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
 import { Link } from "react-router-dom";
+import { fetchLogo } from "../../utils/fetchLogo";
 
 function MapPlaceholder() {
   return (
@@ -12,17 +14,33 @@ function MapPlaceholder() {
 }
 
 export default function MapWithPlaceholder({
+  supabase,
   conventions,
   conName = "Convention",
+  icon = null,
   cords = [60.39118002058307, 5.331024627773373]
 }) {
   useEffect(() => {
-    console.clear();
     console.log(conventions);
     console.log("refresh");
   }, conventions);
 
   console.log("filteredCons", conventions);
+
+  let conIcon = new Icon(icon);
+
+  conventions &&
+    conventions.map((con) => {
+      conIcon = new Icon({
+        iconUrl: con.logoFileType
+          ? fetchLogo(supabase, con.name)
+          : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-logos//pawlogo.png",
+        iconAnchor: [0, 30],
+        popupAnchor: [15, -30],
+        iconSize: [30] // size of the icon
+      });
+      con.markerIcon = conIcon;
+    });
 
   return (
     <MapContainer
@@ -38,6 +56,7 @@ export default function MapWithPlaceholder({
             draggable={false}
             position={[con.lat, con.long]}
             ref={null}
+            icon={con.markerIcon}
           >
             <Popup minWidth={90}>
               {<Link to={`/conventions/${con.id}`}>{con.name}</Link>}
@@ -46,7 +65,12 @@ export default function MapWithPlaceholder({
         ))}
 
       {!conventions && (
-        <Marker draggable={false} position={cords} ref={null}>
+        <Marker
+          draggable={false}
+          position={cords}
+          ref={null}
+          icon={new Icon(icon)}
+        >
           <Popup minWidth={90}>{conName}</Popup>
         </Marker>
       )}
