@@ -79,3 +79,8 @@
   padding: 24px 0;
   gap: 12px;
 }
+
+#filter-options input {
+  border: solid 0px black;
+  border-radius: 7px;
+}
