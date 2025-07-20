@@ -116,36 +116,46 @@ export default function ViewCons({ supabase }) {
         setShowMap={setShowMap}
         showMap={showMap}
       />
-      {hasFilter && (
+      {!showMap && hasFilter && (
         <section id="convention-list-cont">
           {!filteredCons.length && <p>No results</p>}
-          {!showMap && (
-            <ul id="convention-list">
-              {Boolean(filteredCons.length) &&
-                filteredCons.map((con, i) => (
-                  <li className="convention" key={i}>
-                    <ConventionCard con={con} />
-                  </li>
-                ))}
-            </ul>
+
+          <ul id="convention-list">
+            {Boolean(filteredCons.length) &&
+              filteredCons.map((con, i) => (
+                <li className="convention" key={i}>
+                  <ConventionCard con={con} />
+                </li>
+              ))}
+          </ul>
+        </section>
+      )}
+
+      {!showMap && !hasFilter && (
+        <section id="convention-list-cont">
+          <ul id="convention-list">
+            {(loading || !cons.length) && <Loading text="Looking for events" />}
+            {cons.map((con, i) => (
+              <li className="convention" key={i}>
+                <ConventionCard consObj={consObj} con={con} />
+              </li>
+            ))}
+          </ul>
+          {(cons || filteredCons) && showMap && (
+            <MapWithPlaceholder
+              conventions={filteredCons.length ? filteredCons : cons}
+            />
           )}
         </section>
       )}
-      {!hasFilter && (
+
+      {showMap && (
         <section id="convention-list-cont">
-          {!showMap && (
-            <ul id="convention-list">
-              {(loading || !cons.length) && (
-                <Loading text="Looking for events" />
-              )}
-              {cons.map((con, i) => (
-                <li className="convention" key={i}>
-                  <ConventionCard consObj={consObj} con={con} />
-                </li>
-              ))}
-            </ul>
+          {(cons || filteredCons) && showMap && (
+            <MapWithPlaceholder
+              conventions={filteredCons.length ? filteredCons : cons}
+            />
           )}
-          {showMap && <MapWithPlaceholder cons={cons} />}
         </section>
       )}
     </>
