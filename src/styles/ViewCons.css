@@ -1,6 +1,8 @@
 #convention-list-cont {
   background-color: var(--secondary-bg-color);
   width: 100%;
+  min-height: 420px;
+  height: fit-content;
   display: grid;
   padding: 32px 0;
   border-radius: 0 25px 25px 0;
