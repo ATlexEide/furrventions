@@ -41,6 +41,7 @@ main {
 }
 
 #catchphrase-cont {
+  height: 70svh;
   margin: auto;
   width: 100%;
   display: flex;
