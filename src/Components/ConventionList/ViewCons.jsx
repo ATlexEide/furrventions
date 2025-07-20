@@ -157,6 +157,7 @@ export default function ViewCons({ supabase }) {
         <section id="convention-list-cont">
           {(cons || filteredCons) && showMap && (
             <MapWithPlaceholder
+              supabase={supabase}
               conventions={filteredCons.length ? filteredCons : cons}
             />
           )}
