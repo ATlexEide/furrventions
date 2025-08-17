@@ -19,12 +19,21 @@ export default function ViewConInfo({ supabase }) {
   const [userIsCreator, setUserIsCreator] = useState(false);
   const [isEditing, setIsEditing] = useState(true);
   const [updateObject, setUpdateObject] = useState({});
-
-  function submitUpdate() {
-    alert("test");
+  console.log("CON ID", con_id);
+  async function submitUpdate() {
+    console.log(updateObject);
+    const { data, error } = await supabase
+      .from("conventions")
+      .update(updateObject)
+      .eq("id", con_id)
+      .select("*");
+    if (data) setCon(data);
+    console.log("Submitted updates");
+    if (error) console.log(error);
   }
 
   useEffect(() => {
+    console.log(con_id);
     getSession();
   }, []);
 
@@ -365,7 +374,9 @@ export default function ViewConInfo({ supabase }) {
               {isEditing && (
                 <button
                   onClick={() => {
-                    submitUpdate();
+                    console.clear();
+                    console.log(Boolean(Object.entries(updateObject).length));
+                    if (Object.entries(updateObject).length) submitUpdate();
                     setIsEditing(false);
                   }}
                 >
