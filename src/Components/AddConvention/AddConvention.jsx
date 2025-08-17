@@ -134,12 +134,13 @@ export default function AddConvention({ supabase }) {
   const navigate = useNavigate();
 
   async function addEvent() {
-    const { error } = await supabase.from("conventions").insert(eventInfo);
-
-    console.log(error);
+    const { data, error } = await supabase
+      .from("conventions")
+      .insert(eventInfo)
+      .select("*");
     if (error) throw new Error(error);
     else {
-      await uploadLogo(supabase, eventInfo.name, logo);
+      await uploadLogo(supabase, data, logo);
     }
 
     navigate("/conventions/");
