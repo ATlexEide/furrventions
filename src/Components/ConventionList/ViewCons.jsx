@@ -16,7 +16,6 @@ export default function ViewCons({ supabase }) {
   );
   const [filter, setFilter] = useState(null);
   const [activeTags, setActiveTags] = useState({});
-  const [hasActiveTags, setHasActiveTags] = useState(false);
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
   const [showMap, setShowMap] = useState(false);
@@ -59,7 +58,7 @@ export default function ViewCons({ supabase }) {
             tagCount--;
           }
         });
-        return tagCount === 0 ? true : false;
+        return !tagCount;
       };
 
       filtered = filtered.filter((con) => tagChecker(con));
@@ -88,8 +87,6 @@ export default function ViewCons({ supabase }) {
   }
 
   useEffect(() => {
-    setHasActiveTags(Object.values(activeTags).includes(true));
-
     if (
       !filter?.name &&
       !filter?.location &&
@@ -105,7 +102,7 @@ export default function ViewCons({ supabase }) {
     filterCons();
   }, [filter, activeTags]);
 
-  if (hasFilter && !filteredCons) return <Loading />;
+  if (hasFilter && !filteredCons) return <Loading text="Looking for events" />;
 
   return (
     <>
@@ -119,34 +116,51 @@ export default function ViewCons({ supabase }) {
         setShowMap={setShowMap}
         showMap={showMap}
       />
-      {hasFilter && (
+      {!showMap && hasFilter && (
         <section id="convention-list-cont">
           {!filteredCons.length && <p>No results</p>}
-          {!showMap && (
-            <ul id="convention-list">
-              {Boolean(filteredCons.length) &&
-                filteredCons.map((con, i) => (
-                  <li className="convention" key={i}>
-                    <ConventionCard con={con} />
-                  </li>
-                ))}
-            </ul>
+
+          <ul id="convention-list">
+            {Boolean(filteredCons.length) &&
+              filteredCons.map((con, i) => (
+                <li className="convention" key={i}>
+                  <ConventionCard supabase={supabase} con={con} />
+                </li>
+              ))}
+          </ul>
+        </section>
+      )}
+
+      {!showMap && !hasFilter && (
+        <section id="convention-list-cont">
+          <ul id="convention-list">
+            {(loading || !cons.length) && <Loading text="Looking for events" />}
+            {cons.map((con, i) => (
+              <li className="convention" key={i}>
+                <ConventionCard
+                  supabase={supabase}
+                  consObj={consObj}
+                  con={con}
+                />
+              </li>
+            ))}
+          </ul>
+          {(cons || filteredCons) && showMap && (
+            <MapWithPlaceholder
+              conventions={filteredCons.length ? filteredCons : cons}
+            />
           )}
         </section>
       )}
-      {!hasFilter && (
+
+      {showMap && (
         <section id="convention-list-cont">
-          {!showMap && (
-            <ul id="convention-list">
-              {(loading || !cons.length) && <Loading />}
-              {cons.map((con, i) => (
-                <li className="convention" key={i}>
-                  <ConventionCard consObj={consObj} con={con} />
-                </li>
-              ))}
-            </ul>
+          {(cons || filteredCons) && showMap && (
+            <MapWithPlaceholder
+              supabase={supabase}
+              conventions={filteredCons.length ? filteredCons : cons}
+            />
           )}
-          {showMap && <MapWithPlaceholder cons={cons} />}
         </section>
       )}
     </>

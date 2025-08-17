@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
+import { Analytics } from "@vercel/analytics/react";
 
 import App from "./App.jsx";
 import ViewCons from "./Components/ConventionList/ViewCons.jsx";
@@ -34,6 +35,7 @@ const supabase = createClient(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <Analytics />
     <Router>
       <Header supabase={supabase} />
       <main>

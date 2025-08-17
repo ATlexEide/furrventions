@@ -1,23 +1,36 @@
+#standard-tags,
+#location-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  height: fit-content;
+}
+
+.tag-container hr {
+  margin-bottom: 7px;
+}
+.tag-container .input {
+  width: 30%;
+}
+
 .input {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 20px;
 }
 
 .input label,
 .input div {
+  text-align: start;
   display: flex;
   align-items: center;
-  justify-content: start;
   height: 40px;
-  width: 200px;
-  text-align: end;
+  width: fit-content;
 }
 .input div {
-  justify-content: end;
-  pl
+  justify-content: center;
 }
 .input input {
   width: 30px;

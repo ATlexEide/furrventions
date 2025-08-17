@@ -11,11 +11,11 @@ export default function Filter({
   const tags = [
     { tagName: "adult", tagDisplay: "18+" },
     { tagName: "virtual", tagDisplay: "Virtual" },
-    { tagName: "eu", tagDisplay: "Europe" },
-    { tagName: "na", tagDisplay: "North America" },
-    { tagName: "sa", tagDisplay: "South America" },
-    { tagName: "asia", tagDisplay: "Asia" },
-    { tagName: "oceania", tagDisplay: "Oceania" }
+    { tagName: "eu", tagDisplay: "Europe", tagType: "location" },
+    { tagName: "na", tagDisplay: "North America", tagType: "location" },
+    { tagName: "sa", tagDisplay: "South America", tagType: "location" },
+    { tagName: "asia", tagDisplay: "Asia", tagType: "location" },
+    { tagName: "oceania", tagDisplay: "Oceania", tagType: "location" }
   ];
   return (
     <section id="convention-list-filter">
@@ -27,6 +27,7 @@ export default function Filter({
           <input
             id="convention-name"
             type="text"
+            value={filter ? filter.name : ""}
             onChange={(e) => {
               console.log("yipp");
               setFilter({ ...filter, name: e.target.value });
@@ -41,6 +42,7 @@ export default function Filter({
             <input
               id="convention-location"
               type="text"
+              value={filter ? filter.location : ""}
               onChange={(e) => {
                 setFilter({
                   ...filter,
@@ -52,32 +54,64 @@ export default function Filter({
         </div>
 
         <div className="tag-container">
-          {tags.map((tag, i) => (
-            <div key={i} className="input">
-              <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
-              <div>
-                <input
-                  id={tag.tagName}
-                  type="checkbox"
-                  onChange={(e) => {
-                    setActiveTags({
-                      ...activeTags,
-                      [tag.tagName]: e.target.checked
-                    });
-                  }}
-                  checked={activeTags?.[tag.tagName]}
-                />
-              </div>
-            </div>
-          ))}
-
+          <h3>Tags</h3>
           <hr />
+          <section id="standard-tags">
+            {tags.map(
+              (tag, i) =>
+                !tag.tagType && (
+                  <div key={i} className="input">
+                    <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
+                    <div>
+                      <input
+                        id={tag.tagName}
+                        type="checkbox"
+                        onChange={(e) => {
+                          setActiveTags({
+                            ...activeTags,
+                            [tag.tagName]: e.target.checked
+                          });
+                        }}
+                        checked={activeTags?.[tag.tagName] ? true : false}
+                      />
+                    </div>
+                  </div>
+                )
+            )}
+          </section>
+          <h3>Location</h3>
+          <hr />
+          <section id="location-tags">
+            {tags.map(
+              (tag, i) =>
+                tag.tagType === "location" && (
+                  <div key={i} className="input">
+                    <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
+                    <div>
+                      <input
+                        id={tag.tagName}
+                        type="checkbox"
+                        onChange={(e) => {
+                          setActiveTags({
+                            ...activeTags,
+                            [tag.tagName]: e.target.checked
+                          });
+                        }}
+                        checked={activeTags?.[tag.tagName] ? true : false}
+                      />
+                    </div>
+                  </div>
+                )
+            )}
+          </section>
         </div>
       </section>
 
       <section id="filter-buttons">
         <button
           onClick={() => {
+            console.log("filter:", filter);
+            console.log("tags:", activeTags);
             filterCons();
           }}
         >
@@ -87,6 +121,8 @@ export default function Filter({
           onClick={() => {
             setFilter({});
             setHasFilter(false);
+            setActiveTags({});
+            console.log("tags", activeTags);
           }}
         >
           Clear filter

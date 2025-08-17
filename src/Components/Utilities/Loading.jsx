@@ -1,7 +1,8 @@
-export default function Loading() {
+export default function Loading({ text }) {
   return (
     <div id="loading">
-      <h2>Loading . . .</h2>
+      <div className="loader"></div>
+      <div className="loader-text">{text}</div>
     </div>
   );
 }

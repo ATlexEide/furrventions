@@ -2,7 +2,7 @@ import { fetchLogo } from "../../utils/fetchLogo";
 import "../../styles/ConventionCard.css";
 import { useNavigate } from "react-router-dom";
 
-export default function ConventionCard({ con, type }) {
+export default function ConventionCard({ supabase, con, type }) {
   const navigate = useNavigate();
 
   const days = [
@@ -63,7 +63,11 @@ export default function ConventionCard({ con, type }) {
     >
       <figure className="convention-logo">
         <img
-          src={con.logo_path ? fetchLogo(con.logo_path) : "/pawlogo.png"}
+          src={
+            con.logoFileType
+              ? fetchLogo(supabase, con.name)
+              : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-logos//pawlogo.png"
+          }
           alt={`${con.name} logo`}
         />
       </figure>

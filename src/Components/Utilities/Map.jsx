@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
 import { Link } from "react-router-dom";
+import { fetchLogo } from "../../utils/fetchLogo";
 
 function MapPlaceholder() {
   return (
@@ -11,25 +14,49 @@ function MapPlaceholder() {
 }
 
 export default function MapWithPlaceholder({
-  cons,
+  supabase,
+  conventions,
   conName = "Convention",
+  icon = null,
   cords = [60.39118002058307, 5.331024627773373]
 }) {
-  console.table(cons);
+  useEffect(() => {
+    console.log(conventions);
+    console.log("refresh");
+  }, conventions);
+
+  console.log("filteredCons", conventions);
+
+  let conIcon = new Icon(icon);
+
+  conventions &&
+    conventions.map((con) => {
+      conIcon = new Icon({
+        iconUrl: con.logoFileType
+          ? fetchLogo(supabase, con.name)
+          : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-logos//pawlogo.png",
+        iconAnchor: [0, 30],
+        popupAnchor: [15, -30],
+        iconSize: [30] // size of the icon
+      });
+      con.markerIcon = conIcon;
+    });
+
   return (
     <MapContainer
-      center={cons ? [34.69039805875912, -35.210042531073285] : cords}
-      zoom={cons ? 3 : 16}
+      center={conventions ? [34.69039805875912, -35.210042531073285] : cords}
+      zoom={conventions ? 3 : 16}
       scrollWheelZoom={true}
       placeholder={<MapPlaceholder />}
     >
-      {cons &&
-        cons.map((con, i) => (
+      {conventions &&
+        conventions.map((con, i) => (
           <Marker
             key={i}
             draggable={false}
             position={[con.lat, con.long]}
             ref={null}
+            icon={con.markerIcon}
           >
             <Popup minWidth={90}>
               {<Link to={`/conventions/${con.id}`}>{con.name}</Link>}
@@ -37,8 +64,13 @@ export default function MapWithPlaceholder({
           </Marker>
         ))}
 
-      {!cons && (
-        <Marker draggable={false} position={cords} ref={null}>
+      {!conventions && (
+        <Marker
+          draggable={false}
+          position={cords}
+          ref={null}
+          icon={new Icon(icon)}
+        >
           <Popup minWidth={90}>{conName}</Popup>
         </Marker>
       )}
