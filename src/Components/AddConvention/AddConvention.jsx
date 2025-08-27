@@ -139,7 +139,7 @@ export default function AddConvention({ supabase }) {
       .insert({
         type: eventInfo.type,
         name: eventInfo.name,
-        hasLogo: eventInfo.hasLogo,
+        hasLogo: eventInfo.logo ? true : false,
         description: eventInfo.description,
         end_time: eventInfo.end_time,
         start_time: eventInfo.start_time,
