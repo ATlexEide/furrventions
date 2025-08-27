@@ -20,6 +20,7 @@ export default function ViewConInfo({ supabase }) {
   const [isEditing, setIsEditing] = useState(true);
   const [updateObject, setUpdateObject] = useState({});
   console.log("CON ID", con_id);
+
   async function submitUpdate() {
     console.log(updateObject);
     const { data, error } = await supabase
@@ -175,8 +176,7 @@ export default function ViewConInfo({ supabase }) {
               )}
               <section id="convention-general">
                 <section>
-                  {!con.price && <p>Could not find a price</p>}
-                  {con.price && (
+                  {!con.ticket_price && (
                     <p>
                       <span className="label">
                         <strong>Ticket price</strong>
@@ -185,19 +185,44 @@ export default function ViewConInfo({ supabase }) {
                         <input
                           type="number"
                           value={
-                            "price" in updateObject
-                              ? updateObject.price
-                              : con.price
+                            "ticket_price" in updateObject
+                              ? updateObject.ticket_price
+                              : con.ticket_price
                           }
                           onChange={(e) => {
                             setUpdateObject({
                               ...updateObject,
-                              price: e.target.value
+                              ticket_price: e.target.value
                             });
                           }}
                         />
                       ) : (
-                        con.price + "eur"
+                        "We could not find any price information for this convention"
+                      )}
+                    </p>
+                  )}
+                  {con.ticket_price && (
+                    <p>
+                      <span className="label">
+                        <strong>Ticket price</strong>
+                      </span>{" "}
+                      {isEditing ? (
+                        <input
+                          type="number"
+                          value={
+                            "ticket_price" in updateObject
+                              ? updateObject.ticket_price
+                              : con.ticket_price
+                          }
+                          onChange={(e) => {
+                            setUpdateObject({
+                              ...updateObject,
+                              ticket_price: e.target.value
+                            });
+                          }}
+                        />
+                      ) : (
+                        con.ticket_price + " eur"
                       )}
                     </p>
                   )}
@@ -326,7 +351,34 @@ export default function ViewConInfo({ supabase }) {
                     />
                   </>
                 )}
-                {!con.website && <p>No website submitted</p>}
+                {!con.website && (
+                  <p id="website" className="info-section">
+                    {isEditing ? (
+                      <>
+                        <label htmlFor="update-website">Website</label>
+                        <br />
+                        <input
+                          id="update-website"
+                          name="update-website"
+                          type="text"
+                          value={
+                            "website" in updateObject
+                              ? updateObject.website
+                              : con.website
+                          }
+                          onChange={(e) => {
+                            setUpdateObject({
+                              ...updateObject,
+                              website: e.target.value
+                            });
+                          }}
+                        />
+                      </>
+                    ) : (
+                      "We could not see any website for this convention"
+                    )}
+                  </p>
+                )}
                 {con.website && (
                   <p id="website" className="info-section">
                     <a
