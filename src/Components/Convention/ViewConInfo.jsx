@@ -21,6 +21,16 @@ export default function ViewConInfo({ supabase }) {
   const [updateObject, setUpdateObject] = useState({});
   console.log("CON ID", con_id);
 
+  const [query, setQuery] = useState("");
+  const [result, setResult] = useState([]);
+  const [hasNewQuery, setHasNewQuery] = useState(false);
+
+  async function fetchLocation() {
+    fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json`)
+      .then((res) => res.json())
+      .then((res) => setResult(res));
+  }
+
   async function submitUpdate() {
     console.log(updateObject);
     const { data, error } = await supabase
@@ -317,17 +327,49 @@ export default function ViewConInfo({ supabase }) {
                         name="update-location"
                         type="text"
                         value={
-                          "location" in updateObject
+                          hasNewQuery || updateObject.location
                             ? updateObject.location
                             : con.location
                         }
                         onChange={(e) => {
-                          setUpdateObject({
-                            ...updateObject,
-                            location: e.target.value
-                          });
+                          setQuery(e.target.value);
+                          if (query !== updateObject.location)
+                            setHasNewQuery(true);
                         }}
                       />
+                      {hasNewQuery && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            console.log("rawrrr");
+                            fetchLocation();
+                          }}
+                        >
+                          Search
+                        </button>
+                      )}
+                      {result && hasNewQuery && (
+                        <ul>
+                          {result.map((res, i) => (
+                            <li
+                              key={i}
+                              onClick={() => {
+                                console.log(res);
+                                setQuery(res.display_name);
+                                setHasNewQuery(false);
+                                setUpdateObject({
+                                  ...updateObject,
+                                  long: res.lon,
+                                  lat: res.lat,
+                                  location: res.display_name
+                                });
+                              }}
+                            >
+                              {res.display_name}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </>
                   )}
                 </section>
@@ -467,6 +509,8 @@ export default function ViewConInfo({ supabase }) {
                   <button
                     className="orange-btn"
                     onClick={() => {
+                      setQuery(null);
+                      setResult(null);
                       setIsEditing(!isEditing);
                       console.clear();
                       console.log(con);
