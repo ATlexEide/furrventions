@@ -420,7 +420,7 @@ export default function ViewConInfo({ supabase }) {
                 icon={{
                   iconUrl: con.hasLogo
                     ? fetchLogo(supabase, con.id)
-                    : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-logos//pawlogo.png",
+                    : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images/pawlogo.png",
                   iconAnchor: [0, 30],
                   popupAnchor: [15, -30],
                   iconSize: [50] // size of the icon
