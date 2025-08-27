@@ -17,7 +17,7 @@ export default function ViewConInfo({ supabase }) {
   const [endDate, setEndDate] = useState(null);
   const [session, setSession] = useState(null);
   const [userIsCreator, setUserIsCreator] = useState(false);
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [updateObject, setUpdateObject] = useState({});
   console.log("CON ID", con_id);
 
