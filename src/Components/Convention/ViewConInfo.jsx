@@ -151,31 +151,35 @@ export default function ViewConInfo({ supabase }) {
             ←
           </button>
         </div>
+
         <div id="convention-info-main">
           <section id="convention-container">
             <section id="convention-details">
-              {!isEditing && con.name && <h1>{con.name}</h1>}
-              {isEditing && (
-                <div>
-                  <label htmlFor="update-name">Name </label>
-                  <input
-                    type="text"
-                    id="update-name"
-                    name="update-name"
-                    value={
-                      "name" in updateObject ? updateObject.name : con.name
-                    }
-                    onChange={(e) => {
-                      setUpdateObject({
-                        ...updateObject,
-                        name: e.target.value
-                      });
-                    }}
-                  />
-                </div>
-              )}
+              <section id="eventinfo-name">
+                {!isEditing && con.name && <h1>{con.name}</h1>}
+                {isEditing && (
+                  <div>
+                    <label htmlFor="update-name">Name </label>
+                    <input
+                      type="text"
+                      id="update-name"
+                      name="update-name"
+                      value={
+                        "name" in updateObject ? updateObject.name : con.name
+                      }
+                      onChange={(e) => {
+                        setUpdateObject({
+                          ...updateObject,
+                          name: e.target.value
+                        });
+                      }}
+                    />
+                  </div>
+                )}
+              </section>
+
               <section id="convention-general">
-                <section>
+                <section id="eventinfo-ticket-price" className="info-section">
                   {!con.ticket_price && (
                     <p>
                       <span className="label">
@@ -227,7 +231,8 @@ export default function ViewConInfo({ supabase }) {
                     </p>
                   )}
                 </section>
-                <section id="dates" className="info-section">
+
+                <section id="eventinfo-dates" className="info-section">
                   {!startDate && <p>Could not find end time</p>}
                   {startDate && (
                     <p>
@@ -259,6 +264,7 @@ export default function ViewConInfo({ supabase }) {
                       )}
                     </p>
                   )}
+
                   {!endDate && <p>Could not find end time</p>}
                   {endDate && (
                     <p>
@@ -291,7 +297,8 @@ export default function ViewConInfo({ supabase }) {
                     </p>
                   )}
                 </section>
-                <section className="info-section">
+
+                <section id="eventinfo-location" className="info-section">
                   <p>
                     {isEditing ? (
                       <label htmlFor="update-location">Location</label>
@@ -324,71 +331,39 @@ export default function ViewConInfo({ supabase }) {
                     </>
                   )}
                 </section>
-                {!isEditing && !con.description && <p>No description</p>}
-                {!isEditing && con.description && (
-                  <p>
-                    <strong>Description</strong> <br />
-                    con.description
-                  </p>
-                )}
-                {isEditing && (
-                  <>
-                    <label htmlFor="edit-desc">Description</label>
-                    <input
-                      name="edit-desc"
-                      id="edit-desc"
-                      value={
-                        "description" in updateObject
-                          ? updateObject.description
-                          : con.description
-                      }
-                      onChange={(e) => {
-                        setUpdateObject({
-                          ...updateObject,
-                          description: e.target.value
-                        });
-                      }}
-                    />
-                  </>
-                )}
-                {!con.website && (
-                  <p id="website" className="info-section">
-                    {isEditing ? (
-                      <>
-                        <label htmlFor="update-website">Website</label>
-                        <br />
-                        <input
-                          id="update-website"
-                          name="update-website"
-                          type="text"
-                          value={
-                            "website" in updateObject
-                              ? updateObject.website
-                              : con.website
-                          }
-                          onChange={(e) => {
-                            setUpdateObject({
-                              ...updateObject,
-                              website: e.target.value
-                            });
-                          }}
-                        />
-                      </>
-                    ) : (
-                      "We could not see any website for this convention"
-                    )}
-                  </p>
-                )}
-                {con.website && (
-                  <p id="website" className="info-section">
-                    <a
-                      target="_blank"
-                      href={
-                        con.website.includes("://")
-                          ? con.website
-                          : `https://${con.website}`
-                      }
-                    >
+                <section id="eventinfo-description" className="info-section">
+                  {!isEditing && !con.description && <p>No description</p>}
+                  {!isEditing && con.description && (
+                    <p>
+                      <strong>Description</strong> <br />
+                      {con.description}
+                    </p>
+                  )}
+                  {isEditing && (
+                    <>
+                      <label htmlFor="edit-desc">Description</label>
+                      <input
+                        name="edit-desc"
+                        id="edit-desc"
+                        value={
+                          "description" in updateObject
+                            ? updateObject.description
+                            : con.description
+                        }
+                        onChange={(e) => {
+                          setUpdateObject({
+                            ...updateObject,
+                            description: e.target.value
+                          });
+                        }}
+                      />
+                    </>
+                  )}
+                </section>
+
+                <section id="eventinfo-website" className="info-section">
+                  {!con.website && (
+                    <p id="website" className="info-section">
                       {isEditing ? (
                         <>
                           <label htmlFor="update-website">Website</label>
@@ -411,11 +386,49 @@ export default function ViewConInfo({ supabase }) {
                           />
                         </>
                       ) : (
-                        con.website
+                        "We could not see any website for this convention"
                       )}
-                    </a>
-                  </p>
-                )}
+                    </p>
+                  )}
+                  {con.website && (
+                    <p id="website" className="info-section">
+                      {!isEditing && (
+                        <a
+                          target="_blank"
+                          href={
+                            con.website.includes("://")
+                              ? con.website
+                              : `https://${con.website}`
+                          }
+                        >
+                          {con.website}
+                        </a>
+                      )}
+                      {isEditing && (
+                        <>
+                          <label htmlFor="update-website">Website</label>
+                          <br />
+                          <input
+                            id="update-website"
+                            name="update-website"
+                            type="text"
+                            value={
+                              "website" in updateObject
+                                ? updateObject.website
+                                : con.website
+                            }
+                            onChange={(e) => {
+                              setUpdateObject({
+                                ...updateObject,
+                                website: e.target.value
+                              });
+                            }}
+                          />
+                        </>
+                      )}
+                    </p>
+                  )}
+                </section>
               </section>
               {Boolean(tags.length) && (
                 <>
