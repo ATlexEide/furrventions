@@ -134,12 +134,35 @@ export default function AddConvention({ supabase }) {
   const navigate = useNavigate();
 
   async function addEvent() {
-    const { error } = await supabase.from("conventions").insert(eventInfo);
+    const { data, error } = await supabase
+      .from("conventions")
+      .insert({
+        type: eventInfo.type,
+        name: eventInfo.name,
+        hasLogo: eventInfo.logo ? true : false,
+        description: eventInfo.description,
+        end_time: eventInfo.end_time,
+        start_time: eventInfo.start_time,
+        location: eventInfo.location,
+        long: eventInfo.long,
+        lat: eventInfo.lat,
+        ticket_price: eventInfo.price,
+        tags: eventInfo.tags,
+        additionalInfo: eventInfo.additionalInfo,
+        website: eventInfo.website,
 
-    console.log(error);
+        organizerID: eventInfo.organizerID,
+        organizerName: eventInfo.organizerName,
+        organizerEmail: eventInfo.organizerEmail,
+        organizerPhone: eventInfo.organizerPhone,
+        organizerGroupChat: eventInfo.organizerGroupChat,
+
+        creatorID: eventInfo.creatorID
+      })
+      .select("*");
     if (error) throw new Error(error);
     else {
-      await uploadLogo(supabase, eventInfo.name, logo);
+      if (eventInfo.logo) await uploadLogo(supabase, data, eventInfo.logo);
     }
 
     navigate("/conventions/");

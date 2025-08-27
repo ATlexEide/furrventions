@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function EventName({
   setIsNotValid,
@@ -6,6 +6,7 @@ export default function EventName({
   setEventInfo,
   setLogo
 }) {
+  const [error, setError] = useState();
   useEffect(() => {
     if (eventInfo.name) setIsNotValid(false);
   }, [eventInfo]);
@@ -36,10 +37,26 @@ export default function EventName({
           type="file"
           name="eventLogoInput"
           id="eventLogoInput"
+          accept="image/png, image/gif, image/jpeg"
           onChange={(e) => {
-            setLogo(e.target.files[0]);
+            // File size limit (1MB * Limit)
+            if (e.target.files[0].size > 1048576 * 25) {
+              setError("filesize");
+            }
+            if (e.target.files.length) {
+              setEventInfo({
+                ...eventInfo,
+                logo: e.target.files[0]
+              });
+            }
           }}
         />
+        {error && (
+          <p>
+            Image too big <br />
+            Keep it under 50MB
+          </p>
+        )}
       </div>
     </>
   );

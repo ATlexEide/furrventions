@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ConventionCard({ supabase, con, type }) {
   const navigate = useNavigate();
-
+  console.log(con);
   const days = [
     "Sunday",
     "Monday",
@@ -64,9 +64,9 @@ export default function ConventionCard({ supabase, con, type }) {
       <figure className="convention-logo">
         <img
           src={
-            con.logoFileType
-              ? fetchLogo(supabase, con.name)
-              : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-logos//pawlogo.png"
+            con.hasLogo
+              ? fetchLogo(supabase, con.id)
+              : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images/pawlogo.png"
           }
           alt={`${con.name} logo`}
         />
