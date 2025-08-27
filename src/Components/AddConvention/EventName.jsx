@@ -37,7 +37,9 @@ export default function EventName({
           name="eventLogoInput"
           id="eventLogoInput"
           onChange={(e) => {
-            setLogo(e.target.files[0]);
+            setEventInfo({ ...eventInfo, logo: e.target.files[0] });
+            if (e.target.files[0])
+              setEventInfo({ ...eventInfo, hasLogo: true });
           }}
         />
       </div>
