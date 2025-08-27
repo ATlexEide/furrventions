@@ -136,11 +136,33 @@ export default function AddConvention({ supabase }) {
   async function addEvent() {
     const { data, error } = await supabase
       .from("conventions")
-      .insert(eventInfo)
+      .insert({
+        type: eventInfo.type,
+        name: eventInfo.name,
+        hasLogo: eventInfo.hasLogo,
+        description: eventInfo.description,
+        end_time: eventInfo.end_time,
+        start_time: eventInfo.start_time,
+        location: eventInfo.location,
+        long: eventInfo.long,
+        lat: eventInfo.lat,
+        ticket_price: eventInfo.price,
+        tags: eventInfo.tags,
+        additionalInfo: eventInfo.additionalInfo,
+        website: eventInfo.website,
+
+        organizerID: eventInfo.organizerID,
+        organizerName: eventInfo.organizerName,
+        organizerEmail: eventInfo.organizerEmail,
+        organizerPhone: eventInfo.organizerPhone,
+        organizerGroupChat: eventInfo.organizerGroupChat,
+
+        creatorID: eventInfo.creatorID
+      })
       .select("*");
     if (error) throw new Error(error);
     else {
-      await uploadLogo(supabase, data, logo);
+      if (eventInfo.logo) await uploadLogo(supabase, data, eventInfo.logo);
     }
 
     navigate("/conventions/");
