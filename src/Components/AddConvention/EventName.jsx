@@ -36,6 +36,7 @@ export default function EventName({
           type="file"
           name="eventLogoInput"
           id="eventLogoInput"
+          accept="image/png, image/gif, image/jpeg"
           onChange={(e) => {
             setEventInfo({ ...eventInfo, logo: e.target.files[0] });
             if (e.target.files[0])
