@@ -418,8 +418,8 @@ export default function ViewConInfo({ supabase }) {
                 conventions={false}
                 conName={con.name}
                 icon={{
-                  iconUrl: con.logoFileType
-                    ? fetchLogo(supabase, con.name)
+                  iconUrl: con.hasLogo
+                    ? fetchLogo(supabase, con.id)
                     : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-logos//pawlogo.png",
                   iconAnchor: [0, 30],
                   popupAnchor: [15, -30],

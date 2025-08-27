@@ -64,7 +64,7 @@ export default function ConventionCard({ supabase, con, type }) {
       <figure className="convention-logo">
         <img
           src={
-            con.logoFileType
+            con.hasLogo
               ? fetchLogo(supabase, con.id)
               : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-logos//pawlogo.png"
           }
