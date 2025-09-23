@@ -55,6 +55,16 @@ export default function Form({
           </>
         )}
       </section>
+      <section id="form-pagination">
+        {pages.map((page, i) => (
+          <div
+            key={i}
+            className={`pagination-dot ${
+              i === currentPage ? "current-dot" : ""
+            }`}
+          ></div>
+        ))}
+      </section>
     </form>
   );
 }

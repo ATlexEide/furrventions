@@ -81,3 +81,18 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
   color: transparent;
   background: transparent;
 }
+
+#form-pagination {
+  gap: 5px !important;
+}
+
+.pagination-dot.current-dot {
+  background-color: white;
+}
+
+.pagination-dot {
+  height: 10px;
+  aspect-ratio: 1;
+  background-color: blue;
+  border-radius: 100%;
+}
