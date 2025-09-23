@@ -1,16 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function WipAlert() {
   const [wipAccepted, setWipAccepted] = useState(true);
 
-  if (!localStorage.getItem("wipAlert")) {
-    localStorage.setItem("wipAlert", JSON.stringify({ accepted: false }));
-    setWipAccepted(false);
-  }
-
-  const wipAlert = JSON.parse(localStorage.getItem("wipAlert"));
-  if (!wipAlert.accepted) setWipAccepted(false);
-  console.log(wipAlert.accepted);
+  useEffect(() => {
+    if (!localStorage.getItem("wipAlert")) {
+      localStorage.setItem("wipAlert", JSON.stringify({ accepted: false }));
+      setWipAccepted(false);
+    }
+  }, []);
 
   function acceptWipAlert() {
     localStorage.setItem("wipAlert", JSON.stringify({ accepted: true }));
@@ -28,8 +26,11 @@ export default function WipAlert() {
             There <em>will</em> be bugs and unintended behavior.
             <br />
             <br />
-            If you need help with something, please contact Velvet in our
-            discord server ^^
+            If you need help with something, please contact Velvet in our{" "}
+            <a href={import.meta.env.VITE_DISCORD_INVITE_LINK} target="_blank">
+              discord server
+            </a>{" "}
+            ^^
           </p>
           <hr />
           <p>(This message will only be shown once)</p>
