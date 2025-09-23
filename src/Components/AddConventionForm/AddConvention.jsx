@@ -183,7 +183,6 @@ export default function AddConvention({ supabase }) {
         isNotValid={isNotValid}
         setIsNotValid={setIsNotValid}
       />
-      {/* TODO: Add page indicators */}
     </>
   );
 }
