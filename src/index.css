@@ -150,16 +150,37 @@ button:focus-visible {
   height: 100svh;
   z-index: 999;
   text-align: start;
-  background-color: red;
+  background-color: rgb(56, 0, 0);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 20%;
   overflow: none;
+  font-size: 1.4rem;
+  transition: 200s;
+}
+
+#wipAlert a {
+  color: #7289da;
+}
+
+#wipAlert a:hover {
+  cursor: pointer;
+  color: #f1f8f0;
 }
 
 #wipAlert button {
   margin: 24px 0;
+  background-color: yellow;
+  color: black;
+  border: solid 2px black;
+  transition: 0.2s;
+}
+
+#wipAlert button:hover {
+  margin: 24px 0;
+  background-color: yellow;
+  width: 20%;
 }
 
 #wipAlert img {
