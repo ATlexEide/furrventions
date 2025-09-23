@@ -87,12 +87,12 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .pagination-dot.current-dot {
-  background-color: white;
+  background-color: #e8a4ff;
 }
 
 .pagination-dot {
   height: 10px;
   aspect-ratio: 1;
-  background-color: blue;
+  background-color: #ff005e;
   border-radius: 100%;
 }
