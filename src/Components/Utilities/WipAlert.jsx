@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function WipAlert() {
-  const [wipAccepted, setWipAccepted] = useState(true);
+  const [wipAccepted, setWipAccepted] = useState(false);
 
   if (!localStorage.getItem("wipAlert")) {
     localStorage.setItem("wipAlert", JSON.stringify({ accepted: false }));
@@ -21,6 +21,7 @@ export default function WipAlert() {
     <>
       {!wipAccepted && (
         <div id="wipAlert">
+          <img src="/dist/construction.png" alt="construction sign" />
           <h2>ATTENTION</h2>
           <p>
             This is a project in development! <br />
