@@ -20,6 +20,7 @@ import "./App.css";
 import "./styles/Forms.css";
 import "./styles/ViewCons.css";
 import "./Mobile.css";
+import WipAlert from "./Components/Utilities/WipAlert.jsx";
 
 if (!import.meta.env.VITE_SUPABASE_URL) {
   throw new Error("Missing Supabase Url");
@@ -35,6 +36,7 @@ const supabase = createClient(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <WipAlert />
     <Analytics />
     <Router>
       <Header supabase={supabase} />
