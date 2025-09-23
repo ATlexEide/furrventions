@@ -1,5 +1,3 @@
-import WipAlert from "./Components/Utilities/WipAlert";
-
 export default function Home() {
   // Taglines for display under landing page greeting
   const taglines = [
