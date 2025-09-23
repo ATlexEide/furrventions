@@ -13,7 +13,6 @@ export default function Home() {
 
   return (
     <>
-      <WipAlert />
       <section id="catchphrase-cont">
         <div>
           <h2 id="catchphrase">Welcome to {import.meta.env.VITE_APPNAME}</h2>
