@@ -7,6 +7,9 @@ export default function WipAlert() {
     if (!localStorage.getItem("wipAlert")) {
       localStorage.setItem("wipAlert", JSON.stringify({ accepted: false }));
       setWipAccepted(false);
+    } else {
+      const wipAlert = JSON.parse(localStorage.getItem("wipAlert"));
+      setWipAccepted(wipAlert.accepted);
     }
   }, []);
 
