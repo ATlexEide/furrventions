@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function WipAlert() {
-  const [wipAccepted, setWipAccepted] = useState(false);
+  const [wipAccepted, setWipAccepted] = useState(true);
 
   if (!localStorage.getItem("wipAlert")) {
     localStorage.setItem("wipAlert", JSON.stringify({ accepted: false }));
