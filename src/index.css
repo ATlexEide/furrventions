@@ -148,6 +148,8 @@ button:focus-visible {
   position: absolute;
   width: 100vw;
   height: 100svh;
+  min-width: 100%;
+  min-height: 100%;
   z-index: 999;
   text-align: start;
   background-color: rgb(56, 0, 0);
@@ -155,7 +157,7 @@ button:focus-visible {
   flex-direction: column;
   justify-content: center;
   padding: 20%;
-  overflow: none;
+  /* overflow: none; */
   font-size: 1.4rem;
   transition: 200s;
 }
