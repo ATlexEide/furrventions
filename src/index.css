@@ -157,9 +157,11 @@ button:focus-visible {
   padding: 20%;
   overflow: none;
 }
+
 #wipAlert button {
   margin: 24px 0;
 }
+
 #wipAlert img {
   align-self: center;
   width: 30%;
