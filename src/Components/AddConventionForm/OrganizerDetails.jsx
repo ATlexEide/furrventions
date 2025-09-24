@@ -11,16 +11,19 @@ export default function OrganizerDetails({
   setEventInfo
 }) {
   return (
-    <div id="organizer-details">
-      <button
-        className="red-btn"
-        onClick={(e) => {
-          e.preventDefault();
-          setPage(page + 1);
-        }}
-      >
-        I&apos;m not the organizer
-      </button>
+    <>
+      <div className="input-container">
+        <button
+          className="red-btn"
+          onClick={(e) => {
+            e.preventDefault();
+            setPage(page + 1);
+          }}
+        >
+          I&apos;m not the organizer
+        </button>
+      </div>
+
       <div className="input-container">
         <TextField
           id="name"
@@ -82,6 +85,6 @@ export default function OrganizerDetails({
           }}
         />
       </div>
-    </div>
+    </>
   );
 }
