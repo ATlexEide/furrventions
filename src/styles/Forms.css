@@ -4,6 +4,7 @@ form {
   border-radius: 6px;
   width: 390px;
   height: 600px;
+  min-height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -51,6 +52,7 @@ form {
   justify-content: center;
   align-items: center;
   gap: 24px;
+  padding: 24px 0;
 }
 
 #organizer-details {
@@ -118,4 +120,15 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
 
 #no-account-text a:hover {
   color: #b070c5;
+}
+
+#register-account {
+  height: calc(fit-content + 200px);
+}
+
+.password-visibility-toggle-container {
+  padding-left: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
