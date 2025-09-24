@@ -20,6 +20,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
 }
 
 #ticket-price {
@@ -101,4 +102,20 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
   aspect-ratio: 1;
   background-color: #ff005e;
   border-radius: 100%;
+}
+
+#submit-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+#no-account-text a {
+  color: #e8a4ff;
+}
+
+#no-account-text a:hover {
+  color: #b070c5;
 }
