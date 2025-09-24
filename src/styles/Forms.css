@@ -11,6 +11,7 @@ form {
 }
 
 #form-main {
+  min-height: 60%;
   display: flex;
   flex-direction: column;
 }
@@ -82,7 +83,12 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
   background: transparent;
 }
 
+#pagination-buttons {
+  margin-top: auto;
+}
+
 #form-pagination {
+  padding: 16px;
   gap: 5px !important;
 }
 
