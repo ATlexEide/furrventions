@@ -19,7 +19,7 @@ export default function Form({
         <h2>{pages[currentPage].title}</h2>
       </section>
       <section id="form-main">{pages[currentPage].component}</section>
-      <section>
+      <section id="pagination-buttons">
         {currentPage > 0 && (
           <>
             <button
