@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { TextField, Typography } from "@mui/material";
 
 export default function SignIn({ supabase }) {
   const navigate = useNavigate();
@@ -17,32 +18,40 @@ export default function SignIn({ supabase }) {
   return (
     <form id="signin-account">
       <section>
-        <h2>Log in</h2>
+        <Typography component={"h2"} fontSize={"2rem"}>
+          Log In
+        </Typography>
       </section>
       <section id="inputs">
         <div className="input-container">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
+          <TextField
             required
+            fullWidth
+            type="email"
+            label="Email"
+            variant="outlined"
             onChange={(e) => {
               setLoginDetails({ ...loginDetails, email: e.target.value });
             }}
           />
         </div>
+
         <div className="input-container">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
+          <TextField
             required
+            fullWidth
+            type="password"
+            label="Password"
+            variant="outlined"
             onChange={(e) => {
               setLoginDetails({ ...loginDetails, password: e.target.value });
             }}
           />
         </div>
       </section>
-      <section>
+      <section id="submit-section">
         <button
+          disabled={loginDetails.email && loginDetails.password ? false : true}
           onClick={(e) => {
             e.preventDefault();
             login();
@@ -50,6 +59,9 @@ export default function SignIn({ supabase }) {
         >
           Log in
         </button>
+        <Typography id="no-account-text">
+          Don&apos;t have an account? <Link to="/signup">Sign Up</Link>
+        </Typography>
       </section>
     </form>
   );
