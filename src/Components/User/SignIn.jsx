@@ -57,7 +57,7 @@ export default function SignIn({ supabase }) {
             login();
           }}
         >
-          Log in
+          Log In
         </button>
         <Typography id="no-account-text">
           Don&apos;t have an account? <Link to="/signup">Sign Up</Link>
