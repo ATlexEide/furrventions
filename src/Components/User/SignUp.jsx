@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
 // CSS
 import "../../styles/Forms.css";
-import { redirect } from "react-router-dom";
+import { redirect, Link } from "react-router-dom";
 import UserLoading from "../SignupFormComponents/UserLoading";
+import { TextField, Typography } from "@mui/material";
+
+import BadgeIcon from "@mui/icons-material/Badge";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import EmailIcon from "@mui/icons-material/Email";
+import PasswordIcon from "@mui/icons-material/Password";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function SignUp({ supabase }) {
   const [isValid, setIsValid] = useState(false);
@@ -10,6 +18,9 @@ export default function SignUp({ supabase }) {
   const [passwordMismatch, setPasswordMismatch] = useState(false);
   const [invalidPasswordLength, setInvalidPasswordLength] = useState(false);
   const [invalidUsername, setInvalidUsername] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isRepeatPasswordVisible, setIsRepeatPasswordVisible] = useState(false);
 
   const [userCreated, setUserCreated] = useState(false);
 
@@ -26,6 +37,10 @@ export default function SignUp({ supabase }) {
 
   useEffect(() => {
     function setTimer() {
+      if (!tempUser.furname) {
+        setIsTyping(false);
+        return;
+      }
       let checkUsernameTimeout = setTimeout(() => {
         checkUsername(tempUser.furname);
         console.log("YIPPIE");
@@ -96,15 +111,16 @@ export default function SignUp({ supabase }) {
     const { data, error } = await supabase
       .from("users")
       .select("username")
-      .eq("username", name);
+      .ilike("username", name);
 
     if (error) console.log(error);
-
-    if (data[0]?.username === name) {
+    console.log(data);
+    if (data[0]?.username.toLowerCase() === name.toLowerCase()) {
       setInvalidUsername(true);
     } else {
       setInvalidUsername(false);
     }
+    setIsTyping(false);
   }
 
   return (
@@ -116,47 +132,80 @@ export default function SignUp({ supabase }) {
           </section>
           <section id="add-names">
             <div className="input-container">
-              <label htmlFor="firstname">First name*</label>
-              <input
+              <TextField
+                fullWidth
                 id="firstname"
-                type="text"
                 value={tempUser.firstname}
+                label={
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    <BadgeIcon /> First Name *
+                  </span>
+                }
+                variant="outlined"
                 onChange={(e) => {
                   setTempUser({ ...tempUser, firstname: e.target.value });
                 }}
               />
             </div>
+
             <div className="input-container">
-              <label htmlFor="lastname">Last name</label>
-              <input
+              <TextField
+                fullWidth
                 id="lastname"
-                type="text"
                 value={tempUser.lastname}
+                label="Last name"
+                variant="outlined"
                 onChange={(e) =>
                   setTempUser({ ...tempUser, lastname: e.target.value })
                 }
               />
             </div>
+
             <div className="input-container">
-              <label htmlFor="furname">Furname (Username)*</label>
-              <input
+              <TextField
+                error={invalidUsername ? true : false}
+                helperText={invalidUsername ? "Username taken" : null}
+                fullWidth
                 id="furname"
-                type="text"
                 value={tempUser.furname}
+                label={
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    <AlternateEmailIcon />
+                    {isTyping
+                      ? "Checking availability..."
+                      : "Furname (Username) *"}
+                  </span>
+                }
+                variant="outlined"
                 onChange={(e) => {
+                  setIsTyping(true);
                   setTempUser({ ...tempUser, furname: e.target.value });
                 }}
               />
-              {invalidUsername && <p>Username taken</p>}
             </div>
-          </section>
-          <section id="inputs">
+
             <div className="input-container">
-              <label htmlFor="email">Email:</label>
-              <input
+              <TextField
+                error={invalidEmail && tempUser.email ? true : false}
+                helperText={
+                  invalidEmail && tempUser.email ? "Invalid email" : null
+                }
+                fullWidth
                 id="email"
                 type="email"
                 value={tempUser.email}
+                label={
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    <EmailIcon /> Email *
+                  </span>
+                }
+                variant="outlined"
                 onChange={(e) => {
                   setTempUser({ ...tempUser, email: e.target.value });
                   if (
@@ -170,14 +219,29 @@ export default function SignUp({ supabase }) {
                   else setInvalidEmail(true);
                 }}
               />
-              {invalidEmail && <p>Invalid email</p>}
             </div>
-            <div className="input-container">
-              <label htmlFor="password">Password:</label>
-              <input
+            <div className="input-container-row">
+              <TextField
+                error={
+                  tempUser.password && invalidPasswordLength ? true : false
+                }
+                helperText={
+                  tempUser.password && invalidPasswordLength
+                    ? "Password must be atleast 8 characters long"
+                    : null
+                }
+                fullWidth
                 id="password"
-                type="password"
+                type={isPasswordVisible ? "text" : "password"}
                 value={tempUser.pw}
+                label={
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    <PasswordIcon /> Password *
+                  </span>
+                }
+                variant="outlined"
                 onChange={(e) => {
                   setTempUser({ ...tempUser, pw: e.target.value });
                   if (e.target.value.length < 8) setInvalidPasswordLength(true);
@@ -187,13 +251,33 @@ export default function SignUp({ supabase }) {
                   else setPasswordMismatch(true);
                 }}
               />
+              <span
+                className="password-visibility-toggle-container"
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+                {isPasswordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              </span>
             </div>
-            <div className="input-container">
-              <label htmlFor="repeat-password">Repeat Password:</label>
-              <input
+            <div className="input-container-row">
+              <TextField
+                error={tempUser.repeat_pw && passwordMismatch ? true : false}
+                helperText={
+                  tempUser.repeat_pw && passwordMismatch
+                    ? "Passwords does not match"
+                    : null
+                }
+                fullWidth
                 id="repeat-password"
-                type="password"
+                type={isRepeatPasswordVisible ? "text" : "password"}
                 value={tempUser.repeat_pw}
+                label={
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    <PasswordIcon /> Repeat Password *
+                  </span>
+                }
+                variant="outlined"
                 onChange={(e) => {
                   setTempUser({ ...tempUser, repeat_pw: e.target.value });
                   if (e.target.value === tempUser.pw)
@@ -201,13 +285,21 @@ export default function SignUp({ supabase }) {
                   else setPasswordMismatch(true);
                 }}
               />
+              <span
+                className="password-visibility-toggle-container"
+                onClick={() =>
+                  setIsRepeatPasswordVisible(!isRepeatPasswordVisible)
+                }
+              >
+                {isRepeatPasswordVisible ? (
+                  <VisibilityOffIcon />
+                ) : (
+                  <VisibilityIcon />
+                )}
+              </span>
             </div>
-            {passwordMismatch && <p>Passwords does not match</p>}
-            {invalidPasswordLength && (
-              <p>Password must be atleast 8 characters long</p>
-            )}
           </section>
-          <section>
+          <section id="submit-section">
             <button
               disabled={!isValid}
               onClick={(e) => {
@@ -217,6 +309,9 @@ export default function SignUp({ supabase }) {
             >
               Sign up
             </button>
+            <Typography id="no-account-text">
+              Don&apos;t have an account? <Link to="/signin">Log In</Link>
+            </Typography>
           </section>
         </>
       )}
