@@ -8,6 +8,7 @@ export default function EventType({
   return (
     <>
       <button
+        disabled
         onClick={(e) => {
           e.preventDefault();
           setEventInfo({ ...eventInfo, type: "convention" });
@@ -17,7 +18,7 @@ export default function EventType({
         Convention
       </button>
       <button
-        disabled={true}
+        disabled
         onClick={(e) => {
           e.preventDefault();
           setEventInfo({ ...eventInfo, type: "meet", organizerID: user.id });
