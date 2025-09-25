@@ -40,6 +40,7 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_KEY
 );
 
+// Material UI input and label colors////////////////////////////
 const theme = createTheme({
   components: {
     MuiOutlinedInput: {
@@ -64,6 +65,7 @@ const theme = createTheme({
     }
   }
 });
+///////////////////////////////////////////////////////////////////
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
