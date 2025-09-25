@@ -54,6 +54,7 @@ export default function AddConvention({ supabase }) {
     if (session) setEventInfo({ ...eventInfo, creatorID: session.user.id });
   }, [session]);
 
+  // TODO: Refactor multipage form logic, this shit messy af rn
   const pages = [
     {
       title: "What kind of event are you adding?",
