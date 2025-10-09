@@ -31,14 +31,6 @@ export default function ViewCons({ supabase }) {
     cons: cons
   };
 
-  useEffect(() => {
-    if (!cons.length) {
-      fetchAndSetAllCons(supabase, setCons, setLoading);
-    }
-    createConventionObject();
-    setLoading(false);
-  }, [cons]);
-
   function createConventionObject() {
     if (!cons) return;
     let _consObject = {};
@@ -49,6 +41,11 @@ export default function ViewCons({ supabase }) {
   }
 
   useEffect(() => {
+    if (!cons.length) {
+      fetchAndSetAllCons(supabase, setCons, setLoading);
+    }
+    createConventionObject();
+    setLoading(false);
     if (
       !filter?.name &&
       !filter?.location &&
@@ -62,7 +59,7 @@ export default function ViewCons({ supabase }) {
       return;
     }
     filterCons(filterArgs);
-  }, [filter, activeTags]);
+  }, [filter, activeTags, cons]);
 
   if (hasFilter && !filteredCons) return <Loading text="Looking for events" />;
 
