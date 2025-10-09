@@ -23,23 +23,6 @@ export default function ViewCons({ supabase }) {
   const [filteredCons, setFilteredCons] = useState([]);
   const [showMap, setShowMap] = useState(false);
 
-  const filterArgs = {
-    activeTags: activeTags,
-    setFilteredCons: setFilteredCons,
-    setHasFilter: setHasFilter,
-    filter: filter,
-    cons: cons
-  };
-
-  function createConventionObject() {
-    if (!cons) return;
-    let _consObject = {};
-    cons.map((con) => {
-      _consObject[con.id] = con;
-    });
-    setConsObj(_consObject);
-  }
-
   useEffect(() => {
     if (!cons.length) {
       fetchAndSetAllCons(supabase, setCons, setLoading);
@@ -60,6 +43,23 @@ export default function ViewCons({ supabase }) {
     }
     filterCons(filterArgs);
   }, [filter, activeTags, cons]);
+
+  const filterArgs = {
+    activeTags: activeTags,
+    setFilteredCons: setFilteredCons,
+    setHasFilter: setHasFilter,
+    filter: filter,
+    cons: cons
+  };
+
+  function createConventionObject() {
+    if (!cons) return;
+    let _consObject = {};
+    cons.map((con) => {
+      _consObject[con.id] = con;
+    });
+    setConsObj(_consObject);
+  }
 
   if (hasFilter && !filteredCons) return <Loading text="Looking for events" />;
 
