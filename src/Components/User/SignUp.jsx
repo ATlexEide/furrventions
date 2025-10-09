@@ -310,7 +310,7 @@ export default function SignUp({ supabase }) {
               Sign up
             </button>
             <Typography id="no-account-text">
-              Don&apos;t have an account? <Link to="/signin">Log In</Link>
+              Already have an account? <Link to="/signin">Log In</Link>
             </Typography>
           </section>
         </>
