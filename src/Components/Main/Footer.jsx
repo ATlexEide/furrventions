@@ -29,7 +29,7 @@ export default function Footer() {
           </li>
           <li>
             <a target="_blank" href="https://www.alexandereide.com/">
-              Website
+              Portfolio
             </a>
           </li>
         </ul>
