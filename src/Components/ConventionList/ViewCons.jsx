@@ -3,6 +3,7 @@ import MapWithPlaceholder from "../Utilities/Map.jsx";
 import ConventionCard from "./ConventionCard.jsx";
 import Filter from "./Filter.jsx";
 // import { useConsArray } from "../utils/useCons.jsx";
+import { fetchAndSetAllCons } from "../../utils/SupabaseUtils.js";
 import Loading from "../Utilities/Loading.jsx";
 import "../../styles/ViewCons.css";
 
@@ -20,16 +21,10 @@ export default function ViewCons({ supabase }) {
   const [filteredCons, setFilteredCons] = useState([]);
   const [showMap, setShowMap] = useState(false);
 
-  async function fetch() {
-    const { data, err } = await supabase.from("conventions").select();
-    if (err) throw new Error(err);
-    // localStorage.setItem("conventions", JSON.stringify(data));
-    setCons(data);
-    setLoading(false);
-  }
-
   useEffect(() => {
-    if (!cons.length) fetch();
+    if (!cons.length) {
+      fetchAndSetAllCons(supabase, setCons, setLoading);
+    }
     createConventionObject();
     setLoading(false);
   }, [cons]);
