@@ -34,8 +34,8 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      |{" "}
-      <div className="footer-part">
+      {/*|{" "}
+       <div className="footer-part">
         <ul className="socials">
           <li>Furrventions socials //</li>
           <li>
@@ -57,7 +57,7 @@ export default function Footer() {
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </footer>
   );
 }
