@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import MapWithPlaceholder from "../Utilities/Map.jsx";
-import ConventionCard from "./ConventionCard.jsx";
-import Filter from "./Filter.jsx";
-// import { useConsArray } from "../utils/useCons.jsx";
 import { fetchAndSetAllCons } from "../../utils/SupabaseUtils.js";
 import { filterCons } from "../../utils/conventionFilter.js";
+
+import Filter from "./Filter.jsx";
 import Loading from "../Utilities/Loading.jsx";
+import ConventionCard from "./ConventionCard.jsx";
+import MapWithPlaceholder from "../Utilities/Map.jsx";
+
 import "../../styles/ViewCons.css";
 
 export default function ViewCons({ supabase }) {
