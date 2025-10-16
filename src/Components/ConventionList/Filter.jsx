@@ -1,3 +1,7 @@
+import { TextField } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { outlinedInputClasses } from "@mui/material/OutlinedInput";
+
 export default function Filter({
   activeTags,
   setActiveTags,
@@ -8,6 +12,44 @@ export default function Filter({
   setShowMap,
   showMap
 }) {
+  const filterTheme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            "--TextField-brandBorderColor": "#E0E3E7",
+            "--TextField-brandBorderHoverColor": "#B2BAC2",
+            "--TextField-brandBorderFocusedColor": "#6F7E8C",
+            "& label.Mui-focused": {
+              color: "white"
+            },
+            "& .MuiFormLabel-root": {
+              color: "#a2a2a2" // or black
+            },
+            "& .MuiFormLabel.Mui-focused": {
+              color: "#fff" // or black
+            }
+          }
+        }
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            borderColor: "var(--TextField-brandBorderColor)"
+          },
+          root: {
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: "var(--TextField-brandBorderHoverColor)"
+            },
+            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: "var(--TextField-brandBorderFocusedColor)"
+            }
+          }
+        }
+      }
+    }
+  });
+
   const tags = [
     { tagName: "adult", tagDisplay: "18+" },
     { tagName: "virtual", tagDisplay: "Virtual" },
@@ -23,34 +65,48 @@ export default function Filter({
 
       <section id="filter-options">
         <div className="filter-option-input">
-          <label htmlFor="convention-name">Event name: </label>
-          <input
-            id="convention-name"
-            type="text"
-            value={filter ? filter.name : ""}
-            onChange={(e) => {
-              console.log("yipp");
-              setFilter({ ...filter, name: e.target.value });
-            }}
-          />
-        </div>
+          <ThemeProvider theme={filterTheme}>
+            <div className="input-container">
+              <TextField
+                id="convention-name"
+                size="small"
+                fullWidth
+                type="text"
+                label={
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    Event name
+                  </span>
+                }
+                variant="outlined"
+                onChange={(e) => {
+                  setFilter({ ...filter, name: e.target.value });
+                }}
+              />
 
-        <div className="filter-option-input">
-          {/* <label htmlFor="convention-name">Convention location: </label> */}
-          <div>
-            <label htmlFor="convention-name">Event location: </label>
-            <input
-              id="convention-location"
-              type="text"
-              value={filter ? filter.location : ""}
-              onChange={(e) => {
-                setFilter({
-                  ...filter,
-                  location: e.target.value
-                });
-              }}
-            />
-          </div>
+              <TextField
+                id="convention-location"
+                size="small"
+                fullWidth
+                type="text"
+                label={
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    Event Location
+                  </span>
+                }
+                variant="outlined"
+                onChange={(e) => {
+                  setFilter({
+                    ...filter,
+                    location: e.target.value
+                  });
+                }}
+              />
+            </div>
+          </ThemeProvider>
         </div>
 
         <div className="tag-container">
