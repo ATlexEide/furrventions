@@ -18,7 +18,7 @@ export default function EventLocation({
 
   useEffect(() => {
     if (eventInfo.location) setIsNotValid(false);
-  }, []);
+  }, [eventInfo.location]);
 
   async function fetchLocation() {
     fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json`)
@@ -68,7 +68,13 @@ export default function EventLocation({
             flexDirection: "row-reverse"
           }}
         >
-          <VirtualizedList locations={result} />
+          <VirtualizedList
+            locations={result}
+            setEventInfo={setEventInfo}
+            eventInfo={eventInfo}
+            setQuery={setQuery}
+            setResult={setResult}
+          />
           {console.log(result)}
         </Box>
       )}
