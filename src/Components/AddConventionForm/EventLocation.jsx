@@ -18,7 +18,7 @@ export default function EventLocation({
 
   useEffect(() => {
     if (eventInfo.location) setIsNotValid(false);
-  });
+  }, []);
 
   async function fetchLocation() {
     fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json`)
@@ -38,7 +38,7 @@ export default function EventLocation({
             </span>
           }
           variant="outlined"
-          value={query ? query : eventInfo.location}
+          value={query}
           onChange={(e) => {
             setQuery(e.target.value);
           }}
@@ -54,63 +54,70 @@ export default function EventLocation({
           <SearchIcon />
         </button>
       </div>
-      {result && (
+      {Boolean(result.length) && (
         <Box
           sx={{
             width: "100%",
             maxWidth: 360,
+            textOverflow: "none",
             bgcolor: "black",
-            maxHeight: 100
+            maxHeight: 300,
+            borderRadius: "7px",
+
+            display: "flex",
+            flexDirection: "row-reverse"
           }}
         >
-          <VirtualizedList />
+          <VirtualizedList locations={result} />
+          {console.log(result)}
         </Box>
       )}
+      {/*  */}
       {/* {result.map((res, i) => (
-              <ListItem key={i} component="div" disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={`Item ${i + 1}`} />
-                </ListItemButton>
-              </ListItem>
-            ))} */}
-      {/* {result.map((res, i) => (
-              <ListItemButton
-                key={i}
-                onClick={() => {
-                  console.log(res);
-                  setEventInfo({
-                    ...eventInfo,
-                    long: res.lon,
-                    lat: res.lat,
-                    location: res.display_name
-                  });
-                  setQuery(null);
-                  setResult(null);
-                }}
-              >
-                <ListItemText primary={res.display_name} />
-              </ListItemButton>
-            ))} */}
-      {/* <ul>
-            {result.map((res, i) => (
-              <li
-                key={i}
-                onClick={() => {
-                  console.log(res);
-                  setEventInfo({
-                    ...eventInfo,
-                    long: res.lon,
-                    lat: res.lat,
-                    location: res.display_name
-                  });
-                  setQuery(null);
-                  setResult(null);
-                }}
-              >
-                {res.display_name}
-              </li>
-            ))}
-          </ul> */}
+        <ListItem key={i} component="div" disablePadding>
+          <ListItemButton>
+            <ListItemText primary={`Item ${i + 1}`} />
+          </ListItemButton>
+        </ListItem>
+      ))}
+      {result.map((res, i) => (
+        <ListItemButton
+          key={i}
+          onClick={() => {
+            console.log(res);
+            setEventInfo({
+              ...eventInfo,
+              long: res.lon,
+              lat: res.lat,
+              location: res.display_name
+            });
+            setQuery(null);
+            setResult(null);
+          }}
+        >
+          <ListItemText primary={res.display_name} />
+        </ListItemButton>
+      ))}
+      <ul>
+        {result.map((res, i) => (
+          <li
+            key={i}
+            onClick={() => {
+              console.log(res);
+              setEventInfo({
+                ...eventInfo,
+                long: res.lon,
+                lat: res.lat,
+                location: res.display_name
+              });
+              setQuery(null);
+              setResult(null);
+            }}
+          >
+            {res.display_name}
+          </li>
+        ))}
+      </ul> */}
     </>
   );
 }
