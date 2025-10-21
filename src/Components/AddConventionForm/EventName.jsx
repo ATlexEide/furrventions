@@ -19,12 +19,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1
 });
 
-export default function EventName({
-  setIsNotValid,
-  eventInfo,
-  setEventInfo,
-  setLogo
-}) {
+export default function EventName({ setIsNotValid, eventInfo, setEventInfo }) {
   const [error, setError] = useState();
   useEffect(() => {
     if (eventInfo.name) setIsNotValid(false);

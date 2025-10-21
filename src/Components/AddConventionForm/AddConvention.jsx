@@ -41,7 +41,6 @@ export default function AddConvention({ supabase }) {
 
     creatorID: null
   });
-  const [logo, setLogo] = useState({});
   console.log(eventInfo);
 
   async function getSession() {
@@ -85,7 +84,6 @@ export default function AddConvention({ supabase }) {
         <EventName
           setIsNotValid={setIsNotValid}
           eventInfo={eventInfo}
-          setLogo={setLogo}
           setEventInfo={setEventInfo}
         />
       )
