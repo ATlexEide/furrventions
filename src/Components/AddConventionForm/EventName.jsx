@@ -34,7 +34,7 @@ export default function EventName({
       <div className="input-container">
         <TextField
           id="name"
-          value={eventInfo.name}
+          value={eventInfo.name ? eventInfo.name : ""}
           label={
             <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <BadgeIcon /> Event name *
@@ -50,7 +50,7 @@ export default function EventName({
       <div className="input-container">
         <TextField
           id="description"
-          value={eventInfo.description}
+          value={eventInfo.description ? eventInfo.description : ""}
           label={
             <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <DescriptionIcon /> Event description
