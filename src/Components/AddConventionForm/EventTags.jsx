@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 import "../../styles/EventTags.css";
+import { red } from "@mui/material/colors";
 
 export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
   setIsNotValid(false);
@@ -34,16 +40,7 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
   );
 
   useEffect(() => {
-    const tags = [
-      isAdult ? "adult" : null,
-      isVirtual ? "virtual" : null,
-      isEU ? "eu" : null,
-      isNA ? "na" : null,
-      isSA ? "sa" : null,
-      isOther ? "other" : null,
-      isOceania ? "Oceania" : null,
-      isAsia ? "Asia" : null
-    ];
+    const tags = [isAdult ? "adult" : null, isVirtual ? "virtual" : null];
 
     setEventInfo({
       ...eventInfo,
@@ -54,6 +51,7 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
   return (
     <>
       <div className="input-container">
+        <h3>Tags</h3>
         <div className="input">
           <label htmlFor="adult">18+</label>
           <div>
@@ -79,8 +77,37 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
         </div>
 
         <hr />
+        <h3>Location</h3>
+        <RadioGroup
+          sx={{
+            color: red,
+            "&.Mui-checked": {
+              color: "white"
+            }
+          }}
+          defaultValue="other"
+          name="location-radio-buttons-group"
+          onChange={(e) =>
+            setEventInfo({ ...eventInfo, locationTag: e.target.value })
+          }
+        >
+          <FormControlLabel value="eu" control={<Radio />} label="Europe" />
+          <FormControlLabel
+            value="na"
+            control={<Radio />}
+            label="North America"
+          />
+          <FormControlLabel
+            value="sa"
+            control={<Radio />}
+            label="South America"
+          />
+          <FormControlLabel value="asia" control={<Radio />} label="Asia" />
+          <FormControlLabel value="oce" control={<Radio />} label="Oceania" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+        </RadioGroup>
 
-        <div className="input">
+        {/* <div className="input">
           <label htmlFor="eu">Location: Europe</label>
           <div>
             <input
@@ -150,7 +177,7 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
               checked={isOther}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
