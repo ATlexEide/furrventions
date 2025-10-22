@@ -15,6 +15,7 @@ export default function EventTicketInfo({
     <>
       <div className="input-container">
         <TextField
+          type="number"
           id="name"
           value={eventInfo.price ? eventInfo.price : ""}
           label={
