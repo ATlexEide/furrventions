@@ -17,6 +17,7 @@
     "@mui/material": "^7.3.2",
     "@supabase/supabase-js": "^2.49.2",
     "@vercel/analytics": "^1.5.0",
+    "cally": "^0.8.0",
     "dotenv": "^16.4.7",
     "leaflet": "^1.9.4",
     "react": "^19.0.0-rc.1",
