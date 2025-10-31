@@ -5,6 +5,7 @@ import Loading from "../Utilities/Loading";
 import { fetchLogo } from "../../utils/fetchLogo";
 
 import "../../styles/ViewConInfo.css";
+import DateRangePicker from "../Utilities/DateRangePicker";
 
 export default function ViewConInfo({ supabase }) {
   const navigate = useNavigate();
@@ -246,27 +247,26 @@ export default function ViewConInfo({ supabase }) {
                   {!startDate && <p>Could not find end time</p>}
                   {startDate && (
                     <p>
-                      <span className="label">
-                        <strong>Starts</strong>
-                      </span>
+                      {!isEditing && (
+                        <span className="label">
+                          <strong>Starts</strong>
+                        </span>
+                      )}
                       {isEditing ? (
-                        <input
-                          className="picker"
-                          type="date"
-                          value={
-                            "start_time" in updateObject
-                              ? new Date(updateObject.start_time)
-                                  .toISOString()
-                                  .split("T")[0]
-                              : startDate.toISOString().split("T")[0]
-                          }
-                          onChange={(e) =>
-                            setUpdateObject({
-                              ...updateObject,
-                              start_time: e.target.value
-                            })
-                          }
-                        />
+                        <>
+                          <span className="label">
+                            <strong>Date</strong>
+                          </span>
+                          <DateRangePicker
+                            setEventInfo={setUpdateObject}
+                            eventInfo={updateObject}
+                            _value={
+                              con.start_time.split("T")[0] +
+                              "/" +
+                              con.end_time.split("T")[0]
+                            }
+                          />
+                        </>
                       ) : (
                         `${days[startDate.getDay()]} ${startDate.getDate()}. ${
                           months[startDate.getMonth()]
@@ -276,34 +276,14 @@ export default function ViewConInfo({ supabase }) {
                   )}
 
                   {!endDate && <p>Could not find end time</p>}
-                  {endDate && (
+                  {endDate && !isEditing && (
                     <p>
                       <span className="label">
                         <strong>Ends</strong>
                       </span>
-                      {isEditing ? (
-                        <input
-                          className="picker"
-                          type="date"
-                          value={
-                            "end_time" in updateObject
-                              ? new Date(updateObject.end_time)
-                                  .toISOString()
-                                  .split("T")[0]
-                              : endDate.toISOString().split("T")[0]
-                          }
-                          onChange={(e) =>
-                            setUpdateObject({
-                              ...updateObject,
-                              end_time: e.target.value
-                            })
-                          }
-                        />
-                      ) : (
-                        `${days[endDate.getDay()]} ${endDate.getDate()}. ${
-                          months[endDate.getMonth()]
-                        } ${endDate.getUTCFullYear()}`
-                      )}
+                      {`${days[endDate.getDay()]} ${endDate.getDate()}. ${
+                        months[endDate.getMonth()]
+                      } ${endDate.getUTCFullYear()}`}
                     </p>
                   )}
                 </section>
