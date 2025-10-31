@@ -8,7 +8,8 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: solid 1px #ff005e;
+  border: solid 1px var(--main-border-color);
+  min-width: fit-content;
 }
 
 #form-main {
@@ -28,7 +29,6 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
 }
 
 #add-names,
@@ -74,6 +74,7 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
 
 #pagination-buttons {
   margin-top: auto;
+  gap: 24px;
 }
 
 #form-pagination {
@@ -88,7 +89,7 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
 .pagination-dot {
   height: 10px;
   aspect-ratio: 1;
-  background-color: #ff005e;
+  background-color: var(--main-border-color);
   border-radius: 100%;
 }
 
