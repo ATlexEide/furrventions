@@ -2,8 +2,8 @@ import { useState } from "react";
 import "cally";
 import "../../styles/DateRangePicker.css";
 
-export default function DateRangePicker({ setEventInfo, eventInfo }) {
-  const [value, setValue] = useState("");
+export default function DateRangePicker({ setData, data, _value = null }) {
+  const [value, setValue] = useState(_value ? _value : "");
 
   const getDateHandler = (e) => {
     setValue(e.target.value);
@@ -11,16 +11,16 @@ export default function DateRangePicker({ setEventInfo, eventInfo }) {
     const [date_start, date_end] = e.target.value.split("/");
 
     if (date_start === date_end) {
-      setEventInfo({
-        ...eventInfo,
+      setData({
+        ...data,
         start_time: null,
         end_time: null
       });
       return;
     }
 
-    setEventInfo({
-      ...eventInfo,
+    setData({
+      ...data,
       start_time: date_start,
       end_time: date_end
     });

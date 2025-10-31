@@ -34,7 +34,7 @@ export default function EventAdditionalInfo({
         />
       </div>
       <div className="input-container">
-        <DateRangePicker eventInfo={eventInfo} setEventInfo={setEventInfo} />
+        <DateRangePicker data={eventInfo} setData={setEventInfo} />
       </div>
 
       {/* <div className="input-container">

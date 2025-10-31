@@ -258,8 +258,8 @@ export default function ViewConInfo({ supabase }) {
                             <strong>Date</strong>
                           </span>
                           <DateRangePicker
-                            setEventInfo={setUpdateObject}
-                            eventInfo={updateObject}
+                            setData={setUpdateObject}
+                            data={updateObject}
                             _value={
                               con.start_time.split("T")[0] +
                               "/" +
