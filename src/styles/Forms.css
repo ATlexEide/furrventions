@@ -119,3 +119,13 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
   justify-content: center;
   align-items: center;
 }
+
+#type-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+}
