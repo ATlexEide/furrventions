@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 
 import WebIcon from "@mui/icons-material/Web";
-import "cally";
 
-import "../../styles/MyDateRangePicker.css";
+import DateRangePicker from "../Utilities/DateRangePicker";
 
 export default function EventAdditionalInfo({
   setIsNotValid,
@@ -36,14 +35,7 @@ export default function EventAdditionalInfo({
         />
       </div>
       <div className="input-container">
-        <calendar-range
-          months={2}
-          // value={value}
-          onchange={(event) => setValue(event.target.value)}
-        >
-          <calendar-month />
-          <calendar-month offset={1} />
-        </calendar-range>
+        <DateRangePicker value={value} setValue={setValue} />
       </div>
 
       {/* <div className="input-container">
