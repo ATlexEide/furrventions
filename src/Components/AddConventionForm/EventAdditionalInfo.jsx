@@ -10,12 +10,11 @@ export default function EventAdditionalInfo({
   eventInfo,
   setEventInfo
 }) {
-  const [value, setValue] = useState("");
-  console.log(value, "value");
-  // const [dates, setDates] = useState(null);
   useEffect(() => {
     if (eventInfo.start_time && eventInfo.end_time) setIsNotValid(false);
+    if (eventInfo.start_time === eventInfo.end_time) setIsNotValid(true);
   });
+
   return (
     <>
       <div className="input-container">
@@ -35,7 +34,7 @@ export default function EventAdditionalInfo({
         />
       </div>
       <div className="input-container">
-        <DateRangePicker value={value} setValue={setValue} />
+        <DateRangePicker eventInfo={eventInfo} setEventInfo={setEventInfo} />
       </div>
 
       {/* <div className="input-container">
