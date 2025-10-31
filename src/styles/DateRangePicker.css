@@ -1,0 +1,38 @@
+#calendar-container {
+  display: flex;
+  gap: 48px;
+}
+
+calendar-range {
+  padding: 24px;
+  border: solid 1px var(--main-border-color);
+  border-radius: 24px;
+  background-color: var(--secondary-bg-color);
+}
+button:is([aria-pressed="true"], :focus-visible) {
+  background-color: red;
+}
+
+::part(selected) {
+  background-color: var(--main-border-color);
+}
+
+::part(button next),
+::part(button previous) {
+  background-color: var(--main-bg-color);
+  border: solid 1px var(--main-border-color);
+  border-radius: 70px;
+  padding: 12px;
+  min-width: 100px;
+}
+::part(range-start) {
+  border-radius: 50% 0 0 50%;
+}
+
+::part(range-end) {
+  border-radius: 0 50% 50% 0;
+}
+
+::part(range-start range-end) {
+  border-radius: 100%;
+}
