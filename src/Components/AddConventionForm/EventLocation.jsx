@@ -58,11 +58,11 @@ export default function EventLocation({
         <Box
           sx={{
             width: "100%",
-            maxWidth: 360,
             textOverflow: "none",
-            bgcolor: "black",
-            maxHeight: 300,
+            bgcolor: "transparent",
+            maxHeight: 400,
             borderRadius: "7px",
+            padding: "24px 0",
 
             display: "flex",
             flexDirection: "row-reverse"
