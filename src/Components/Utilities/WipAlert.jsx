@@ -22,7 +22,7 @@ export default function WipAlert() {
     <>
       {!wipAccepted && (
         <div id="wipAlert">
-          <img src="/construction.png" alt="construction sign" />
+          <img src="sign.webp" alt="construction sign" />
           <h2>ATTENTION</h2>
           <p>
             This is a project in development! <br />
