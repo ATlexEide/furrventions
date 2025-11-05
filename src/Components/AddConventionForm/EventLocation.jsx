@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import { TextField, Box } from "@mui/material";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import SearchIcon from "@mui/icons-material/Search";
 
