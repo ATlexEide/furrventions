@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import { Link } from "react-router-dom";
@@ -21,6 +21,18 @@ export default function MapWithPlaceholder({
   cords = [60.39118002058307, 5.331024627773373]
 }) {
   let conIcon = new Icon(icon);
+  const markerRef = useRef(null);
+  const eventHandlers = useMemo(
+    () => ({
+      dragend() {
+        const marker = markerRef.current;
+        if (marker != null) {
+          console.log(marker.getLatLng());
+        }
+      }
+    }),
+    []
+  );
 
   conventions &&
     conventions.map((con) => {
@@ -46,9 +58,10 @@ export default function MapWithPlaceholder({
         conventions.map((con, i) => (
           <Marker
             key={i}
-            draggable={false}
+            // draggable={true}
+            // eventHandlers={eventHandlers}
             position={[con.lat, con.long]}
-            ref={null}
+            ref={markerRef}
             icon={con.markerIcon}
           >
             <Popup minWidth={90}>
@@ -58,12 +71,7 @@ export default function MapWithPlaceholder({
         ))}
 
       {!conventions && (
-        <Marker
-          draggable={false}
-          position={cords}
-          ref={null}
-          icon={new Icon(icon)}
-        >
+        <Marker position={cords} ref={null} icon={new Icon(icon)}>
           <Popup minWidth={90}>{conName}</Popup>
         </Marker>
       )}
