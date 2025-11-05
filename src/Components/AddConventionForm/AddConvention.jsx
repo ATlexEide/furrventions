@@ -41,13 +41,15 @@ export default function AddConvention({ supabase }) {
 
     creatorID: null
   });
-  console.log(eventInfo);
+  const navigate = useNavigate();
 
   async function getSession() {
     if (session) return;
     const { data, error } = await supabase.auth.getSession();
     if (!error) setSession(data.session);
+    if (!data.session) navigate("/");
   }
+
   useEffect(() => {
     if (!session) getSession();
     if (session) setEventInfo({ ...eventInfo, creatorID: session.user.id });
@@ -129,8 +131,6 @@ export default function AddConvention({ supabase }) {
       )
     }
   ];
-
-  const navigate = useNavigate();
 
   async function addEvent() {
     const { data, error } = await supabase

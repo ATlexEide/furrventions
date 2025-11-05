@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import TextField from "@mui/material/TextField";
 import EmailIcon from "@mui/icons-material/Email";
 import BadgeIcon from "@mui/icons-material/Badge";
@@ -10,6 +13,11 @@ export default function OrganizerDetails({
   eventInfo,
   setEventInfo
 }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!eventInfo.creatorID) navigate("/");
+  }, []);
+
   return (
     <>
       <div className="input-container">
