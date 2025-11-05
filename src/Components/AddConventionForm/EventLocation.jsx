@@ -38,7 +38,7 @@ export default function EventLocation({
             </span>
           }
           variant="outlined"
-          value={query}
+          value={eventInfo.location ? eventInfo.location : query}
           onChange={(e) => {
             setQuery(e.target.value);
           }}
