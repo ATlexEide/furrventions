@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { TextField } from "@mui/material";
+import DateRangePicker from "../Utilities/DateRangePicker";
 
 import WebIcon from "@mui/icons-material/Web";
-
-import DateRangePicker from "../Utilities/DateRangePicker";
 
 export default function EventAdditionalInfo({
   setIsNotValid,
@@ -36,40 +35,6 @@ export default function EventAdditionalInfo({
       <div className="input-container">
         <DateRangePicker data={eventInfo} setData={setEventInfo} />
       </div>
-
-      {/* <div className="input-container">
-        <label htmlFor="website">Event website</label>
-        <input
-          value={eventInfo.website}
-          onChange={(e) => {
-            setEventInfo({ ...eventInfo, website: e.target.value });
-          }}
-        />
-
-        <label htmlFor="name">Start time*</label>
-        <input
-          id="start-time"
-          className="picker"
-          type="date"
-          value={eventInfo.start_time}
-          min={new Date().toISOString().split("T")[0]}
-          onChange={(e) => {
-            setEventInfo({ ...eventInfo, start_time: e.target.value });
-          }}
-        />
-
-        <label htmlFor="name">End time*</label>
-        <input
-          id="end-time"
-          className="picker"
-          type="date"
-          value={eventInfo.end_time}
-          min={new Date().toISOString().split("T")[0]}
-          onChange={(e) => {
-            setEventInfo({ ...eventInfo, end_time: e.target.value });
-          }}
-        />
-      </div> */}
     </>
   );
 }
