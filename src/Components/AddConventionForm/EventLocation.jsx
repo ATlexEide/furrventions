@@ -44,7 +44,6 @@ export default function EventLocation({
         <button
           onClick={(e) => {
             e.preventDefault();
-            console.log("rawrrr");
             fetchLocation();
           }}
         >
@@ -72,55 +71,8 @@ export default function EventLocation({
             setQuery={setQuery}
             setResult={setResult}
           />
-          {console.log(result)}
         </Box>
       )}
-      {/*  */}
-      {/* {result.map((res, i) => (
-        <ListItem key={i} component="div" disablePadding>
-          <ListItemButton>
-            <ListItemText primary={`Item ${i + 1}`} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-      {result.map((res, i) => (
-        <ListItemButton
-          key={i}
-          onClick={() => {
-            console.log(res);
-            setEventInfo({
-              ...eventInfo,
-              long: res.lon,
-              lat: res.lat,
-              location: res.display_name
-            });
-            setQuery(null);
-            setResult(null);
-          }}
-        >
-          <ListItemText primary={res.display_name} />
-        </ListItemButton>
-      ))}
-      <ul>
-        {result.map((res, i) => (
-          <li
-            key={i}
-            onClick={() => {
-              console.log(res);
-              setEventInfo({
-                ...eventInfo,
-                long: res.lon,
-                lat: res.lat,
-                location: res.display_name
-              });
-              setQuery(null);
-              setResult(null);
-            }}
-          >
-            {res.display_name}
-          </li>
-        ))}
-      </ul> */}
     </>
   );
 }
