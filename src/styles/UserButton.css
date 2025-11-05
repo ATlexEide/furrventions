@@ -13,15 +13,17 @@
 }
 
 #user-menu {
+  top: 0;
+  right: 0;
+
+  min-width: fit-content;
   width: 300px;
-  height: 400px;
+  height: fit-content;
   background-color: var(--secondary-bg-color);
   border-radius: 0 0 0 20px;
 
   position: absolute;
   z-index: 401;
-  right: 12px;
-  top: 12px;
 
   display: flex;
   flex-direction: column;
