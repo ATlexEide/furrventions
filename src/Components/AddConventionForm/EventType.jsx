@@ -9,7 +9,6 @@ export default function EventType({
     <>
       <div id="type-container">
         <button
-          disabled
           onClick={(e) => {
             e.preventDefault();
             setEventInfo({ ...eventInfo, type: "convention" });
