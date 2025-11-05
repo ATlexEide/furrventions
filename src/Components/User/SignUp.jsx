@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // CSS
 import "../../styles/Forms.css";
-import { redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserLoading from "../SignupFormComponents/UserLoading";
 import { TextField, Typography } from "@mui/material";
 
@@ -11,10 +11,18 @@ import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import {
+  checkIsUsernameTaken,
+  checkIsEmailTaken,
+  signUpNewUser
+} from "../../utils/SupabaseUtils";
 
-export default function SignUp({ supabase }) {
+export default function SignUp() {
   const [isValid, setIsValid] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
+  const [emailTaken, setEmailTaken] = useState(false);
+  const [checkingEmail, setCheckingEmail] = useState(false);
+
   const [passwordMismatch, setPasswordMismatch] = useState(false);
   const [invalidPasswordLength, setInvalidPasswordLength] = useState(false);
   const [invalidUsername, setInvalidUsername] = useState(false);
@@ -41,14 +49,45 @@ export default function SignUp({ supabase }) {
         setIsTyping(false);
         return;
       }
-      let checkUsernameTimeout = setTimeout(() => {
-        checkUsername(tempUser.furname);
+      let checkUsernameTimeout = setTimeout(async () => {
+        if (await checkIsUsernameTaken(tempUser.furname)) {
+          setInvalidUsername(true);
+          setIsTyping(false);
+        } else {
+          setInvalidUsername(false);
+          setIsTyping(false);
+        }
       }, 650);
       checkUsernameTimeout--;
       return checkUsernameTimeout;
     }
     clearTimeout(setTimer());
   }, [tempUser.furname]);
+
+  useEffect(() => {
+    if (invalidEmail) return;
+    function setTimer() {
+      if (!tempUser.email) {
+        setIsTyping(false);
+        return;
+      }
+      let checkEmailTimeout = setTimeout(async () => {
+        setCheckingEmail(true);
+        if (await checkIsEmailTaken(tempUser.email)) {
+          setEmailTaken(true);
+          setIsTyping(false);
+          setCheckingEmail(false);
+        } else {
+          setEmailTaken(false);
+          setCheckingEmail(false);
+          setIsTyping(false);
+        }
+      }, 650);
+      checkEmailTimeout--;
+      return checkEmailTimeout;
+    }
+    clearTimeout(setTimer());
+  }, [tempUser.email]);
 
   useEffect(() => {
     setIsValid(true);
@@ -58,6 +97,7 @@ export default function SignUp({ supabase }) {
       tempUser.email &&
       tempUser.pw &&
       tempUser.repeat_pw &&
+      !emailTaken &&
       !invalidEmail &&
       !passwordMismatch &&
       !invalidPasswordLength &&
@@ -66,58 +106,6 @@ export default function SignUp({ supabase }) {
       setIsValid(true);
     else setIsValid(false);
   }, [tempUser]);
-
-  async function signUpNewUser() {
-    const { data, error } = await supabase.auth.signUp({
-      email: tempUser.email,
-      password: tempUser.pw,
-      options: {
-        emailRedirectTo: "https://furrventions.com/",
-        data: {
-          first_name: tempUser.firstname,
-          last_name: tempUser.lastname,
-          furname: tempUser.furname
-        }
-      }
-    });
-
-    if (error)
-      throw new Error(`Creating public user profile failed | Code: ${error.code}
-    Message: ${error.message}
-    Hint: ${error.hint}`);
-
-    if (data.user) {
-      createPublicProfile(data.user);
-      setUserCreated(true);
-    }
-  }
-
-  async function createPublicProfile(user) {
-    const { error } = await supabase.from("users").insert({
-      username: user.user_metadata.furname,
-      user_id: user.id
-    });
-    if (error)
-      throw new Error(`Creating public user profile failed | Code: ${error.code}
-    Message: ${error.message}
-    Hint: ${error.hint}`);
-    redirect("/conventions");
-  }
-
-  async function checkUsername(name) {
-    const { data, error } = await supabase
-      .from("users")
-      .select("username")
-      .ilike("username", name);
-
-    if (error) console.log(error);
-    if (data[0]?.username.toLowerCase() === name.toLowerCase()) {
-      setInvalidUsername(true);
-    } else {
-      setInvalidUsername(false);
-    }
-    setIsTyping(false);
-  }
 
   return (
     <form id="register-account">
@@ -186,9 +174,15 @@ export default function SignUp({ supabase }) {
 
             <div className="input-container">
               <TextField
-                error={invalidEmail && tempUser.email ? true : false}
+                error={
+                  (invalidEmail && tempUser.email) || emailTaken ? true : false
+                }
                 helperText={
-                  invalidEmail && tempUser.email ? "Invalid email" : null
+                  emailTaken
+                    ? "Email is already registered"
+                    : invalidEmail && tempUser.email
+                    ? "Invalid email"
+                    : null
                 }
                 fullWidth
                 id="email"
@@ -198,7 +192,8 @@ export default function SignUp({ supabase }) {
                   <span
                     style={{ display: "flex", alignItems: "center", gap: 4 }}
                   >
-                    <EmailIcon /> Email *
+                    <EmailIcon />{" "}
+                    {`${checkingEmail ? "Checking for email" : "Email *"}`}
                   </span>
                 }
                 variant="outlined"
@@ -300,7 +295,7 @@ export default function SignUp({ supabase }) {
               disabled={!isValid}
               onClick={(e) => {
                 e.preventDefault();
-                signUpNewUser();
+                if (signUpNewUser(tempUser)) setUserCreated(true);
               }}
             >
               Sign up
