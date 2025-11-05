@@ -27,6 +27,7 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import AccountPage from "./Components/User/AccountPage.jsx";
 
 if (!import.meta.env.VITE_SUPABASE_URL) {
   throw new Error("Missing Supabase Url");
@@ -35,7 +36,7 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
   throw new Error("Missing Supabase Key");
 }
 
-const supabase = createClient(
+export const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_KEY
 );
@@ -77,11 +78,13 @@ createRoot(document.getElementById("root")).render(
         <main>
           <Routes>
             <Route exact path="/" element={<App />} />
+
             <Route
               exact
               path="signin"
               element={<SignIn supabase={supabase} />}
             />
+
             <Route
               exact
               path="signup"
@@ -90,29 +93,34 @@ createRoot(document.getElementById("root")).render(
 
             <Route
               exact
-              path="manage/:id/conventions"
-              element={<ManageConventions supabase={supabase} />}
-            />
-            <Route
-              exact
               path="conventions"
               element={<ViewCons supabase={supabase} />}
             />
+
             <Route
               exact
               path="conventions/add"
               element={<AddConvention supabase={supabase} />}
             />
+
             <Route
               exact
               path="conventions/:id"
               element={<ViewConInfo supabase={supabase} />}
             />
+
             <Route
               exact
-              path="user/:id/manage/conventions"
-              element={<AddConvention />}
+              path="user/:id/manage"
+              element={<AccountPage supabase={supabase} />}
             />
+
+            <Route
+              exact
+              path="user/:id/conventions"
+              element={<ManageConventions supabase={supabase} />}
+            />
+
             <Route exact path="support" element={<Kofi />} />
           </Routes>
         </main>
