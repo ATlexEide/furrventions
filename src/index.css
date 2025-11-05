@@ -263,7 +263,3 @@ button:focus-visible {
     opacity: 0;
   }
 }
-
-input:focus {
-  outline: dashed rgb(103, 103, 255);
-}
