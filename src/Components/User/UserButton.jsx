@@ -1,18 +1,12 @@
 import { useState } from "react";
 
-// CSS
 import MainPage from "./MainPage";
-import AccountSettings from "./AccountSettings";
 import "../../styles/UserButton.css";
 
 export default function UserButton({ user, supabase }) {
   const [isOpen, setIsOpen] = useState();
   const [currentPage, setCurrentPage] = useState("main");
 
-  const pages = {
-    main: <MainPage user={user} setCurrentPage={setCurrentPage} />,
-    account_settings: <AccountSettings user={user} />
-  };
   async function logout() {
     const { error } = await supabase.auth.signOut();
     if (error) console.log(error);
@@ -44,20 +38,15 @@ export default function UserButton({ user, supabase }) {
                   : setCurrentPage("main");
               }}
             >
-              {currentPage === "main" ? "✕" : "←"}
+              ✕
             </button>
           </section>
-          <section id="content">{pages[currentPage]}</section>
-          {currentPage === "main" && (
-            <button id="logout" className="red-btn" onClick={logout}>
-              Log out
-            </button>
-          )}
-          {currentPage === "account_settings" && (
-            <button id="delete-account" className="red-btn">
-              Delete account
-            </button>
-          )}
+          <section id="content">
+            <MainPage user={user} setIsOpen={setIsOpen} />
+          </section>
+          <button id="logout" className="red-btn" onClick={logout}>
+            Log out
+          </button>
         </section>
       )}
     </>
