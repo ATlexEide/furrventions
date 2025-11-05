@@ -7,7 +7,6 @@ import RadioInput from "@mui/material/FormControlLabel";
 import "../../styles/EventTags.css";
 
 export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
-  setIsNotValid(false);
   const radioStyle = {
     color: "var(--main-border-color)",
     "&.Mui-checked": {
@@ -30,7 +29,9 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
       ...eventInfo,
       tags: tags.filter((tag) => tag)
     });
-  }, [isAdult, isVirtual]);
+
+    if (eventInfo.locationTag) setIsNotValid(false);
+  }, [isAdult, isVirtual, eventInfo.locationTag]);
 
   return (
     <>
@@ -61,8 +62,9 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
         </div>
 
         <hr />
-        <h3>Location</h3>
+        <h3>Location *</h3>
         <RadioGroup
+          defaultValue={eventInfo.locationTag}
           name="location-radio-buttons-group"
           onChange={(e) =>
             setEventInfo({ ...eventInfo, locationTag: e.target.value })
