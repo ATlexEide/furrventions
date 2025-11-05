@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function ConventionCard({ supabase, con, type }) {
   const navigate = useNavigate();
-  console.log(con);
   const days = [
     "Sunday",
     "Monday",

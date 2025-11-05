@@ -21,7 +21,6 @@ function RowComponent({
     const textContainer = listItem.current.parentNode;
 
     if (text.offsetWidth > textContainer.offsetWidth) {
-      console.log("overflow");
       setIsOverFlowing(true);
     }
   }, []);

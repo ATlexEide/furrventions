@@ -166,8 +166,6 @@ export default function Filter({
       <section id="filter-buttons">
         <button
           onClick={() => {
-            console.log("filter:", filter);
-            console.log("tags:", activeTags);
             filterCons();
           }}
         >
@@ -178,7 +176,6 @@ export default function Filter({
             setFilter({});
             setHasFilter(false);
             setActiveTags({});
-            console.log("tags", activeTags);
           }}
         >
           Clear filter

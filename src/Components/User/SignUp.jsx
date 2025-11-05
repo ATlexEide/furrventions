@@ -43,9 +43,7 @@ export default function SignUp({ supabase }) {
       }
       let checkUsernameTimeout = setTimeout(() => {
         checkUsername(tempUser.furname);
-        console.log("YIPPIE");
       }, 650);
-      console.log(checkUsernameTimeout);
       checkUsernameTimeout--;
       return checkUsernameTimeout;
     }
@@ -95,7 +93,6 @@ export default function SignUp({ supabase }) {
   }
 
   async function createPublicProfile(user) {
-    console.log(user);
     const { error } = await supabase.from("users").insert({
       username: user.user_metadata.furname,
       user_id: user.id
@@ -114,7 +111,6 @@ export default function SignUp({ supabase }) {
       .ilike("username", name);
 
     if (error) console.log(error);
-    console.log(data);
     if (data[0]?.username.toLowerCase() === name.toLowerCase()) {
       setInvalidUsername(true);
     } else {

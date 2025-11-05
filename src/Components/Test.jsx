@@ -4,7 +4,6 @@ import { uploadLogo } from "../utils/uploadLogo";
 export default function Test({ supabase }) {
   const [file, setFile] = useState(null);
 
-  console.log("file:", file);
   return (
     <>
       <button>test</button>

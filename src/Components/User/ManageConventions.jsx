@@ -31,9 +31,6 @@ export default function ManageConventions({ supabase }) {
     if (session) fetchUserCons();
   }, [session]);
 
-  if (session) console.log(session.user.id);
-  if (conventions) console.log(conventions);
-
   return (
     <ul>
       {conventions &&

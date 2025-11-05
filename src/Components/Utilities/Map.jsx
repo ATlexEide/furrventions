@@ -20,13 +20,6 @@ export default function MapWithPlaceholder({
   icon = null,
   cords = [60.39118002058307, 5.331024627773373]
 }) {
-  useEffect(() => {
-    console.log(conventions);
-    console.log("refresh");
-  }, conventions);
-
-  console.log("filteredCons", conventions);
-
   let conIcon = new Icon(icon);
 
   conventions &&

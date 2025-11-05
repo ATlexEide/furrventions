@@ -32,7 +32,6 @@ export default function DateRangePicker({ setData, data, _value = null }) {
       months={2}
       value={value}
       onchange={getDateHandler}
-      onClick={(e) => console.log(e.target.value)}
     >
       <div id="calendar-container">
         <calendar-month />

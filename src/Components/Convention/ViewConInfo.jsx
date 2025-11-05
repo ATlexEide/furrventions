@@ -20,7 +20,6 @@ export default function ViewConInfo({ supabase }) {
   const [userIsCreator, setUserIsCreator] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [updateObject, setUpdateObject] = useState({});
-  console.log("CON ID", con_id);
 
   const [query, setQuery] = useState("");
   const [result, setResult] = useState([]);
@@ -33,19 +32,16 @@ export default function ViewConInfo({ supabase }) {
   }
 
   async function submitUpdate() {
-    console.log(updateObject);
     const { data, error } = await supabase
       .from("conventions")
       .update(updateObject)
       .eq("id", con_id)
       .select("*");
     if (data) setCon(data);
-    console.log("Submitted updates");
     if (error) console.log(error);
   }
 
   useEffect(() => {
-    console.log(con_id);
     getSession();
   }, []);
 
@@ -85,8 +81,6 @@ export default function ViewConInfo({ supabase }) {
     // if (data) setSubmitter(data[0]);
     if (data) setSubmitter(data[0].username);
   }
-
-  if (con.id) console.log(con);
 
   useEffect(() => {
     if (!con_id) return;
@@ -321,7 +315,6 @@ export default function ViewConInfo({ supabase }) {
                         <button
                           onClick={(e) => {
                             e.preventDefault();
-                            console.log("rawrrr");
                             fetchLocation();
                           }}
                         >
@@ -334,7 +327,6 @@ export default function ViewConInfo({ supabase }) {
                             <li
                               key={i}
                               onClick={() => {
-                                console.log(res);
                                 setQuery(res.display_name);
                                 setHasNewQuery(false);
                                 setUpdateObject({
@@ -461,8 +453,6 @@ export default function ViewConInfo({ supabase }) {
               {isEditing && (
                 <button
                   onClick={() => {
-                    console.clear();
-                    console.log(Boolean(Object.entries(updateObject).length));
                     if (Object.entries(updateObject).length) submitUpdate();
                     setIsEditing(false);
                   }}
@@ -492,8 +482,6 @@ export default function ViewConInfo({ supabase }) {
                       setQuery(null);
                       setResult(null);
                       setIsEditing(!isEditing);
-                      console.clear();
-                      console.log(con);
                     }}
                   >{`Edit ${con.type}`}</button>
                   <button className="red-btn">{`Delete ${con.type}`}</button>

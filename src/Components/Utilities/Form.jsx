@@ -30,8 +30,6 @@ export default function Form({
                   return;
                 }
                 setCurrentPage(currentPage - 1);
-                console.log(currentPage);
-                console.log(pages[currentPage].title);
               }}
             >
               Back
@@ -41,7 +39,6 @@ export default function Form({
               disabled={isNotValid}
               onClick={(e) => {
                 e.preventDefault();
-                console.log(currentPage);
                 if (currentPage === 1 && eventInfo.type === "convention")
                   setEventInfo({ ...eventInfo, organizerID: user.id });
                 currentPage === pages.length - 1

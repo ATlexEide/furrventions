@@ -31,8 +31,7 @@ export default function LoginDetails({ errors, tempUser, setTempUser }) {
           }
         />
       </div>
-      {console.log("mismatch ", errors.pWMismatchWarning)}
-      {console.log("lengthErr ", errors.pWLengthWarning)}
+
       {errors.pWMismatchWarning && <p>Passwords does not match</p>}
       {errors.pWLengthWarning && (
         <p>Password must be atleast 8 characters long</p>
