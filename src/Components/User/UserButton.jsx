@@ -1,14 +1,22 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import MainPage from "./MainPage";
 import "../../styles/UserButton.css";
 import { logout } from "../../utils/SupabaseUtils";
 
 export default function UserButton({ user }) {
   const [isOpen, setIsOpen] = useState();
   const [currentPage, setCurrentPage] = useState("main");
+  const navigate = useNavigate();
 
   const furname = user.user_metadata.furname ?? "User";
+  const id = user.id;
+
+  function closeAndGoTo(uri) {
+    setIsOpen(false);
+    navigate(uri);
+  }
+
   return (
     <>
       <button
@@ -31,14 +39,33 @@ export default function UserButton({ user }) {
                 currentPage === "main"
                   ? setIsOpen(!isOpen)
                   : setCurrentPage("main");
+                // setIsOpen(!isOpen);
               }}
             >
               ✕
             </button>
           </section>
+
           <section id="content">
-            <MainPage user={user} setIsOpen={setIsOpen} />
+            <ul id="menu">
+              <li
+                onClick={() => {
+                  closeAndGoTo(`user/${id}/manage`);
+                }}
+              >
+                Manage account
+              </li>
+
+              <li
+                onClick={() => {
+                  closeAndGoTo(`user/${id}/conventions`);
+                }}
+              >
+                My Events
+              </li>
+            </ul>
           </section>
+
           <button id="logout" className="red-btn" onClick={logout}>
             Log out
           </button>
