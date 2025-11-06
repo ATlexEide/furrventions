@@ -2,16 +2,11 @@ import { useState } from "react";
 
 import MainPage from "./MainPage";
 import "../../styles/UserButton.css";
+import { logout } from "../../utils/SupabaseUtils";
 
-export default function UserButton({ user, supabase }) {
+export default function UserButton({ user }) {
   const [isOpen, setIsOpen] = useState();
   const [currentPage, setCurrentPage] = useState("main");
-
-  async function logout() {
-    const { error } = await supabase.auth.signOut();
-    if (error) console.log(error);
-    window.location.reload();
-  }
 
   const furname = user.user_metadata.furname ?? "User";
   return (
