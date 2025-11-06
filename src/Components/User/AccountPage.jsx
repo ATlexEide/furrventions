@@ -120,7 +120,6 @@ export default function AccountPage() {
         </div>
 
         <section className="manage-account-btns">
-          <button disabled={!hasUpdates}>Update</button>
           <button
             onClick={() => {
               sendResetPasswordLink(user.email);
@@ -128,6 +127,8 @@ export default function AccountPage() {
           >
             Reset password
           </button>
+
+          <button disabled={!hasUpdates}>Update</button>
         </section>
       </section>
 
