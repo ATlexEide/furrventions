@@ -38,8 +38,9 @@
 }
 
 #close-menu:active#close-menu:focus {
-  display: none;
+  outline: none;
 }
+
 #close-menu {
   align-self: flex-end;
   background: none;
