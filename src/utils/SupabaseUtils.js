@@ -62,15 +62,12 @@ export async function checkIsUsernameTaken(name) {
 }
 
 export async function checkIsEmailTaken(email) {
-  console.log("test");
-  console.log(email);
   const { data, error } = await supabase
     .from("users")
     .select("email")
     .ilike("email", email);
 
   if (error) console.log(error);
-  console.log(data[0]?.email.toLowerCase());
   if (data[0]?.email.toLowerCase() === email.toLowerCase()) return true;
   return false;
 

@@ -69,7 +69,6 @@ export default function AccountPage() {
     setHasUpdates(false);
   }, [tempUser.email]);
 
-  if (user) console.log(user);
   if (!user) return <h2>Log in to manage your account</h2>;
   return (
     <section id="account-page">
