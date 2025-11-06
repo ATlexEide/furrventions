@@ -2,21 +2,17 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../../styles/Header.css";
 import UserButton from "../User/UserButton";
+import { getUserSession } from "../../utils/SupabaseUtils";
 
-export default function Header({ supabase }) {
+export default function Header() {
   const [user, setUser] = useState(null);
-  const [session, setSession] = useState(null);
 
-  async function getSession() {
-    if (user) return;
-    const { data, error } = await supabase.auth.getSession();
-    if (!error) setSession(data.session);
-  }
   useEffect(() => {
-    getSession();
-    if (!session) return;
-    setUser(session.user);
-  }, [session]);
+    (async function getUser() {
+      const session = await getUserSession();
+      setUser(session.user);
+    })();
+  }, []);
 
   return (
     <>
@@ -29,15 +25,15 @@ export default function Header({ supabase }) {
         <h1 id="header-home">
           {user && `Hello, ${user.user_metadata.furname}!`}
         </h1>
-        {session && <Link to="conventions/add">Add convention</Link>}
-        {session && "|"}
+        {user && <Link to="conventions/add">Add convention</Link>}
+        {user && "|"}
         <Link to="conventions">View conventions</Link>||
-        {!session && (
+        {!user && (
           <>
             <Link to="signin">Login</Link> / <Link to="signup">Signup</Link>
           </>
         )}
-        {user && <UserButton user={user} supabase={supabase} />}
+        {user && <UserButton user={user} />}
       </header>
     </>
   );
