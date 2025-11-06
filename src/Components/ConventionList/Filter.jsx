@@ -2,6 +2,8 @@ import { TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 
+import "../../styles/Filter.css";
+
 export default function Filter({
   activeTags,
   setActiveTags,
@@ -66,51 +68,54 @@ export default function Filter({
       <section id="filter-options">
         <div className="filter-option-input">
           <ThemeProvider theme={filterTheme}>
-            <div className="input-container">
-              <TextField
-                id="convention-name"
-                size="small"
-                fullWidth
-                type="text"
-                label={
-                  <span
-                    style={{ display: "flex", alignItems: "center", gap: 4 }}
-                  >
-                    Event name
-                  </span>
-                }
-                variant="outlined"
-                onChange={(e) => {
-                  setFilter({ ...filter, name: e.target.value });
-                }}
-              />
-
-              <TextField
-                id="convention-location"
-                size="small"
-                fullWidth
-                type="text"
-                label={
-                  <span
-                    style={{ display: "flex", alignItems: "center", gap: 4 }}
-                  >
-                    Event Location
-                  </span>
-                }
-                variant="outlined"
-                onChange={(e) => {
-                  setFilter({
-                    ...filter,
-                    location: e.target.value
-                  });
-                }}
-              />
-            </div>
+            <section id="filter-searchbars">
+              <div className="input-container">
+                <TextField
+                  id="convention-name"
+                  size="small"
+                  fullWidth
+                  type="text"
+                  label={
+                    <span
+                      style={{ display: "flex", alignItems: "center", gap: 4 }}
+                    >
+                      Event name
+                    </span>
+                  }
+                  variant="outlined"
+                  onChange={(e) => {
+                    setFilter({ ...filter, name: e.target.value });
+                  }}
+                />
+              </div>
+              <div className="input-container">
+                <TextField
+                  id="convention-location"
+                  size="small"
+                  fullWidth
+                  type="text"
+                  label={
+                    <span
+                      style={{ display: "flex", alignItems: "center", gap: 4 }}
+                    >
+                      Event Location
+                    </span>
+                  }
+                  variant="outlined"
+                  onChange={(e) => {
+                    setFilter({
+                      ...filter,
+                      location: e.target.value
+                    });
+                  }}
+                />
+              </div>
+            </section>
           </ThemeProvider>
         </div>
 
         <div className="tag-container">
-          <h3>Tags</h3>
+          <h3>Tags | Coming soon</h3>
           <hr />
           <section id="standard-tags">
             {tags.map(
@@ -120,6 +125,7 @@ export default function Filter({
                     <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
                     <div>
                       <input
+                        disabled
                         id={tag.tagName}
                         type="checkbox"
                         onChange={(e) => {
@@ -135,7 +141,7 @@ export default function Filter({
                 )
             )}
           </section>
-          <h3>Location</h3>
+          <h3>Location | Coming soon</h3>
           <hr />
           <section id="location-tags">
             {tags.map(
@@ -145,6 +151,7 @@ export default function Filter({
                     <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
                     <div>
                       <input
+                        disabled
                         id={tag.tagName}
                         type="checkbox"
                         onChange={(e) => {
