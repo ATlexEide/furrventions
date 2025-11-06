@@ -129,3 +129,7 @@ input.picker[type="date"]::-webkit-calendar-picker-indicator {
   justify-content: center;
   align-items: center;
 }
+
+form .input-container {
+  padding: 12px 0;
+}
