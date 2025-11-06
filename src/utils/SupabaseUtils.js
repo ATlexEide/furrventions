@@ -89,6 +89,7 @@ export async function sendResetPasswordLink(email) {
 }
 
 export async function resetPassword() {
+  // eslint-disable-next-line no-unused-vars
   supabase.auth.onAuthStateChange(async (event, session) => {
     if (event == "PASSWORD_RECOVERY") {
       const newPassword = prompt(
