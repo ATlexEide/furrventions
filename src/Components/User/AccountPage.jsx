@@ -15,7 +15,6 @@ import {
 export default function AccountPage() {
   const [user, setUser] = useState(null);
   const [tempUser, setTempUser] = useState({});
-  const [isTyping, setIsTyping] = useState(false);
   const [hasUpdates, setHasUpdates] = useState(false);
 
   const [session, setSession] = useState(null);
