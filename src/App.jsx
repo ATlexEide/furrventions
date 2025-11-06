@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { resetPassword } from "./utils/SupabaseUtils";
+
 export default function Home() {
   // Taglines for display under landing page greeting
   const taglines = [
@@ -10,6 +13,10 @@ export default function Home() {
     ":3",
     "OwO"
   ];
+
+  useEffect(() => {
+    resetPassword();
+  }, []);
 
   return (
     <>
