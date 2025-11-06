@@ -70,9 +70,9 @@ const theme = createTheme({
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <Analytics />
     <ThemeProvider theme={theme}>
       <WipAlert />
-      <Analytics />
       <Router>
         <Header supabase={supabase} />
         <main>
