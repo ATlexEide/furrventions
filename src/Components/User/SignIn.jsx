@@ -6,6 +6,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { sendResetPasswordLink } from "../../utils/SupabaseUtils";
 
 export default function SignIn({ supabase }) {
   const navigate = useNavigate();
@@ -17,9 +18,19 @@ export default function SignIn({ supabase }) {
       email: loginDetails.email,
       password: loginDetails.password
     });
-    if (error) throw new Error(error);
-    if (data) navigate("/");
-    window.location.reload();
+    if (error)
+      switch (error.code) {
+        case "invalid_credentials":
+          alert("Invalid Credentials");
+          break;
+
+        default:
+          throw new Error(error);
+      }
+    if (!error) {
+      navigate("/");
+      window.location.reload();
+    }
   }
   return (
     <form id="signin-account">
@@ -77,6 +88,17 @@ export default function SignIn({ supabase }) {
         >
           Log In
         </button>
+        <Typography id="no-account-text">
+          Forgot password?{" "}
+          <Link
+            onClick={() => {
+              const email = prompt("Input email");
+              sendResetPasswordLink(email);
+            }}
+          >
+            Request new password
+          </Link>
+        </Typography>
         <Typography id="no-account-text">
           Don&apos;t have an account? <Link to="/signup">Sign Up</Link>
         </Typography>
