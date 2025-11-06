@@ -1,10 +1,15 @@
+:root {
+  --settings-padding: 24px;
+}
 #account-page {
   display: flex;
   flex-direction: column;
+  min-height: fit-content;
   height: 50svh;
   width: 100%;
-  background-color: rgba(102, 51, 153, 0.048);
+  background-color: var(--secondary-bg-color);
   padding: 24px;
+  border-radius: 7px;
 }
 
 #account-page-header,
@@ -20,5 +25,22 @@
 }
 
 #user-details {
-  padding: 12px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: var(--settings-padding);
+}
+
+.manage-account-btns {
+  margin-top: auto;
+  display: flex;
+  gap: 24px;
+}
+.manage-account-btns button {
+  width: 200px;
+}
+
+.danger-zone {
+  padding: var(--settings-padding);
 }
