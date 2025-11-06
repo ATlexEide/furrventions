@@ -76,3 +76,39 @@ export async function checkIsEmailTaken(email) {
 
   // setIsTyping(false);
 }
+
+export async function logout() {
+  const { error } = await supabase.auth.signOut();
+  if (error) console.log(error);
+  window.location.reload();
+}
+
+export async function sendResetPasswordLink(email) {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+  if (error) throw new Error("Failed to send reset link", error);
+  if (data) {
+    alert("A link to reset your password has been sent to your email");
+  }
+}
+
+export async function resetPassword() {
+  supabase.auth.onAuthStateChange(async (event, session) => {
+    if (event == "PASSWORD_RECOVERY") {
+      const newPassword = prompt(
+        "What would you like your new password to be?"
+      );
+      const { data, error } = await supabase.auth.updateUser({
+        password: newPassword
+      });
+
+      if (data) alert("Password updated successfully!");
+      if (error) alert("There was an error updating your password.");
+    }
+  });
+}
+
+export async function getUserSession() {
+  const { data, error } = await supabase.auth.getSession();
+  if (error) throw new Error("Getting user session failed", error);
+  return data.session;
+}
