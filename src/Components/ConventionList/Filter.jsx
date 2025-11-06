@@ -115,6 +115,7 @@ export default function Filter({
         </div>
 
         <div className="tag-container">
+          <div id="construction-sign"></div>
           <h3>Tags | Coming soon</h3>
           <hr />
           <section id="standard-tags">
