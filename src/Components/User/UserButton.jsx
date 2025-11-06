@@ -6,7 +6,6 @@ import { logout } from "../../utils/SupabaseUtils";
 
 export default function UserButton({ user }) {
   const [isOpen, setIsOpen] = useState();
-  const [currentPage, setCurrentPage] = useState("main");
   const navigate = useNavigate();
 
   const furname = user.user_metadata.furname ?? "User";
@@ -36,10 +35,7 @@ export default function UserButton({ user }) {
             <button
               id="close-menu"
               onClick={() => {
-                currentPage === "main"
-                  ? setIsOpen(!isOpen)
-                  : setCurrentPage("main");
-                // setIsOpen(!isOpen);
+                setIsOpen(!isOpen);
               }}
             >
               ✕
