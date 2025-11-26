@@ -1,4 +1,5 @@
 export async function filterCons(filterArgs) {
+  console.log(filterArgs.cons[0]);
   let filtered = filterArgs.cons.slice();
   const hasActiveTags = Object.values(filterArgs.activeTags).includes(true);
   filterArgs.setHasFilter(true);
@@ -9,12 +10,20 @@ export async function filterCons(filterArgs) {
     );
 
     const tagChecker = (con) => {
+      let conIsOld = false;
       let tagCount = tagArray.length;
       tagArray.forEach((tag) => {
+        if (tag === "ignoreOld") {
+          const today = new Date();
+          const conTime = new Date(con.start_time);
+          const isOld = today > conTime;
+          if (isOld) conIsOld = true;
+        }
         if (tag && JSON.parse(con.tags).includes(tag)) {
           tagCount--;
         }
       });
+      if (!conIsOld) return true;
       return !tagCount;
     };
 
