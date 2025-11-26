@@ -53,6 +53,7 @@ export default function Filter({
   });
 
   const tags = [
+    { tagName: "ignoreOld", tagDisplay: "Ignore old events" },
     { tagName: "adult", tagDisplay: "18+" },
     { tagName: "virtual", tagDisplay: "Virtual" },
     { tagName: "eu", tagDisplay: "Europe", tagType: "location" },
@@ -115,7 +116,7 @@ export default function Filter({
         </div>
 
         <div className="tag-container">
-          <div id="construction-sign"></div>
+          {/* <div id="construction-sign"></div> */}
           <h3>Tags | Coming soon</h3>
           <hr />
           <section id="standard-tags">
@@ -126,7 +127,7 @@ export default function Filter({
                     <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
                     <div>
                       <input
-                        disabled
+                        // disabled
                         id={tag.tagName}
                         type="checkbox"
                         onChange={(e) => {
@@ -183,10 +184,10 @@ export default function Filter({
           onClick={() => {
             setFilter({});
             setHasFilter(false);
-            setActiveTags({});
+            setActiveTags({ ignoreOld: true });
           }}
         >
-          Clear filter
+          Reset filter
         </button>
         <button
           onClick={() => {
