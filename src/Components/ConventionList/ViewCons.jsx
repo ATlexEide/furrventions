@@ -18,7 +18,7 @@ export default function ViewCons({ supabase }) {
       : []
   );
   const [filter, setFilter] = useState(null);
-  const [activeTags, setActiveTags] = useState({});
+  const [activeTags, setActiveTags] = useState({ ignoreOld: true });
   const [hasFilter, setHasFilter] = useState(false);
   const [filteredCons, setFilteredCons] = useState([]);
   const [showMap, setShowMap] = useState(false);
