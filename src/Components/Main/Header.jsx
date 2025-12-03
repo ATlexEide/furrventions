@@ -10,7 +10,7 @@ export default function Header() {
   useEffect(() => {
     (async function getUser() {
       const session = await getUserSession();
-      setUser(session.user);
+      if (session) setUser(session.user);
     })();
   }, []);
 
