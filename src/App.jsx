@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { resetPassword } from "./utils/SupabaseUtils";
+// import { resetPassword } from "./utils/SupabaseUtils";
 
 export default function Home() {
   // Taglines for display under landing page greeting
@@ -15,7 +15,7 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    resetPassword();
+    // resetPassword();
   }, []);
 
   return (
@@ -25,7 +25,7 @@ export default function Home() {
           <h2 id="catchphrase">Welcome to {import.meta.env.VITE_APPNAME}</h2>
           <h3>{taglines[Math.floor(Math.random() * taglines.length)]}</h3>
         </div>
-        <img id="mascot" src="mascot.png" alt="" />
+        {/* <img id="mascot" src="mascot.png" alt="" /> */}
       </section>
 
       <section id="mobile-catch">
