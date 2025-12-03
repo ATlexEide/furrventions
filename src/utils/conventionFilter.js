@@ -9,21 +9,29 @@ export async function filterCons(filterArgs) {
       (key) => filterArgs.activeTags[key]
     );
 
+    function isEventOld(con) {
+      const today = new Date();
+      const conTime = new Date(con.start_time);
+      const isOld = today > conTime;
+      return isOld;
+    }
+
     const tagChecker = (con) => {
-      let conIsOld = false;
       let tagCount = tagArray.length;
+
       tagArray.forEach((tag) => {
-        if (tag === "ignoreOld") {
-          const today = new Date();
-          const conTime = new Date(con.start_time);
-          const isOld = today > conTime;
-          if (isOld) conIsOld = true;
-        }
-        if (tag && JSON.parse(con.tags).includes(tag)) {
-          tagCount--;
+        switch (tag) {
+          case "ignoreOld":
+            if (!isEventOld(con)) tagCount--;
+            break;
+
+          default:
+            if (tag && JSON.parse(con.tags).includes(tag)) {
+              tagCount--;
+            }
+            break;
         }
       });
-      if (!conIsOld) return true;
       return !tagCount;
     };
 
