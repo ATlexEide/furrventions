@@ -53,9 +53,9 @@ export default function Filter({
   });
 
   const tags = [
-    { tagName: "ignoreOld", tagDisplay: "Ignore old events" },
     { tagName: "adult", tagDisplay: "18+" },
     { tagName: "virtual", tagDisplay: "Virtual" },
+    { tagName: "ignoreOld", tagDisplay: "Ignore old events" },
     { tagName: "eu", tagDisplay: "Europe", tagType: "location" },
     { tagName: "na", tagDisplay: "North America", tagType: "location" },
     { tagName: "sa", tagDisplay: "South America", tagType: "location" },
@@ -153,7 +153,7 @@ export default function Filter({
                     <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
                     <div>
                       <input
-                        disabled
+                        // disabled
                         id={tag.tagName}
                         type="checkbox"
                         onChange={(e) => {
