@@ -1,3 +1,4 @@
+import { data } from "react-router-dom";
 import { supabase } from "../main";
 
 export async function signUpNewUser(tempUser) {
@@ -38,6 +39,21 @@ async function createPublicProfile(user) {
   return true;
 }
 
+async function updatePublicProfile(updateObject) {
+  const { data, error } = await supabase
+    .from("users")
+    .upsert(updateObject)
+    .select();
+  console.log(data);
+  if (error) {
+    console.log(error);
+    throw new Error(`Creating public user profile failed | Code: ${error.code}
+      Message: ${error.message}
+      Hint: ${error.hint}`);
+  }
+  return true;
+}
+
 export async function fetchAndSetAllCons(supabase, setCons, setLoading) {
   const { data, err } = await supabase.from("conventions").select();
   if (err) throw new Error(err);
@@ -58,7 +74,6 @@ export async function checkIsUsernameTaken(name) {
   } else {
     return false;
   }
-  // setIsTyping(false);
 }
 
 export async function checkIsEmailTaken(email) {
@@ -70,8 +85,6 @@ export async function checkIsEmailTaken(email) {
   if (error) console.log(error);
   if (data[0]?.email.toLowerCase() === email.toLowerCase()) return true;
   return false;
-
-  // setIsTyping(false);
 }
 
 export async function logout() {
@@ -109,4 +122,31 @@ export async function getUserSession() {
   const { data, error } = await supabase.auth.getSession();
   if (error) throw new Error("Getting user session failed", error);
   return data.session;
+}
+
+export async function updateUser(updateObject) {
+  console.clear();
+  console.log(updateObject);
+  const { user, error } = await supabase.auth.updateUser({
+    email: updateObject.email
+  });
+  if (error)
+    switch (error.code) {
+      case "email_exists":
+        alert("The email is already in use");
+        throw new Error(error.code);
+
+      default:
+        throw new Error(error);
+    }
+  alert("Check your email to confirm mail change");
+  if (user) console.log(user);
+  // const publicUpdateObject = {};
+  // publicUpdateObject.id = updateObject.id;
+
+  // if ("furname" in updateObject)
+  //   publicUpdateObject.username = updateObject.furname;
+
+  // if ("email" in updateObject) publicUpdateObject.email = updateObject.email;
+  // if (await updatePublicProfile(publicUpdateObject)) alert("Account updated");
 }
