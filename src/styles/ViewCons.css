@@ -1,5 +1,5 @@
 #convention-list-cont {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--main-accent-color);
   width: 100%;
   min-height: 420px;
   height: fit-content;
@@ -23,32 +23,6 @@
 
 .convention-card {
   height: 300px;
-}
-
-#convention-list-filter {
-  border-radius: 25px 0 0 0;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-  height: 50vh;
-  background: rgb(9, 8, 10);
-  background: linear-gradient(
-    0deg,
-    rgba(9, 8, 10, 1) 0%,
-    rgba(24, 7, 36, 1) 100%
-  );
-  width: 500px;
-}
-.filter-option-input input {
-  color: white;
-
-  background-color: #220331;
-  border-radius: 3px;
-  border: solid;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 #spots-filter {

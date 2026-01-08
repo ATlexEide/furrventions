@@ -1,3 +1,19 @@
+#convention-list-filter {
+  border-radius: 25px 0 0 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  height: 70vh;
+  background: var(--main-accent-color);
+  background: linear-gradient(
+    0deg,
+    var(--main-bg-color) 0%,
+    var(--main-accent-color) 100%
+  );
+  width: 500px;
+}
+
 #filter-searchbars {
   display: flex;
   flex-direction: column;
