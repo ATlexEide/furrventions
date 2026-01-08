@@ -2,12 +2,12 @@
   display: flex;
   width: 100%;
   padding: 24px;
-  background-color: var(--secondary-accent-color);
+  background-color: var(--secondary-bg-color);
   transition: 0.2s;
   /* background-color: gray; */
 }
 .convention-card:hover {
-  background-color: rgb(8, 8, 75);
+  background-color: var(--main-hover-color);
   cursor: pointer;
 }
 
