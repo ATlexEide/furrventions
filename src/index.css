@@ -1,11 +1,23 @@
 :root {
-  --main-bg-color: #09080a;
-  --main-accent-color: #161020;
-  --main-border-color: #ff005e;
+  --main-bg-color: #00000069;
+  --main-accent-color: #ff004c54;
+  --main-border-color: #ffffff83;
+  --main-hover-color: rgb(119, 10, 75);
+  --main-checked-color: rgb(119, 10, 75);
+  --main-button-color: #000000;
+  --main-button-border-color: rgb(255, 255, 255);
 
-  --secondary-bg-color: #180724;
-  --secondary-accent-color: #0d081b;
+  --main-font-color: #ffffff;
+  --main-font-size: 1rem;
 
+  --input-font-color: #c0c0c0;
+  --input-active-font-color: #f0e4e4;
+
+  --secondary-bg-color: #ffffff09;
+  --secondary-accent-color: #000000;
+
+  /* MUI INPUT COLOR */
+  --TextField-brandBorderColor: #ffffff;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -20,7 +32,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Mui Input  */
+/* ///// Notched Base  */
+.MuiOutlinedInput-notchedOutline {
+  border: solid 1px var(--main-border-color) !important;
+}
+
+/* ///// Inbut Label Base */
+.MuiInputLabel-outlined span {
+  color: var(--input-font-color);
+}
+
+/* /////  Focused input */
+.MuiInputLabel-outlined:has(+ .Mui-focused) span {
+  color: var(--input-active-font-color) !important;
+}
+
+input {
+  color: rgb(255, 255, 255) !important;
+  background-color: #0000003f !important;
+}
+
 * {
+  font-size: var(--main-font-size);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -43,15 +77,15 @@ ul {
 
 button {
   width: 134px;
-  background-color: #171120;
-  border: solid 1px #e8a4ff;
+  background-color: var(--main-button-color);
+  border: solid 1px var(--main-button-border-color);
   border-radius: 8px;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.15s;
 }
 
 .red-btn {
@@ -135,7 +169,7 @@ h1 {
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: var(--main-hover-color);
 }
 
 button:focus,
