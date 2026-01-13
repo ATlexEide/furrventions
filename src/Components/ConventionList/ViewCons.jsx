@@ -28,7 +28,6 @@ export default function ViewCons({ supabase }) {
       fetchAndSetAllCons(supabase, setCons, setLoading);
     }
     createConventionObject();
-    setLoading(false);
     if (
       !filter?.name &&
       !filter?.location &&
@@ -75,20 +74,6 @@ export default function ViewCons({ supabase }) {
         setShowMap={setShowMap}
         showMap={showMap}
       />
-      {!showMap && hasFilter && (
-        <section id="convention-list-cont">
-          {!filteredCons.length && <p>No results</p>}
-
-          <ul id="convention-list">
-            {Boolean(filteredCons.length) &&
-              filteredCons.map((con, i) => (
-                <li className="convention" key={i}>
-                  <ConventionCard supabase={supabase} con={con} />
-                </li>
-              ))}
-          </ul>
-        </section>
-      )}
 
       {!showMap && !hasFilter && (
         <section id="convention-list-cont">
@@ -109,6 +94,22 @@ export default function ViewCons({ supabase }) {
               conventions={filteredCons.length ? filteredCons : cons}
             />
           )}
+        </section>
+      )}
+
+      {!showMap && hasFilter && (
+        <section id="convention-list-cont">
+          {loading && <Loading text="Loading" />}
+
+          <ul id="convention-list">
+            {!filteredCons.length && <p>No results</p>}
+            {Boolean(filteredCons.length) &&
+              filteredCons.map((con, i) => (
+                <li className="convention" key={i}>
+                  <ConventionCard supabase={supabase} con={con} />
+                </li>
+              ))}
+          </ul>
         </section>
       )}
 
