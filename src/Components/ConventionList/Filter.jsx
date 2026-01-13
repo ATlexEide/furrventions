@@ -16,35 +16,18 @@ export default function Filter({
 }) {
   const filterTheme = createTheme({
     components: {
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            "--TextField-brandBorderColor": "#E0E3E7",
-            "--TextField-brandBorderHoverColor": "#B2BAC2",
-            "--TextField-brandBorderFocusedColor": "#6F7E8C",
-            "& label.Mui-focused": {
-              color: "white"
-            },
-            "& .MuiFormLabel-root": {
-              color: "#a2a2a2" // or black
-            },
-            "& .MuiFormLabel.Mui-focused": {
-              color: "#fff" // or black
-            }
-          }
-        }
-      },
       MuiOutlinedInput: {
         styleOverrides: {
           notchedOutline: {
-            borderColor: "var(--TextField-brandBorderColor)"
+            borderColor: "blue"
           },
+
           root: {
             [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: "var(--TextField-brandBorderHoverColor)"
+              borderColor: "yellow"
             },
             [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: "var(--TextField-brandBorderFocusedColor)"
+              borderColor: "red"
             }
           }
         }
