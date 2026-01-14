@@ -185,56 +185,31 @@ export default function ViewConInfo({ supabase }) {
 
               <section id="convention-general">
                 <section id="eventinfo-ticket-price" className="info-section">
-                  {!con.ticket_price && (
-                    <p>
-                      <span className="label">
-                        <strong>Ticket price</strong>
-                      </span>{" "}
-                      {isEditing ? (
-                        <input
-                          type="number"
-                          value={
-                            "ticket_price" in updateObject
-                              ? updateObject.ticket_price
-                              : con.ticket_price
-                          }
-                          onChange={(e) => {
-                            setUpdateObject({
-                              ...updateObject,
-                              ticket_price: e.target.value
-                            });
-                          }}
-                        />
-                      ) : (
-                        "We could not find any price information for this convention"
-                      )}
-                    </p>
-                  )}
-                  {con.ticket_price && (
-                    <p>
-                      <span className="label">
-                        <strong>Ticket price</strong>
-                      </span>{" "}
-                      {isEditing ? (
-                        <input
-                          type="number"
-                          value={
-                            "ticket_price" in updateObject
-                              ? updateObject.ticket_price
-                              : con.ticket_price
-                          }
-                          onChange={(e) => {
-                            setUpdateObject({
-                              ...updateObject,
-                              ticket_price: e.target.value
-                            });
-                          }}
-                        />
-                      ) : (
-                        con.ticket_price + " eur"
-                      )}
-                    </p>
-                  )}
+                  <p>
+                    <span className="label">
+                      <strong>Ticket price</strong>
+                    </span>{" "}
+                    {isEditing ? (
+                      <input
+                        type="number"
+                        value={
+                          "ticket_price" in updateObject
+                            ? updateObject.ticket_price
+                            : con.ticket_price
+                        }
+                        onChange={(e) => {
+                          setUpdateObject({
+                            ...updateObject,
+                            ticket_price: e.target.value
+                          });
+                        }}
+                      />
+                    ) : con.ticket_price ? (
+                      con.ticket_price + "eur"
+                    ) : (
+                      "Entry is free"
+                    )}
+                  </p>
                 </section>
 
                 <section id="eventinfo-dates" className="info-section">
