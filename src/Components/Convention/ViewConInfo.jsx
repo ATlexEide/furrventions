@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import MapWithPlaceholder from "../Utilities/Map";
 import Loading from "../Utilities/Loading";
 import { fetchLogo } from "../../utils/fetchLogo";
+import { TextField } from "@mui/material";
 
 import "../../styles/ViewConInfo.css";
 import DateRangePicker from "../Utilities/DateRangePicker";
+import EuroIcon from "@mui/icons-material/Euro";
+import Euro from "@mui/icons-material/Euro";
 
 export default function ViewConInfo({ supabase }) {
   const navigate = useNavigate();
@@ -187,23 +190,37 @@ export default function ViewConInfo({ supabase }) {
                 <section id="eventinfo-ticket-price" className="info-section">
                   <p>
                     <span className="label">
-                      <strong>Ticket price</strong>
+                      {!isEditing && <strong>Ticket price</strong>}
                     </span>{" "}
                     {isEditing ? (
-                      <input
-                        type="number"
-                        value={
-                          "ticket_price" in updateObject
-                            ? updateObject.ticket_price
-                            : con.ticket_price
-                        }
-                        onChange={(e) => {
-                          setUpdateObject({
-                            ...updateObject,
-                            ticket_price: e.target.value
-                          });
-                        }}
-                      />
+                      <div className="input-container">
+                        <TextField
+                          type="numbers"
+                          value={
+                            "ticket_price" in updateObject
+                              ? updateObject.ticket_price
+                              : con.ticket_price
+                          }
+                          label={
+                            <span
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 4
+                              }}
+                            >
+                              <EuroIcon /> Ticket Price
+                            </span>
+                          }
+                          variant="outlined"
+                          onChange={(e) => {
+                            setUpdateObject({
+                              ...updateObject,
+                              ticket_price: e.target.value
+                            });
+                          }}
+                        />
+                      </div>
                     ) : con.ticket_price ? (
                       con.ticket_price + "eur"
                     ) : (
