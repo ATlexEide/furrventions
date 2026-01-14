@@ -38,7 +38,7 @@ export default function MapWithPlaceholder({
     conventions.map((con) => {
       conIcon = new Icon({
         iconUrl: con.hasLogo
-          ? fetchLogo(supabase, con.id)
+          ? fetchLogo(con.id)
           : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images//pawlogo.png",
         iconAnchor: [0, 30],
         popupAnchor: [15, -30],
