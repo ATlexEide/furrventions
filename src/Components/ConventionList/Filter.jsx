@@ -47,8 +47,6 @@ export default function Filter({
   ];
   return (
     <section id="convention-list-filter">
-      <h2 id="filter-title">SEARCH</h2>
-
       <section id="filter-options">
         <div className="filter-option-input">
           <ThemeProvider theme={filterTheme}>
