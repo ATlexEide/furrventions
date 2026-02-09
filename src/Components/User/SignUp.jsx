@@ -139,7 +139,13 @@ export default function SignUp() {
                 fullWidth
                 id="lastname"
                 value={tempUser.lastname}
-                label="Last name"
+                label={
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    <BadgeIcon /> Last Name
+                  </span>
+                }
                 variant="outlined"
                 onChange={(e) =>
                   setTempUser({ ...tempUser, lastname: e.target.value })
