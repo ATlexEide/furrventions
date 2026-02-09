@@ -44,7 +44,7 @@ export const supabase = createClient(
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Analytics />
-    <WipAlert />
+    {/* <WipAlert /> */}
     <Router>
       <Header supabase={supabase} />
       <main>
