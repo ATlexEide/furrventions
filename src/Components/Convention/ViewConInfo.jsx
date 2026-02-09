@@ -99,6 +99,9 @@ export default function ViewConInfo({ supabase }) {
     }
   }, [con]);
   // const [cons, loading] = useConsObject();
+  const daysLeft = Math.round(
+    (new Date(con.start_time) - new Date()) / (1000 * 60 * 60 * 24)
+  );
 
   const days = [
     "Sunday",
@@ -250,7 +253,7 @@ export default function ViewConInfo({ supabase }) {
                 </section>
 
                 <section id="eventinfo-dates" className="info-section">
-                  {!startDate && <p>Could not find end time</p>}
+                  {!startDate && <p>Could not find start time</p>}
                   {startDate && (
                     <p>
                       {!isEditing && (
