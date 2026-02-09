@@ -27,13 +27,19 @@ export default function Header() {
         </h1>
         {user && <Link to="conventions/add">Add convention</Link>}
         {user && "|"}
-        <Link to="conventions">View conventions</Link>||
+        <Link to="conventions">View conventions</Link>
         {!user && (
-          <>
+          <div id="user-container">
             <Link to="signin">Login</Link> / <Link to="signup">Signup</Link>
-          </>
+          </div>
         )}
-        {user && <UserButton user={user} />}
+        {user && (
+          <div id="user-container">
+            <>
+              {`${user.user_metadata.furname}`} <UserButton user={user} />
+            </>
+          </div>
+        )}
       </header>
     </>
   );

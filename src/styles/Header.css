@@ -9,6 +9,17 @@ header {
   gap: 12px;
 }
 
+#user-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 16px;
+  height: 70px;
+  border-left: rgba(237, 238, 240, 0.808) 3px solid;
+  width: 10%;
+  border-radius: 100px;
+}
+
 #header-home {
   margin-right: auto;
 }
