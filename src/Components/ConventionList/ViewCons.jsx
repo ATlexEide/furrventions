@@ -100,9 +100,9 @@ export default function ViewCons({ supabase }) {
       {!showMap && hasFilter && (
         <section id="convention-list-cont">
           {loading && <Loading text="Loading" />}
+          {!filteredCons.length && !loading && <p>No results</p>}
 
           <ul id="convention-list">
-            {!filteredCons.length && <p>No results</p>}
             {Boolean(filteredCons.length) &&
               filteredCons.map((con, i) => (
                 <li className="convention" key={i}>
