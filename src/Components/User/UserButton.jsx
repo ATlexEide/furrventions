@@ -52,13 +52,13 @@ export default function UserButton({ user }) {
                 Manage account
               </li>
 
-              <li
+              {/* <li
                 onClick={() => {
                   closeAndGoTo(`user/${id}/conventions`);
                 }}
               >
                 My Events
-              </li>
+              </li> */}
             </ul>
           </section>
 
