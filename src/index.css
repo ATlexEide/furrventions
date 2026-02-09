@@ -13,7 +13,7 @@
   --input-font-color: #c0c0c0;
   --input-active-font-color: #f0e4e4;
 
-  --secondary-bg-color: #ffffff09;
+  --secondary-bg-color: #0b080f;
   --secondary-accent-color: #000000;
 
   /* MUI INPUT COLOR */
@@ -77,7 +77,7 @@ ul {
 
 button {
   width: 134px;
-  background-color: var(--main-button-color);
+  background-color: var(--main-bg-color);
   border: solid 1px var(--main-button-border-color);
   border-radius: 8px;
   padding: 0.6em 1.2em;
