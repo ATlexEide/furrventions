@@ -1,4 +1,10 @@
+:root {
+  --convention-card-dogear-size: 130px;
+}
+
 .convention-card {
+  overflow: hidden;
+  position: relative;
   display: flex;
   width: 100%;
   padding: 24px;
@@ -6,6 +12,22 @@
   transition: 0.2s;
   /* background-color: gray; */
 }
+
+.notice {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  color: white;
+  font-size: 0.7rem;
+  top: calc(var(--convention-card-dogear-size) / 2 * -1);
+  left: calc(var(--convention-card-dogear-size) / 2 * -1);
+  background-color: red;
+  transform: rotate(-45deg);
+  width: var(--convention-card-dogear-size);
+  aspect-ratio: 1/1;
+}
+
 .convention-card:hover {
   background-color: var(--main-hover-color);
   cursor: pointer;
@@ -34,4 +56,15 @@
 .info-prefix {
   font-style: italic;
   font-weight: 500;
+}
+
+.convention-card section:last-child {
+  width: 40%;
+}
+
+.convention-desc {
+  border-left: 1px solid rgb(226, 163, 255);
+  height: 100%;
+  width: 100%;
+  padding: 0 24px;
 }
