@@ -232,7 +232,7 @@ export default function ViewConInfo({ supabase }) {
                                 gap: 4
                               }}
                             >
-                              <EuroIcon /> Ticket Price
+                              <EuroIcon /> Ticket Price (EUR)
                             </span>
                           }
                           variant="outlined"
