@@ -31,6 +31,7 @@
 .convention-card:hover {
   background-color: var(--main-hover-color);
   cursor: pointer;
+  color: white;
 }
 
 .convention-logo {
