@@ -128,8 +128,6 @@ export default function ViewConInfo({ supabase }) {
     "December"
   ];
 
-  // TODO: Clean up
-
   const tagTable = {
     adult: "18+",
     virtual: "Virtual Event",
