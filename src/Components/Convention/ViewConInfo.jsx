@@ -128,27 +128,21 @@ export default function ViewConInfo({ supabase }) {
     "December"
   ];
 
+  // TODO: Clean up
+
+  const tagTable = {
+    adult: "18+",
+    virtual: "Virtual Event",
+    eu: "Europe",
+    na: "North America",
+    sa: "South America",
+    asia: "Asia",
+    oceania: "Oceania",
+    other: "Other location"
+  };
+
   function getTag(tag, i) {
-    switch (tag) {
-      case "adult":
-        return <li key={i}>18+</li>;
-      case "virtual":
-        return <li key={i}>Virtual Event</li>;
-      case "eu":
-        return <li key={i}>Europe</li>;
-      case "na":
-        return <li key={i}>North America</li>;
-      case "sa":
-        return <li key={i}>South America</li>;
-      case "asia":
-        return <li key={i}>Asia</li>;
-      case "oceania":
-        return <li key={i}>Oceania</li>;
-      case "other":
-        return <li key={i}>Other location</li>;
-      default:
-        break;
-    }
+    return tag in tagTable ? <li key={i}>{tagTable[tag]}</li> : null;
   }
 
   if (!con.id) return <Loading />;
