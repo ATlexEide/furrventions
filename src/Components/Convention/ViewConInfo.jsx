@@ -48,8 +48,8 @@ export default function ViewConInfo({ supabase }) {
     eu: "Europe",
     na: "North America",
     sa: "South America",
+    oce: "Oceania",
     asia: "Asia",
-    oceania: "Oceania",
     other: "Other location"
   };
 
