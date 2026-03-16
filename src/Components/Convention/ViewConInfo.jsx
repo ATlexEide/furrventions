@@ -4,7 +4,11 @@ import MapWithPlaceholder from "../Utilities/Map";
 import Loading from "../Utilities/Loading";
 import { fetchLogo } from "../../utils/fetchLogo";
 import { TextField } from "@mui/material";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { getSession } from "../../utils/SupabaseUtils";
+
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import RadioInput from "@mui/material/FormControlLabel";
 
 import "../../styles/ViewConInfo.css";
 import DateRangePicker from "../Utilities/DateRangePicker";
@@ -14,6 +18,13 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import WebIcon from "@mui/icons-material/Web";
 
 export default function ViewConInfo({ supabase }) {
+  const radioStyle = {
+    color: "var(--main-border-color)",
+    "&.Mui-checked": {
+      color: "white"
+    }
+  };
+
   const navigate = useNavigate();
   const params = useParams();
   const con_id = params.id;
@@ -26,30 +37,81 @@ export default function ViewConInfo({ supabase }) {
   const [userIsCreator, setUserIsCreator] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [updateObject, setUpdateObject] = useState({});
+  const [location, setLocation] = useState("");
+  const [newLocation, setNewLocation] = useState("");
 
-  const [query, setQuery] = useState("");
-  const [result, setResult] = useState([]);
-  const [hasNewQuery, setHasNewQuery] = useState(false);
+  const [isAdult, setIsAdult] = useState(tags.includes("adult"));
+  const [isVirtual, setIsVirtual] = useState(tags.includes("virtual"));
+  const tagTable = {
+    adult: "18+",
+    virtual: "Virtual Event",
+    eu: "Europe",
+    na: "North America",
+    sa: "South America",
+    asia: "Asia",
+    oceania: "Oceania",
+    other: "Other location"
+  };
 
-  async function fetchLocation() {
-    fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json`)
-      .then((res) => res.json())
-      .then((res) => setResult(res));
-  }
+  const hasTags = Boolean(tags.length);
+  // const [query, setQuery] = useState("");
+  // const [result, setResult] = useState([]);
+  // const [hasNewQuery, setHasNewQuery] = useState(false);
+  // async function fetchLocation() {
+  //   fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json`)
+  //     .then((res) => res.json())
+  //     .then((res) => setResult(res));
+  // }
+  useEffect(() => {
+    getSession(setSession);
+  }, []);
+
+  useEffect(() => {
+    // This is gonna break whenever i add more tags... but it works for now :3
+    const tags = [
+      isAdult ? "adult" : null,
+      isVirtual ? "virtual" : null,
+      newLocation ? newLocation : location ? location : null
+    ];
+
+    const filtered = tags.filter((tag) => tag !== null);
+    setTags(filtered);
+    setUpdateObject({ ...updateObject, tags: filtered });
+  }, [isAdult, isVirtual, newLocation]);
+
+  useEffect(() => {
+    if (!con_id) return;
+    if (!con.id) fetchCon(con_id);
+    if (con.id) {
+      fetchConSubmitter(con.creatorID);
+      const _tags = con.tags.replace(/("|\[|\])/g, "").split(",");
+      setTags(_tags);
+      setStartDate(new Date(con.start_time));
+      setEndDate(new Date(con.end_time));
+      setIsAdult(_tags.includes("adult") ? true : false);
+      setIsVirtual(_tags.includes("virtual") ? true : false);
+      setLocation(
+        _tags.filter((tag) => tag !== "adult" && tag !== "virtual")[0]
+      );
+    }
+  }, [con]);
 
   async function submitUpdate() {
+    console.clear();
+    console.log("UPDATING");
+    console.log(updateObject);
+
+    if (tags.length) {
+      // for (const tag in tags) if (tag) updateObject.tags.push(tag);
+    }
     const { data, error } = await supabase
       .from("conventions")
       .update(updateObject)
       .eq("id", con_id)
       .select("*");
-    if (data) setCon(data);
     if (error) console.log(error);
+    if (data) setCon(data);
   }
-
-  useEffect(() => {
-    getSession();
-  }, []);
 
   async function fetchCon(id) {
     const { data, error } = await supabase
@@ -58,14 +120,7 @@ export default function ViewConInfo({ supabase }) {
       .eq("id", id);
     if (error) throw new Error("Fetching convention failed");
     setCon(data[0]);
-  }
-
-  async function getSession() {
-    const { data, error } = await supabase.auth.getSession();
-    if (error) throw new error(error);
-    if (data) {
-      setSession(data.session);
-    }
+    console.log(data[0]);
   }
 
   async function fetchConSubmitter(id) {
@@ -87,21 +142,6 @@ export default function ViewConInfo({ supabase }) {
     // if (data) setSubmitter(data[0]);
     if (data) setSubmitter(data[0].username);
   }
-
-  useEffect(() => {
-    if (!con_id) return;
-    if (!con.id) fetchCon(con_id);
-    if (con.id) {
-      fetchConSubmitter(con.creatorID);
-      setTags(con.tags.replace(/("|\[|\])/g, "").split(","));
-      setStartDate(new Date(con.start_time));
-      setEndDate(new Date(con.end_time));
-    }
-  }, [con]);
-  // const [cons, loading] = useConsObject();
-  const daysLeft = Math.round(
-    (new Date(con.start_time) - new Date()) / (1000 * 60 * 60 * 24)
-  );
 
   const days = [
     "Sunday",
@@ -127,17 +167,6 @@ export default function ViewConInfo({ supabase }) {
     "November",
     "December"
   ];
-
-  const tagTable = {
-    adult: "18+",
-    virtual: "Virtual Event",
-    eu: "Europe",
-    na: "North America",
-    sa: "South America",
-    asia: "Asia",
-    oceania: "Oceania",
-    other: "Other location"
-  };
 
   function getTag(tag, i) {
     return tag in tagTable ? <li key={i}>{tagTable[tag]}</li> : null;
@@ -402,12 +431,81 @@ export default function ViewConInfo({ supabase }) {
                   </p>
                 </section>
               </section>
-              {Boolean(tags.length) && (
+              {!isEditing && hasTags && (
                 <>
                   <h2>Tags</h2>
                   <ul>{tags.map((tag, i) => getTag(tag, i))}</ul>
                 </>
               )}
+
+              {isEditing && hasTags && (
+                <div className="input-container">
+                  <h3>Tags</h3>
+                  <div className="input">
+                    <label htmlFor="adult">18+</label>
+                    <div>
+                      <input
+                        id="adult"
+                        type="checkbox"
+                        onChange={() => setIsAdult(!isAdult)}
+                        checked={isAdult}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="input">
+                    <label htmlFor="virtual">Virtual Con</label>
+                    <div>
+                      <input
+                        id="virtual"
+                        type="checkbox"
+                        onChange={() => setIsVirtual(!isVirtual)}
+                        checked={isVirtual}
+                      />
+                    </div>
+                  </div>
+
+                  <hr />
+                  <h3>Location</h3>
+                  <RadioGroup
+                    defaultValue={location}
+                    name="location-radio-buttons-group"
+                    onChange={(e) => setNewLocation(e.target.value)}
+                  >
+                    <RadioInput
+                      value="eu"
+                      control={<Radio sx={radioStyle} />}
+                      label="Europe"
+                    />
+                    <RadioInput
+                      value="na"
+                      control={<Radio sx={radioStyle} />}
+                      label="North America"
+                    />
+                    <RadioInput
+                      value="sa"
+                      control={<Radio sx={radioStyle} />}
+                      label="South America"
+                    />
+                    <RadioInput
+                      value="asia"
+                      control={<Radio sx={radioStyle} />}
+                      label="Asia"
+                    />
+                    <RadioInput
+                      value="oce"
+                      control={<Radio sx={radioStyle} />}
+                      label="Oceania"
+                    />
+                    <RadioInput
+                      value="other"
+                      control={<Radio sx={radioStyle} />}
+                      label="Other"
+                    />
+                  </RadioGroup>
+                </div>
+              )}
+
               {isEditing && (
                 <button
                   onClick={() => {
@@ -441,8 +539,8 @@ export default function ViewConInfo({ supabase }) {
                   <button
                     className="orange-btn"
                     onClick={() => {
-                      setQuery(null);
-                      setResult(null);
+                      // setQuery(null);
+                      // setResult(null);
                       setIsEditing(!isEditing);
                     }}
                   >{`Edit ${con.type}`}</button>

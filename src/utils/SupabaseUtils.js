@@ -1,7 +1,6 @@
 import { supabase } from "../main";
 
 export async function getSession(setter) {
-  console.log("getting session");
   const { data, error } = await supabase.auth.getSession();
 
   if (error) {

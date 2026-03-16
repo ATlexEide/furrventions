@@ -22,16 +22,20 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
     eventInfo.tags.includes("virtual") ? true : false
   );
 
+  const [location, setLocation] = useState("");
+
   useEffect(() => {
-    const tags = [isAdult ? "adult" : null, isVirtual ? "virtual" : null];
+    const tags = [
+      isAdult ? "adult" : null,
+      isVirtual ? "virtual" : null,
+      location ? location : null
+    ];
 
     setEventInfo({
       ...eventInfo,
       tags: tags.filter((tag) => tag)
     });
-
-    if (eventInfo.locationTag) setIsNotValid(false);
-  }, [isAdult, isVirtual, eventInfo.locationTag]);
+  }, [isAdult, isVirtual, location]);
 
   return (
     <>
@@ -64,11 +68,12 @@ export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
         <hr />
         <h3>Location *</h3>
         <RadioGroup
-          defaultValue={eventInfo.locationTag}
+          defaultValue={location}
           name="location-radio-buttons-group"
-          onChange={(e) =>
-            setEventInfo({ ...eventInfo, locationTag: e.target.value })
-          }
+          onChange={(e) => {
+            setLocation(e.target.value);
+            setIsNotValid(false);
+          }}
         >
           <RadioInput
             value="eu"

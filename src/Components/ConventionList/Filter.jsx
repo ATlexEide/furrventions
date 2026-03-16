@@ -43,7 +43,8 @@ export default function Filter({
     { tagName: "na", tagDisplay: "North America", tagType: "location" },
     { tagName: "sa", tagDisplay: "South America", tagType: "location" },
     { tagName: "asia", tagDisplay: "Asia", tagType: "location" },
-    { tagName: "oceania", tagDisplay: "Oceania", tagType: "location" }
+    { tagName: "oceania", tagDisplay: "Oceania", tagType: "location" },
+    { tagName: "other", tagDisplay: "Other", tagType: "location" }
   ];
   return (
     <section id="convention-list-filter">
