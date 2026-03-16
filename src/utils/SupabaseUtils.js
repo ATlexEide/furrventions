@@ -1,5 +1,17 @@
-import { data } from "react-router-dom";
 import { supabase } from "../main";
+
+export async function getSession(setter) {
+  console.log("getting session");
+  const { data, error } = await supabase.auth.getSession();
+
+  if (error) {
+    throw new error(error);
+  }
+
+  if (data) {
+    setter(data.session);
+  }
+}
 
 export async function signUpNewUser(tempUser) {
   const { data, error } = await supabase.auth.signUp({
@@ -125,7 +137,6 @@ export async function getUserSession() {
 }
 
 export async function updateUser(updateObject) {
-  console.clear();
   console.log(updateObject);
   const { user, error } = await supabase.auth.updateUser({
     email: updateObject.email
