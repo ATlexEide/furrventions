@@ -74,6 +74,7 @@ export default function ConventionCard({ con, type }) {
         </figure>
         <section className="convention-info">
           {con.name && <h2 className="convention-name">{con.name}</h2>}
+          <p>@</p>
           {con.location && <p>{con.location}</p>}
           {con.spots_total && (
             <p>
@@ -96,9 +97,8 @@ export default function ConventionCard({ con, type }) {
           {con.start_time && con.end_time && (
             <div className="convention-dates">
               <div>
-                <span className="info-prefix">Starts:</span>{" "}
                 <p>{formatDate(con.start_time)}</p>
-                <span className="info-prefix">Ends:</span>
+                <p>↓</p>
                 <p>{formatDate(con.end_time)}</p>
               </div>
             </div>
