@@ -99,7 +99,7 @@ export default function Filter({
 
         <div className="tag-container">
           {/* <div id="construction-sign"></div> */}
-          <h3>Tags | Coming soon</h3>
+          <h3>Tags</h3>
           <hr />
           <section id="standard-tags">
             {tags.map(
@@ -125,7 +125,7 @@ export default function Filter({
                 )
             )}
           </section>
-          <h3>Location | Coming soon</h3>
+          <h3>Location</h3>
           <hr />
           <section id="location-tags">
             {tags.map(
