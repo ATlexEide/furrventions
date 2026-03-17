@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 // import { resetPassword } from "./utils/SupabaseUtils";
 
 export default function Home() {
@@ -20,6 +21,9 @@ export default function Home() {
 
   return (
     <>
+      <p className="mobile alert">
+        NB: Mobile version is still a work in progress
+      </p>
       <section id="catchphrase-cont">
         <div>
           <h2 id="catchphrase">Welcome to {import.meta.env.VITE_APPNAME}</h2>
@@ -27,7 +31,14 @@ export default function Home() {
         </div>
         {/* <img id="mascot" src="mascot.png" alt="" /> */}
       </section>
-
+      <section className="mobile" id="landing-nav">
+        <Link to="/conventions">
+          <button>View cons</button>
+        </Link>
+        <Link to="signin">
+          <button disabled>Log in</button>
+        </Link>
+      </section>
       <section id="mobile-catch">
         <img id="logo" src="pawlogo.png" alt="" />
         <p>
