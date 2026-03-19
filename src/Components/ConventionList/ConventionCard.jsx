@@ -61,49 +61,52 @@ export default function ConventionCard({ con, type }) {
           type ? "convention-card" : "convention-card convention-info-card"
         }
       >
+        <div className="mobile logo-cover"></div>
         {!con.organizerID && <div className="notice">Community added</div>}
-        <figure className="convention-logo">
-          <img
-            src={
-              con.hasLogo
-                ? fetchLogo(con.id)
-                : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images/pawlogo.png"
-            }
-            alt={`${con.name} logo`}
-          />
-        </figure>
-        <section className="convention-info">
-          {con.name && <h2 className="convention-name">{con.name}</h2>}
-          <p>@</p>
-          {con.location && <p>{con.location}</p>}
-          {con.spots_total && (
-            <p>
-              <span className="info-prefix">Total spots:</span>{" "}
-              {con.spots_total}
-            </p>
-          )}
-          {con.spots_total && (
-            <>
+        <div className="main-info-container">
+          <figure className="convention-logo">
+            <img
+              src={
+                con.hasLogo
+                  ? fetchLogo(con.id)
+                  : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images/pawlogo.png"
+              }
+              alt={`${con.name} logo`}
+            />
+          </figure>
+          <section className="convention-info">
+            {con.name && <h2 className="convention-name">{con.name}</h2>}
+            <p>@</p>
+            {con.location && <p>{con.location}</p>}
+            {con.spots_total && (
               <p>
-                <span className="info-prefix">Interested:</span>{" "}
-                {con.spots_taken ? con.spots_taken : 0}
+                <span className="info-prefix">Total spots:</span>{" "}
+                {con.spots_total}
               </p>
-              <p>
-                <span className="info-prefix">Spots left*:</span>{" "}
-                {con.spots_total - con.spots_taken}
-              </p>
-            </>
-          )}
-          {con.start_time && con.end_time && (
-            <div className="convention-dates">
-              <div>
-                <p>{formatDate(con.start_time)}</p>
-                <p>↓</p>
-                <p>{formatDate(con.end_time)}</p>
+            )}
+            {con.spots_total && (
+              <>
+                <p>
+                  <span className="info-prefix">Interested:</span>{" "}
+                  {con.spots_taken ? con.spots_taken : 0}
+                </p>
+                <p>
+                  <span className="info-prefix">Spots left*:</span>{" "}
+                  {con.spots_total - con.spots_taken}
+                </p>
+              </>
+            )}
+            {con.start_time && con.end_time && (
+              <div className="convention-dates">
+                <div>
+                  <p>{formatDate(con.start_time)}</p>
+                  <p>↓</p>
+                  <p>{formatDate(con.end_time)}</p>
+                </div>
               </div>
-            </div>
-          )}
-        </section>
+            )}
+          </section>
+        </div>
         <section>
           {con.description && (
             <div className="convention-desc">

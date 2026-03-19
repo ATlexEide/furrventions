@@ -5,7 +5,13 @@
   display: none;
 }
 
+.main-info-container {
+  display: flex;
+}
 @media only screen and (max-width: 900px) {
+  :root {
+    --card-color: var(--main-accent-color);
+  }
   #wipAlert,
   header,
   footer {
@@ -53,12 +59,31 @@
     width: 100%;
   }
 
+  #convention-list-cont {
+    border-radius: 0;
+  }
+
   .convention-card {
+    background-color: var(--card-color);
     width: 100%;
     flex-direction: column;
-    height: 700px;
+    height: fit-content;
     gap: 12px;
   }
+
+  .convention-card:hover {
+    background-color: transparent;
+  }
+
+  .convention-card section {
+    position: relative;
+    z-index: 5;
+  }
+
+  .notice {
+    z-index: 10;
+  }
+
   .convention-card section:last-child {
     width: 100%;
   }
@@ -69,11 +94,32 @@
     border-top: 1px solid rgb(226, 163, 255);
   }
   .convention-logo {
-    width: 100%;
+    z-index: 0;
+    position: absolute;
+    left: 24px;
+    top: 10%;
     height: 200px;
   }
+
+  .logo-cover {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    background-color: purple;
+    background: #ff0000;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.555) 33%,
+      var(--card-color) 100%
+    );
+  }
+
   .convention-logo img {
-    width: 200px;
+    width: fit-content;
     height: 200px;
   }
 
@@ -83,10 +129,15 @@
     align-items: center;
     gap: 12px;
   }
+
   .alert {
     background-color: red;
     padding: 12px;
     width: 100%;
+  }
+
+  .main-info-container {
+    padding: 24px;
   }
 
   a h4 {
