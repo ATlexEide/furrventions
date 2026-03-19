@@ -1,6 +1,5 @@
-#mobile-catch {
-  display: none;
-}
+#mobile-header,
+#mobile-catch,
 .mobile {
   display: none;
 }
@@ -13,7 +12,6 @@
     --card-color: rgb(10, 9, 32);
   }
   #wipAlert,
-  header,
   footer {
     display: none;
   }
@@ -28,7 +26,7 @@
   }
 
   #logo {
-    height: 10%;
+    height: 100%;
     aspect-ratio: 1;
   }
 
@@ -42,7 +40,18 @@
     height: 100%;
   }
 
+  #catchphrase-cont {
+    height: fit-content;
+    padding: 70px 0;
+  }
+
+  #header-home {
+    font-size: 1rem;
+  }
+
   #convention-list-filter {
+    margin-left: auto;
+    margin-right: auto;
     width: 90vw;
     min-height: 100svh;
     height: fit-content;
