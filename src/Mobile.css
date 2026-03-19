@@ -10,7 +10,7 @@
 }
 @media only screen and (max-width: 900px) {
   :root {
-    --card-color: var(--main-accent-color);
+    --card-color: rgb(10, 9, 32);
   }
   #wipAlert,
   header,
@@ -109,11 +109,10 @@
     height: 100%;
     width: 100%;
     opacity: 1;
-    background-color: purple;
-    background: #ff0000;
+    background: var(--card-color);
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.555) 33%,
+      rgba(0, 0, 0, 0.555) 10%,
       var(--card-color) 100%
     );
   }
@@ -137,7 +136,13 @@
   }
 
   .main-info-container {
-    padding: 24px;
+    width: 100%;
+    padding: 24px 0 0 24px;
+  }
+
+  .convention-info {
+    width: 100%;
+    padding: 0;
   }
 
   #convention-info-main {
