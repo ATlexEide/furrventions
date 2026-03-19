@@ -140,6 +140,14 @@
     padding: 24px;
   }
 
+  #convention-info-main {
+    flex-direction: column;
+  }
+
+  #convention-general {
+    padding: 24px;
+  }
+
   a h4 {
     text-decoration: underline;
   }
