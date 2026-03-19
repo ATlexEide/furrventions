@@ -153,6 +153,10 @@
     padding: 24px;
   }
 
+  #convention-info-heading {
+    padding: 0 24px;
+  }
+
   a h4 {
     text-decoration: underline;
   }
