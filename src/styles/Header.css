@@ -9,6 +9,70 @@ header {
   gap: 12px;
 }
 
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-open {
+  background-color: var(--main-bg-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  flex-direction: column;
+  justify-content: start;
+  height: 100svh;
+  width: 100vw;
+  padding: 16px;
+}
+.nav-open #hamburger-toggle {
+  align-self: flex-end;
+}
+
+.nav-open #burger-menu {
+  height: 100%;
+}
+
+.nav-open #user-container {
+  position: absolute;
+  height: fit-content;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  flex-direction: column;
+  border: none;
+}
+.nav-open #user-container ul li {
+  padding: 16px 0;
+}
+
+.nav-open hr {
+  width: 100%;
+  margin: 7px 0;
+}
+
+#hamburger-toggle {
+  outline: none;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+#burger-icon {
+  height: 32px;
+  aspect-ratio: 1;
+  color: white;
+}
+
 #user-container {
   display: flex;
   align-items: center;
