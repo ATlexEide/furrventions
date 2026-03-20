@@ -166,6 +166,24 @@
     padding: 0 24px;
   }
 
+  form {
+    width: 100%;
+    min-height: 600px;
+    height: fit-content;
+  }
+
+  form h2 {
+    padding: 14px 0;
+  }
+
+  .MuiButtonBase-root {
+    text-overflow: clip;
+  }
+
+  #pagination-buttons button {
+    width: 50%;
+  }
+
   a h4 {
     text-decoration: underline;
   }
