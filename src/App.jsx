@@ -33,10 +33,7 @@ export default function Home() {
       </section>
       <section className="mobile" id="landing-nav">
         <Link to="/conventions">
-          <button>View cons</button>
-        </Link>
-        <Link to="signin">
-          <button disabled>Log in</button>
+          <button>View Conventions</button>
         </Link>
       </section>
       <section id="mobile-catch">
