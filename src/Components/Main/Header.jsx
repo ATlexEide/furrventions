@@ -110,42 +110,59 @@ export default function Header() {
               />
             </button>
             <section id="burger-menu" hidden={!isBurgerOpen}>
-              {!user && (
-                <div id="user-container">
-                  <ul>
+              <ul id="burger-main">
+                <li>
+                  <Link
+                    to="conventions"
+                    onClick={clickHandler}
+                    className="hamburger-option"
+                  >
+                    View Conventions
+                  </Link>
+                  {user && (
                     <li>
-                      <Link to="conventions" onClick={clickHandler}>
-                        View Conventions
-                      </Link>
-                    </li>
-                    <hr />
-                    <li>
-                      <Link to="signin" onClick={clickHandler}>
-                        Log in
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="signup" onClick={clickHandler}>
-                        Sign up
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-              {user && (
-                <>
-                  <ul>
-                    <li>
-                      <Link to="conventions" onClick={clickHandler}>
-                        View Conventions
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="conventions/add" onClick={clickHandler}>
+                      <Link
+                        to="conventions/add"
+                        onClick={clickHandler}
+                        className="hamburger-option"
+                      >
                         Add convention
                       </Link>
                     </li>
-                  </ul>
+                  )}
+                </li>
+              </ul>
+
+              {!user && (
+                <>
+                  <div id="user-container">
+                    <hr />
+                    <ul>
+                      <li>
+                        <Link
+                          to="signin"
+                          onClick={clickHandler}
+                          className="hamburger-option"
+                        >
+                          Log in
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="signup"
+                          onClick={clickHandler}
+                          className="hamburger-option"
+                        >
+                          Sign up
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              )}
+
+              {user && (
+                <>
                   <div id="user-container">
                     <hr />
                     <h2>{`Logged in as ${user.user_metadata.furname}`}</h2>
