@@ -1,7 +1,7 @@
-// import { useSupabase } from "../utils/useSupabase";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Form from "../Utilities/Form";
+import { supabase } from "../../utils/SupabaseUtils";
 
 // CSS
 import "../../styles/Forms.css";
@@ -16,7 +16,7 @@ import EventTags from "./EventTags";
 import EventAdditionalInfo from "./EventAdditionalInfo";
 import { uploadLogo } from "../../utils/uploadLogo";
 
-export default function AddConvention({ supabase }) {
+export default function AddConvention() {
   const [page, setPage] = useState(0);
   const [session, setSession] = useState(null);
   const [isNotValid, setIsNotValid] = useState(true);

@@ -5,6 +5,7 @@ import Loading from "../Utilities/Loading";
 import { fetchLogo } from "../../utils/fetchLogo";
 import { TextField } from "@mui/material";
 import { getSession } from "../../utils/SupabaseUtils";
+import { supabase } from "../../utils/SupabaseUtils";
 
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -17,7 +18,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import BadgeIcon from "@mui/icons-material/Badge";
 import WebIcon from "@mui/icons-material/Web";
 
-export default function ViewConInfo({ supabase }) {
+export default function ViewConInfo() {
   const radioStyle = {
     color: "var(--main-border-color)",
     "&.Mui-checked": {

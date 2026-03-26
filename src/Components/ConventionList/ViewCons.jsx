@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchAndSetAllCons } from "../../utils/SupabaseUtils.js";
 import { filterCons } from "../../utils/conventionFilter.js";
+import { supabase } from "../../utils/SupabaseUtils.js";
 
 import Filter from "./Filter.jsx";
 import Loading from "../Utilities/Loading.jsx";
@@ -9,7 +10,7 @@ import MapWithPlaceholder from "../Utilities/Map.jsx";
 
 import "../../styles/ViewCons.css";
 
-export default function ViewCons({ supabase }) {
+export default function ViewCons() {
   const [consObj, setConsObj] = useState({});
   const [loading, setLoading] = useState(true);
   const [cons, setCons] = useState(

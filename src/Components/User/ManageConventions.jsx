@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { supabase } from "../../utils/SupabaseUtils";
 
-export default function ManageConventions({ supabase }) {
+export default function ManageConventions() {
   const [conventions, setConventions] = useState(null);
   const [session, setSession] = useState(null);
 
