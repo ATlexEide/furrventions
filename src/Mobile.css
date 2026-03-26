@@ -184,6 +184,14 @@
     width: 50%;
   }
 
+  #reset-password {
+    height: 70svh;
+  }
+
+  #reset-password .input-container {
+    flex-direction: row;
+  }
+
   a h4 {
     text-decoration: underline;
   }
