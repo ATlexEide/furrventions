@@ -1,4 +1,9 @@
-import { supabase } from "../main";
+import { createClient } from "@supabase/supabase-js";
+
+export const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_KEY
+);
 
 export async function getSession(setter) {
   const { data, error } = await supabase.auth.getSession();
@@ -51,9 +56,15 @@ async function createPublicProfile(user) {
 }
 
 async function updatePublicProfile(updateObject) {
+  console.log(updateObject);
+  let payload = { user_id: updateObject.user_id };
+  updateObject.email ? (payload.email = updateObject.email) : null;
+  updateObject.username ? (payload.username = updateObject.username) : null;
+
   const { data, error } = await supabase
     .from("users")
-    .upsert(updateObject)
+    .update(payload)
+    .eq("user_id", updateObject.user_id)
     .select();
   console.log(data);
   if (error) {
@@ -79,7 +90,10 @@ export async function checkIsUsernameTaken(name) {
     .select("username")
     .ilike("username", name);
 
-  if (error) console.log(error);
+  if (error) {
+    console.log(error);
+    alert(error.message);
+  }
   if (data[0]?.username.toLowerCase() === name.toLowerCase()) {
     return true;
   } else {
@@ -105,8 +119,11 @@ export async function logout() {
 }
 
 export async function sendResetPasswordLink(email) {
-  const { data, error } = await supabase.auth.resetPasswordForEmail(email);
-  if (error) throw new Error("Failed to send reset link", error);
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    // redirectTo: "http://localhost:5173/reset-password"
+    redirectTo: "https://www.furrventions.com/reset-password"
+  });
+  if (error) alert("Failed to send reset link, please try again soon");
   if (data) {
     alert("A link to reset your password has been sent to your email");
   }
@@ -115,7 +132,7 @@ export async function sendResetPasswordLink(email) {
 export async function resetPassword() {
   // eslint-disable-next-line no-unused-vars
   supabase.auth.onAuthStateChange(async (event, session) => {
-    if (event == "PASSWORD_RECOVERY") {
+    if (event === "PASSWORD_RECOVERY") {
       const newPassword = prompt(
         "What would you like your new password to be?"
       );
@@ -136,27 +153,44 @@ export async function getUserSession() {
 }
 
 export async function updateUser(updateObject) {
-  console.log(updateObject);
-  const { user, error } = await supabase.auth.updateUser({
-    email: updateObject.email
-  });
+  console.log("//////////////", updateObject, "//////////////");
+  const email = updateObject.email;
+  const furname = updateObject.data?.username;
+
+  let payload = { email, data: {} };
+
+  if (furname) payload.data.furname = furname;
+
+  const { user, error } = await supabase.auth.updateUser(payload);
   if (error)
     switch (error.code) {
       case "email_exists":
         alert("The email is already in use");
-        throw new Error(error.code);
+        return;
+
+      case "over_email_send_rate_limit":
+        alert("Too many email updates, please wait");
+        return;
 
       default:
         throw new Error(error);
     }
-  alert("Check your email to confirm mail change");
-  if (user) console.log(user);
-  // const publicUpdateObject = {};
-  // publicUpdateObject.id = updateObject.id;
+  if (user && email) {
+    alert("Check your email to confirm change");
+  }
 
-  // if ("furname" in updateObject)
-  //   publicUpdateObject.username = updateObject.furname;
+  const publicUpdateObject = { user_id: updateObject.user_id };
 
-  // if ("email" in updateObject) publicUpdateObject.email = updateObject.email;
-  // if (await updatePublicProfile(publicUpdateObject)) alert("Account updated");
+  if (furname) publicUpdateObject.username = furname;
+  if (email) publicUpdateObject.email = email;
+  const message = `${
+    furname && email
+      ? "Username updated \n Check your emails for confirmation links"
+      : furname
+      ? "Username updated"
+      : email
+      ? "Check your emails for confirmation links"
+      : null
+  }`;
+  if (await updatePublicProfile(publicUpdateObject)) alert(message);
 }
