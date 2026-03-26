@@ -1,4 +1,4 @@
-import { supabase } from "../main";
+import { supabase } from "./SupabaseUtils.js";
 
 export function fetchLogo(id) {
   const { data } = supabase.storage
