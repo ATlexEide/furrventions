@@ -13,6 +13,7 @@ import Kofi from "./Components/Utilities/Kofi.jsx";
 import ViewConInfo from "./Components/Convention/ViewConInfo.jsx";
 import SignUp from "./Components/User/SignUp.jsx";
 import SignIn from "./Components/User/SignIn.jsx";
+import ResetPassword from "./Components/User/ResetPassword.jsx";
 
 import "./App.css";
 import "./styles/Forms.css";
@@ -44,6 +45,8 @@ createRoot(document.getElementById("root")).render(
       <main>
         <Routes>
           <Route exact path="/" element={<App />} />
+
+          <Route exact path="reset-password" element={<ResetPassword />} />
 
           <Route exact path="signin" element={<SignIn />} />
 
