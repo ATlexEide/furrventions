@@ -94,7 +94,7 @@ export async function checkIsUsernameTaken(name) {
     console.log(error);
     alert(error.message);
   }
-  if (data[0]?.username.toLowerCase() === name.toLowerCase().trim()) {
+  if (data[0]?.username.toLowerCase().trim() === name.toLowerCase().trim()) {
     return true;
   } else {
     return false;
