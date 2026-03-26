@@ -18,6 +18,7 @@
   display: flex;
 }
 #convention-info-main {
+  gap: 24px;
   display: flex;
   height: 100%;
 }
@@ -29,6 +30,8 @@
 }
 
 #convention-container {
+  background-color: var(--main-accent-color);
+  border-radius: 24px;
   display: flex;
   justify-content: flex-start;
 }
