@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
 import { Analytics } from "@vercel/analytics/react";
 
 import App from "./App.jsx";
@@ -19,7 +18,7 @@ import "./App.css";
 import "./styles/Forms.css";
 import "./styles/ViewCons.css";
 import "./Mobile.css";
-import WipAlert from "./Components/Utilities/WipAlert.jsx";
+// import WipAlert from "./Components/Utilities/WipAlert.jsx";
 import "./index.css";
 
 import "@fontsource/roboto/300.css";
@@ -36,53 +35,32 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
   throw new Error("Missing Supabase Key");
 }
 
-export const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_KEY
-);
-
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Analytics />
     {/* <WipAlert /> */}
     <Router>
-      <Header supabase={supabase} />
+      <Header />
       <main>
         <Routes>
           <Route exact path="/" element={<App />} />
 
-          <Route exact path="signin" element={<SignIn supabase={supabase} />} />
+          <Route exact path="signin" element={<SignIn />} />
 
-          <Route exact path="signup" element={<SignUp supabase={supabase} />} />
+          <Route exact path="signup" element={<SignUp />} />
 
-          <Route
-            exact
-            path="conventions"
-            element={<ViewCons supabase={supabase} />}
-          />
+          <Route exact path="conventions" element={<ViewCons />} />
 
-          <Route
-            exact
-            path="conventions/add"
-            element={<AddConvention supabase={supabase} />}
-          />
+          <Route exact path="conventions/add" element={<AddConvention />} />
 
-          <Route
-            exact
-            path="conventions/:id"
-            element={<ViewConInfo supabase={supabase} />}
-          />
+          <Route exact path="conventions/:id" element={<ViewConInfo />} />
 
-          <Route
-            exact
-            path="user/:id/manage"
-            element={<AccountPage supabase={supabase} />}
-          />
+          <Route exact path="user/:id/manage" element={<AccountPage />} />
 
           <Route
             exact
             path="user/:id/conventions"
-            element={<ManageConventions supabase={supabase} />}
+            element={<ManageConventions />}
           />
 
           <Route exact path="accessibility" element={<Accessibility />} />
