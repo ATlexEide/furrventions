@@ -51,14 +51,12 @@ export default function AccountPage() {
     );
 
     const emailChange = Boolean(
-      tempUser.email && tempUser.email !== user.user_metadata.email
+      tempUser.email && tempUser.email !== user.email
     );
 
     const payload = { user_id: user.id };
-    nameChange ? (payload.data = { furname: tempUser.furname }) : null;
+    nameChange ? (payload.data = { username: tempUser.furname }) : null;
     emailChange ? (payload.email = tempUser.email) : null;
-    console.clear();
-    console.log(payload);
     await updateUser(payload);
   }
 
@@ -243,7 +241,7 @@ export default function AccountPage() {
         <button className="red-btn" onClick={logout}>
           LOG OUT
         </button>
-        <button
+        {/* <button
           disabled={true}
           className="red-btn"
           onClick={() => {
@@ -256,7 +254,7 @@ export default function AccountPage() {
           }}
         >
           DELETE ACCOUNT
-        </button>
+        </button> */}
       </section>
     </section>
   );
