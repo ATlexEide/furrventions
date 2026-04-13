@@ -57,7 +57,7 @@ export default function AccountPage() {
     const payload = { user_id: user.id };
     nameChange ? (payload.data = { username: tempUser.furname }) : null;
     emailChange ? (payload.email = tempUser.email) : null;
-    await updateUser(payload);
+    (await updateUser(payload)) ? window.location.reload() : null;
   }
 
   // Furname
