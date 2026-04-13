@@ -195,4 +195,12 @@
   a h4 {
     text-decoration: underline;
   }
+
+  #account-page #user-details {
+    width: 100%;
+    padding: var(--settings-padding) 0;
+  }
+  #account-page .danger-zone {
+    justify-content: center;
+  }
 }
