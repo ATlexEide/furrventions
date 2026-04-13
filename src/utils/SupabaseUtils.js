@@ -192,5 +192,9 @@ export async function updateUser(updateObject) {
       ? "Check your emails for confirmation links"
       : null
   }`;
-  if (await updatePublicProfile(publicUpdateObject)) alert(message);
+  if (await updatePublicProfile(publicUpdateObject)) {
+    alert(message);
+    // Return bool to refresh page if change is successful
+    return true;
+  } else return false;
 }
