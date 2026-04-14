@@ -119,18 +119,18 @@ export default function Header() {
                   >
                     View Conventions
                   </Link>
-                  {user && (
-                    <li>
-                      <Link
-                        to="conventions/add"
-                        onClick={clickHandler}
-                        className="hamburger-option"
-                      >
-                        Add convention
-                      </Link>
-                    </li>
-                  )}
                 </li>
+                {user && (
+                  <li>
+                    <Link
+                      to="conventions/add"
+                      onClick={clickHandler}
+                      className="hamburger-option"
+                    >
+                      Add convention
+                    </Link>
+                  </li>
+                )}
               </ul>
 
               {!user && (
