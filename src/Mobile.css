@@ -52,20 +52,34 @@
   #convention-list-filter {
     margin-left: auto;
     margin-right: auto;
-    width: 90vw;
+    width: 100%;
     min-height: 100svh;
+    padding: 12px;
     height: fit-content;
+  }
+
+  #filter-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #filter-buttons button {
+    width: 100%;
   }
 
   #standard-tags,
   #location-tags {
     display: flex;
     flex-direction: column;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
   }
 
   .tag-container .input {
     width: 100%;
+    flex-direction: row;
+    justify-content: end;
+    padding: 0 32px;
   }
 
   #convention-list-cont {
