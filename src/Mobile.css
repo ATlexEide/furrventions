@@ -203,4 +203,7 @@
   #account-page .danger-zone {
     justify-content: center;
   }
+  #user-container ul {
+    text-align: center;
+  }
 }
