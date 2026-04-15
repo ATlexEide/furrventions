@@ -3,6 +3,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 
 import "../../styles/Filter.css";
+import { useState, useEffect } from "react";
+import { mobileWidth } from "../../main";
 
 export default function Filter({
   activeTags,
@@ -34,7 +36,19 @@ export default function Filter({
       }
     }
   });
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileWidth);
+  const [isOpen, setIsOpen] = useState(false);
 
+  function checkScreenSize() {
+    setIsMobile(window.innerWidth <= mobileWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", checkScreenSize);
+    checkScreenSize();
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
   const tags = [
     { tagName: "adult", tagDisplay: "18+" },
     { tagName: "virtual", tagDisplay: "Virtual" },
@@ -46,139 +60,305 @@ export default function Filter({
     { tagName: "oceania", tagDisplay: "Oceania", tagType: "location" },
     { tagName: "other", tagDisplay: "Other", tagType: "location" }
   ];
-  return (
-    <section id="convention-list-filter">
-      <section id="filter-options">
-        <div className="filter-option-input">
-          <ThemeProvider theme={filterTheme}>
-            <section id="filter-searchbars">
-              <div className="input-container">
-                <TextField
-                  id="convention-name"
-                  size="small"
-                  fullWidth
-                  type="text"
-                  label={
-                    <span
-                      style={{ display: "flex", alignItems: "center", gap: 4 }}
-                    >
-                      Event name
-                    </span>
-                  }
-                  variant="outlined"
-                  onChange={(e) => {
-                    setFilter({ ...filter, name: e.target.value });
-                  }}
-                />
+  if (!isMobile)
+    return (
+      <section id="convention-list-filter">
+        <section id="filter-options">
+          <div className="filter-option-input">
+            <ThemeProvider theme={filterTheme}>
+              <section id="filter-searchbars">
+                <div className="input-container">
+                  <TextField
+                    id="convention-name"
+                    size="small"
+                    fullWidth
+                    type="text"
+                    label={
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 4
+                        }}
+                      >
+                        Event name
+                      </span>
+                    }
+                    variant="outlined"
+                    onChange={(e) => {
+                      setFilter({ ...filter, name: e.target.value });
+                    }}
+                  />
+                </div>
+                <div className="input-container">
+                  <TextField
+                    id="convention-location"
+                    size="small"
+                    fullWidth
+                    type="text"
+                    label={
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 4
+                        }}
+                      >
+                        Event Location
+                      </span>
+                    }
+                    variant="outlined"
+                    onChange={(e) => {
+                      setFilter({
+                        ...filter,
+                        location: e.target.value
+                      });
+                    }}
+                  />
+                </div>
+              </section>
+            </ThemeProvider>
+          </div>
+
+          <div className="tag-container">
+            {/* <div id="construction-sign"></div> */}
+            <h3>Tags</h3>
+            <hr />
+            <section id="standard-tags">
+              {tags.map(
+                (tag, i) =>
+                  !tag.tagType && (
+                    <div key={i} className="input">
+                      <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
+                      <div>
+                        <input
+                          // disabled
+                          id={tag.tagName}
+                          type="checkbox"
+                          onChange={(e) => {
+                            setActiveTags({
+                              ...activeTags,
+                              [tag.tagName]: e.target.checked
+                            });
+                          }}
+                          checked={activeTags?.[tag.tagName] ? true : false}
+                        />
+                      </div>
+                    </div>
+                  )
+              )}
+            </section>
+            <h3>Location</h3>
+            <hr />
+            <section id="location-tags">
+              {tags.map(
+                (tag, i) =>
+                  tag.tagType === "location" && (
+                    <div key={i} className="input">
+                      <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
+                      <div>
+                        <input
+                          // disabled
+                          id={tag.tagName}
+                          type="checkbox"
+                          onChange={(e) => {
+                            setActiveTags({
+                              ...activeTags,
+                              [tag.tagName]: e.target.checked
+                            });
+                          }}
+                          checked={activeTags?.[tag.tagName] ? true : false}
+                        />
+                      </div>
+                    </div>
+                  )
+              )}
+            </section>
+          </div>
+        </section>
+
+        <section id="filter-buttons">
+          <button
+            onClick={() => {
+              filterCons();
+            }}
+          >
+            Refresh
+          </button>
+          <button
+            onClick={() => {
+              setFilter({});
+              setHasFilter(false);
+              setActiveTags({ ignoreOld: true });
+            }}
+          >
+            Reset filter
+          </button>
+          <button
+            onClick={() => {
+              setShowMap(!showMap);
+            }}
+          >
+            Toggle map view
+          </button>
+        </section>
+      </section>
+    );
+
+  if (isMobile)
+    return (
+      <section id="convention-list-filter">
+        <button
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          {isOpen ? "Hide Filter" : "Show Filter"}
+        </button>
+
+        {isOpen && (
+          <>
+            <section id="filter-options">
+              <div className="filter-option-input">
+                <ThemeProvider theme={filterTheme}>
+                  <section id="filter-searchbars">
+                    <div className="input-container">
+                      <TextField
+                        id="convention-name"
+                        size="small"
+                        fullWidth
+                        type="text"
+                        label={
+                          <span
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 4
+                            }}
+                          >
+                            Event name
+                          </span>
+                        }
+                        variant="outlined"
+                        onChange={(e) => {
+                          setFilter({ ...filter, name: e.target.value });
+                        }}
+                      />
+                    </div>
+                    <div className="input-container">
+                      <TextField
+                        id="convention-location"
+                        size="small"
+                        fullWidth
+                        type="text"
+                        label={
+                          <span
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 4
+                            }}
+                          >
+                            Event Location
+                          </span>
+                        }
+                        variant="outlined"
+                        onChange={(e) => {
+                          setFilter({
+                            ...filter,
+                            location: e.target.value
+                          });
+                        }}
+                      />
+                    </div>
+                  </section>
+                </ThemeProvider>
               </div>
-              <div className="input-container">
-                <TextField
-                  id="convention-location"
-                  size="small"
-                  fullWidth
-                  type="text"
-                  label={
-                    <span
-                      style={{ display: "flex", alignItems: "center", gap: 4 }}
-                    >
-                      Event Location
-                    </span>
-                  }
-                  variant="outlined"
-                  onChange={(e) => {
-                    setFilter({
-                      ...filter,
-                      location: e.target.value
-                    });
-                  }}
-                />
+
+              <div className="tag-container">
+                {/* <div id="construction-sign"></div> */}
+                <h3>Tags</h3>
+                <hr />
+                <section id="standard-tags">
+                  {tags.map(
+                    (tag, i) =>
+                      !tag.tagType && (
+                        <div key={i} className="input">
+                          <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
+                          <div>
+                            <input
+                              // disabled
+                              id={tag.tagName}
+                              type="checkbox"
+                              onChange={(e) => {
+                                setActiveTags({
+                                  ...activeTags,
+                                  [tag.tagName]: e.target.checked
+                                });
+                              }}
+                              checked={activeTags?.[tag.tagName] ? true : false}
+                            />
+                          </div>
+                        </div>
+                      )
+                  )}
+                </section>
+                <h3>Location</h3>
+                <hr />
+                <section id="location-tags">
+                  {tags.map(
+                    (tag, i) =>
+                      tag.tagType === "location" && (
+                        <div key={i} className="input">
+                          <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
+                          <div>
+                            <input
+                              // disabled
+                              id={tag.tagName}
+                              type="checkbox"
+                              onChange={(e) => {
+                                setActiveTags({
+                                  ...activeTags,
+                                  [tag.tagName]: e.target.checked
+                                });
+                              }}
+                              checked={activeTags?.[tag.tagName] ? true : false}
+                            />
+                          </div>
+                        </div>
+                      )
+                  )}
+                </section>
               </div>
             </section>
-          </ThemeProvider>
-        </div>
 
-        <div className="tag-container">
-          {/* <div id="construction-sign"></div> */}
-          <h3>Tags</h3>
-          <hr />
-          <section id="standard-tags">
-            {tags.map(
-              (tag, i) =>
-                !tag.tagType && (
-                  <div key={i} className="input">
-                    <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
-                    <div>
-                      <input
-                        // disabled
-                        id={tag.tagName}
-                        type="checkbox"
-                        onChange={(e) => {
-                          setActiveTags({
-                            ...activeTags,
-                            [tag.tagName]: e.target.checked
-                          });
-                        }}
-                        checked={activeTags?.[tag.tagName] ? true : false}
-                      />
-                    </div>
-                  </div>
-                )
-            )}
-          </section>
-          <h3>Location</h3>
-          <hr />
-          <section id="location-tags">
-            {tags.map(
-              (tag, i) =>
-                tag.tagType === "location" && (
-                  <div key={i} className="input">
-                    <label htmlFor={tag.tagName}>{tag.tagDisplay}</label>
-                    <div>
-                      <input
-                        // disabled
-                        id={tag.tagName}
-                        type="checkbox"
-                        onChange={(e) => {
-                          setActiveTags({
-                            ...activeTags,
-                            [tag.tagName]: e.target.checked
-                          });
-                        }}
-                        checked={activeTags?.[tag.tagName] ? true : false}
-                      />
-                    </div>
-                  </div>
-                )
-            )}
-          </section>
-        </div>
+            <section id="filter-buttons">
+              <button
+                onClick={() => {
+                  filterCons();
+                }}
+              >
+                Refresh
+              </button>
+              <button
+                onClick={() => {
+                  setFilter({});
+                  setHasFilter(false);
+                  setActiveTags({ ignoreOld: true });
+                }}
+              >
+                Reset filter
+              </button>
+              <button
+                onClick={() => {
+                  setShowMap(!showMap);
+                }}
+              >
+                Toggle map view
+              </button>
+            </section>
+          </>
+        )}
       </section>
-
-      <section id="filter-buttons">
-        <button
-          onClick={() => {
-            filterCons();
-          }}
-        >
-          Refresh
-        </button>
-        <button
-          onClick={() => {
-            setFilter({});
-            setHasFilter(false);
-            setActiveTags({ ignoreOld: true });
-          }}
-        >
-          Reset filter
-        </button>
-        <button
-          onClick={() => {
-            setShowMap(!showMap);
-          }}
-        >
-          Toggle map view
-        </button>
-      </section>
-    </section>
-  );
+    );
 }
