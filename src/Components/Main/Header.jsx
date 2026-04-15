@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import "../../styles/Header.css";
 import UserButton from "../User/UserButton";
 import { getUserSession, logout } from "../../utils/SupabaseUtils";
+import { mobileWidth } from "../../main";
 
 export default function Header() {
-  const mobileWidth = 900;
   const [user, setUser] = useState(null);
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileWidth);

@@ -36,6 +36,8 @@ if (!import.meta.env.VITE_SUPABASE_KEY) {
   throw new Error("Missing Supabase Key");
 }
 
+export const mobileWidth = 900;
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Analytics />
