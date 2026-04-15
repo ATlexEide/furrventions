@@ -178,13 +178,13 @@ export default function Filter({
         </section>
 
         <section id="filter-buttons">
-          <button
+          {/* <button
             onClick={() => {
               filterCons();
             }}
           >
             Refresh
-          </button>
+          </button> */}
           <button
             onClick={() => {
               setFilter({});
@@ -333,13 +333,13 @@ export default function Filter({
             </section>
 
             <section id="filter-buttons">
-              <button
+              {/* <button
                 onClick={() => {
                   filterCons();
                 }}
               >
                 Refresh
-              </button>
+              </button> */}
               <button
                 onClick={() => {
                   setFilter({});
