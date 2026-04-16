@@ -509,6 +509,7 @@ export default function ViewConInfo() {
 
               {isEditing && (
                 <button
+                  id="save-edits"
                   onClick={() => {
                     if ("name" in updateObject && !updateObject.name) {
                       alert("Convention must have a name");
