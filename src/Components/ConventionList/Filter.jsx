@@ -209,6 +209,7 @@ export default function Filter({
     return (
       <section id="convention-list-filter">
         <button
+          id="toggle-show-filter"
           onClick={() => {
             setIsOpen(!isOpen);
           }}
