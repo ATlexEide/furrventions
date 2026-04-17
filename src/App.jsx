@@ -21,9 +21,6 @@ export default function Home() {
 
   return (
     <>
-      <p className="mobile alert">
-        NB: Mobile version is still a work in progress
-      </p>
       <section id="catchphrase-cont">
         <div>
           <h2 id="catchphrase">Welcome to {import.meta.env.VITE_APPNAME}</h2>
