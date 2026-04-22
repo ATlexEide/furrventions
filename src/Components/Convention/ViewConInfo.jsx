@@ -533,7 +533,7 @@ export default function ViewConInfo() {
                   // TODO: ADD LOGIC
                 }
               >
-                Save to my events
+                Save event
               </button>
               {!session && <p>Log in to save event</p>}
               {userIsCreator && (
