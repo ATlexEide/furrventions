@@ -198,3 +198,25 @@ export async function updateUser(updateObject) {
     return true;
   } else return false;
 }
+
+export async function addParticipant(userId, conId) {
+  const { error } = await supabase
+    .from("participants")
+    .insert({ conventionID: conId, userID: userId });
+
+  if (error) alert("AAAAA");
+  else alert("GREAT SUCCESS");
+}
+
+export async function fetchParticipantCons(participantId) {
+  const { res, error } = await supabase
+    .from("participants")
+    .select("conventionID")
+    .eq("userID", participantId);
+
+  if (error) alert("AAAAA");
+  if (res) {
+    alert("GREAT SUCCESS");
+    console.log(res);
+  }
+}
