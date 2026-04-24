@@ -208,15 +208,14 @@ export async function addParticipant(userId, conId) {
   else alert("GREAT SUCCESS");
 }
 
-export async function fetchParticipantCons(participantId) {
-  const { res, error } = await supabase
+export async function fetchParticipantCons(participantId, setter) {
+  console.log(participantId);
+  const { data, error } = await supabase
     .from("participants")
-    .select("conventionID")
+    .select("conventionID, conventions(*)")
     .eq("userID", participantId);
 
-  if (error) alert("AAAAA");
-  if (res) {
-    alert("GREAT SUCCESS");
-    console.log(res);
-  }
+  if (error) console.log(error);
+  if (!setter) return data;
+  setter(data);
 }
