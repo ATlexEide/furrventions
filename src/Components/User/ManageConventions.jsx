@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../../utils/SupabaseUtils";
+import { fetchParticipantCons, supabase } from "../../utils/SupabaseUtils";
 
 export default function ManageConventions() {
   const [conventions, setConventions] = useState(null);
   const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    if (!session) {
+      getUserSession();
+      return;
+    }
+    fetchParticipantCons(session.user.id);
+  }, [session]);
 
   async function getUserSession() {
     const { data, error } = await supabase.auth.getSession();
@@ -11,25 +19,8 @@ export default function ManageConventions() {
     if (data) setSession(data.session);
   }
 
-  async function fetchUserCons() {
-    if (!session) getUserSession();
-    const { data, error } = await supabase
-      .from("participants")
-      .select(
-        `
-      conventions (
-        *
-      )
-    `
-      )
-      .eq("userID", session.user.id);
-    if (error) console.log(error);
-    if (data) setConventions(data);
-  }
-
   useEffect(() => {
     if (!session) getUserSession();
-    if (session) fetchUserCons();
   }, [session]);
 
   return (
