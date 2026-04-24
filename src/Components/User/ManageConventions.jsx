@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchParticipantCons, supabase } from "../../utils/SupabaseUtils";
+import { NoSession } from "./NoSession";
 
 export default function ManageConventions() {
   const [conventions, setConventions] = useState(null);
@@ -10,7 +11,8 @@ export default function ManageConventions() {
       getUserSession();
       return;
     }
-    fetchParticipantCons(session.user.id);
+
+    fetchParticipantCons(session.user.id, setConventions);
   }, [session]);
 
   async function getUserSession() {
@@ -22,7 +24,8 @@ export default function ManageConventions() {
   useEffect(() => {
     if (!session) getUserSession();
   }, [session]);
-
+  console.log(conventions);
+  if (!session) return <NoSession text="Log in to manage your conventions" />;
   return (
     <ul>
       {conventions &&
