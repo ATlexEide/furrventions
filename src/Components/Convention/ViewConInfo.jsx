@@ -4,7 +4,7 @@ import MapWithPlaceholder from "../Utilities/Map";
 import Loading from "../Utilities/Loading";
 import { fetchLogo } from "../../utils/fetchLogo";
 import { TextField } from "@mui/material";
-import { getSession } from "../../utils/SupabaseUtils";
+import { addParticipant, getSession } from "../../utils/SupabaseUtils";
 import { supabase } from "../../utils/SupabaseUtils";
 
 import Radio from "@mui/material/Radio";
@@ -168,6 +168,11 @@ export default function ViewConInfo() {
     "November",
     "December"
   ];
+
+  function saveEvent(userId, eventId) {
+    console.log(userId, eventId);
+    addParticipant(userId, eventId);
+  }
 
   function getTag(tag, i) {
     return tag in tagTable ? <li key={i}>{tagTable[tag]}</li> : null;
@@ -529,7 +534,7 @@ export default function ViewConInfo() {
               <button
                 disabled={session ? false : true}
                 onClick={
-                  () => console.log("click")
+                  () => saveEvent(session.user.id, con_id)
                   // TODO: ADD LOGIC
                 }
               >
