@@ -121,15 +121,26 @@ export default function Header() {
                   </Link>
                 </li>
                 {user && (
-                  <li>
-                    <Link
-                      to="conventions/add"
-                      onClick={clickHandler}
-                      className="hamburger-option"
-                    >
-                      Add convention
-                    </Link>
-                  </li>
+                  <>
+                    <li>
+                      <Link
+                        to={`user/${user.id}/conventions`}
+                        onClick={clickHandler}
+                        className="hamburger-option"
+                      >
+                        Manage my conventions
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="conventions/add"
+                        onClick={clickHandler}
+                        className="hamburger-option"
+                      >
+                        Add convention
+                      </Link>
+                    </li>
+                  </>
                 )}
               </ul>
 
