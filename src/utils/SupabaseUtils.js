@@ -199,13 +199,39 @@ export async function updateUser(updateObject) {
   } else return false;
 }
 
+export async function getIsParticipant(userId, conId, setter) {
+  console.log("checking for participation");
+  console.log(conId, userId);
+  const { data, error } = await supabase
+    .from("participants")
+    .select("conventionID")
+    .eq("conventionID", conId)
+    .eq("userID", userId);
+  if (error) console.log(error);
+  if (data)
+    data.length
+      ? console.log("IS PARTICIPANT")
+      : console.log("IS NOT PARTICIPANT");
+  if (setter && data) setter(Boolean(data.length));
+  if (data) return data.length;
+}
+
+export async function removeParticipant(userId, conId) {
+  console.log("REMOVING \n", userId, conId);
+  const response = await supabase
+    .from("participants")
+    .delete()
+    .eq("userID", userId)
+    .eq("conventionID", conId);
+  console.log(response);
+  return response;
+}
+
 export async function addParticipant(userId, conId) {
   const { error } = await supabase
     .from("participants")
     .insert({ conventionID: conId, userID: userId });
-
   if (error) alert("AAAAA");
-  else alert("GREAT SUCCESS");
 }
 
 export async function fetchParticipantCons(participantId, setter) {
