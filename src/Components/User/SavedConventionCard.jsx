@@ -54,7 +54,10 @@ export default function SavedConventionCard({ con, type }) {
   function getDaysLeft() {
     const today = new Date().getTime();
     const start = new Date(con.start_time).getTime();
-    return Math.ceil((start - today) / (1000 * 60 * 60 * 24));
+    const days = Math.ceil((start - today) / (1000 * 60 * 60 * 24));
+    return days > 0
+      ? `${days} days until start`
+      : `Started ${String(days).split("").splice(1).join("")} days ago`;
   }
   return (
     <a href={`/conventions/${con.id}`} className="saved">
@@ -93,7 +96,7 @@ export default function SavedConventionCard({ con, type }) {
               </div>
             )}
           </section>
-          <section>{`${getDaysLeft()} days left`}</section>
+          <section>{`${getDaysLeft()}`}</section>
         </div>
       </article>
     </a>
