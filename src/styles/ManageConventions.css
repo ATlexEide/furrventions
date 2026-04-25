@@ -1,0 +1,9 @@
+#my-events {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#browse-events-btn {
+  width: 100%;
+}
