@@ -4,7 +4,12 @@ import MapWithPlaceholder from "../Utilities/Map";
 import Loading from "../Utilities/Loading";
 import { fetchLogo } from "../../utils/fetchLogo";
 import { TextField } from "@mui/material";
-import { addParticipant, getSession } from "../../utils/SupabaseUtils";
+import {
+  addParticipant,
+  getIsParticipant,
+  getSession,
+  removeParticipant
+} from "../../utils/SupabaseUtils";
 import { supabase } from "../../utils/SupabaseUtils";
 
 import Radio from "@mui/material/Radio";
@@ -40,6 +45,7 @@ export default function ViewConInfo() {
   const [updateObject, setUpdateObject] = useState({});
   const [location, setLocation] = useState("");
   const [newLocation, setNewLocation] = useState("");
+  const [isParticipant, setIsParticipant] = useState(false);
 
   const [isAdult, setIsAdult] = useState(tags.includes("adult"));
   const [isVirtual, setIsVirtual] = useState(tags.includes("virtual"));
@@ -64,8 +70,13 @@ export default function ViewConInfo() {
   //     .then((res) => setResult(res));
   // }
   useEffect(() => {
-    getSession(setSession);
-  }, []);
+    if (!session) {
+      getSession(setSession);
+      return;
+    }
+    if (!con_id) return;
+    getIsParticipant(session.user.id, con_id, setIsParticipant);
+  }, [session, con_id]);
 
   useEffect(() => {
     // This is gonna break whenever i add more tags... but it works for now :3
@@ -171,7 +182,9 @@ export default function ViewConInfo() {
 
   function saveEvent(userId, eventId) {
     console.log(userId, eventId);
-    addParticipant(userId, eventId);
+    isParticipant
+      ? removeParticipant(userId, con_id)
+      : addParticipant(userId, eventId);
   }
 
   function getTag(tag, i) {
@@ -538,7 +551,7 @@ export default function ViewConInfo() {
                   // TODO: ADD LOGIC
                 }
               >
-                Save event
+                {isParticipant ? "Remove event" : "Save event"}
               </button>
               {!session && <p>Log in to save event</p>}
               {userIsCreator && (
