@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchParticipantCons, supabase } from "../../utils/SupabaseUtils";
 import { NoSession } from "./NoSession";
+import SavedConventionCard from "./SavedConventionCard";
 
 export default function ManageConventions() {
   const [conventions, setConventions] = useState(null);
@@ -29,7 +30,11 @@ export default function ManageConventions() {
   return (
     <ul>
       {conventions &&
-        conventions.map((data, i) => <li key={i}>{data.conventions.name}</li>)}
+        conventions.map((data, i) => (
+          <li key={i}>
+            <SavedConventionCard con={data.conventions} />
+          </li>
+        ))}
     </ul>
   );
 }
