@@ -52,7 +52,7 @@ export default function Filter({
   const tags = [
     { tagName: "adult", tagDisplay: "18+" },
     { tagName: "virtual", tagDisplay: "Virtual" },
-    { tagName: "ignoreOld", tagDisplay: "Ignore old events" },
+    { tagName: "ignoreOld", tagDisplay: "Ignore old" },
     { tagName: "eu", tagDisplay: "Europe", tagType: "location" },
     { tagName: "na", tagDisplay: "North America", tagType: "location" },
     { tagName: "sa", tagDisplay: "South America", tagType: "location" },

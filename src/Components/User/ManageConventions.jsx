@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { fetchParticipantCons, supabase } from "../../utils/SupabaseUtils";
 import { NoSession } from "./NoSession";
 import SavedConventionCard from "./SavedConventionCard";
+import { Link } from "react-router-dom";
+import "../../styles/ManageConventions.css";
 
 export default function ManageConventions() {
   const [conventions, setConventions] = useState(null);
@@ -28,13 +30,25 @@ export default function ManageConventions() {
   console.log(conventions);
   if (!session) return <NoSession text="Log in to manage your conventions" />;
   return (
-    <ul>
-      {conventions &&
-        conventions.map((data, i) => (
-          <li key={i}>
-            <SavedConventionCard con={data.conventions} />
-          </li>
-        ))}
-    </ul>
+    <section id="my-events">
+      {conventions && Boolean(!conventions?.length) && (
+        <>
+          <img src="https://i.imgur.com/jJVyya7.png" />
+          <button id="browse-events-btn">
+            <Link to="/conventions">Browse conventions</Link>
+          </button>
+        </>
+      )}
+
+      {Boolean(conventions?.length) && (
+        <ul>
+          {conventions.map((data, i) => (
+            <li key={i}>
+              <SavedConventionCard con={data.conventions} />
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }

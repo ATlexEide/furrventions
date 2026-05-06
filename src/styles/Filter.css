@@ -11,7 +11,7 @@
     var(--main-bg-color) 0%,
     var(--main-accent-color) 100%
   );
-  width: 500px;
+  width: 600px;
 }
 
 #filter-searchbars {
