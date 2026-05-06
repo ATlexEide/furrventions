@@ -1,7 +1,7 @@
 import { List } from "react-window";
-
-import "../../styles/VirtualizedList.css";
 import { useEffect, useRef, useState } from "react";
+
+import "./VirtualizedList.css";
 
 // function RowComponent({ index, location, style }) {
 function RowComponent({

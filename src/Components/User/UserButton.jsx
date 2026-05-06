@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import "../../styles/UserButton.css";
 import { logout } from "../../utils/SupabaseUtils";
+
+import "./UserButton.css";
 
 export default function UserButton({ user }) {
   const [isOpen, setIsOpen] = useState();

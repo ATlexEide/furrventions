@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 
-import "../../styles/Filter.css";
+import "./Filter.css";
 import { useState, useEffect } from "react";
 import { mobileWidth } from "../../main";
 

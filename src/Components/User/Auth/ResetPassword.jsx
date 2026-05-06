@@ -1,12 +1,12 @@
 import { TextField } from "@mui/material";
 import PasswordIcon from "@mui/icons-material/Password";
 import { useState } from "react";
-import { supabase } from "../../utils/SupabaseUtils";
+import { supabase } from "../../../utils/SupabaseUtils";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 
-import "../../styles/ResetPassword.css";
+import "./ResetPassword.css";
 
 export default function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");

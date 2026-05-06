@@ -4,7 +4,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import RadioInput from "@mui/material/FormControlLabel";
 
-import "../../styles/EventTags.css";
+import "./EventTags.css";
 
 export default function EventTags({ setIsNotValid, eventInfo, setEventInfo }) {
   const radioStyle = {

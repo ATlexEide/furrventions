@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "cally";
-import "../../styles/DateRangePicker.css";
+import "./DateRangePicker.css";
 
 export default function DateRangePicker({ setData, data, _value = null }) {
   const [value, setValue] = useState(_value ? _value : "");

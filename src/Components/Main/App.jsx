@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 // import { resetPassword } from "./utils/SupabaseUtils";
 
+import "./App.css";
+
 export default function Home() {
   // Taglines for display under landing page greeting
   const taglines = [

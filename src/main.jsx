@@ -8,19 +8,16 @@ import ViewCons from "./Components/ConventionList/ViewCons.jsx";
 import Header from "./Components/Main/Header.jsx";
 import Footer from "./Components/Main/Footer.jsx";
 import ManageConventions from "./Components/User/ManageConventions.jsx";
-import AddConvention from "./Components/AddConventionForm/AddConvention.jsx";
+import AddConvention from "./Components/Forms/AddConventionForm/AddConvention.jsx";
 import Kofi from "./Components/Utilities/Kofi.jsx";
 import ViewConInfo from "./Components/Convention/ViewConInfo.jsx";
-import SignUp from "./Components/User/SignUp.jsx";
+import SignUp from "./Components/User/Auth/SignUp.jsx";
 import SignIn from "./Components/User/Auth/SignIn.jsx";
-import ResetPassword from "./Components/User/ResetPassword.jsx";
+import ResetPassword from "./Components/User/Auth/ResetPassword.jsx";
 
-import "./App.css";
-import "./styles/Forms.css";
-import "./styles/ViewCons.css";
-import "./Mobile.css";
-// import WipAlert from "./Components/Utilities/WipAlert.jsx";
-import "./index.css";
+import "./Components/Forms/Forms.css";
+import "./styles/Mobile.css";
+import "./styles/index.css";
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";

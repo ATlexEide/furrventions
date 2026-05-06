@@ -1,5 +1,5 @@
 import { fetchLogo } from "../../utils/fetchLogo";
-import "../../styles/ConventionCard.css";
+import "./ConventionCard.css";
 import { useNavigate } from "react-router-dom";
 
 export default function ConventionCard({ con, type }) {
