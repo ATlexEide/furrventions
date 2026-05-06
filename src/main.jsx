@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
-import App from "./App.jsx";
+import App from "./Components/Main/App.jsx";
 import ViewCons from "./Components/ConventionList/ViewCons.jsx";
 import Header from "./Components/Main/Header.jsx";
 import Footer from "./Components/Main/Footer.jsx";
