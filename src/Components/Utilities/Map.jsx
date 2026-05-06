@@ -39,7 +39,7 @@ export default function MapWithPlaceholder({
       conIcon = new Icon({
         iconUrl: con.hasLogo
           ? fetchLogo(con.id)
-          : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images//pawlogo.png",
+          : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images//logo.png",
         iconAnchor: [0, 30],
         popupAnchor: [15, -30],
         iconSize: [30] // size of the icon

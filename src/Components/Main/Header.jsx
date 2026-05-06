@@ -41,7 +41,7 @@ export default function Header() {
         <header>
           <figure id="logo-container">
             <Link to="/">
-              <img id="logo" src="/pawlogo.png" alt="" />
+              <img id="logo" src="/logo.png" alt="" />
             </Link>
           </figure>
           <h1 id="header-home">
@@ -85,7 +85,7 @@ export default function Header() {
         <header>
           <figure id="logo-container">
             <Link to="/">
-              <img id="logo" src="/pawlogo.png" alt="" />
+              <img id="logo" src="/logo.png" alt="" />
             </Link>
           </figure>
           <h1 id="header-home">

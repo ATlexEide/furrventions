@@ -78,7 +78,7 @@ export default function SavedConventionCard({ con, type }) {
               src={
                 con.hasLogo
                   ? fetchLogo(con.id)
-                  : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images/pawlogo.png"
+                  : "https://cydiwehmeqivbtceuupi.supabase.co/storage/v1/object/public/convention-images/logo.png"
               }
               alt={`${con.name} logo`}
             />

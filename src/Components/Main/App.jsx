@@ -36,7 +36,7 @@ export default function Home() {
         </Link>
       </section>
       <section id="mobile-catch">
-        <img id="logo" src="pawlogo.png" alt="" />
+        <img id="logo" src="logo.png" alt="" />
         <p>
           We&apos;re working on the mobile version! <br /> <br />
           For now, please visit on desktop to view the site ^^
