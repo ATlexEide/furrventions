@@ -12,7 +12,7 @@ import AddConvention from "./Components/AddConventionForm/AddConvention.jsx";
 import Kofi from "./Components/Utilities/Kofi.jsx";
 import ViewConInfo from "./Components/Convention/ViewConInfo.jsx";
 import SignUp from "./Components/User/SignUp.jsx";
-import SignIn from "./Components/User/SignIn.jsx";
+import SignIn from "./Components/User/Auth/SignIn.jsx";
 import ResetPassword from "./Components/User/ResetPassword.jsx";
 
 import "./App.css";

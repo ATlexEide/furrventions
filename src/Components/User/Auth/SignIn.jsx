@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { TextField, Typography } from "@mui/material";
-import { supabase } from "../../utils/SupabaseUtils";
+import { supabase } from "../../../utils/SupabaseUtils";
 
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { sendResetPasswordLink } from "../../utils/SupabaseUtils";
+import { sendResetPasswordLink } from "../../../utils/SupabaseUtils";
 
 export default function SignIn() {
   const navigate = useNavigate();
