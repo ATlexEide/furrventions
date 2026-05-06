@@ -3,7 +3,7 @@
 ## Well, I simply needed a webdev portfolio project
 
 I wanted to build a portfolio project. I also want to attend more conventions and saw that there isn't really any super user friendly ways to find conventions other than word of mouth from people that already go to cons.
-(Not that I managed to find atleast, I found [furrycons](https://furrycons.com/) but that was about it :c )
+(Not that I managed to find atleast, I found [furrycons](https://furrycons.com/) and [furdar](https://furdar.org/), but that was about it :c )
 
 ### So what problems do I want to solve?
 
@@ -20,12 +20,10 @@ But the main ones include (but not limited to!):
   - Time
   - Price
   - How many spots/attendees? (If applicable)
-- Roomparties
-  - How da hell do you find them without asking around?
 
 ### So how is this site gonna help?
 
-I want to enable convention organizers and congoers to easily post a convention or meet and have it all gathered in one easily searchable site.
+I want to enable convention organizers and attendees to easily post a convention or meet and have it all gathered in one easily searchable site.
 
 ### Is there gonna be any difficulties with this?
 
@@ -45,12 +43,12 @@ I also think that if needed in the future, this will simplify moving away from s
 How can you trust that the event is real and the information is correct?
 
 Well that's easy to solve! Right?
-Well, you _could_ have every convention register their event themselves.. But that would be a lot of work, and I would need to contact every organizer and hope they like the idea, doable? Sure, but not the best solution imho.
+Well, you _could_ have every convention register their event themselves.. But that would be a lot of work, and I would need to contact every organizer and hope they like the idea, doable? Sure, but not the best solution in my opinion.
 
 So how do we solve that?
 
 - **User created events**
-  - Let congoers register events they know of (think back to word of mouth, oops..), these events would be marked with "user created event" or something like that to signify that you might need to check that the info is correct before you fully trust it.
+  - Let attendees register events they know of (think back to word of mouth, oops..), these events would be marked with "user created event" or something similar to signify that you might need to check that the info is correct before you fully trust it.
   - We'd also want the events actual organizer to be able to "claim" the event, this would give the event a "verified event" tag or something similar.
 - **Organizer created events**
   - This would practically be the same as a user generated events, but it would be verified from the get go.
