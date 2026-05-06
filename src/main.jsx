@@ -38,7 +38,6 @@ export const mobileWidth = 900;
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Analytics />
-    {/* <WipAlert /> */}
     <Router>
       <Header />
       <main>
