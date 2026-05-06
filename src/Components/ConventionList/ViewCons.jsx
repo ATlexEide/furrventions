@@ -8,7 +8,7 @@ import Loading from "../Utilities/Loading.jsx";
 import ConventionCard from "./ConventionCard.jsx";
 import MapWithPlaceholder from "../Utilities/Map.jsx";
 
-import "../../styles/ViewCons.css";
+import "./ViewCons.css";
 
 export default function ViewCons() {
   const [consObj, setConsObj] = useState({});

@@ -16,7 +16,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import RadioInput from "@mui/material/FormControlLabel";
 
-import "../../styles/ViewConInfo.css";
+import "./ViewConInfo.css";
 import DateRangePicker from "../Utilities/DateRangePicker";
 import EuroIcon from "@mui/icons-material/Euro";
 import DescriptionIcon from "@mui/icons-material/Description";

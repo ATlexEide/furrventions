@@ -4,8 +4,8 @@ import { TextField } from "@mui/material";
 import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 
-import "../../styles/AccountPage.css";
-import "../../styles/Forms.css";
+import "./AccountPage.css";
+
 import {
   checkIsEmailTaken,
   getUserSession,

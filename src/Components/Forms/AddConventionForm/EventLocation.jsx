@@ -3,7 +3,7 @@ import { TextField, Box } from "@mui/material";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import SearchIcon from "@mui/icons-material/Search";
 
-import VirtualizedList from "../Utilities/VirtualizedList";
+import VirtualizedList from "../../Utilities/VirtualizedList";
 
 export default function EventLocation({
   setIsNotValid,

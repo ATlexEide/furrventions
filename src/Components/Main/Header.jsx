@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../../styles/Header.css";
 import UserButton from "../User/UserButton";
 import { getUserSession, logout } from "../../utils/SupabaseUtils";
 import { mobileWidth } from "../../main";
+
+import "./Header.css";
 
 export default function Header() {
   const [user, setUser] = useState(null);

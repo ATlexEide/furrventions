@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetchParticipantCons, supabase } from "../../utils/SupabaseUtils";
-import { NoSession } from "./NoSession";
+import { NoSession } from "./Auth/NoSession";
 import SavedConventionCard from "./SavedConventionCard";
 import { Link } from "react-router-dom";
-import "../../styles/ManageConventions.css";
+import "./ManageConventions.css";
 
 export default function ManageConventions() {
   const [conventions, setConventions] = useState(null);

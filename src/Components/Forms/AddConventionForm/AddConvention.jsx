@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Form from "../Utilities/Form";
-import { supabase } from "../../utils/SupabaseUtils";
+import Form from "../Form";
+import { supabase } from "../../../utils/SupabaseUtils";
 
 // CSS
-import "../../styles/Forms.css";
+import "../Forms.css";
 
 // Form components
 import OrganizerDetails from "./OrganizerDetails";
@@ -14,7 +14,7 @@ import EventLocation from "./EventLocation";
 import EventTicketInfo from "./EventTicketInfo";
 import EventTags from "./EventTags";
 import EventAdditionalInfo from "./EventAdditionalInfo";
-import { uploadLogo } from "../../utils/uploadLogo";
+import { uploadLogo } from "../../../utils/uploadLogo";
 
 export default function AddConvention() {
   const [page, setPage] = useState(0);

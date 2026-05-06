@@ -1,6 +1,7 @@
 import { fetchLogo } from "../../utils/fetchLogo";
-import "../../styles/ConventionCard.css";
 import { useNavigate } from "react-router-dom";
+
+import "./../ConventionList/ConventionCard.css";
 
 export default function SavedConventionCard({ con, type }) {
   const navigate = useNavigate();

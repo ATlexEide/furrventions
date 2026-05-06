@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-// CSS
-import "../../styles/Forms.css";
+
 import { Link } from "react-router-dom";
-import UserLoading from "../SignupFormComponents/UserLoading";
+import UserLoading from "../../Forms/SignupFormComponents/UserLoading";
 import { TextField, Typography } from "@mui/material";
 
 import BadgeIcon from "@mui/icons-material/Badge";
@@ -15,7 +14,7 @@ import {
   checkIsUsernameTaken,
   checkIsEmailTaken,
   signUpNewUser
-} from "../../utils/SupabaseUtils";
+} from "../../../utils/SupabaseUtils";
 
 export default function SignUp() {
   const [isValid, setIsValid] = useState(false);
