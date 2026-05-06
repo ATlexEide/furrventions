@@ -28,7 +28,7 @@ export default function SignIn() {
         default:
           throw new Error(error);
       }
-    if (!error) {
+    if (data) {
       navigate("/");
       window.location.reload();
     }
