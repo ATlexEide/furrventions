@@ -54,6 +54,10 @@ So how do we solve that?
   - This would practically be the same as a user generated events, but it would be verified from the get go.
   - Collaborate with organizers to figure out a better way of handling events.
 
+
+### Logo
+The logo is sourced from [OpenMoji](https://openmoji.org/). License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 # Follow development:
 
 [Discord](https://discord.com/invite/AvvDzd7XCp)
