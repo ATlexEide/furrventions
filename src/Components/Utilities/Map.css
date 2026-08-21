@@ -1,0 +1,6 @@
+.leaflet-marker-pane > .leaflet-marker-icon {
+  background-color: var(--secondary-bg-color);
+  border-radius: 100%;
+  border: solid 1px rgb(102, 0, 255);
+  aspect-ratio: 1;
+}

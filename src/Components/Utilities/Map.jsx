@@ -4,6 +4,8 @@ import { Icon } from "leaflet";
 import { Link } from "react-router-dom";
 import { fetchLogo } from "../../utils/fetchLogo";
 
+import "./Map.css";
+
 function MapPlaceholder() {
   return (
     <p>
@@ -33,7 +35,6 @@ export default function MapWithPlaceholder({
     }),
     []
   );
-
   conventions &&
     conventions.map((con) => {
       conIcon = new Icon({
