@@ -11,8 +11,8 @@ export async function filterCons(filterArgs) {
 
     function isEventOld(con) {
       const today = new Date();
-      const conTime = new Date(con.start_time);
-      const isOld = today > conTime;
+      const conEndTime = new Date(con.end_time);
+      const isOld = today > conEndTime;
       return isOld;
     }
 
